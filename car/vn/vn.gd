@@ -33,6 +33,14 @@ extends Control
 ##                               files live in res://vn/img/<name>.png|webp|jpg
 ##                               "@ img none" clears it
 ##     @ zoom <factor>           zoom the illustration; "@ zoom 1" resets
+##     @ pan <dx> <dy> [sec]     slide the illustration, px at 960x540, from the
+##                               camera's side: "+y" pans UP (toward the sky),
+##                               "+x" pans right. "@ pan 0 0" recentres.
+##                               Clamped to the plate's overhang, so it can never
+##                               show past the edge - a portrait plate pans much
+##                               further than a 16:9 one (see the warning).
+##     @ sat <value> [sec]       illustration saturation: 1 untouched, 0 grey,
+##                               2 over-hot. "@ sat 1" resets.
 ##     @ fade [seconds]          fade the screen to black (default 1.5s)
 ##                               "@ img black" / "@ img white" set a flat colour
 ##                               "@ fade off" clears a fade
@@ -68,10 +76,23 @@ const NARR_CHARS_PER_SEC := 80.0    # narration typewriter speed (brisk; tune to
 const SFX_DIR := "res://vn/sfx/"
 const SFX_EXTS := ["ogg", "wav", "mp3"]
 const MODE_VERBS := ["fullscreen", "narration", "box", "center", "right", "small", "large"]
-const EVENT_VERBS := ["stage", "sfx", "music", "shake", "glitch", "page", "img", "image", "zoom", "fade", "input_name", "call"]
+const EVENT_VERBS := ["stage", "sfx", "music", "shake", "glitch", "page", "img", "image", "zoom", "pan", "sat", "saturate", "fade", "input_name", "call"]
 const IMG_DIR := "res://vn/img/"
 const IMG_EXTS := ["png", "webp", "jpg", "jpeg"]
 const BG_DEFAULT := Color(0.07, 0.07, 0.09, 1)
+
+## Desaturates the illustration. "@ sat 0.2" is nearly monochrome, 1 is untouched,
+## above 1 is over-hot - so a shot can be drained of colour and then bleed back in.
+const BG_SHADER := """
+shader_type canvas_item;
+uniform float saturation : hint_range(0.0, 2.0) = 1.0;
+void fragment() {
+	vec4 col = texture(TEXTURE, UV);
+	float l = dot(col.rgb, vec3(0.2126, 0.7152, 0.0722));
+	col.rgb = mix(vec3(l), col.rgb, saturation);
+	COLOR = col * COLOR;
+}
+"""
 
 ## Leave blank to play through Game.chapters in order; set a path to test one file.
 @export var chapter_file := ""
@@ -91,7 +112,11 @@ var _narr_shown := 0
 var _page: Array = []              # revealed units on the narration page (same shape)
 var _img_fade_tween: Tween
 var _screen_fade_tween: Tween
-var _zoom_tween: Tween
+var _cam_tween: Tween
+var _sat_tween: Tween
+var _zoom_factor := 1.0
+var _pan := Vector2.ZERO      # camera offset in px; +x right, +y UP
+var _pan_warned := false
 
 @onready var box: ColorRect = $Box
 @onready var portrait: TextureRect = $Portrait
@@ -111,6 +136,11 @@ var _zoom_tween: Tween
 
 
 func _ready() -> void:
+	var bg_mat := ShaderMaterial.new()
+	var bg_sh := Shader.new()
+	bg_sh.code = BG_SHADER
+	bg_mat.shader = bg_sh
+	bg_image.material = bg_mat
 	name_input.text_submitted.connect(_on_name_submitted)
 	$NamePanel/VBox/Confirm.pressed.connect(_confirm_name)
 	var path := chapter_file if chapter_file != "" else Game.current_chapter()
@@ -389,6 +419,11 @@ func _goto(id: String, keep_page := false) -> void:
 	if _has_staging(node, "zoom"):
 		var zv := _staging_arg(node, "zoom")
 		_zoom(float(zv) if zv != "" else 1.1)
+	if _has_staging(node, "pan"):
+		_apply_pan(_staging_arg(node, "pan"))
+	var sat_verb := "sat" if _has_staging(node, "sat") else ("saturate" if _has_staging(node, "saturate") else "")
+	if sat_verb != "":
+		_apply_sat(_staging_arg(node, sat_verb))
 	if _has_staging(node, "fade"):
 		var fa := _staging_arg(node, "fade")
 		if fa == "off" or fa == "reset":
@@ -655,8 +690,20 @@ func _set_image(name: String) -> void:
 	_clear_image()
 	bg_color.color = BG_DEFAULT
 	bg_image.texture = tex
+	_zoom_factor = 1.0
+	_pan = Vector2.ZERO
+	_pan_warned = false
+	_set_sat(1.0)
+	# Float the plate free of the scene's anchors so size/position are ours to
+	# drive, then size it to just cover the frame. Whatever it overhangs is the
+	# pan room - a portrait plate overhangs vertically a great deal.
+	bg_image.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	var vp := get_viewport_rect().size
+	var ts := tex.get_size()
+	var cover := maxf(vp.x / ts.x, vp.y / ts.y)
+	bg_image.size = ts * cover
 	bg_image.pivot_offset = bg_image.size * 0.5
-	bg_image.scale = Vector2.ONE
+	_apply_camera(0.0)
 	bg_image.modulate.a = 0.0
 	_img_fade_tween = create_tween()
 	_img_fade_tween.tween_property(bg_image, "modulate:a", 1.0, 0.25)
@@ -665,11 +712,17 @@ func _set_image(name: String) -> void:
 func _clear_image() -> void:
 	if _img_fade_tween != null and _img_fade_tween.is_valid():
 		_img_fade_tween.kill()
-	if _zoom_tween != null and _zoom_tween.is_valid():
-		_zoom_tween.kill()
+	if _cam_tween != null and _cam_tween.is_valid():
+		_cam_tween.kill()
+	if _sat_tween != null and _sat_tween.is_valid():
+		_sat_tween.kill()
 	bg_image.texture = null
 	bg_image.scale = Vector2.ONE
 	bg_image.modulate.a = 1.0
+	_zoom_factor = 1.0
+	_pan = Vector2.ZERO
+	_pan_warned = false
+	_set_sat(1.0)
 
 
 ## EVENT: fade the whole screen to black over [duration] seconds (default 1.5).
@@ -701,12 +754,84 @@ func _fade_reset() -> void:
 func _zoom(factor: float) -> void:
 	if bg_image.texture == null:
 		return
-	bg_image.pivot_offset = bg_image.size * 0.5
-	# Zoom around the centre of the frame, not the top-left corner.
-	if _zoom_tween != null and _zoom_tween.is_valid():
-		_zoom_tween.kill()
-	_zoom_tween = create_tween()
-	_zoom_tween.tween_property(bg_image, "scale", Vector2(factor, factor), 0.35)
+	_zoom_factor = maxf(factor, 1.0)
+	_apply_camera(0.35)
+
+
+## EVENT: pan the illustration. dx/dy shift the visible window, in px at the
+## 960x540 design size, from the camera's point of view - so "+y" pans UP toward
+## the sky. "@ pan 0 0" recentres.
+func _apply_pan(arg: String) -> void:
+	if bg_image.texture == null:
+		return
+	var parts := arg.split(" ", false)
+	if parts.size() < 2:
+		_pan = Vector2.ZERO
+		_apply_camera(0.35)
+		return
+	var dur := float(parts[2]) if parts.size() >= 3 else 0.35
+	_pan = Vector2(float(parts[0]), float(parts[1]))
+	_apply_camera(dur)
+
+
+## EVENT: illustration saturation. 1 = untouched, 0 = greyscale, >1 = over-hot.
+func _apply_sat(arg: String) -> void:
+	if bg_image.texture == null:
+		return
+	var parts := arg.split(" ", false)
+	if parts.size() < 1:
+		return
+	var v := float(parts[0])
+	var dur := float(parts[1]) if parts.size() >= 2 else 0.35
+	if dur <= 0.0:
+		_set_sat(v)
+		return
+	if _sat_tween != null and _sat_tween.is_valid():
+		_sat_tween.kill()
+	_sat_tween = create_tween()
+	_sat_tween.tween_method(_set_sat, _get_sat(), v, dur)
+
+
+func _get_sat() -> float:
+	var m := bg_image.material
+	if m is ShaderMaterial:
+		return float((m as ShaderMaterial).get_shader_parameter("saturation"))
+	return 1.0
+
+
+func _set_sat(v: float) -> void:
+	var m := bg_image.material
+	if m is ShaderMaterial:
+		(m as ShaderMaterial).set_shader_parameter("saturation", v)
+
+
+## Drive the plate's scale and position together. The plate is sized to just
+## cover the frame; zoom scales it up and pan slides it inside the overhang.
+func _apply_camera(dur: float) -> void:
+	if bg_image.texture == null:
+		return
+	var vp := get_viewport_rect().size
+	var z := maxf(_zoom_factor, 1.0)
+	var base := bg_image.size
+	var room := (base * z - vp) * 0.5
+	var want := _pan
+	_pan.x = clampf(_pan.x, -room.x, room.x)
+	_pan.y = clampf(_pan.y, -room.y, room.y)
+	if not _pan_warned and (want - _pan).length() > 1.0:
+		_pan_warned = true
+		push_warning("VN: pan clamped. This plate only has %.0f x %.0f px of room at zoom %.2f - use a taller plate, or raise @ zoom first." % [room.x, room.y, z])
+	var to_pos := (vp - base) * 0.5 + Vector2(-_pan.x, _pan.y)
+	var to_scale := Vector2(z, z)
+	if _cam_tween != null and _cam_tween.is_valid():
+		_cam_tween.kill()
+	if dur <= 0.0:
+		bg_image.scale = to_scale
+		bg_image.position = to_pos
+		return
+	_cam_tween = create_tween()
+	_cam_tween.set_parallel(true)
+	_cam_tween.tween_property(bg_image, "scale", to_scale, dur)
+	_cam_tween.tween_property(bg_image, "position", to_pos, dur)
 
 
 ## Plays any @ sfx / @ music directives attached to this line.
