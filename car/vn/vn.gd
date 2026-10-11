@@ -687,6 +687,8 @@ func _set_image(name: String) -> void:
 	if tex == null:
 		push_warning("VN: missing image '%s' (expected %s%s.png|webp|jpg)" % [name, IMG_DIR, name])
 		return
+	if tex == bg_image.texture:
+		return   # same illustration: keep the current zoom/pan, don't re-fade
 	_clear_image()
 	bg_color.color = BG_DEFAULT
 	bg_image.texture = tex

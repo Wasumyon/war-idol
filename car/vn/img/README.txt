@@ -13,11 +13,24 @@ BUILT-IN NAMES (no file needed)
   black         flat black backdrop
   white         flat white backdrop
 
-NEEDED (from the scripts - the "# ART:" note beside each `@ img` is the brief)
-  leg_pool    00_prologue   severed leg in power armour, pool of blood, yellow-green soil, a short distance away
-  arm_crawl   00_prologue   a gauntleted arm dragging across the dirt toward the leg
-  grab_leg    00_prologue   a hand closing on the severed leg
-  stomp       00_prologue   a taloned heel stomping down on the arm
+PROLOGUE - one plate, not four shots
+  The prologue used to call four separate illustrations. It is now ONE painted
+  plate with the camera doing the work (@ img / @ zoom / @ pan / @ tremble), so
+  the four names below currently all point at the same image. Keep them in sync
+  until the script is rewritten to a single `@ img chaac_pov`.
+
+  The plate: Jupiter dead centre above, a single piece of powered armour - a leg,
+  boot plate and knee joint - lying discarded and pointing away, with a dark red
+  trail spilling from it across the ground toward the viewer, curling.
+  No figure in frame.
+
+  leg_pool    all four = the same plate   (chaac_pov_v1; source: chaac_pov_src)
+  arm_crawl
+  grab_leg
+  stomp
+
+  Note: because the image is identical, re-issuing `@ img` returns early and
+  keeps the current zoom/pan instead of fading the same picture in again.
 
   Still missing: the glitch-reveal image (the figure he sees in the camera feed).
   Add a `# ART:` note and an `@ img <id>` on that beat when it exists.
