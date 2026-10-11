@@ -48,7 +48,7 @@ WAR IDOLS
 
 # cast shorthand: one letter stands in for a speaker; multi-word names have to be
 # declared here or they read as narration ("Captain Keno: ..." needs this line).
-@ cast C=Chip, P=Player, Captain Keno
+@ cast C=Chip, P=Player, K=Captain Keno
 
 Seven months since then. Four of those spent suspended on a torture rack resetting my spine. Another two for rehab. 
 
@@ -184,7 +184,7 @@ Never gouging. That's the simple trick: fill the seats with every guttersnipe in
 
 He shakes his head.
 
-"Already paid."
+K: "Already paid."
 
 I shoot a glance back towards the door. She's smiling, waving her little phone like she's won something. The bright screen reads, in big letters. *~PAID~ ~PAID~ ~PAID~*
 
@@ -192,9 +192,9 @@ P: You little-!
 
 I grab a bunch of old metal colonial chips from my pocket and slam them on the bar table.
 
-"Hey! What!?-" 
+K: "Hey! What!?-" 
 He shrugs then rings a bell.
-"Free round for everyone on the Nemean!"
+K: "Free round for everyone on the Nemean!"
 
 Ex-Nemean, I think to myself.
 
@@ -230,7 +230,7 @@ I hold her shoulders.
 
 P: Don't do that.
 
-She shakes her head, transmuting her pain into anger, and holds it in to a whimper. Good girl.
+She shakes her head, transmuting her pain into anger, and holds it down. Only a whimper gets out. Good girl.
 
 I look at the aftermath. Two burned-out craters in the chest of the fat bald one, one dead center in the forehead of the Cassini punk. 
 Three more meteors for Io. I spit.
