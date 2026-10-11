@@ -71,11 +71,12 @@ extends Control
 ## "Player:" resolves to Game.display_name() - "Blockhead" until the player
 ## enters a name, then that name. "{player}" in text expands the same way.
 
+const SCRIPT_FX := preload("res://vn/script_effect.gd")
 const CHARS_PER_SEC := 45.0
 const NARR_CHARS_PER_SEC := 80.0    # narration typewriter speed (brisk; tune to taste)
 const SFX_DIR := "res://vn/sfx/"
 const SFX_EXTS := ["ogg", "wav", "mp3"]
-const MODE_VERBS := ["fullscreen", "narration", "box", "center", "right", "small", "large"]
+const MODE_VERBS := ["fullscreen", "narration", "box", "center", "right", "small", "large", "fast", "speed"]
 const EVENT_VERBS := ["stage", "sfx", "music", "shake", "glitch", "page", "img", "image", "zoom", "pan", "sat", "saturate", "fade", "input_name", "call"]
 const IMG_DIR := "res://vn/img/"
 const IMG_EXTS := ["png", "webp", "jpg", "jpeg"]
@@ -101,6 +102,8 @@ var _nodes := {}
 var _node_id := ""
 var _revealing := false
 var _char_timer := 0.0
+var _dlg_speed := CHARS_PER_SEC        # per-line typewriter rate (see @ fast)
+var _narr_speed := NARR_CHARS_PER_SEC
 var _char_count := 0
 var _dlg_stops: Array[int] = []   # dialogue: visible-char count at each segment end
 var _dlg_seg := 0                 # dialogue: current segment
@@ -141,6 +144,15 @@ func _ready() -> void:
 	bg_sh.code = BG_SHADER
 	bg_mat.shader = bg_sh
 	bg_image.material = bg_mat
+	# sub / sup: two instances per label, different bbcode, opposite rise
+	for lbl in [text_label, narration_label]:
+		var sub_fx := SCRIPT_FX.new()
+		sub_fx.bbcode = "sub"
+		sub_fx.rise = 5.0
+		var sup_fx := SCRIPT_FX.new()
+		sup_fx.bbcode = "sup"
+		sup_fx.rise = -9.0
+		lbl.custom_effects = [sub_fx, sup_fx]
 	name_input.text_submitted.connect(_on_name_submitted)
 	$NamePanel/VBox/Confirm.pressed.connect(_confirm_name)
 	var path := chapter_file if chapter_file != "" else Game.current_chapter()
@@ -368,6 +380,14 @@ func _apply_mode(modes: Dictionary, verb: String, arg: String) -> void:
 			modes["fullscreen"] = on
 		"box":
 			modes["fullscreen"] = false
+		"fast", "speed":
+			# multiplier on the typewriter rate; "@ fast" alone is 4x
+			var mult := 4.0
+			if arg != "" and arg != "on":
+				mult = float(arg)
+			if (not on) or mult <= 0.0:
+				mult = 1.0
+			modes["speed"] = mult
 		"center":
 			if on:
 				modes["align"] = "center"
@@ -435,6 +455,9 @@ func _goto(id: String, keep_page := false) -> void:
 	hint.text = ""
 
 	var modes: Dictionary = node.get("modes", {})
+	var rate := float(modes.get("speed", 1.0))
+	_dlg_speed = CHARS_PER_SEC * rate
+	_narr_speed = NARR_CHARS_PER_SEC * rate
 	var fullscreen: bool = bool(node.get("narration", false)) or bool(modes.get("fullscreen", false))
 
 	var body := _compose_text(node)
@@ -616,6 +639,9 @@ func _compose_text(node: Dictionary) -> String:
 func _inline(s: String) -> String:
 	var t := _wrap(s, "*", "b")
 	t = _wrap(t, "_", "i")
+	t = _wrap(t, "^^", "sup")   # ^^x^^  superscript
+	t = _wrap(t, "^", "sup")    # ^x^    superscript (single form also works)
+	t = _wrap(t, ",,", "sub")   # ,,x,,  subscript  (~ collides with Chip's tildes)
 	return t
 
 
@@ -912,7 +938,7 @@ func _clear_choices() -> void:
 
 func _process(delta: float) -> void:
 	if _narr_typing and narration_label.visible:
-		_narr_pos += NARR_CHARS_PER_SEC * delta
+		_narr_pos += _narr_speed * delta
 		if _narr_pos >= float(_narr_target):
 			_narr_pos = float(_narr_target)
 			_narr_typing = false
@@ -920,7 +946,7 @@ func _process(delta: float) -> void:
 	if not _revealing:
 		return
 	var stop: int = _dlg_stops[_dlg_seg] if _dlg_seg < _dlg_stops.size() else 0
-	_char_timer += delta * CHARS_PER_SEC
+	_char_timer += delta * _dlg_speed
 	if int(_char_timer) >= stop:
 		_char_timer = float(stop)
 		text_label.visible_characters = stop
