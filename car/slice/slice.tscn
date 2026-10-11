@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bw0tsr24vini5" path="res://slice/cooldown_bubbles.gd" id="7_cooldowns"]
 [ext_resource type="Script" path="res://slice/lane_lines.gd" id="8_lanelines"]
 [ext_resource type="Script" path="res://slice/vehicle.gd" id="9_vehicle"]
+[ext_resource type="Texture2D" path="res://slice/art/backdrop/io_battlefield.png" id="10_bg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="SkyMat_1"]
 sky_horizon_color = Color(0.55, 0.53, 0.5, 1)
@@ -48,7 +49,8 @@ size = Vector2(1400, 800)
 [sub_resource type="StandardMaterial3D" id="BackFar_1"]
 shading_mode = 0
 disable_fog = true
-albedo_color = Color(0.45, 0.44, 0.4, 1)
+albedo_color = Color(1, 1, 1, 1)
+albedo_texture = ExtResource("10_bg")
 
 [sub_resource type="StandardMaterial3D" id="BackMid_1"]
 shading_mode = 0
@@ -126,6 +128,7 @@ mesh = SubResource("BackQuad_1")
 script = ExtResource("6_layer")
 
 [node name="Mid" type="MeshInstance3D" parent="Backdrop"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 90, -250)
 material_override = SubResource("BackMid_1")
 cast_shadow = 0
@@ -134,6 +137,7 @@ script = ExtResource("6_layer")
 forward_factor = 0.035
 
 [node name="Near" type="MeshInstance3D" parent="Backdrop"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, -160)
 material_override = SubResource("BackNear_1")
 cast_shadow = 0
