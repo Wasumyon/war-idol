@@ -77,7 +77,8 @@ if ($missing.Count -eq 0) {
 	}
 }
 
-$md | Set-Content -Path $outMd -Encoding UTF8
+$text = ($md -join "`n")
+[System.IO.File]::WriteAllText($outMd, $text, (New-Object System.Text.UTF8Encoding($false)))
 Write-Output ("wrote " + $outMd)
 Write-Output ("distinct assets wanted: " + $uniq.Count + "   missing: " + $missing.Count)
 $missing | Sort-Object Kind, Name | ForEach-Object { Write-Output ("  MISSING {0,5}  {1}" -f $_.Kind, $_.Name) }
