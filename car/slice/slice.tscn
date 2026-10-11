@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://slice/lane_lines.gd" id="8_lanelines"]
 [ext_resource type="Script" path="res://slice/vehicle.gd" id="9_vehicle"]
 [ext_resource type="Texture2D" path="res://slice/art/backdrop/io_battlefield.webp" id="10_bg"]
+[ext_resource type="Texture2D" path="res://slice/art/backdrop/io_sky.webp" id="11_sky"]
+[ext_resource type="Texture2D" path="res://slice/art/backdrop/io_terrain.png" id="12_terrain"]
 
 [sub_resource type="ProceduralSkyMaterial" id="SkyMat_1"]
 sky_horizon_color = Color(0.55, 0.53, 0.5, 1)
@@ -41,16 +43,18 @@ size = Vector2(200, 8000)
 [sub_resource type="StandardMaterial3D" id="BackSky_1"]
 shading_mode = 0
 disable_fog = true
-albedo_color = Color(0.62, 0.6, 0.58, 1)
+albedo_color = Color(1, 1, 1, 1)
+albedo_texture = ExtResource("11_sky")
 
 [sub_resource type="QuadMesh" id="BackQuad_1"]
 size = Vector2(1400, 800)
 
 [sub_resource type="StandardMaterial3D" id="BackFar_1"]
+transparency = 1
 shading_mode = 0
 disable_fog = true
 albedo_color = Color(1, 1, 1, 1)
-albedo_texture = ExtResource("10_bg")
+albedo_texture = ExtResource("12_terrain")
 
 [sub_resource type="StandardMaterial3D" id="BackMid_1"]
 shading_mode = 0
@@ -113,12 +117,12 @@ script = ExtResource("8_lanelines")
 script = ExtResource("5_backdrop")
 
 [node name="Sky" type="MeshInstance3D" parent="Backdrop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, -420)
+transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 1, 0, 24, -340)
 material_override = SubResource("BackSky_1")
 cast_shadow = 0
 mesh = SubResource("BackQuad_1")
 script = ExtResource("6_layer")
-forward_factor = 0.01
+forward_factor = 0.002
 
 [node name="Far" type="MeshInstance3D" parent="Backdrop"]
 transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 1, 0, 24, -340)
@@ -126,7 +130,7 @@ material_override = SubResource("BackFar_1")
 cast_shadow = 0
 mesh = SubResource("BackQuad_1")
 script = ExtResource("6_layer")
-forward_factor = 0.004
+forward_factor = 0.014
 
 [node name="Mid" type="MeshInstance3D" parent="Backdrop"]
 visible = false
