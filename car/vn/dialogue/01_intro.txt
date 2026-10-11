@@ -1,99 +1,296 @@
-# War Idol - 01 - Intro
+# War Idols - 01 - Intro
+# Source: Stories/test.txt (Intro).
 #
-# QUICK REFERENCE (full list in vn.gd's header)
-#   text              narration -> full screen, one line per click
-#   Name: / X: text   dialogue  -> bottom box, name label, typewriter
-#   *bold*  _italic_  inline shorthand for [b] / [i]
-#   ? choice   + stat n   -> label   == label   # comment
-#   @ narration / @ box            prose mode vs dialogue mode
-#   @ cast C=Chip, P=Player        one-letter speaker shorthand
-#   @ stage <text>  @ sfx <name>  @ music <name>  @ shake  @ glitch
-#   @ img <name>  @ zoom <f>  @ fade [s]  @ page  @ input_name
+# --- FORMAT REFERENCE -------------------------------------------------------
+# LINE TYPES
+#   Name: text      dialogue  -> bottom box, name label, typewriter
+#   text            narration -> full screen, no name, one line added per click
+#   ? choice text   a branch under the line above
+#   + stat n        effect for the branch/line above  (e.g. + hype 5)
+#   -> label        jump to a beat; blank ends the scene
+#   == label        a named beat to jump to
+#   # comment       ignored
+#
+# DIRECTIVES - two kinds
+#   MODE (sticky; lasts until changed - add "off" to undo):
+#     @ fullscreen / @ fullscreen off        @ box  (= fullscreen off)
+#     @ narration                            @ center [off]  @ right [off]
+#     @ small [off]  @ large [off]
+#     @ music <name>  (loops; "@ music stop")
+#   EVENT (one-shot; happens on this line only):
+#     @ stage <text>          italic line in the box, above the text
+#     @ sfx <name>            one-shot sound   (res://vn/sfx/<name>.ogg|wav|mp3)
+#     @ img <name>            swap the full-screen illustration (sticky)
+#                             "@ img none" clears it; "@ img black|white"
+#     @ zoom <factor>         "@ zoom 1" resets
+#     @ pan <dx> <dy> [sec]   px at 960x540; +y pans UP. "@ pan 0 0" resets
+#     @ sat <value> [sec]     1 = normal, 0 = grey, 2 = over-hot
+#     @ fade [sec] / @ fade off          @ glitch [sec]   @ shake
+#     @ page                  break the narration page here
+#     @ input_name            open the name-entry panel
+#     @ cast A=Alpha, Beta    declare speakers (see below)
+#     @ preset name = fx + fx + ...       then reuse "@ name"
+#
+# A line is dialogue if the text before the first ":" is ONE word, or matches a
+# name declared on "@ cast". So "Chip: hi" is dialogue; "Our contract: 50/50"
+# is narration; and "Captain Keno: ..." is dialogue ONLY because of the @ cast.
+# Inline: *bold*  _italic_
+# ---------------------------------------------------------------------------
 
 == intro
+@ fullscreen
 @ center
 @ large
-WAR IDOL
+WAR IDOLS
 
 @ center off
 @ large off
 
-# cast shorthand: one letter stands in for a speaker
+# cast shorthand: one letter stands in for a speaker; multi-word names have to be
+# declared here or they read as narration ("Captain Keno: ..." needs this line).
 @ cast C=Chip, P=Player, Captain Keno
 
-Seven months since then. Four of those spent suspended on a torture rack, resetting my spine. Another two for rehab.
+Seven months since then. Four of those spent suspended on a torture rack resetting my spine. Another two for rehab. 
 
-Only one other made it out of the verdigris hellpits of Chaac Patera. Three weeks later, he was gone too. I'm sorry I couldn't make it in time, buddy.
+Only one other made it out of the verdigris hellpits of Chaac Patera. And then he too was taken 3 weeks. I'm sorry, I couldn't make it in time buddy.
 
-The bald recruiter with the bespectacled, beady eyes had them pegged on the leg, then my file, then my face, then quickly back to the file. Must have looked like hell.
-Something catches his eye. He stiffens; his arm begins to snap to attention before he catches himself and coughs.
+The bald recruiter with the bespectacled beady eyes had them pegged on the leg, then my file, then my face, then quickly back to the file. Must have looked like hell. 
+Something catches his eye; he stiffens his posture and his arm begins to snap to attention before he catches himself and coughs.
 
-"First Loki Patera, Tarsus Regio, Prometheus, Uruk Sulcus, Second Loki Patera, Conamara Chaos, Argus Panoptes!" he whistles.
-His tone goes somber again.
+"First Loki Patera, Tarsus Regio, Prometheus, Uruk Sulcus, Second Loki Patera, Conamara Chaos, Argus Panoptes!" he whistles.  
+His tone becomes somber again
 "Chaac Patera..."
 
 He drops the papers.
 
-"Sarge. What are you doing here?" He leans closer. "Someone put you to this?"
-"Enlisting."
-"You know what I- Look behind you. We're not short on our backlog. A record like this, you should be living high on the hog on your VA benefits!"
+"Sarge, what are you doing here?" He leans closer. "Someone put you to this?"
 
-Pain pulses through my phantom knee as I wait in silence.
+"Enlisting." 
 
-"Uh... right. I'm sorry, but with *that*, you know I can't do anything for you. But... you know Vulkan Security is always hiring. With this record, I'm sure you can skip the physical."
+"You know what I-  Look behind you, we're not short up in our backlog. A record like this, you should be living high on the hog on your VA benefits!"
 
-As I about-faced, the Triskelion Lion of Nemean Company - three heads swallowing Io, Europa, and Ganymede - sat emblazoned on my cloak. It commanded silence.
-Nothing could be heard except the clack of my cane and boots.
+Pain pulsates through my phantom knee as I wait in silence.
 
-The show only landed harder because of the stairs. For a moment I shifted my weight onto a leg that belonged to me, and then my cheek dug hard into the red pavement.
-Turning over, it's watching me again. That mocking red eye of Jupiter. Well, laugh, damn you.
+"Uh... right. I'm sorry, but with *that*, you know I can't do anything for you but... You know Vulkan Security is always hiring, and they're always the mercs. With this record I'm sure you can skip the physical."
+
+As I about-faced, the Triskelion Lion of Nemean Company proudly bared its fangs swallowing Io, Europa, and Ganymede emblazoned on my cloak, commanding silence. 
+Nothing could be heard except for the clack of my cane and boots. 
+
+The show only landed harder because of the stairs. For a moment, I shift my weight onto a leg that belonged to me and then my cheek dug hard into the red pavement. 
+Turning over, it's watching me again. That mocking red eye of Jupiter. Well laugh damn you!
 
 No one turns their head. People pass around me like a stream around stone. Good. A man who can't get up by himself is as good as dead on Io.
 
 The boom times, when dad moved out to the Jovian moons volunteering for the Giant Leap Pioneer Project, are long over.
 Our fathers' bubble dreams popped. The lost children of that era lived as sycophants, freeters, and burnouts.
 Many dreamed, gazing bleary-eyed into bottles and gunbarrels - until the infestation of Io.
-Don't matter how good or bad things get, under that all-seeing eye, everyone's gotta make a buck. Or get drunk and punch someone.
+
+Infestation... Invasion... They called it many things like they knew what happened, but the truth was this war was a confusion. 
+Most called it The Revelation - Apokalypsis, end of the world. It started in Argos, in the fire sea, Loki Patera.
+The poor bastards' topside suits bore into their bodies and... something changed their flesh into horrors of metal and muscle. Their bodies are twisted into robotic insectoid forms. 
+The Bugs to some, the Bots to other. 
+It told you more about the person what they called them, than the abominations themselves.
+But the part that always commanded attention is what it did to their heads. Machine light growths burst through their skulls, fusing into their helmets.
+It gives them horns.
+
+Nobody knows what caused it, but the rumor is it's the water. 
+
+Io used to be the driest object in the solar system given it's basically one big angry volcano - just like the woman scorned where she gets the name from.
+Europa has water, Io has a fire core. Every 3.5 days the two's orbits are closest.
+Planetary mass railguns launch what the other needs towards each other in "the Kiss" or... the "Hump" for the poetic sort.
+The first poor bastards to be infected were at the old capital, Argos. 
+
+But, even in the end times, life goes on. It don't matter how good or bad things get, under that all-seeing eye, everyone's gotta make a buck. 
+Or get drunk and punch someone. 
+@ page
 
 Can't remember the first two bars, or was it three? I had to get it out of my system. I had to win, even if it was Pyrrhic.
-It felt good, getting cracked by that ducking left hook. He and I learned that the cane is not just for the aura.
+It felt good, getting cracked with that ducking left hook. He and I learned that the cane is not just for the aura. 
 
-War is a fool's market, and whenever the bull comes to ride: sex, drink, and violence are the top sellers.
-And retards like me inevitably flow to Keno's gutter.
+War is a fool's market, and whenever the bull comes to ride: sex, drink, and violence are the top sellers. 
+And retards like me inevitably flow to Keno's gutter. Best damned dive bar in the new capital, Juno. 
+Technically it's the "White Cow"
+If you ask the barman why, Keno will give you the line:
+"Io, one of Jupiter's harem. It's what he turned her into to hide her from his ever-jealous wife, Juno.
+But everyone calls it after the owner, Captain Keno himself. 
 
-C: So was it loud? Like actually loud, or does it all just become white noise?
+Next thing I know I was nursing an old-fashioned, trying to endure the cacophony to no avail.
 
-I try to endure the cacophony through an old-fashioned, to no avail.
+C: So was it loud? Like actually loud, or does it all just become white noise? 
 
-C: Is it true what they say about the smell? How many people have you killed!?~
+She leans in closer and touches my arm. 
+
+C: Is it true what they say about the smell? Say, how many people have you killed!?~
 
 P: Lady, you've got no gun, no muscle, and no dictionary. What's a tart like you doing out here?
 
-C: Content!
+C: Content! 
+
+I pull out my las-pistol and level it at her small chest.
 
 P: This the content you were looking for?
 
-I can see the sweat bead on her brow as she raises her hands. Her smile curdles, but she holds it together. She presses her ribcage into my laspistol.
+She holds back a shriek and lets out something like a croak. 
+Maybe a harsh lesson for such a young girl, but best to learn it now before she gets in *real* trouble.
+I can see the sweat bead on her brow as she raises her hands. Her smile curdles, but she holds it together. 
+She presses her ribcage into the cold steel.
 
-C: Oh, deary me! Chat, you see what rapscallions will do to a damsel out in these boondocks!? Constable! I need the thesaurus police!~
+The transformation bewildered my senses.
 
-Eyes turn. Sweat beads on my brow. I move to put the gun away.
-Like a viper, she catches my hand, thrusts her slim arm over my elbow, and turns her tiny back into my chest.
-She holds my hand with the gun barrel up to her lips and snaps a selfie of her miming blowing smoke off it.
+C: Oh, deary me! Chat, you see what rapscallions will do to a damsel out in these boondocks!? Constable! Call the thesaurus police!~
+
+Eyes turn towards us. It's my turn to feel sweat on my brow. I move to put the gun away. 
+Like a viper, she catches my hand, thrusts her slim arm over my elbow, and turns her tiny back into my chest. 
+She holds my hand with the gun barrel up to her lips and snaps a selfie of her miming blowing smoke off of it.
 
 C: See! I know how to shoot too, hotshot.
 
-I push the goblin off me, and she transfers the momentum into a spin and curtsies.
+I push the goblin off me and she transfers the momentum into a spin and curtsies.
 
 P: Get lost!
 
-She didn't. She slid back into the stool beside me like we've known each other for years, thumb already scrolling.
-On the Feed was the clip of us - our... dance. Notifications ring off her phone, reading off donations and comments.
+She didn't. She slid back into the stool beside me like we've known each other for years, thumb already scrolling. 
+On the Feed is the clip of us and our... dance. Notifications ring off her phone reading off donations and comments. 
 
-C: Fifty. Seventy. Two-hundred! Oh~ Thank you, chat! Drinks are on me today, old man.
+C: Fifty. Seventy. Two-hundred! Oh~ Thank you chat! Sounds like, drinks are on me today old man. 
 
-She taps in a bunch of drinks on the bar screen. And begins to swipe.
+She gives a wink, taps in a bunch of cocktails on the touch monitor and begins to swipe her phone over it.
 
-P: You saying I can't pay for my own?
-C: I'm saying a *lady* sometimes feels generous.
-P: Generous ladies are dangerous ones. 'Sides, a guy always pays for the first date.
+I grab her wrist. Not hard, just enough to stop her.  
+
+P: You saying I can't pay for my own? _And I ain't an old man..._
+C: I'm saying a *lady* sometimes feels generous. 
+P: Generous ladies are dangerous. And guys pay for the first date. It's common sense.
+
+She doesn't pull away and instead searches my face for something.
+
+C: Old-fashioned, huh? But I don't mind that.
+
+She plays with the word on her tongue and gnaws on the syllables with her teeth.
+
+She lifts the martini glass and pours the will-o'-the-wisp down her gullet. Then the White Cow, and the Peacock, and the Gadfly.
+She giggled.
+
+Then she was up and gone - phone raised on a silly stick and already at the door. 
+
+I turn to settle with old Keno in his vintage aloha shirt and prosthetic pince-nez working night shift. He never raised his prices since his own father's time.
+Never gouging, the simple trick of it to fill the seats with every guttersnipe in the city. But for some reason only Keno got it. 
+
+He shakes his head.
+
+"Already paid."
+
+I shot a glance back towards the door. She was smiling, waving her little phone like she'd won something. The bright screen read in big letters. *~PAID~ ~PAID~ ~PAID~*
+
+P: You little-!
+
+I grab a bunch of old metal colonial chips from my pocket and slam them on the bar table.
+
+"Hey! What!?-" 
+He shrugs then rings a bell.
+"Free round for everyone on the Nemean!"
+
+Ex-Nemean, I think to myself.
+
+The crowd erupts in roaring and hooting as I push past them. Lads in the corner slam their beers in rhythm and chant:
+
+"THE THREE RETURNED! *ROAR* THE THREE RETURNED! *ROAR* THE THREE RETURNED!" *ROAR*
+
+I pushed past the bouncer and scanning, found no sign of the pink pixie.
+@ page
+
+It was a week before I ran into her again. In an alley in the slum quarters, she had attracted a crowd. 
+She was running the same bit this time, now more practiced and bombastic. The idiot took the wrong lesson from our night. 
+
+A bald thug with a neck of metal and plastic slapped the phone out of her hand. Before she could yelp, from behind a punk with the Cassini Company emblem tattooed on his face came up from behind and pinned her arms in a Nelson.
+The baldie retrieved the now shattered screen phone, whips it around and seeing the donations roll in, read them aloud. Playing host.
+
+Thug: Now, let's show you boys what you *really* came to see. 
+The laughter pooled like a bubbling sewer.
+
+Before he even places a big paw on her top, the pings fire off wildly. The counter climbed higher and higher as she screamed. 
+None came to her rescue.
+
+Instead, she saw before her a growing mass of lecherous eyes, mocking fangs, and lashing tongues.
+He pulled hard.
+
+I don't remember deciding. I felt three recoils, and then the blow of a pipe on my back followed by of the heft tantalum cane crash on his neck and crack the ankle of another. 
+I leveled the gun at the head of a third. 
+
+Scatter.
+
+I hobbled to her and looked down on her crumpled figure. She didn't look up at me.
+I unfastened my cloak and draped her in it. The phone, though broken, still rang out tallies of booty. I gave it to her.
+She snatched it away and held it close to her chest as she began to cry.
+I held her shoulders.
+
+P: "Don't do that."
+
+She shook her head, transmuting her pain into anger, and held it in to a whimper. Good girl.
+
+I looked at the aftermath. Two hollow craters in the chest of the fat bald one, one center in the forehead of the Cassini punk. 
+Three more meteors for Io. I spat.
+
+P: "Not even the bugs do this."
+
+P: "I told you you were going to get killed pulling stunts like this. Unless you're in a safe crowd, no one's gonna save you, your little tricks won't work. 
+The moon will eat you up and spit you out!
+
+C: But... it did work though, didn't it?
+
+I didn't have an answer for that but I felt a flash of anger. 
+
+Airhead. Fresh meat. Dead by Wednesday. Too loud, too shining. If you stand out like that you'll only get hammered. Not my problem. 
+
+I turned to leave but I felt a tug on my cloak. 
+
+I turned back to see her hold a gleaming glass badge of an eye. 
+
+A Civilian War Journalism License. Anyone can film whatever they want on Io, no one can stop you.
+One random voice on the Feed is just a curio, could be a scam, could be a rumor. 
+But when the Ministry of Logistics and Public Relations sanctioned individuals to cover the plight on Io, it gave them authority.
+Not power in politics or capital nor the barrel of a gun, but something... softer, more subtle. 
+
+The power of faith - of legitimacy and belief. 
+
+C: I know what you want. I know people like you. You're a dead man! 
+
+...
+There's something strange about this girl that makes you forget...
+
+Like a Roman senator, she thrusts one hand to the full length of her slender fingers and one splayed palm at her solar plexus. 
+My cloak flowed around her, baring all, giving her the bearing of a divine nymph as the artificial rain beaded on her alabaster skin.
+I can't look away. 
+
+She gesticulates with uncanny precision. For a brief moment nothing exists but us: theatre and audience. 
+
+C: You want to go back out there, right? Because you are only alive out there in the corpses. 
+C: Heh. Bodies don't even rot on Io; you live forever out there! 
+C: You boys think you're so clever and romantic!
+
+Like a figure skater, she closes her sad doe eyes and squeezes her tiny arms into her core. Then she extends her hand with a desperate smile.
+
+C: I can give it to you. 
+
+@ sfx lightning-flash
+@ img chip-skull
+
+An acid storm flashes outside the dome, and the interior sprinklers start mirroring the fatal rain outside. 
+For a split second half her face takes the appearance of a skull... Or am I seeing things?
+
+P: Dangerous...
+
+But I didn't mind that either. 
+
+I pulled the cloak over her soaked body. She flushed and her hand trembled.
+
+I accepted it.
+
+
+Our contract: I keep her breathing and she brings me out there and in the bacon. We cut it all fifty-fifty, profit and expense. 
+Death clause: All the belongings of the deceased transfer to the other living member - after a Space Vultures Guild investigation confirms no foul play.
+
+For once in a long while the path was clear if not bright:
+
+*Stay alive and elbow out the competition. 
+Those are the rules of the War Idols.*
