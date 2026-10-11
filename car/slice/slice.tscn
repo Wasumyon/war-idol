@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bw0tsr24vini5" path="res://slice/cooldown_bubbles.gd" id="7_cooldowns"]
 [ext_resource type="Script" path="res://slice/lane_lines.gd" id="8_lanelines"]
 [ext_resource type="Script" path="res://slice/vehicle.gd" id="9_vehicle"]
-[ext_resource type="Texture2D" path="res://slice/art/backdrop/io_battlefield.png" id="10_bg"]
+[ext_resource type="Texture2D" path="res://slice/art/backdrop/io_battlefield.webp" id="10_bg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="SkyMat_1"]
 sky_horizon_color = Color(0.55, 0.53, 0.5, 1)
@@ -121,11 +121,12 @@ script = ExtResource("6_layer")
 forward_factor = 0.01
 
 [node name="Far" type="MeshInstance3D" parent="Backdrop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 120, -340)
+transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 1, 0, 18, -340)
 material_override = SubResource("BackFar_1")
 cast_shadow = 0
 mesh = SubResource("BackQuad_1")
 script = ExtResource("6_layer")
+forward_factor = 0.004
 
 [node name="Mid" type="MeshInstance3D" parent="Backdrop"]
 visible = false
