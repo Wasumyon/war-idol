@@ -1,73 +1,61 @@
-# 01_intro.txt — punch list
+# 01_intro — fix list
 
-Line numbers match the file as of commit `6b27872`. Ordered by what hurts most first.
+Rewritten against the current file. Quote-anchored, no line numbers, so it won't go stale.
 
----
-
-## A. Breaks the run (nothing renders)
-
-- **L278 `@ sfx lightning-flash`** — file doesn't exist. Needs `car/vn/sfx/lightning-flash.ogg|wav|mp3`. Logs a warning and plays nothing.
-- **L279 `@ img chip-skull`** — file doesn't exist. Needs `car/vn/img/chip-skull.png|webp|jpg`. This is the chapter's only image, and it's the best one (the skull behind her face). Currently the beat lands on a blank backdrop.
-- **No other `@ img` anywhere.** The whole chapter plays over a flat colour. Minimum viable: one bar interior, one alley.
-- **No `@ music` at all.** A bar scene with no ambience.
+**Nothing here breaks playback.** The only run-breaking items are the missing assets, and those are deliberately deferred.
 
 ---
 
-## B. Continuity / facts to reconcile
+## A. Inconsistencies to settle (pick one and apply it)
 
-- **L55 vs L201** — *"Only one other made it out"* (so two survivors) against *"THE THREE RETURNED"*. Either the crowd is chanting the unit's name — Io, Europa, Ganymede, the lion's three heads — or the numbers disagree. As written, a reader does the maths and finds it doesn't work.
-- **L225 / L265 / L288 — the cloak does three jobs.** He drapes her in it, it flows around her, and then he pulls it over her again. Pick two.
-- **L133 / L221 / L233 — the pistol.** You've settled on laser + recuperator, which makes *"three recoils"* and *"cold steel"* and *"burned-out craters"* all consistent. **Nothing to change** — this is just the note that it's now decided, so don't let an editor talk you out of the recoil.
-- **L116 vs the title card (L31)** — the card reads *WAR IDOLS*, the game is **War Idol**. The in-world plural is fine in *"the rules of the War Idols"*; the title card is the one a player reads as the game's name.
-
----
-
-## C. Grammar / typos — quick wins
-
-- **L55** `in time buddy.` → `in time, buddy.`
-- **L57** `bespectacled beady eyes` → `bespectacled, beady eyes`
-- **L58** two **catches** four words apart → *"Something snags his eye... before he catches himself"*
-- **L80** `Well laugh damn you!` → `Well, laugh, damn you!`
-- **L88** `They called it many things like they knew what happened` → `as if they knew` — the sentence is missing its conjunction
-- **L89** `End of the world.` → `The end of the world.` (and consider whether *"our pride in the fire sea of Loki Patera"* should be *"the colony's pride, on the fire sea of Loki Patera"*)
-- **L104** `launch what the other needs towards each other` → the *"towards each other"* is already carried by *"what the other needs"*
-- **L111** `Can't remember the first two bars, or was it three?` → needs a dash: `— or was it three?` And **Pyrrhic** wants its noun — *"a Pyrrhic victory"* — or the word is stranded.
-- **L116** `the "White Cow".` → period inside the quote if you're using US style (you are: *license*, *center*, *rumor*)
-- **L148** `off of it` → `off it`
-- **L157** `Notifications ring off her phone reading off donations` → **two "off"s**, and phones don't *ring off*. `Notifications ring out of her phone as it reads donations`
-- **L238** `I told you you were going to` → `I told you that you'd get`
-- **L246** `too shining` → `too shiny`
-- **L249** `Anyone can film whatever they want on Io, no one can stop you.` → comma splice *and* a pronoun flip (they → you)
-- **L255** `Not power in politics or capital nor the barrel of a gun` → `Not power in politics or capital, nor in the barrel of a gun`
-- **L291–292** double blank line before the contract → one blank = one paragraph gap
+- **Keno's lines have quotation marks; nobody else's do.**
+  `K: "Already paid."` · `K: "Hey! What!?-"` · `K: "Free round for everyone on the Nemean!"`
+  Chip and Player lines are unquoted throughout. Strip the quotes from the K lines, or quote everything.
+- **`@img` vs `@ img`.** The crib sheet says `@ img`, the file says `@img Keno`. Both work. Pick one — `@ img` is easier to grep.
+- **Drink names are quoted inconsistently**: `"the Kiss"`, `"the Hump"`, `"White Cow."` are quoted; `the will-o'-the-wisp`, `the Peacock`, `the Gadfly` are not. Decide whether named drinks take quotes.
+- **Dashes**: the file uses a spaced hyphen (` - `) everywhere. Fine, but decide, because an em dash would read better typeset.
 
 ---
 
-## D. Repetition and patterns (worth knowing, not errors)
+## B. Line-level fixes
 
-- **The narrator keeps measuring her by her smallness.** L133 *"small chest"*, L147 *"tiny back"*, L147 *"slim arm"*, L264 *"slender fingers"*, L274 *"tiny arms"*, L203 *"pink pixie"*, L152 *"the goblin"*. **This may be deliberate** — a big man with a cane seeing her as slight — and it *sets up* her winning. But at this density it reads as a tic. Keep two, vary the rest.
-- **L175 — one martini glass, four drinks.** *"lifts the martini glass and pours the will-o'-the-wisp... Then the White Cow, and the Peacock, and the Gadfly."* Four pours from one glass. Line up four glasses, or cut to two.
-- **L76 — four verbs in one sentence**: *bares / swallowing / emblazoned / commanding*. Split it.
-- **L264–265 — three comparisons stacked**: Cicero, divine nymph, alabaster skin. Pick one.
-
----
-
-## E. Open questions needing your call
-
-- **L112 `ducking left hook`** — minced oath, or the boxer's duck? Still unresolved, and a reader can't tell.
-- **L79 `The show only lands harder because of the stairs.`** — whose show? The fall, or his war record? Wrong word at the most important beat.
-- **L142 `The transformation bewilders my senses.`** — abstract where everything around it is concrete. What transformation, and what did it feel like?
-- **L118–119 and L193–195 — Keno speaks, but as narration.** The `@ cast` line now exists, so `Captain Keno:` works. Two lines where the barman's mouth should be doing the work.
-- **L165 `_And I ain't an old man..._`** — an interior aside *inside* a spoken line. It renders as him saying it out loud. Deliberate?
-- **L231 `holds it in to a whimper`** — reduced her crying to a whimper, or held it in until she whimpered?
-- **L253** `gives them authority` sits in past-tense exposition (*sanctioned*). Fine, but the tense shift is visible.
-- **`@ input_name` is never called** — so the player is "Blockhead" from start to finish. Either call it or commit to the default.
+- **`My cloak falls open off her as if in slow motion as she moves.`** — two *as* clauses. Drop one: *"falls open off her, slow, as she moves."*
+- **`The show only lands harder because of the stairs.`** — whose show? The fall, or his war record? Still the least clear line in the scene, and it's at the most important beat.
+- **`"First Loki Patera...!" he whistles.`** — whistling a *list of battles* is odd. A *low* whistle, or move the verb: *"he says, and then a low whistle."*
+- **`Every 3.5 days their orbits are closest.`** — orbits aren't closest; the *bodies* are.
+- **`thrusts her slim arms over my elbow`** — plural. One arm goes over the elbow.
+- **`level it at her small chest`** — "small" is one of the diminishment words you've been clearing out (tiny back, tiny arms, slim arm, slender fingers). This one is left.
+- **`The transformation bewilders my senses.`** — "The" implies a transformation already named. It's a *plant* for Daphne three pages later, so it works retroactively, but on first read it points at nothing. Specify whose.
+- **`still rings out tallies of booty`** — "booty" is doing two jobs (loot and sex) and neither cleanly.
+- **`One random voice on the Feed is just a curio, could be a scam, could be a rumor.`** — comma splice.
+- **`The bright screen reads, in big letters.`** — the comma placement is awkward. Colon or nothing.
+- **`Ex-Nemean, I think to myself.`** — "I think to myself" is a tag the "I" already carries.
+- **`pins her arms in a Nelson.`** — half-Nelson, or full? Both exist.
+- **`she brings me out there and in the bacon`** — "in the bacon" (money) isn't set up anywhere. Either seed it earlier or use something established.
+- **Two consecutive blank lines before `Our contract:`** — one blank is one paragraph gap.
+- **`His tone becomes somber again.`** — "again" implies it was somber before. It wasn't.
 
 ---
 
-## F. Opportunities (no bugs, just upside)
+## C. Decided — do not "fix" these
 
-- **L264 — the Cicero payoff is sitting right there.** You named the orator; the chapter already dwells on her tongue twice (L173 *"gnaws on the syllables"*, L218 *"lashing tongues"*). Cicero died by the mouth — hands nailed up, tongue pierced. One clause would bind the image to the man.
-- **The naming system** — *the Revelation* (the paperwork), *the Apocalypse* (what the Feed sells), *the Horned / bugs / bots* (what people say). One word per tribe, and the tribe identifies itself.
-- **The water as the vector** — L100 plants the rumour. That's the first crack in the official story, and it currently sits mid-paragraph. It's a line that deserves its own air.
-- **L52 title card** — *WAR IDOLS* centred and large is the first thing a player sees. Worth a `@ page` after it so it holds for a beat.
+Pasted here so nobody undoes them later, you included.
+
+- **The pistol is a laser with a recuperator.** That's why `las-pistol`, `cold steel`, `three recoils` and `burned-out craters` all coexist. The mechanism is deliberately never explained on the page — it exists so *you* stay consistent. Do not add a line about it.
+- **One glass, four drinks.** Doesn't need specifying. Readers don't audit staging.
+- **The three drinks are in myth order**: White Cow → Peacock → Gadfly is the Io story in sequence. Keep it.
+- **`It gives them horns.` stays where it is** — closing the body description, isolated by blank lines.
+- **`retards like me`** — self-effacing grunt humour, deliberate.
+- **`Seven months since then.`** — not a fragment for effect. It's *"It is seven months since then"* with the dead words elided, which is the correct tense. `since` never takes a bare present or simple past.
+- **`~` in Chip's lines** — a deliberate style mark. Renders literally, as intended.
+- **`Since` / `have passed`** — never both.
+
+---
+
+## D. Optional beats (your call, all cheap)
+
+- **The chant payoff.** After `"THE THREE RETURNED!"`, his arithmetic: *"Three of us came back. Two of us are still here."* The chant is now literally true, so the grief is that it stopped being true, and only he's counting.
+- **`Good girl.` on its own line** — gives him a pause before the verdict.
+- **Keno's line at 119** — currently reported narration. With `K=Captain Keno` in the cast, it could be his mouth instead.
+- **`@ input_name` is never called**, so Player renders as the default name for the whole chapter. Either call it or commit to the default.
+- **The title card reads `WAR IDOLS`**, the game is *War Idol*. Consider making the card an in-world broadcast ident — the plural then means the show and the singular means the game.

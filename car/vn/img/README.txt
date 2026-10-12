@@ -13,20 +13,18 @@ BUILT-IN NAMES (no file needed)
   black         flat black backdrop
   white         flat white backdrop
 
-PROLOGUE - one plate, not four shots
+PROLOGUE - one plate, camera does the work
   The prologue used to call four separate illustrations. It is now ONE painted
   plate with the camera doing the work (@ img / @ zoom / @ pan / @ tremble), so
-  the four names below currently all point at the same image. Keep them in sync
-  until the script is rewritten to a single `@ img chaac_pov`.
+  the two names below both point at the same image. The intention is to collapse
+  them into a single `@ img chaac_pov`.
 
   The plate: Jupiter dead centre above, a single piece of powered armour - a leg,
   boot plate and knee joint - lying discarded and pointing away, with a dark red
   trail spilling from it across the ground toward the viewer, curling.
   No figure in frame.
 
-  leg_pool    all four = the same plate   (chaac_pov_v1; source: chaac_pov_src)
-  arm_crawl
-  grab_leg
+  leg_pool    both = the same plate   (chaac_pov_v1; source: chaac_pov_src)
   stomp
 
   Note: because the image is identical, re-issuing `@ img` returns early and

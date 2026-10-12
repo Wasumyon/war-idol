@@ -5,8 +5,6 @@ Re-run it after writing. `[x]` = exists, `[ ]` = still to make.
 
 | scene | kind | name | |
 |---|---|---|---|
-| 00_prologue | img | `arm_crawl` | [x] |
-| 00_prologue | img | `grab_leg` | [x] |
 | 00_prologue | img | `leg_pool` | [x] |
 | 00_prologue | img | `stomp` | [x] |
 | 00_prologue | sfx | `blow` | [ ] |

@@ -25,8 +25,6 @@ My leg. It shouldn’t be there.
 
 That’s strange… I thought it’d hurt more.
 
-# ART: a gauntleted arm crawling across the dirt toward the leg
-@ img arm_crawl
 Good. It’s still working. The bunker boys are still firing.| Good.| That’ll give me at least a minute to fix this… 
 @ page
 I claw at the caustic dirt and pull.
@@ -52,8 +50,6 @@ I can still fight… I’m not going to let them take my home away. My dad fough
 @ tremble
 I can hear it again. The suit comms are chaos again. Screams. Shouts. Swears. Orders from hundreds of miles away.
 
-# ART: a hand closing on the severed leg
-@ img grab_leg
 @ sfx squish
 I have it now! Boys! I’m coming back for you. Just gotta… put it back on.
 
