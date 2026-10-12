@@ -16,3 +16,8 @@
 *.rar    binary
 *.zip    binary
 *.exe    binary
+
+# Audio - binary, never convert line endings, never merge
+*.ogg    binary
+*.wav    binary
+*.mp3    binary
