@@ -13,7 +13,14 @@ here first so it stops applying everywhere.
 - Present: the recruiter, the fall, the bar, the alley. *"I about-face." · "She snatches it away." · "I accept it."*
 - Past, deliberately: the discharge, the buddy's death, the boom and the fathers, the infestation exposition, the bar-crawl and the fight. Those *are* past, and keeping them past makes the shifts meaningful rather than accidental.
 
-Never mix tense *inside one sentence*. That's the one place it reads as an error instead of a device.
+**Don't mix tense inside a single predication** — one subject, one verb chain. Two verbs, one action, two tenses: that's the shape of the error. The fall on the stairs used to read *"…and then my cheek **dug** hard into the red pavement"* — the file now says **digs**, because the shift wasn't doing any work.
+
+**But some shifts inside one sentence are standard, and stay.** A past event with a present-tense consequence, or a past report with a present-tense truth:
+
+- *"when the Ministry sanctioned individuals to cover the plight on Io, it gives them authority"* — the act is past, the effect is now.
+- *"They called it many things as if they knew what happened, but the truth is no one knows"* — the report is past, the truth is present.
+
+Those are not slips, and "fixing" them would be the mistake. The test is whether the two verbs are the *same* action. If they are, one tense. If the second one is a *consequence* or a *judgement made now*, the shift is doing work.
 
 ---
 
@@ -148,7 +155,7 @@ Subscript and superscript are custom (`car/vn/script_effect.gd`) — stock Godot
 
 ## Pre-flight for a new scene
 
-1. Tense: scenes present, backstory past, no mixing within a sentence.
+1. Tense: scenes present, backstory past. No mixing within a predication — but a past event with a present consequence is correct, not a slip.
 2. Every `@` directive exists in the list above.
 3. `@ page` at scene breaks; no mode-flip stutter.
 4. Names: one word per tribe, and the noun tells you who's talking.
