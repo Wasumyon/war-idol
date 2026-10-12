@@ -1,0 +1,708 @@
+# ===========================================================================
+#   WAR IDOL  -  DRAFT 2  -  01 INTRO        assistant draft, NOT playable
+# ===========================================================================
+#
+#   Read in four parts, separated by banners. Nothing is annotated inline any
+#   more, so the script reads as a script.
+#
+#     PART 1   the script.
+#     PART 2   notes on the script, quote-anchored, in script order.
+#     PART 3   material cut or moved out of the intro (verbatim reservoir).
+#     PART 4   settled decisions, and what is still open.
+#
+#   The prose is the live text of 01_intro.txt, except for the moved passages
+#   and the lines listed as NEW in PART 2. Punchlist line-fixes are deliberately
+#   not applied, so a diff stays structural.
+#
+#   Syntax crib: a line is dialogue only if the word before the first ":" is one
+#   word, or is declared on "@ cast". A mistyped directive fails SILENTLY. The
+#   full directive list is in the header of 01_intro.txt.
+#
+# ===========================================================================
+
+
+# ===========================================================================
+#   PART 1  -  THE SCRIPT
+# ===========================================================================
+
+== intro
+@ fullscreen
+@ center
+@ large
+WAR IDOLS
+
+@ center off
+@ large off
+
+@ cast C=Chip, P=Player, K=Captain Keno
+
+Seven months since then. Four of those spent suspended on a torture rack resetting my spine. Another two for rehab. 
+
+Only three others made it out of the verdigris hellpits of Chaac Patera. And then one too was gone three weeks later. 
+I'm sorry, buddy. I could have been there but... The brass didn't want me. Is it just the leg?
+Anyway.
+
+The bald recruiter with the bespectacled, beady eyes has them pegged on the leg, then my file, then my face, then quickly back to the file. Must have looked like hell. 
+Something snags his eye; he stiffens his posture and his arm begins to snap to attention before he catches himself and coughs.
+
+"First Loki Patera, Tarsus Regio, Prometheus, Uruk Sulcus, Second Loki Patera, Conamara Chaos, Argus Panoptes!" he whistles.  
+His tone becomes somber again.
+"Chaac Patera..."
+
+He drops the papers.
+
+"Sarge, what are you doing here?" He leans closer. "Someone put you to this?"
+
+"Enlisting." 
+
+"You know what I-  Look behind you, we're not short on backlog. A record like this, you should be living high on the hog on your VA benefits!"
+
+"You know what they're going to do to Io once we have the sky? Terraformers. A real port. Water rights. Courts. Kids born here who never see a suit."
+He hears it come out of his mouth.
+"It's the brochure. It's still true."
+
+Phantom pain pulsates through my mechanical knee as I wait in silence. 
+
+"Uh... right. I'm sorry, but with *that*, you know I can't do anything for you but... You know Vulkan Security is always hiring. And there's always the mercs. With this record I'm sure you can skip the physical."
+
+I about-face. The cloak swings with me, and across it, the Triskelion Lion of Nemean Company proudly bares its fangs, swallowing Io, Europa, and Ganymede. It commands silence.
+The only sound in the room is the clack of my cane, all the way to the door.
+
+The show only lands harder because of the stairs. For a moment, I shift my weight onto a leg that belongs to me, and then my cheek digs hard into the red pavement. 
+Turning over, it's watching me again. That mocking red eye of Jupiter. Well, laugh, damn you!
+
+No one turns their head. People pass around me like a stream around stone. Good. A man who can't get up by himself is as good as dead on Io.
+
+But, even in the end times, life goes on. It don't matter how good or bad things get, under that all-seeing eye, everyone's gotta make a buck. 
+Or get drunk and punch someone. 
+@ page
+
+@music Keno
+@img Keno
+Can't remember the first two bars - or was it three? I had to get it out of my system. I had to win, even if the win was Pyrrhic.
+It felt good, getting cracked with that gazelle hook. Both the bastard and I learned that the cane is not just for the aura.
+It was the first thing all year that felt like anything. 
+
+The scare arrived with the beasts. Something in the water. Prices moved before anyone proved a thing.
+Assured water, in the Ministry's bottles, at the Ministry's price. Behind it, the other market: old tanks, bench purifiers, whatever works without a stamp on it.
+Rent on the new capital. Water by the litre.
+A leg the VA replaces every four years, in the version they approved, at the price they set.
+The good version I bought off a bench in the slums, and it's the one I walk on. The water comes from the same bench.
+And the tax, every five days, alive or otherwise.
+
+War is a fool's market, and whenever the bull comes to ride: sex, drink, and violence are the top sellers. 
+And retards like me inevitably flow to Keno's gutter. Best damned dive bar in the new capital, Juno.
+A rat with a service record, drinking with the ones who never went. 
+Technically it's the "White Cow."
+If you ask the barman why, Keno will give you the line:
+"Io, one of Jupiter's harem. It's what he turned her into to hide her from his ever-jealous wife, Juno.
+But everyone calls it after the owner, Captain Keno himself. 
+
+Next thing I know, I'm nursing an old-fashioned, trying to endure the cacophony to no avail.
+
+Above the bar the Feed runs the war on mute. The same footage, every hour, from every angle.
+A suit comes open along the spine and something stands up out of it wearing the parts.
+The crawl underneath calls it the Revelation. It calls them the Horned.
+Some say bugs. Some say bots. I reckon the word says more about the man than about the beasts.
+
+It gives them horns.
+
+C: So was it loud? Like actually loud, or does it all just become white noise? 
+
+She leans in closer and touches my arm. 
+
+C: Is it true what they say about the smell? Do the Horned feel it - when it comes through? Say, how many people have you killed!?~
+
+P: Lady, you've got no gun, no muscle, and no dictionary. What's a tart like you doing out here?
+
+C: Content! 
+
+I pull out my las-pistol and level it at her small chest.
+
+P: This the content you were looking for?
+
+She holds back a shriek and lets out something like a croak. 
+Maybe a harsh lesson for such a young girl, but best to learn it now before she gets in *real* trouble.
+I can see the sweat bead on her brow as she raises her hands. Her smile curdles, but she holds it together. 
+She presses her ribcage into the cold steel.
+
+The transformation bewilders my senses.
+
+C: Oh, deary me! Chat, you see what rapscallions will do to a damsel out in these boondocks!? Constable! Call the thesaurus police!~
+
+Eyes turn towards us. It's my turn to feel sweat on my brow. I move to put the gun away. 
+Like a viper, she catches my hand, thrusts her slim arms over my elbow, and turns her back into my chest. 
+She holds my hand with the gun barrel up to her lips and snaps a selfie of her miming blowing smoke off it.
+
+C: See! I know how to shoot too, hotshot.
+
+I push the goblin off me and she transfers the momentum into a spin and curtsies.
+
+P: Get lost!
+
+She doesn't. She slides back into the stool beside me like we've known each other for years, thumb already scrolling. 
+On the Feed is the clip of us and our... dance. Notifications ring out of her phone as it reads donations and comments. 
+
+C: Fifty. Seventy. Two-hundred! Oh~ Thank you chat! Sounds like drinks are on me today, old man. 
+
+C: Chaac Patera though.
+
+I don't correct her.
+
+C: ...chat?
+
+She gives a wink, taps in a bunch of cocktails on the touch monitor and begins to swipe her phone over it.
+
+I grab her wrist. Not hard, just enough to stop her.  
+
+P: You saying I can't pay for my own? _and I ain't an old man..._
+C: I'm saying a *lady* sometimes feels generous. 
+P: Generous ladies are dangerous. And guys pay for the first date. It's common sense.
+
+She doesn't pull away and instead searches my face for something.
+
+C: Old-fashioned, huh? But I don't mind that.
+
+She plays with the word on her tongue and gnaws on the syllables with her teeth.
+
+She lifts her martini glass and pours the will-o'-the-wisp down her gullet. Then the White Cow, and the Peacock, and the Gadfly.
+She giggles.
+
+P: You know what you just did.
+
+C: Huh?
+
+P: Nothing.
+
+Then she's up and gone - phone raised on a silly stick and already at the door. 
+
+I turn to settle with old Keno in his vintage aloha shirt and prosthetic pince-nez working night shift. He has never raised his prices. Not since his own father's time.
+Never gouging. That's the simple trick: fill the seats with every guttersnipe in the city. But only Keno gets it. 
+
+He shakes his head.
+
+K: "Already paid."
+
+I shoot a glance back towards the door. She's smiling, waving her little phone like she's won something. The bright screen reads, in big letters. *~PAID~ ~PAID~ ~PAID~*
+
+P: You little-!
+
+I grab a bunch of old metal colonial chips from my pocket and slam them on the bar table.
+
+K: "Hey! What!?-" 
+He shrugs then rings a bell.
+K: "Free round for everyone on the Nemean!"
+
+Ex-Nemean, I think to myself.
+
+The crowd erupts in roaring and hooting as I push past them. Lads in the corner slam their beers in rhythm and chant:
+
+"THE THREE RETURNED! *ROAR* THE THREE RETURNED! *ROAR* THE THREE RETURNED!" *ROAR*
+
+It was four, damn it.
+But never let the numbers fuck up a good chant.
+
+I push past the bouncer and, scanning, find no sign of the pink pixie.
+@ page
+
+A week later I run into her again. An alley in the slum quarters, and she's pulled a crowd. 
+She's running the same bit this time, more practiced and bombastic. The idiot took the wrong lesson from our night. 
+
+A thug with a neck of metal and plastic slaps the phone out of her hand. Before she can yelp, a punk with the Cassini Company emblem tattooed on his face comes up behind her and pins her arms in a Nelson.
+The thug retrieves the shattered phone, whips it around, and seeing the donations roll in, reads them aloud. Playing host.
+
+Thug: Now, let's show you boys what you *really* came to see. 
+The laughter pools like a bubbling sewer.
+
+Before he even places a big paw on her top, the pings fire off wildly. The counter climbs higher and higher as she screams. 
+None came to her rescue.
+
+Instead, she sees before her a growing mass of lecherous eyes, mocking fangs, and lashing tongues.
+He pulls hard.
+
+I don't remember deciding. Three recoils. A pipe across my back.
+I don't remember getting up. The heft of the tantalum cane through a neck, an ankle, and the gun level on the next one.
+Scatter.
+
+I hobble to her and look down at her crumpled figure. She doesn't look up at me.
+I unfasten my cloak and drape her in it. The phone, though broken, still rings out tallies of booty. I give it to her.
+She snatches it away and holds it close to her chest as she starts to cry.
+I hold her shoulders.
+
+P: Don't do that.
+
+She shakes her head, transmuting her pain into anger, and holds it down. Only a whimper gets out. Good girl.
+
+I look at the aftermath. Two burned-out craters in the chest of the fat one, one dead center in the forehead of the Cassini punk. 
+Three more meteors for Io. I spit.
+
+P: Not even the bugs do this.
+
+P: I told you that you'd get killed pulling stunts like this. Unless you're in a safe crowd, no one's gonna save you, your little tricks won't work. 
+
+P: The moon will eat you up and spit you out!
+
+C: But... it did work though, didn't it?
+
+I don't have an answer for that, but I feel a flash of anger. 
+
+Airhead. Fresh meat. Dead by Wednesday. Too loud, too shiny. If you stand out like that you'll only get hammered. Not my problem. 
+
+I turn to leave but feel a tug on my cloak. 
+
+I turn back to see her holding a gleaming glass badge of an eye. 
+
+A Civilian War Journalism License. Anyone can film whatever they want out here. No one can stop them.
+The stamp is what turns a voice into the news.
+The Ministry of Logistics and Public Relations.
+
+I could have gone with the mercs. Vulkan would have taken me - skip the physical, no questions.
+A merc's contract is his own. Nobody's stamp on it. Nobody's name but his.
+
+I wanted a name on mine.
+
+Something with a desk behind it. Something that says I'm allowed.
+
+The power of faith, I suppose.
+Of legitimacy and belief.
+Authority you don't get to check.
+
+C: I know what you want. I know people like you. You're a dead man! 
+
+...
+There's something strange about this girl that makes me forget...
+
+Suddenly, she looks up at me. Then, as if she were Cicero addressing the senate, she lengthens through her fingers towards Jupiter, the other splayed hand laid at her solar plexus. The tendons cord the back of her hand.
+My cloak falls open off her as if in slow motion as she moves. She doesn't notice. The artificial rain beads on her alabaster skin. 
+She has the bearing of Bernini's Daphne, and... something older underneath it that I haven't got a name for.
+I can't look away. 
+
+She gesticulates with uncanny precision. For a brief moment nothing exists but us: theatre and audience. Tears well at the sides of her eyes. Are these artificial too?
+No. 
+
+They're real.
+
+C: You want to go back out there, right? Because you are only alive out there among the corpses. 
+C: Heh. Bodies don't even rot on Io; you live forever out there! 
+C: You boys think you're so clever and romantic!
+
+Like a figure skater, she closes her sad doe eyes and squeezes her arms into her core. Then she extends her hand with a desperate smile.
+
+C: I can give it to you. 
+
+@ sfx lightning-flash
+@ img chip-skull
+
+An acid storm flashes outside the dome, and the interior sprinklers start mirroring it. 
+For a split second half her face takes the appearance of a skull... Or am I seeing things?
+
+Io has no water. The storm is acid, and what beads on the glass is bought and piped in - and nobody can tell you where it came from.
+
+P: Dangerous...
+
+But I don't mind that either. 
+
+I pull the cloak over her soaked body. She flushes and her hand trembles.
+
+I accept it.
+
+
+Our contract: I keep her breathing and she brings me out there and in the bacon. We cut it all fifty-fifty, profit and expense. 
+Death clause: All the belongings of the deceased transfer to the surviving member - after a Space Vultures Guild investigation confirms no foul play.
+
+For once in a long while, the path is clear if not bright:
+
+*Stay alive and elbow out the competition. 
+Those are the rules of the War Idols.*
+
+
+# ===========================================================================
+#   PART 2  -  NOTES ON THE SCRIPT
+#   Quote-anchored, in script order. NEW = written by the assistant. The rest
+#   of the prose is the live text.
+# ===========================================================================
+
+# ---------------------------------------------------------------------------
+# "Only three others made it out ... I'm sorry, buddy. I could have been there
+#  but... The brass didn't want me. Is it just the leg? / Anyway."
+#   YOUR FINAL SHAPE, and it beats the version with "Anyway." deleted, for a
+#   mechanical reason: the shrug finally has something to deflect from. Put after a
+#   helpless apology it read as coldness about a death; put after a fact with an
+#   agent in it, the evasion has stakes.
+#
+#   THREE MOVES IN ONE BEAT, and the line breaks ARE the beats:
+#     1. the fact      "The brass didn't want me."
+#     2. the doubt     "Is it just the leg?"
+#     3. the evasion   "Anyway."
+#
+#   The question does not confirm either reading, it ASKS. And asking beats silence,
+#   because a doubt the reader is handed is a doubt they carry, where an absence has
+#   to be noticed. It also makes him admit the unflattering option - he is not only
+#   paranoid, he is considering that he is merely broken.
+#
+#   Why "Anyway." survives in THIS medium: a VN line is a held beat, so a shrug is
+#   audible in a way a paragraph break is not. And it keeps the evasion HIS rather
+#   than the author's cut to the next scene.
+#
+#   AND IT SETS UP A MISDIRECTION. The recruiter answers the question without
+#   answering it - "with *that*, you know I can't do anything for you" - so the
+#   mundane reading appears to be CONFIRMED twenty lines later by a bureaucrat. That
+#   is the answer the reader will accept, which is what makes it a good false floor.
+#
+#   THE REASON IS NOT ON THE PAGE AND MUST NOT BE. The page says only "the brass
+#   didn't want me" and stops. What they suspect, what the suit shows, and why
+#   nobody would believe him are recorded in canon.md, not here.
+#
+#   THE THREE-DOOR LADDER. The chapter refuses him twice and then sells him a
+#   substitute: the brass refuse him the war (this line); the recruiter refuses him
+#   the army ("Sarge, what are you doing here?" / "Someone put you to this?"); and
+#   the Ministry then sells him a licence. This line is the first rung, so the reader
+#   walks into the office already knowing he has been refused once, and the scene
+#   reads as the SECOND refusal.
+#
+#   BUT THE RECRUITER IS INNOCENT, and both readings have to stay alive:
+#     - He goes solemn at "Chaac Patera..." because HE KNOWS IT WAS A MASSACRE. Not
+#       suspicion - grief. Chaac is public knowledge and a byword for a catastrophe,
+#       which is why the record recital is impressive right up to the last entry and
+#       then kills the tone and the papers hit the desk. So the office must NOT read
+#       as nervous. It reads as SORRY. Any hint of suspicion in this scene destroys
+#       the ambiguity and turns the chapter into a conspiracy.
+#     - "Someone put you to this?" is therefore concern, not suspicion: who talked
+#       you into enlisting in this state. It only LOOKS like suspicion in hindsight,
+#       which is the misdirection doing its work inside a single line.
+#
+#   TWO refusals make a pattern, and they are different KINDS: the brass refuse him
+#   the war (ambiguous), the recruiter refuses him the army (mundane, sincere). Do not
+#   add a third inside the intro, and never let the office confirm either reading.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "You know what they're going to do to Io once we have the sky? ... / It's the
+#  brochure. It's still true."
+#   NEW (the doctrine), in the recruiter's mouth and NOT the narrator's - and it
+#   is TRUE. He is not lying and he is not the villain, which is what makes the
+#   silence beneath it an answer the narrator cannot give.
+#   Note the maturity gap: the Ministry sells legitimacy that pays out after you
+#   are dead; the narrator buys legitimacy that pays out in the hand. Same
+#   currency, different date. "Courts" and "water rights" carry "just" without
+#   anyone saying the word.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "It was the first thing all year that felt like anything."
+#   NEW (boredom as the engine). This is the thing the higher calling is for, and
+#   the thing Chip's pitch will answer.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "The scare arrived with the beasts. ... / And the tax, every five days, alive
+#  or otherwise."
+#   NEW (the economics), so practicality is felt before the want is stated.
+#
+#   - "In the version they approved" is legitimacy arriving in the PRACTICAL
+#     register: a bureaucracy pricing his body, which is the same machine the
+#     licence will sell him one rung up.
+#   - "Assured water" is the licence in liquid form. The Ministry does not sell
+#     water, it sells CERTIFICATION, and the market that does not believe it runs
+#     on old tanks and bench purifiers.
+#   - The two adjacent lines are the point: he takes his water from the same
+#     bench as his leg - unlicensed competence, and he rates it - and then wants
+#     a stamp for HIMSELF. Goods he buys on a bench's word alone; standing he
+#     wants certified. That is the triad in two sentences and the contradiction
+#     is deliberate.
+#   - The tax is COLONY-WIDE and now has a cause: the scare is inflation, so
+#     02_stream's "kill the taxman" goal is Chip monetising an ordinary bill by
+#     putting a health bar on it. Both texts are consistent on that reading.
+#   - "Nobody warns you what a pension buys" was cut as the grievance frame - the
+#     Saints Row register, which COMPLAINS about the arithmetic. Cut, the numbers
+#     stand alone, which is the Recettear register: the economy as a count, not a
+#     cry. The bathos also does the comedy: he feels something for the first time
+#     in a year, and then - rent.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "A rat with a service record, drinking with the ones who never went."
+#   NEW (the gutter rat). The reduction is the COMPANY he keeps, not a remark
+#   about himself. Same wound as "Ex-Nemean, I think to myself" further down.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "Above the bar the Feed runs the war on mute. ... / Some say bugs. Some say
+#  bots. I reckon the word says more about the man than about the beasts."
+#   NEW (the screen). The official version arrives on a wall, not in narration:
+#   footage does the body description and he supplies the one line it needs. This
+#   is the first use of both "the Feed" and "the Horned", so the reader learns the
+#   word from the screen and hears it again from Chip two lines down.
+#
+#   "I reckon" is restored from your wording, because the hedge is what makes this
+#   an opinion instead of a maxim - the same move as "I suppose" in the licence
+#   passage. "Beasts" is the Quixote word and it rhymes with the horns.
+#   The cut of "It depends who's saying it." broke the antecedent of "them", so
+#   the subject had to be made explicit: "the word". If you prefer your original
+#   two-line shape, restore the cut line and your sentence works as written.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "C: ... Do the Horned feel it - when it comes through? ..."
+#   NEW (edited line). She plants the mechanism; he never answers it. The rest of
+#   the line is verbatim.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "C: Chaac Patera though. / I don't correct her. / C: ...chat?"
+#   NEW (reader feedback E3). The Feed reaches for Chaac. Two refusals already
+#   touched it - the brass silently, and the army by the leg - and now the third
+#   institution reaches for the STORY.
+#
+#   Her win becomes his. She finds the sore spot and gets nothing out of it, because
+#   he shuts down. And the scoreboard is already in the scene: her income is drama,
+#   so the silence STALLS THE DONATIONS, which is what "chat?" lands on. She has just
+#   read out "Fifty. Seventy. Two-hundred!" - so the reader hears the number stop.
+#
+#   "I don't correct her." is the character in four words: his signature move is
+#   amending labels privately, and here he declines to do it FOR her. Withholding the
+#   correction is louder than silence.
+#
+#   It also makes the next line work: "Old-fashioned, huh?" is her recovery pivot
+#   after a flop, which is what a performer does. It was inert before this.
+#
+#   And it teaches her the WRONG LESSON, which the alley then collects on: quiet pays
+#   nothing, so she goes bigger. "The idiot took the wrong lesson from our night" now
+#   has a specific lesson attached to it.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "P: You know what you just did. / C: Huh? / P: Nothing."
+#   NEW (reader feedback E3 - the playful beat, and he wins it). She drinks the myth
+#   in order: will-o'-the-wisp, White Cow, Peacock, Gadfly is the Io story in
+#   sequence. And she is not doing anything. She is thirsty.
+#
+#   So he reads meaning into her, then withdraws it, and keeps it to himself. That is
+#   the prototype of the apotheosis - forty lines later he does the same thing at
+#   scale with "the bearing of Bernini's Daphne", and THAT one he cannot help saying
+#   aloud. The withholding is the discipline, and the plot turns on him failing at it.
+#
+#   Never explain the allusion (style guide 4). "You know what you just did" does not
+#   name what she did - readers who know get it, readers who do not lose nothing, and
+#   "Nothing." is the flat register doing the comedy.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "It was four, damn it. / But never let the numbers fuck up a good chant."
+#   NEW (your line). This is NOT the correction the earlier note warned against -
+#   that would be deadpan arithmetic, a private census that settles the count FOR
+#   the reader. This is a flare and then a self-surrender: he catches himself
+#   defending the facts and gives them up in the same breath, out loud. That is
+#   complicity rather than correction, and it is the same instinct that will let
+#   the visor fool him - a plant, not a quip.
+#
+#   His FIRST "fuck" in the chapter, deliberately: he swears when he is being
+#   honest, rarely enough that it lands. "damn it" over "damnit", since the file
+#   spells it out elsewhere ("Well, laugh, damn you!").
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "A Civilian War Journalism License. ... / Authority you don't get to check."
+#   NEW (rebuilt). The want stated as a want. He does not rank the mercs; he names
+#   the one thing they have that he does not - a signature of their own.
+#
+#   "I suppose" and the trailing fragment are the fumble: a man born in
+#   practicality reaching for the big word and landing on the plain one. The plain
+#   one is what lands against the glass badge above it.
+#   The original paragraph is preserved in PART 3, C8.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# "Io has no water. The storm is acid, and what beads on the glass is bought and
+#  piped in - and nobody can tell you where it came from."
+#   NEW (the water). It lands here, where the reader is already inside the weather,
+#   rather than in a lecture about orbits.
+# ---------------------------------------------------------------------------
+
+
+# ===========================================================================
+#   PART 3  -  CUT AND MOVED OUT OF THE INTRO    (verbatim reservoir)
+#   Nothing here is deleted. Everything below is COMMENTED OUT so the file still
+#   parses clean. Uncomment a block when you give it a home; do not leave it live.
+# ===========================================================================
+#
+#   WHERE THE BIG BLOCK WENT
+#     The ten-paragraph block that sat between the fall on the stairs and the bar
+#     is gone. It answered a question the reader had not asked yet ("what happened
+#     to Io?") when the live question was "what is this man doing now?". Each fact
+#     in it survives in a home that already exists:
+#
+#       the boom / the fathers        -> Langley, Day 3 (her doc beat already)
+#       the Revelation, the Horned    -> the bar screen, behind him
+#       what the infection does       -> the screen, shown; Chip asks one question
+#       the water rumour              -> the rain at the close
+#       Logistics, by name            -> the licence, as a name-drop, no lecture
+#       the railguns / the Kiss       -> parked; wants a scene, not the badge
+#       Argos                         -> later, as a destination, not a fact
+#
+# ===========================================================================
+
+# [[ C1 - THE BOOM TIMES / THE FATHERS ]]   -> Langley, Day 3
+# The doc already gives this to her, in her own words ("her father left for Io
+# with the Pioneer Project, calls faded from daily to yearly"). The intro's
+# version is a duplicate that pre-empts hers. Moved there; narration becomes her
+# dialogue.
+# -----
+# The boom times, when dad moved out to the Jovian moons volunteering for the Giant Leap Pioneer Project, are long over.
+# Our fathers' bubble dreams popped. The lost children of that era lived as sycophants, freeters, and burnouts.
+# Many dreamed, gazing bleary-eyed into bottles and gunbarrels - until the infestation of Io.
+#
+# KEEPER, if you want one line of it early: "freeters" is the whole generation in
+# one word, and it is the only place in the chapter that word appears.
+
+# [[ C2 - THE NAMING / THE REVELATION / ARGOS ]]   -> the bar screen (+ later destination)
+# "The Revelation" and the Horned now arrive on the crawl. Argos is held back -
+# it is a place, not a fact, and it pays off when somebody goes there.
+# -----
+# Infestation... Invasion... They called it many things, as if they knew what happened, but the truth is no one knows what the hell is going on.
+# Most called it The Revelation. The end of the world. Whatever *it* is, it started in Argos, the colony's pride, on the fire sea of Loki Patera.
+#
+# KEEPER: "the truth is no one knows what the hell is going on" is the narrator's
+# best line about the war and it has no home yet. It could go on the screen as a
+# caption, or into his mouth later, when the visor finally explains it.
+
+# [[ C3 - WHAT THE INFECTION DOES / THE HORNS ]]   -> the screen (shown) + Chip (planted)
+# This is the art brief for the footage on the screen. Do not narrate it. The last
+# line is the exception: it now lives in the intro, on the screen, verbatim -
+# kept here only so you can see it in its original company.
+# -----
+# Something there made the poor bastards' topside suits bore into their bodies. Something changed their flesh into horrors of metal and muscle.
+# Chitin grew over their skin, giving them an insect-like appearance. Flesh stretched over servos.
+# Mechanical growths burst through their skulls, fusing into their helmets.
+#
+# It gives them horns.
+
+# [[ C4 - BUGS AND BOTS ]]   -> the screen, reduced to one line
+# Original two lines; the screen version keeps the idea and drops the aphorism's
+# padding. The full pair is here if you prefer it unshortened.
+# -----
+# Some called them bugs, others bots.
+# But what they called them told you more about the person than about the abominations.
+
+# [[ C5 - THE WATER RUMOUR ]]   -> the rain at the close
+# One sentence. It now rides on the storm instead of standing on its own.
+# -----
+# Nobody knows what caused it, but the rumor is it's the water.
+
+# [[ C6 - IO, EUROPA, THE KISS, THE RAILGUNS ]]   -> PARKED. Not on the badge
+# Was briefly folded into the licence passage; cut. The Don Quixote note settles it:
+# he is born in practicality and is not philosophical, so a lecture on orbital
+# mechanics at the moment he is handed his religion is the wrong man talking. This
+# material wants a SCENE - Keno, the drinks list, or a Logistics beat when the tax
+# cycle or the water trade is actually on screen. It is the economics of the game.
+# -----
+# Io used to be the driest object in the solar system, given it's basically one big angry volcano.
+# Europa has water, Io has a fire core. Every 3.5 days their orbits are closest.
+# Planetary mass railguns launch what the other needs, in "the Kiss" or... the "Hump" for the "poetic" sort.
+# The first poor bastards to be infected were at the old capital, Argos. 
+#
+# PENDING FIX in the original, if any of this is used: "orbits aren't closest; the
+# bodies are."
+# KEEPER: "the Hump for the poetic sort" is the register system naming itself -
+# Kiss vs Hump is official vs worker. It is the best joke in the block and it does
+# not fit the badge. Best home: the drinks list, or Keno.
+
+# [[ C7 - THE TRANSITION, KEPT IN PLACE ]]   -> stays in the intro
+# Left here only to mark the seam: these two lines were the tail of the block and
+# are the bridge from the pavement to the bar. They survive in the intro above.
+# -----
+# But, even in the end times, life goes on. It don't matter how good or bad things get, under that all-seeing eye, everyone's gotta make a buck.
+# Or get drunk and punch someone.
+#
+# KEEPER: "everyone's gotta make a buck" is the thesis in six words and it earns
+# the licence. If you cut it from the intro, the licence loses its setup.
+
+# [[ C8 - THE ORIGINAL LICENCE PARAGRAPH ]]   -> replaced at the badge
+# Cut because it ARGUES the point instead of wanting it. "Not power in politics or
+# capital, nor in the barrel of a gun, but something... softer, more subtle" is a
+# definition by negation, and a man born in practicality does not define power by
+# what it is not. The idea survives in the intro; this shape of it does not. Kept in
+# case you want the argument back, in his mouth or someone else's.
+# -----
+# A Civilian War Journalism License. Anyone can film whatever they want on Io. No one can stop them.
+# One random voice on the Feed is just a curio, could be a scam, could be a rumor. 
+# But when the Ministry of Logistics and Public Relations sanctioned individuals to cover the plight on Io, it gives them authority.
+# Not power in politics or capital, nor in the barrel of a gun, but something... softer, more subtle. 
+#
+# The power of faith - of legitimacy and belief. 
+
+# [[ C9 - ALTERNATE CHAAC ENDINGS ]]   -> superseded by "The brass didn't want me."
+# The earlier fixes for this beat, kept because they are all still available if the
+# debt needs a *third* layer rather than a replacement.
+# -----
+# I'm sorry, I couldn't make it in time, buddy.          <- passive; grief only
+# "...I'm sorry, buddy. I ran the math before I ran for you."
+# "...I'm sorry, buddy. I did the math, and I did it fast."
+# "I don't go back to it often."                          <- the lie the reader catches
+
+
+# ===========================================================================
+#   PART 4  -  DECISIONS
+# ===========================================================================
+
+# ---------------------------------------------------------------------------
+#   SETTLED
+#     - The Chaac beat, final: "I'm sorry, buddy. I could have been there but...
+#       The brass didn't want me. Is it just the leg? / Anyway." The doubt
+#       is stated as a QUESTION, so neither reading is confirmed, and "Anyway." is
+#       kept because it now deflects from something real.
+#     - Reader feedback pass 1. The fight carries its own staging ("I don't remember
+#       getting up"; "the next one" instead of "a third", which was inventing a
+#       headcount). The bar gains the Chaac hit, the donation stall and the drinks
+#       beat - so he wins exchanges and still loses the argument.
+#     - NOT YET APPLIED, from the same feedback: E5, the explicit refusal and the
+#       narrator's silence staged as pressure ("I don't help him."). Drafted and
+#       agreed in substance; waiting on a yes for the exact wording. See
+#       Notes/01_intro_punchlist.md section E5.
+#     - Chaac count: THREE others made it out, plus him. One is dead three weeks
+#       later, leaving HIM + TWO - the two characters the day-plan needs (the
+#       moon-touched soldier, and the Complicit/Whistleblower fork).
+#     - The five-day tax is colony-wide and has a CAUSE: the water scare is
+#       inflation. 02_stream is consistent on that reading.
+#     - The water scare carries the cost-of-living pressure, which makes his bills
+#       a war cost instead of bad luck. That does the job the "tie the rent to the
+#       colony's decline" idea would have done, does it better, and stays off Argos.
+#     - THE CHANT. Three others came back plus him; one died three weeks later, so
+#       three are alive - where "THE THREE RETURNED!" gets its number, as a count of
+#       the living rather than of the landing. Nobody in the bar cares about the
+#       difference. The slogan refers to the old myth, not the manifest, and that is
+#       the point: a slogan outlives its census.
+#       AMENDED (see canon.md): "never let him correct it" was too strict. What is
+#       forbidden is SETTLING THE COUNT for the reader. A flare plus self-surrender
+#       is complicity, not correction, and doubles as the plant for the visor.
+#       If the chant's myth is ever NAMED: once, as a proper noun, never explained.
+#
+#   OPEN
+#     - 02_stream's sub and tax GOALS read badly, in a fixable way. 5,000 appears
+#       as both subs and dollars, 10,000 likewise, so the numbers blur.
+#       Recommendation - ROUND FOR MILESTONES, LUMPY FOR BILLS. Not applied; it is
+#       02_stream's text, not this file's.
+#     - "Cathay" vs "Kathay": keeping the doc's Kathay. Suggestion: make it a
+#       HANDLE, not her name - nobody in this world uses a real one - so she has an
+#       ordinary name nobody has used in years and Kathay is what is on the channel.
+#
+#   DELIBERATELY NOT APPLIED (so the diff stays structural)
+#     - the punchlist line-fixes: Keno's quotation marks, @img vs @ img spacing,
+#       quoted drink names, dashes, "his whistle", "orbits are closest", "her slim
+#       arms", "The transformation bewilders my senses", "booty", the comma splice
+#       on the curio line, "the bacon", the double blank before the contract, "again"
+#       on "somber"
+#     - the generic passages flagged in the earlier craft pass: sweat bead (twice),
+#       "like a viper", "the transformation bewilders". "a man cry for his momma" is
+#       in the prologue, not here.
+#
+#   CROSS-FILE CONSEQUENCES TO WATCH
+#     - C8 (the original licence paragraph) is quoted in Notes/style_guide.md 1 as
+#       the worked example of a correct past-act / present-consequence tense shift
+#       ("when the Ministry sanctioned individuals... it gives them authority"). If
+#       C8 is ever deleted for good, that illustration goes with it.
+#     - style_guide 1 also lists "the boom and the fathers, the infestation
+#       exposition" as deliberate past-tense material in THIS chapter. Both have now
+#       moved out of the intro (C1 to Langley, C3/C4 to the screen). That list is
+#       stale and wants updating.
+# ---------------------------------------------------------------------------
