@@ -53,6 +53,7 @@ That's not a fragment tic — it's dissociation, and the grammar does it for you
 | paperwork / propaganda | **the Revelation** |
 | what the Feed sells | **the Apocalypse** |
 | what people say | **the Horned**, bugs, bots |
+| the briefing / the form | **Sectoid** — what it *resembles*, not what it is |
 | the Feed | **the Kiss** |
 | workers | **the pass** |
 | marines | **a dry hump** |
@@ -60,7 +61,23 @@ That's not a fragment tic — it's dissociation, and the grammar does it for you
 | the credential | **the tick** — ticketed, unticked |
 | the stage on the vehicle | **the ring** |
 
-Articles carry meaning too: *the pass* is the institution, *a dry hump* is one instance. *The Kiss* is a brand; *a White Cow* is a drink.
+Articles carry meaning too, and they are **lowercase, part of the name**: *the pass* is the institution, *a dry hump* is one instance, *the Kiss* is a brand, *a White Cow* is a drink. So it is **the Revelation** mid-sentence, never *The Revelation*.
+
+**And the capital is reserved.** A register term takes a lowercase article in everyone's *mouth* — narration, dialogue, the chatter of the Feed. The capital belongs to the **Ministry's own surfaces**: a poster, a sign, a form, a licence, a broadcast ident, a letterhead. *The Revelation* in sender-sans is the branding; *the Revelation* in a sentence is the street repeating it. That gap is the spine rendered as typography — the same logic as *the pass* against *a dry hump* — so spend it deliberately rather than by habit.
+
+**The enemy has three words, and they are not synonyms — they are places to stand.**
+
+| word | who says it | what it is |
+|---|---|---|
+| **bugs** · **bots** | the grunts | affection or contempt, and nothing else |
+| **the Horned** | the civilians | what it *looks like* from across the street |
+| **Sectoid** | the briefing | a taxonomy word, clipped from *insectoid* — used by anyone who wants to sound briefed |
+
+*A fourth word for the same thing would be a synonym, and synonyms are the enemy of this system. Keep the three separate.* *Sectoid* is Chip's because official vocabulary is free prestige and she takes what is free — the same instinct as everything else she does.
+
+**And the form itself never names the creature.** A Ministry paper files the *condition*: an incident, a consolidation, a write-off. The desk names the loss, not the monster. That is the useful gap — the paperwork has an entry for what happened to a man and no entry for what he became.
+
+*The name is often the lie* (§5) applies hardest here: *Sectoid* is accurate about the resemblance and silent about the person.
 
 ---
 
@@ -152,6 +169,47 @@ Subscript and superscript are custom (`car/vn/script_effect.gd`) — stock Godot
 - Re-run `powershell -File Notes\commission.ps1` after writing; it regenerates `Notes/asset_commission.md`, the list of every img/sfx/music the scripts ask for and which are still missing.
 
 ---
+
+## 12. Art direction
+
+**Medium for this project: digital. Tool: Clip Studio Paint.** The oil practice sets the
+*look*, not the tool.
+
+**The register split — two voices, and they never trade places:**
+
+| layer | register | source |
+|---|---|---|
+| avatars, HUD, the Feed, the licence, broadcast idents | **graphic and legible** — flat colour, bold silhouette, designed type, high contrast | the *CH4NGE* poster mode |
+| the world — ground, sky, structures, interiors, the enemy | **painterly and atmospheric** — wet brush, aerial perspective, limited palette | the oil studies |
+
+Io is a palette problem before it is a drawing problem: sulfur yellow-green, ochre, red on
+eruption, yellow-white on the dusted ice. Hold one palette and one sky across every plate.
+
+**The material test.** Does it have dirt on it, and does it have a repair? Grit comes from
+wear — stitching, scuffs, dents, sulfur dust in creases, a leg four years old. It dies the
+moment materials become effortless: glossy eye highlights, pastel haze, hair that never gets
+dirty, rim-light on a beaten character.
+
+**The enemy design law.** The Horned must look like a **rendering**, not a creature — UI-like
+gloss, eerie regularity, over-clean surfaces. And every "insect" feature must **trace back to
+a piece of gear**: the round toothed pauldrons became the horns. On a second look the viewer
+should be able to find the pauldron inside the horn. This is what makes the twist pay off
+retroactively on the art, and it is checkable on every enemy asset.
+
+**Two drills, learned only when a scene needs them.** One-point for interiors; two-point for
+exteriors containing a manufactured object. Drawabox for box and ellipse discipline,
+Robertson for constructed space, Loomis or Reilly for constructive figure work. Do not take a
+course — solve the setup the current scene demands, then stop.
+
+**Pass order for a plate.** thumbnails at 3 cm → three values, no colour → layout → flat local
+colour → light → material → atmosphere and grade → export. Never start a pass before the last
+one is solved.
+
+**The zoom rule.** Work at the whole-canvas zoom you would judge a 20x35 cm painting at. Go
+closer only for cleanup. Over-zooming is what kills a traditional painter's eye on a tablet.
+
+**Compose wider than 16:9** if the plate will ever use `@ pan` — the engine clamps panning to
+the plate overhang, so a plate that is exactly 16:9 cannot pan at all.
 
 ## Pre-flight for a new scene
 

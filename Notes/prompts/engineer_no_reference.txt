@@ -1,0 +1,62 @@
+ENGINEER - design sheet, NO reference
+=====================================
+
+Same prompt, standalone. Use this when you want the design language without
+uploading anything - the reference's ideas are all written into the text here.
+
+
+Design sheet for a video game character: a young woman who is a back-alley
+mechanic on Io, the sulfur moon of Jupiter.
+
+Portrait format. A clean anime production design sheet: a large three-quarter
+view showing the whole figure in a working stance, a full-body front view and a
+back view beside it, and three or four detail callouts - head, shoulder fitting,
+gauntlet, tool.
+
+WHO SHE IS: one of the last non-corporate tradeswomen on a moon that has been
+bought up by contractors. She repairs cybernetic limbs and grafted industrial
+fittings. Not glamorous, not styled. Everything she wears is cheap, practical,
+and has been repaired more than once.
+
+FACE AND HEAD: short black hair, blunt and practical. Glass goggles pushed up on
+her forehead - plain, dumb, scratched glass. NO AR visor, no HUD, no glowing
+lenses. She is the only person on this moon who does not wear a screen over her
+eyes. A grease smudge on one cheek, dirty hands. She looks like she has been
+working twelve hours.
+
+SHOULDER FITTINGS - IMPORTANT: big circular pauldrons on both shoulders, each a
+sealed round port with a toothed, zipper-like rim, closed shut. These are graft
+sockets - the exact hardware her customers wear - sitting on her as workwear,
+closed and empty. They should read like a hardpoint on a machine, not armour.
+These two discs are her silhouette.
+
+HOSE - KEEP IT SIMPLE: one teal pneumatic hose. It runs from a small canister on
+her lower back, over one shoulder, into the back of her tool. Cloth-braided,
+patched once, maintained rather than purchased. One clear line, not loops.
+
+CLOTHING: an off-white canvas work shirt worn open over a black tank. Charcoal
+cargo trousers rolled at the calf. Heavy scuffed lace-up work boots. Knee
+padding. A belt of mismatched pouches. Heavy work gauntlets with small round
+ports on the back of the hand.
+
+PALETTE: cold. Steel grey, off-white, charcoal, and one accent she chose
+herself - teal. No orange, no pink, no yellow.
+
+GEAR: everything she carries is unpowered, mechanical and old. No glowing
+lights, no lit panels, no screens on her equipment.
+
+TOOLS, OVERSIZED: a welding torch as her signature tool - elongated and scuffed,
+the hose running into the back of it, a bright blue-white flame at the nozzle.
+It should look built for someone twice her size.
+
+HARDWARE LANGUAGE: every fitting on her - shoulder ports, gauntlet ports, tool
+collars - circular, ringed, toothed, and visibly the same system. She makes this
+hardware, so it appears on her too.
+
+READABILITY: the design must still read at thumbnail size. The two shoulder
+discs, the cold palette and the single hose are what identify her. Keep the
+silhouette clean.
+
+STYLE: clean anime production design art - a tidy sheet, but a weathered
+subject. Flat cel shading, matte finish, no gloss or sheen. Plain light grey
+background. No text, no labels, no annotation marks, no watermark.

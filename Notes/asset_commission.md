@@ -7,17 +7,16 @@ Re-run it after writing. `[x]` = exists, `[ ]` = still to make.
 |---|---|---|---|
 | 00_prologue | img | `leg_pool` | [x] |
 | 00_prologue | img | `stomp` | [x] |
-| 00_prologue | sfx | `blow` | [ ] |
-| 00_prologue | sfx | `flatline` | [ ] |
-| 00_prologue | sfx | `knife` | [ ] |
-| 00_prologue | sfx | `squish` | [ ] |
+| 00_prologue | sfx | `blow` | [x] |
+| 00_prologue | sfx | `flatline` | [x] |
+| 00_prologue | sfx | `knife` | [x] |
+| 00_prologue | sfx | `squish` | [x] |
 | 01_intro | img | `chip-skull` | [ ] |
 | 01_intro | img | `Keno` | [ ] |
 | 01_intro | music | `Keno` | [ ] |
-| 01_intro | sfx | `lightning-flash` | [ ] |
+| 01_intro | sfx | `lightning-flash` | [x] |
 
 ## Missing
 
 - **img** (car/vn/img/): `chip-skull`, `Keno`
-- **sfx** (car/vn/sfx/): `blow`, `flatline`, `knife`, `lightning-flash`, `squish`
 - **music** (car/vn/sfx/): `Keno`
