@@ -10,9 +10,10 @@ WHAT THIS IS
 
 LAYOUT
   vn.tscn / vn.gd      the player (root Control + layer nodes)
-  dialogue/*.txt       scenes, one file per scene (writer-owned content)
+  scenes/*.txt         scenes, one file per scene (writer-owned content)
   img/                 full-screen illustrations (+ README manifest)
-  sfx/                 sound + music (+ README manifest)
+  sfx/                 one-shot sound effects (+ README manifest)
+  music/               looping music (+ README manifest)
 
 DEPENDS ON
   the `Game` autoload (car/autoload/game.gd) only.

@@ -25,7 +25,7 @@ extends Control
 ##   EVENT (ONE-SHOT) - happens on the line it is attached to, then gone.
 ##     @ stage <text>            stage direction -> italic line above
 ##     @ sfx <name>              play vn/sfx/<name> (one-shot)
-##     @ music <name>            swap looping music; "@ music stop"
+##     @ music <name>            play vn/music/<name>, looping; "@ music stop"
 ##     @ shake                   brief shake of the text area
 ##     @ glitch [seconds]        brief full-screen glitch (feed failing)
 ##     @ page                    start a new page (break the narration block)
@@ -75,6 +75,7 @@ const SCRIPT_FX := preload("res://vn/script_effect.gd")
 const CHARS_PER_SEC := 45.0
 const NARR_CHARS_PER_SEC := 80.0    # narration typewriter speed (brisk; tune to taste)
 const SFX_DIR := "res://vn/sfx/"
+const MUSIC_DIR := "res://vn/music/"
 const SFX_EXTS := ["ogg", "wav", "mp3"]
 const MODE_VERBS := ["fullscreen", "narration", "box", "center", "right", "small", "large", "fast", "speed"]
 const EVENT_VERBS := ["stage", "sfx", "music", "shake", "glitch", "page", "img", "image", "zoom", "pan", "sat", "saturate", "fade", "input_name", "call"]
@@ -874,20 +875,20 @@ func _handle_audio(node: Dictionary) -> void:
 			_play_music(parts[1].strip_edges())
 
 
-func _load_sound(name: String) -> AudioStream:
+func _load_sound(name: String, dir: String) -> AudioStream:
 	if name == "":
 		return null
 	if name.begins_with("res://"):
 		return load(name) as AudioStream
 	for ext in SFX_EXTS:
-		var p := "%s%s.%s" % [SFX_DIR, name, ext]
+		var p := "%s%s.%s" % [dir, name, ext]
 		if ResourceLoader.exists(p):
 			return load(p) as AudioStream
 	return null
 
 
 func _play_sfx(name: String) -> void:
-	var s := _load_sound(name)
+	var s := _load_sound(name, SFX_DIR)
 	if s == null:
 		push_warning("VN: missing sfx '%s' (expected %s%s.ogg|wav|mp3)" % [name, SFX_DIR, name])
 		return
@@ -899,9 +900,9 @@ func _play_music(name: String) -> void:
 	if name == "" or name == "stop":
 		music_player.stop()
 		return
-	var s := _load_sound(name)
+	var s := _load_sound(name, MUSIC_DIR)
 	if s == null:
-		push_warning("VN: missing music '%s' (expected %s%s.ogg|wav|mp3)" % [name, SFX_DIR, name])
+		push_warning("VN: missing music '%s' (expected %s%s.ogg|wav|mp3)" % [name, MUSIC_DIR, name])
 		return
 	if music_player.stream == s and music_player.playing:
 		return

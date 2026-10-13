@@ -41,7 +41,7 @@ Design and prototype repository. A war-journalism story set on Io, and a
 **Notes**
 - `.godot/` is git-ignored; Godot regenerates it the first time you open the project.
 - The prototype is a **grey-box test build** — some art is still placeholder.
-- The **visual novel** is `car/vn/vn.tscn` — open it and press **F6** (click / Space to advance). Scenes are plain text in `car/vn/dialogue/`.
+- The **visual novel** is `car/vn/vn.tscn` — open it and press **F6** (click / Space to advance). Scenes are plain text in `car/vn/scenes/`.
 - `car/test.tscn` is a driving sandbox and `car/test_static.tscn` is an asset-viewer rig; neither is the game.
 
 ## Git

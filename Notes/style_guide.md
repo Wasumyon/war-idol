@@ -164,7 +164,8 @@ Subscript and superscript are custom (`car/vn/script_effect.gd`) — stock Godot
 
 ## 11. File conventions
 
-- Dialogue files live in `car/vn/dialogue/`, named `NN_scene.txt`. Files starting `_` are ignored by the manifest scanner.
+- Scene files live in `car/vn/scenes/`, named `NN_scene.txt`. Files starting `_` are ignored by the manifest scanner.
+- **Audio is split by kind**: one-shot effects in `car/vn/sfx/`, looping music in `car/vn/music/`. `@ sfx` and `@ music` resolve to their own folder, and the two have different import needs — music is streamed and looped, effects are short and played many at once.
 - **Lowercase asset filenames.** `keno.png`, not `Keno.png` — case sensitivity will bite on export.
 - Re-run `powershell -File Notes\commission.ps1` after writing; it regenerates `Notes/asset_commission.md`, the list of every img/sfx/music the scripts ask for and which are still missing.
 
