@@ -7,9 +7,22 @@
 # "Good." is his tic - stoic acceptance when things go badly (Jocko). Intentional;
 # do not "fix" the repetition.
 #
+# The stomp beat carries TWO tells about the enemy on purpose: the "tortured"
+# servos and the "toenails". Each is a leak in his vocabulary that the reader cannot
+# decode until the reveal, and the visor’s insectoid plates make both read as his
+# style on a first pass. Do not "fix" them, and do not add a third.
+#
+# Note that "fused" is NOT one of those tells. The human-machine fusion is REAL and
+# visible - it is the horror on display, not a leak - so the text is allowed to
+# describe it openly. Only the human word for a body part is hidden.
+#
+# "I dropped my leg again." is past tense in a present-tense scene ON PURPOSE. The drop
+# is caused by the stomp, which has already happened by the time he looks at the foot,
+# so the past marks the cause. Do not "fix" it to "I drop".
+#
 # Illustrations live in res://vn/img/ - see "# ART:" notes for what to draw.
 #   @ narration       this scene is unattributed full-screen prose
-#   @ img <name>      swap the full-screen illustration (res://vn/img/<name>.png)
+#   @ img <name>      swap the full-screen illustration (res://vn/img/<name>.png|webp|jpg)
 #   @ zoom <factor>   zoom the illustration (@ zoom 1 resets)
 #   @ shake / @ sfx <name> / @ glitch / @ page
 #   @ preset / @ tremble   (defined just below)
@@ -21,44 +34,62 @@
 @ img leg_pool
 A leg. 
 
-My leg. It shouldn’t be there.
+My leg. 
 
-That’s strange… I thought it’d hurt more.
+It shouldn’t be there.
 
-Good. It’s still working. The bunker boys are still firing.| Good.| That’ll give me at least a minute to fix this… 
-@ page
+That’s strange… I thought losing it’d hurt more.
+
+The eye is there.| Always watching.| The burning gaze of Jupiter.
+
+Gunfire. The bunker boys are still alive.| Good.| That’ll give me at least a minute to fix this… 
+@ tremble
 I claw at the caustic dirt and pull.
 
-@ tremble
+It smells like a pool.
+---
 My glove seal is blown. I can hear the chlorine hiss as it burns my skin, but I don’t feel it. 
 
-Bartok is screaming names on comms. Roll call. 
+Bartok is screaming names on comms. 
+Roll call. 
 
 I know all of them. 
+Then mine. 
 
-Then mine. But I can’t answer — can’t make a noise.
-
-@ page
+But I can’t answer — can’t make a noise.
 Only a little… more.
+---
+I was prepared to give my life up for my comrades. 
+But… not my leg.
 
 @ tremble
-I was prepared to give my life up for my comrades. But… not my leg.
+I can still fight… I’m not going to let them take my home away.| My dad fought for it, and his dad fought for it, and I’m sure his dad did too.
 
 @ tremble
-I can still fight… I’m not going to let them take my home away. My dad fought for it, and his dad fought for it, and I’m sure his dad did too.
-
-@ tremble
-I can hear it again. The suit comms are chaos again. Screams. Shouts. Swears. Orders from hundreds of miles away.
+I can hear it again. The suit comms are chaos again.| Screams.| Shouts.| Swears.| Orders from hundreds of miles away.
 
 @ sfx squish
-I have it now! Boys! I’m coming back for you. Just gotta… put it back on.
+I grab the leg. 
 
-# ART: a taloned heel stomping down on the arm
+I’ve got it now!| Boys! Wait for me.
+Just gotta…| put it back on.
+
+The ground buckles. Fissures rattle, spitting out realgar-red dust.
+
+There… shouldn’t be a landtide yet?
+The ground buckles again.
+
+# ART: the same ground, closer - crust split and still buckling, dust rising, a heavy spiked foot coming down on an outstretched arm
 @ img stomp
-You damned bugs…
+I hear the tortured scream of servos and look up.
+A calf like a tree trunk, knee bent backwards, rears *inwards* then pins my forearm to the dirt.
+Its toenails are fused at the ends into a long galv iron sickle. I dropped my leg again.
 
+You damned bugs…
+---
 @ sfx knife
-In a single action, drilled to automation, I unsheathe my nanoknife and jam it into the insectoid’s tarsus. It shrieks and stumbles. Good. This one’s mine.
+In a single action, drilled to automation, I unsheathe my nanoknife and jam it into the insectoid’s tarsus.
+It shrieks and stumbles. Good. This one’s mine.
 
 We laughed when we were forced to take Combatives. Who needs a knife when you got guns and drones?
 
@@ -68,15 +99,13 @@ But war’s not changed in a million years. Won’t change in the next million n
 A blow against my helmet and all is black.
 
 Good.
-
+---
 # ART: black
 @ img black
-Visor down. The screams cut out, replaced with my own as I hack at the darkness.
+Visor’s down. Over comms, the chorus of screams cuts out momentarily. Mine breaks into a solo as I hack at the darkness.
 
 @ glitch
-The visor’s backup feed kicks in — glitched — showing the surroundings through a storm of artifacts. 
-
-I hear a man cry for his momma.
+The backup feed kicks in — glitched — revealing, through a storm of artifacts and blood, a knife-rent shin split open. Someone is sobbing over the static.
 
 @ page
 And I see… Wait, that’s not right. You’re not…
