@@ -44,8 +44,6 @@ re-verified in this pass. Everything else was checked against the files.
   bare, with the flip at the aftermath; `02`, `03` and `04` are 100% bare. Decide once.
 - **Label convention differs.** `01_intro` uses `@ cast` shorthand (`S:`, `C:`, `P:`, `K:`, `R:`);
   the later scenes use long form (`Chip:`, `Player:`). Both parse. Decide which is house.
-- **The title is both singular and plural.** The on-screen card reads `WAR IDOLS` and the file
-  header is "War Idols - 01"; `00_prologue` reads "War Idol".
 - **`car/vn/scenes/Notes.txt` is a live scene.** The game loads it as one named *Notes*, and
   `make_plain.ps1` generates `_read_Notes.txt` for it. It also breaks the `NN_name` convention.
   Underscore-prefix it or move it out of `scenes/`.
@@ -85,7 +83,11 @@ re-verified in this pass. Everything else was checked against the files.
 - **B5. The refusal of the lesser door.** *Inherited*, E5, **still open**. The ladder should read:
   the brass refuse him → the army refuses him and offers the merc → **he refuses the honest
   illegitimate job** → and later accepts the counterfeit legitimate one.
-- **B6. Carried, not re-checked** — from `01_intro_punchlist` §B and §D: the closing bold spanning
+- **B6. `Those are the rules of the War Idols.`** The chapter's last line uses the plural. It speaks
+  of the world's idols rather than of the work, and it is the only place the title is said in-world —
+  so the plural may be right exactly there. Decide whether it stays, or whether the title is singular
+  everywhere.
+- **B7. Carried, not re-checked** — from `01_intro_punchlist` §B and §D: the closing bold spanning
   two clicks; *he whistles* a list of battles; *orbits are closest*; two *as* clauses in the cloak
   line; *small chest*; *The transformation bewilders*; *booty*; *a Nelson*; *in the bacon*; the
   pamphlet losing its pointing; the chant payoff and its *no census* rule; *Good girl* as its own
@@ -106,6 +108,8 @@ Recorded so nobody re-fixes them.
   marker in A.
 - **The `S` → `C` label switch fires at the insist line**, not sixty lines early.
 - **`Some princess.` closes the heifer joke**, as its own click after the calf line.
+- **The title is *War Idol*, singular.** The card reads `WAR IDOL` and the `01_intro` header now
+  matches the other scene headers.
 - **The Metamorphosis beat and the flight are settled.** The Kiss named on the tray as the water
   and never glossed; the correct pour *"flat as snowy Europa"*, the wrong one topaz → emerald →
   blue → cloud → clear, ending on Chip's reflection; the flight named *the four jewels of Io* at
