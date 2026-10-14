@@ -115,8 +115,7 @@ MECHANICS RULES STILL IN FORCE (from canon 11)
   honest, and a consistent marker on every axis choice is how the player infers a tally.
   One marker lands in the intro.
 
-  The ending is the sign of the net total. Checkpoints record the value for feedback;
-  they do not decide.
+  The ending is [OPEN] -- two models, neither settled. See THE ENDING below.
 
   Hype is floor plus window. The floor comes only from mandatory content and gates the
   story; the window comes from optional content and performance and gates the bonus.
@@ -134,11 +133,59 @@ MECHANICS RULES STILL IN FORCE (from canon 11)
   who he was and starts measuring whether the player engaged with the mechanics.
 
 
+THE ENDING
+----------
+
+  [OPEN -- unsettled. Two models, neither chosen. They are not compatible, so this wants
+  settling before the last chapter is written. Both are cheap to try.]
+
+
+  MODEL A -- DETERMINATION
+
+    The ending is the sign of the net Drama <> Sympathy total. There is no final menu.
+    Checkpoints record the value for feedback; they do not decide.
+
+    For     :  the ending is the run, and it cannot be contradicted.
+    Against :  no scene at the climax, and the man becomes something without ever
+               acting. Canon 13 wants Albrecht one scene of self-justification or the
+               title is decoration, and this model gives him none.
+
+
+  MODEL B -- THE OFFERS                                          (proposed)
+
+    The axis decides WHICH OFFERS EXIST. The player decides which to accept.
+
+      -  A high-Drama, established player is offered a seat at the table. Refusing it
+         is the betrayal.
+      -  A high-Sympathy player is never offered that seat, because nobody would offer
+         it to him. He gets a different temptation, framed as relief rather than
+         promotion.
+
+    The run sets the menu; the player picks an item. Each ending's cost is set by the
+    run, because what is being given up differs in each case.
+
+    An extreme player may face a single offer. That is not lost agency -- they decided
+    already, by becoming someone with no other door.
+
+    For     :  the climax is a scene, and it lets him SELL OUT, which is the character.
+               Canon 4: he cannot reconcile practicality and morality himself, so he
+               subcontracts the job to legitimacy, which makes it absolution. That is
+               a choice, not a tally being read out.
+    Against :  a middle player can hold both offers and take either, so the ending can
+               contradict the run.
+
+
+  WHAT WOULD SETTLE IT
+
+    Draft the last beat both ways, short, and read them. This is a decision made by
+    drafting rather than by argument -- twenty lines each would show it.
+
+
 OPEN QUESTIONS
 --------------
 
-  1.  THE ENDING FORMULA. Drama <> Sympathy is the proposal. Confirm it, because with
-      four dials there is currently nothing that says which one picks the ending.
+  1.  THE ENDING. Moved to its own section above -- two models, unsettled. It needs a
+      decision before the last chapter is written.
 
   2.  "Only Drama <> Sympathy has different paths" does not match the bullets above:
       propaganda has two trees and Bloodlust has one. If the distinction is STORY

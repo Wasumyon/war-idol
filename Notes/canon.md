@@ -494,9 +494,8 @@ and some leave a crater. Nothing arrives where it was aimed.
   signal booster), vehicle (armour, turret, NOS, turbo, treads, suspension), info (new
   zones and routes).
 - **The fork:** **Whistleblower** — escape home with separatist support. **Complicit** —
-  become a conspirator yourself. **It is the axis's payoff, not a menu** — the sign of the net
-  Drama ↔ Sympathy total picks it: the player is always choosing it, they just never see the number.
-  See `game_design.txt`.
+  become a conspirator yourself. **How the run decides which is unsettled** — `game_design.txt`
+  holds both models and the test that would settle them.
 - **Tone, in the doc's own words:** *"Dark humor comes from the gap between viewers with
   24/7 access to war and the people actually fighting it."*
 - **Kathay's order of arrival:** she is **content first** (Day 5, her banned conspiracy
