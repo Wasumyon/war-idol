@@ -70,9 +70,12 @@ re-verified in this pass. Everything else was checked against the files.
   the `make_plain.ps1` gap.
 - **B2. The quotes.** The remedy for the flip above — a 39-line mechanical pass. The reading copy
   is unaffected either way, because the script re-adds the marks.
-- **B3. Chip must cost him something.** *Inherited*, E3, **not done**. She asks the loaded
-  questions and wins every exchange. The collision is already in the premise — she wants footage,
-  he is hiding something — so let one question land, and let him not recover in the same line.
+- **B3. Chip must cost him something.** *Inherited*, E3, **not done**, and E3's supporting claim was
+  too absolute. She wins the **stakes** — the clip, the donations, the free round, the last word, and
+  she pays for his drinks — but he wins the **banter**: the heifer tease is his, and she answers it by
+  drumming him. So the problem is not that he never wins. It is that his wins cost her nothing, and
+  hers cost him. The collision is already in the premise — she wants footage, he is hiding something —
+  so let one question land, and let him not recover in the same line.
 - **B4. The fight's staging is eaten by the dissociation.** *Inherited*, E1, **open**. He needs
   space as well as decision: there is no position, no facing, no distance, so the reader gets a
   mood and no picture. The fix is to make `I don't remember ___` the carrier for staging too.
