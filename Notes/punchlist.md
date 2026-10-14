@@ -58,6 +58,18 @@ re-verified in this pass. Everything else was checked against the files.
   copy. This is the cause of the first item above.
 - **The inline markup set has never been executed by Godot.** It was proven by a PowerShell port
   only. Highest-risk item on this list: one slip breaks every scene's text at once.
+- **`@ auto <seconds>` does not exist, and the S-gag needs it.** Wanted: a title card that shows
+  `WAR IDOLS`, then, once the word has finished typing, plays a glitch and swaps to `WAR IDOL` with no
+  click. The engine advances only on click — `_advance()` is reached from the click path, and the `|`
+  mark also waits — so this cannot be done in a scene file.
+  - **And it is a driver, not a timer.** `_advance()` finishes the typing, appends the next narration
+    unit, finishes the reveal, steps to the next dialogue segment, and only then leaves the node. So
+    playing a node by itself means calling it repeatedly on a schedule and stopping when the node
+    changes or a choice is up.
+  - **Spec:** arm on the node; first tick only after typing completes, or it cuts the word off
+    mid-letter; any click disarms it; never fire while a choice is presented.
+  - **It is not a one-off.** The title card, the prologue's painted plate (*the camera does the
+    work*) and any Feed or credits sequence all want it.
 
 ---
 
@@ -75,10 +87,6 @@ Numbers are stable handles, so a closed item leaves a gap rather than renumberin
 - **B5. The refusal of the lesser door.** *Inherited*, E5, **still open**. The ladder should read:
   the brass refuse him → the army refuses him and offers the merc → **he refuses the honest
   illegitimate job** → and later accepts the counterfeit legitimate one.
-- **B6. `Those are the rules of the War Idols.`** The chapter's last line uses the plural. It speaks
-  of the world's idols rather than of the work, and it is the only place the title is said in-world —
-  so the plural may be right exactly there. Decide whether it stays, or whether the title is singular
-  everywhere.
 - **B7. The narrator's quoting device — is it the rule?** `Technically it's the "White Cow"` puts the
   **official name** in quotes against what everyone calls it. That is not a drink-name inconsistency:
   the flight's first pour shares the bar's name, from the same myth. But the same shape exists
@@ -123,3 +131,7 @@ Recorded so nobody re-fixes them.
   fixed it; recorded here so it is not raised again from the old file.
 - **B3 and B4 are dropped, not missing.** Their numbers are left as gaps so the record stays
   traceable; see the two entries above.
+- **The singular/plural question is settled; the gag that shows it is not.** The last line stays
+  plural because it states a *rule*, and rules govern a class — the idols, in-world. The card stays
+  singular: the form, the ideal. The glitch that would display both is deferred to the `@ auto`
+  engine item in A.
