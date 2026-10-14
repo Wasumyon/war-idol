@@ -63,6 +63,8 @@ re-verified in this pass. Everything else was checked against the files.
 
 ## B. Considerations
 
+Numbers are stable handles, so a closed item leaves a gap rather than renumbering the rest.
+
 - **B1. The choices mechanic.** Deferred by decision, and this is where it is parked. Needs:
   whether authoring moves into the engine's own `? ` / `+ ` form with `make_plain.ps1` taught to
   render the options as a visible list, or stays as raw markers; what the stat effects actually
@@ -70,15 +72,6 @@ re-verified in this pass. Everything else was checked against the files.
   the `make_plain.ps1` gap.
 - **B2. The quotes.** The remedy for the flip above — a 39-line mechanical pass. The reading copy
   is unaffected either way, because the script re-adds the marks.
-- **B3. Chip must cost him something.** *Inherited*, E3, **not done**, and E3's supporting claim was
-  too absolute. She wins the **stakes** — the clip, the donations, the free round, the last word, and
-  she pays for his drinks — but he wins the **banter**: the heifer tease is his, and she answers it by
-  drumming him. So the problem is not that he never wins. It is that his wins cost her nothing, and
-  hers cost him. The collision is already in the premise — she wants footage, he is hiding something —
-  so let one question land, and let him not recover in the same line.
-- **B4. The fight's staging is eaten by the dissociation.** *Inherited*, E1, **open**. He needs
-  space as well as decision: there is no position, no facing, no distance, so the reader gets a
-  mood and no picture. The fix is to make `I don't remember ___` the carrier for staging too.
 - **B5. The refusal of the lesser door.** *Inherited*, E5, **still open**. The ladder should read:
   the brass refuse him → the army refuses him and offers the merc → **he refuses the honest
   illegitimate job** → and later accepts the counterfeit legitimate one.
@@ -122,3 +115,11 @@ Recorded so nobody re-fixes them.
   later` stands. *Gone* is a euphemism paired with the next line's *I'm sorry, buddy*, and *a month*
   is the only rounded duration in a passage that otherwise itemises to the month. Canon §6 no longer
   gives a figure, and now says the blur is the tell.
+- **Chip's flatness — dropped, not outstanding.** The reader's note was that she reads flat and could
+  use more rebuffing. It was answered by the bar scene itself, written afterwards, so nothing is owed.
+  The diagnosis that grew on top of that note goes with it; the page did not support it.
+- **The fight's staging — addressed by the author.** A reader could not follow the action or place
+  the narrator in the Chaac fight, because the dissociation had eaten the staging. The author has
+  fixed it; recorded here so it is not raised again from the old file.
+- **B3 and B4 are dropped, not missing.** Their numbers are left as gaps so the record stays
+  traceable; see the two entries above.
