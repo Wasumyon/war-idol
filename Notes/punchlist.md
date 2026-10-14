@@ -77,11 +77,6 @@ re-verified in this pass. Everything else was checked against the files.
 
 Numbers are stable handles, so a closed item leaves a gap rather than renumbering the rest.
 
-- **B1. The choices mechanic.** Deferred by decision, and this is where it is parked. Needs:
-  whether authoring moves into the engine's own `? ` / `+ ` form with `make_plain.ps1` taught to
-  render the options as a visible list, or stays as raw markers; what the stat effects actually
-  are; and whether the in-game render of `[choice]` is acceptable until then. Ties to A1, A2 and
-  the `make_plain.ps1` gap.
 - **B2. The quotes.** The remedy for the flip above — a 39-line mechanical pass. The reading copy
   is unaffected either way, because the script re-adds the marks.
 - **B5. The refusal of the lesser door.** *Inherited*, E5, **still open**. The ladder should read:
@@ -144,3 +139,9 @@ Recorded so nobody re-fixes them.
   his count failing rather than hers, and which rhymes with his own opening, *the first two bars — or
   was it three?* Chosen over a second plant at her arrival, and *Swaying on her stool* stays the
   single payoff.
+- **The choices mechanic is designed and filed.** It was B1, and the whole system now lives in
+  **canon §11** — *The three things that are tracked* and *The rules*: the Sympathy ↔ Drama axis at
+  ±1, deeds as positive-only flags, the no-HUD rule, floor-and-window Hype, the diegetic invitation
+  instead of a meter. Nothing in it is open. What remains is engine work: the **conditional read**
+  (see A) and teaching `make_plain.ps1` to render `? ` blocks — which is now a hard requirement
+  rather than a nicety, since the design depends on choices being authored.

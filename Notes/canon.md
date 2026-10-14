@@ -487,18 +487,78 @@ and some leave a crater. Nothing arrives where it was aimed.
 - **40 in-game days**, scrappy start-up to fugitive, **checkpoints every five days**.
 - **Core loop:** choose a route (easy / medium / hard) → vehicle combat mission → shop →
   canteen or evening scene.
-- **Stats:** Hype, Sympathy, Bloodlust, Drama, **Patriotism**.
+- **Three things are tracked, not five.** A stat survives only if it names something the world can
+  notice that the others cannot. *Bloodlust* and *Drama* as independent dials do not — Drama is
+  Hype's input, and violence is better said as deeds. **A stat that feeds or is fed by another in one
+  direction is not a second stat.** What is left:
+  - **Hype** — the meter, and the only hidden one. *How much attention.* Earned by performing, paid
+    out as followers, donations and money, and it carries **scrutiny** with it: being seen is being
+    targeted. Nothing in the interface ever displays it.
+  - **The axis: Sympathy ↔ Drama.** One signed number, **±1 per choice**, and the only thing that
+    decides the ending. *Sympathy* is people — few, near, costing. *Drama* is turning life into
+    material. A **conduct** axis rather than a faction one, which is why it works: it is available in
+    every scene, and you can offer it in a bedroom, a bar or a car.
+  - **Deeds — flags.** `killed_the_prisoners`, `spared_warden`, `told_her_the_truth`. Named for the
+    deed, **positive-only**, never for an outcome. A state like *bloodlusted* is **derived** from a
+    count of them, not set by hand.
+- **Patriotism is paperwork, not a stat.** §13 calls it the Ministry's *belonging* word, so it lives
+  on a document — a status line, a pass, a pay grade. Visible only where an institution stamps
+  something, because nobody's patriotism shows in a face. **It has no antagonist:** the opposite of a
+  patriot is not a position, it is an **absentee** — see §13, and the resident-versus-absentee note.
 - **Shop lines:** personal gear (armour, lithium, alcohol), streaming gear (lens, gyro,
   signal booster), vehicle (armour, turret, NOS, turbo, treads, suspension), info (new
   zones and routes).
 - **The fork:** **Whistleblower** — escape home with separatist support. **Complicit** —
-  become a conspirator yourself.
+  become a conspirator yourself. **It is the axis's payoff, not a menu** — the sign of the net
+  Sympathy ↔ Drama total picks it, so the player is always choosing it, they just never see the
+  number.
 - **Tone, in the doc's own words:** *"Dark humor comes from the gap between viewers with
   24/7 access to war and the people actually fighting it."*
 - **Kathay's order of arrival:** she is **content first** (Day 5, her banned conspiracy
   stream watched in the evening) and **a body second** (Day 7, tracked to an LZ as she
   blunders toward a patrol — *conditional on two segments of investigation*). Do not
   introduce her by the rescue. The rescue means nothing until she is already a name.
+
+### The rules
+
+- **No HUD.** A number may be displayed only where the fiction contains an **instrument** for it —
+  the phone, the wallet. Hype's payouts are visible; the meter is not. The axis has no instrument
+  **by design**, and that is the point: sympathy is unmeasurable because it is real.
+- **Every axis choice shows a consistent marker**, and one lands in the intro. **Uniform ±1 is what
+  keeps the marker honest** — uneven weights would make it lie, and the player would land on the
+  wrong side of what they felt.
+- **The ending is the sign of the net total.** Checkpoints **record** the value for feedback; they do
+  not decide. A single end-of-story comparison would hand the last few choices the whole game.
+- **Hype is floor + window.** The **floor** comes only from mandatory content and gates the *story*;
+  the **window** comes from optional content and performance, and gates the *bonus*. Keep one line per
+  chapter — floor · ceiling · gate thresholds — because a gate above the ceiling is a gate nobody can
+  ever reach.
+- **Hidden gate, diegetic invitation.** Nobody sees Hype; they get a phone call. *"That clip did
+  numbers — come in."* One written line teaches the whole meter.
+- **A locked bonus gate offers a shared fallback**, written once for all gates and always worth
+  strictly less than the full version, so the gate is never the wrong choice.
+- **Good play is faster and more complete**, never content a patient player can't eventually reach.
+  Pace is felt through a **rival** on canon's own clocks — tide, water, tax — and the intro's closing
+  line already states the rule: *elbow out the competition*.
+- **The axis must move on the mandatory path**, not only in flourishes, or a storyline player lands
+  at zero and gets the middle ending by default. Decide whether zero means *"he did both and they
+  cancelled"* or *"he did nothing"* — they are different endings and only one of them is a story.
+- **Nothing gated is load-bearing.** Bonus content is additive; a player who missed a gated beat must
+  never meet a line that assumes they saw it.
+- **Sympathy must be a viable playstyle, not the losing one.** Because spectacle pays, the Drama pole
+  is also *optimal play*. If sympathy only ever costs, the axis stops measuring who he was and starts
+  measuring whether the player engaged with the mechanics. Sympathetic choices must earn access,
+  loyalty, information and favours that money cannot buy.
+- **Both poles feed Hype.** The tender clip goes viral too — the Feed converts everything. Otherwise
+  Hype and the axis collapse into one dial, and the player chooses money or people once and repeats
+  it for forty days.
+
+### The engine gap
+
+The script can **write** stats and deeds today — `+ hype 5`, `+ spared_warden 1` both work — but it
+has **no way to read them.** `get_stat` and `has_flag` exist in `autoload/game.gd` and are called from
+nowhere in the project. One conditional verb is the entire addition, placed so it attaches to the node
+it precedes, like `@ glitch` and `@ auto`. **Nothing in this section can be authored until it exists.**
 
 ---
 
