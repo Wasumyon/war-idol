@@ -1,39 +1,91 @@
 # 01_intro — fix list
 
-Rewritten against the current file. Quote-anchored, no line numbers, so it won't go stale.
+Updated against the current file. Quote-anchored, no line numbers, so it won't go stale.
 
-**Nothing here breaks playback.** The only run-breaking items are the missing assets, and those are deliberately deferred.
+**Sections:** A inconsistencies to settle · B line-level fixes · C decided, do not "fix" ·
+D optional beats · E reader feedback, with status.
+
+**Nothing here breaks playback.** The only run-breaking items are missing assets
+(`chip-skull`, `keno`), and those are deliberately deferred.
 
 ---
 
-## A. Inconsistencies to settle (pick one and apply it)
+## Closed since the last pass
 
-- **Keno's lines have quotation marks; nobody else's do.**
-  `K: "Already paid."` · `K: "Hey! What!?-"` · `K: "Free round for everyone on the Nemean!"`
-  Chip and Player lines are unquoted throughout. Strip the quotes from the K lines, or quote everything.
-- **`@img` vs `@ img`.** The crib sheet says `@ img`, the file says `@img Keno`. Both work. Pick one — `@ img` is easier to grep.
-- **Drink names are quoted inconsistently**: `"the Kiss"`, `"the Hump"`, `"White Cow."` are quoted; `the will-o'-the-wisp`, `the Peacock`, `the Gadfly` are not. Decide whether named drinks take quotes.
-- **Dashes**: the file uses a spaced hyphen (` - `) everywhere. Fine, but decide, because an em dash would read better typeset.
+- **`P:` on the merc offer → `R:`.** It was the recruiter's line; as `P:` the narrator was
+  recommending the mercs to himself.
+- **The money words are three distinct nouns now** — *VA benefits* (the promise), *Veteran's
+  Assistance* (the office), *your pension* (what's withheld). No repeat, and canon's quote
+  matches again, so no note edits are owed. The order also works: he says the acronym in his
+  own idiom and then, talking to a stranger, spells it out.
+- **`The show only lands harder because of the stairs`** was rewritten and the ambiguity is gone.
+- **The refusal is the recruiter's own line**, and *"Somebody put you to this?"* stays puzzlement,
+  so E5's guardrail holds.
+- **`Grand Executor Albrecht` exists in the notes now** — canon §13, title settled as *Grand
+  Executor*, with the Grand Inquisitor rationale and the rule for who says the full form.
+
+---
+
+## A. Inconsistencies to settle
+
+- **Three quote styles in one file.** `R:` and `P:` in the recruiter block carry quotation marks;
+  `K:` does; `C:` and `P:` in the bar do not. The engine already prints the speaker's name, so the
+  marks are redundant — strip them everywhere and keep quotation marks only for speech *reported
+  inside narration* (`"Chaac Patera... Lost a brother there."`).
+- **`@img` / `@music` with no space.** Both parse (verified — the parser strips after the `@`), so
+  it's cosmetic. `@ img` / `@ music` is easier to grep. **A stray colon is not cosmetic**: `@img:`
+  parses as the verb `img:` and silently does nothing. And the names are capitalised (`Keno`,
+  `Recruiting_office`, `Great_red_eye`) — lowercase them, or they resolve on Windows and break on
+  export.
+- **`@ fullscreen` is never cleared.** So every `C:` / `P:` / `R:` / `K:` line renders full-screen
+  with a bold name above it — and because the name and the line are separate units, **each dialogue
+  line costs two clicks**. Either that's the intended look (it matches the prologue) or the file
+  wants `@ box` after the title card.
+- **Nothing stops the Keno cue.** It starts at the bar and nothing in the file ends it, so it runs
+  over the alley and past the scene unless 02_stream sets its own.
+- **The bracketed aside straddles clicks.** `[Nobody knows what caused it...` opens on one click
+  and `...Argos.]` closes five clicks later, so the brackets render as orphans. One line, or no
+  brackets.
+- **Drink names are quoted inconsistently**: `"the Kiss"`, `"the Hump"`, `"the White Cow"` are
+  quoted; `the will-o'-the-wisp`, `the Peacock`, `the Gadfly` are not.
+- **Dashes**: spaced hyphen (` - `) everywhere. Fine, but decide, because an em dash reads better
+  typeset.
+- **Canon says the survivor died three weeks later; the file says a month.** Pick one.
 
 ---
 
 ## B. Line-level fixes
 
-- **`My cloak falls open off her as if in slow motion as she moves.`** — two *as* clauses. Drop one: *"falls open off her, slow, as she moves."*
-- **`The show only lands harder because of the stairs.`** — whose show? The fall, or his war record? Still the least clear line in the scene, and it's at the most important beat.
-- **`"First Loki Patera...!" he whistles.`** — whistling a *list of battles* is odd. A *low* whistle, or move the verb: *"he says, and then a low whistle."*
+**Fixed in the last pass** (grammar, spelling, punctuation, and a malformed directive): `upstairs`;
+`'til`; `grandfathers`; `Veterans'`; the comma after *bugs*; the missing close-quote on Keno's myth
+line; `somber` without *again*; `her slim arm`; `reads in big letters:`; the doubled blank before
+`Our contract:`; the comma in *"End times or not, life goes on."*; and `@img:` → `@img Great_red_eye`.
+
+**Still open:**
+
+- **`@tremble` does nothing in this file.** Presets are per-scene and `tremble` is defined in the
+  prologue, not here — so the line is parsed and never read. And if you *do* define it here, its
+  `sfx shuffle` is a missing asset: there is no `shuffle.ogg|wav|mp3` in `car/vn/sfx/`. Write the
+  three effects out longhand, or define the preset here with a sound that exists.
+- **The closing bold spans two clicks.** `*Stay alive and elbow out the competition. / Those are the
+  rules of the War Idols.*` opens the `*` on one click and closes it on the next. Check the renderer
+  joins them, or the last line of the chapter loses its bold.
+- **`he whistles`** — whistling a *list of battles* is odd; the intended reading is a low whistle
+  *at the record*. *"he says, and then a low whistle."*
 - **`Every 3.5 days their orbits are closest.`** — orbits aren't closest; the *bodies* are.
-- **`thrusts her slim arms over my elbow`** — plural. One arm goes over the elbow.
-- **`level it at her small chest`** — "small" is one of the diminishment words you've been clearing out (tiny back, tiny arms, slim arm, slender fingers). This one is left.
-- **`The transformation bewilders my senses.`** — "The" implies a transformation already named. It's a *plant* for Daphne three pages later, so it works retroactively, but on first read it points at nothing. Specify whose.
-- **`still rings out tallies of booty`** — "booty" is doing two jobs (loot and sex) and neither cleanly.
-- **`One random voice on the Feed is just a curio, could be a scam, could be a rumor.`** — comma splice.
-- **`The bright screen reads, in big letters.`** — the comma placement is awkward. Colon or nothing.
-- **`Ex-Nemean, I think to myself.`** — "I think to myself" is a tag the "I" already carries.
-- **`pins her arms in a Nelson.`** — half-Nelson, or full? Both exist.
-- **`she brings me out there and in the bacon`** — "in the bacon" (money) isn't set up anywhere. Either seed it earlier or use something established.
-- **Two consecutive blank lines before `Our contract:`** — one blank is one paragraph gap.
-- **`His tone becomes somber again.`** — "again" implies it was somber before. It wasn't.
+- **`My cloak falls open off her as if in slow motion as she moves.`** — two *as* clauses. Drop one.
+- **`level it at her small chest`** — "small" is a diminishment word you've been clearing out
+  (tiny back, tiny arms, slender fingers). This is the last one.
+- **`The transformation bewilders my senses.`** — "The" implies one already named. It's a plant for
+  Daphne three pages later, so it works retroactively; on first read it points at nothing.
+- **`still rings out tallies of booty`** — "booty" is doing two jobs (loot and sex) and neither
+  cleanly.
+- **`pins her arms in a Nelson.`** — half- or full? Both exist.
+- **`in the bacon`** — *some scratch* is now seeded earlier, so either use *scratch* here too or
+  accept two money words in one mouth.
+- **`It says so in the pamphlet.`** — the word order is fixed, but dropping *"over there"* lost the
+  **pointing**, which the "every word is punctuated with his hands" business was built to serve.
+  The pamphlet was an object in the room.
 
 ---
 
@@ -41,24 +93,67 @@ Rewritten against the current file. Quote-anchored, no line numbers, so it won't
 
 Pasted here so nobody undoes them later, you included.
 
-- **The pistol is a laser with a recuperator.** That's why `las-pistol`, `cold steel`, `three recoils` and `burned-out craters` all coexist. The mechanism is deliberately never explained on the page — it exists so *you* stay consistent. Do not add a line about it.
-- **One glass, four drinks.** Doesn't need specifying. Readers don't audit staging.
-- **The three drinks are in myth order**: White Cow → Peacock → Gadfly is the Io story in sequence. Keep it.
-- **`It gives them horns.` stays where it is** — closing the body description, isolated by blank lines.
+- **The pistol is a laser with a recuperator.** That's why `las-pistol`, `cold steel`, `three
+  recoils` and `burned-out craters` all coexist. Never explained on the page — it exists so *you*
+  stay consistent. Do not add a line about it.
+- **A flight, four glasses** — one small pour each, served together, *not* one glass. Keep the
+  *effects* (colours, layers, fizz, whatever changes) and never the recipe: a list of ingredients is
+  a mechanism, and this narrator does not explain mechanisms.
+- **The four drinks are in myth order**: White Cow → Peacock → Gadfly → Metamorphosis. The cow is Io
+  transformed; the peacock is Argus, whose hundred eyes Hera sets in the bird's tail; the gadfly is
+  her tormentor; the metamorphosis is her restoration. Sequence *and* meaning are both correct.
+- **`It gives them horns.`** stays where it is — closing the body description, isolated by blanks.
 - **`retards like me`** — self-effacing grunt humour, deliberate.
-- **`Seven months since then.`** — not a fragment for effect. It's *"It is seven months since then"* with the dead words elided, which is the correct tense. `since` never takes a bare present or simple past.
+- **`Seven months since then.`** — not a fragment for effect. It's *"It is seven months since then"*
+  with the dead words elided. `since` never takes a bare present or simple past.
 - **`~` in Chip's lines** — a deliberate style mark. Renders literally, as intended.
 - **`Since` / `have passed`** — never both.
+- **`You knows what they're going to take back...`** — kept. It's the recruiter's dialect, and the
+  same mouth's *I knows a guy* establishes it two lines earlier. Do not "fix" it.
+- **`Ex-Nemean, I think to myself.`** — do not touch. Canon §4 quotes this line *as is* as his
+  private label-amendment. The tag is the character trait, not a redundancy.
+- **`just a curio, could be a scam, could be a rumor`** — the comma splice is his voice, not an
+  error. He splices in dialogue too (*"…no one's gonna save you, your little tricks won't work."*).
+- **`He heats at my curt answer.`** — a clipping of *gets heated*. The frame is native (*bristles
+  at*, *chafes at*), so only the verb is new, which is how slang gets built.
+- **`all true Ionian patriots`** — the axis is **resident vs absentee**, not veteran vs patriot.
+  The oligarchs are cosmopolitan and don't live on Io; *patriot* is the ministry's **belonging**
+  word, which is what it actually sells. The refusal four lines later pays it off: the promise is
+  universal, the payment isn't. *Ionian* is worth establishing as the demonym — Io → Ionian, with
+  *ion* sitting right there in a moon that is a plasma torus.
+- **`You ain't fresh from the barracks no more, you know?`** — *fresh* is a goods word, and the
+  idiom "fresh out of college" buries the metaphor. Negating it while he looks at the leg is what
+  detonates it: broken, older, used up. **And the scene proves him right** — the fall on the stairs.
+  That is the true-but-insufficient reason done by **demonstration** instead of by a clause, which
+  is why the refusal doesn't need to mention the physical.
+- **`You're not that guy anymore`** — rejected as too cliché, and too worn for a register this dry.
+  Recorded so it doesn't come back.
+- **The pun in `the show landed; but I landed harder`** — kept. Deadpan, self-deprecating, and
+  *on account of* hides the hinge. Note this is an **exception to style guide §6** (puns belong to
+  characters, not the narration) — and §9's narrower test is "*a pun the narration is proud of*",
+  which this isn't. **Action: record the exception in §6 so it isn't re-litigated.**
+- **`That Great Red Eye`** — *Red* is the specific noun; *Great* survives because it's a **citation**
+  of the Great Red Spot, which is why the capitals stay (they make it a quotation rather than a
+  filler adjective). The prologue rhyme is carried by **"again"**, so the name is free to be
+  specific; a second "of Jupiter" would repeat the prologue's construction minutes after it.
+- **`He says it as a kindness.`** — the plain version is the point. "Cruel kindness" names what the
+  reader is already doing for free. The narrator is a witness, not a judge.
 
 ---
 
-## D. Optional beats (your call, all cheap)
+## D. Optional beats
 
-- **The chant payoff.** After `"THE THREE RETURNED!"`, his arithmetic: *"Three of us came back. Two of us are still here."* The chant is now literally true, so the grief is that it stopped being true, and only he's counting.
-- **`Good girl.` on its own line** — gives him a pause before the verdict.
-- **Keno's line at 119** — currently reported narration. With `K=Captain Keno` in the cast, it could be his mouth instead.
-- **`@ input_name` is never called**, so Player renders as the default name for the whole chapter. Either call it or commit to the default.
-- **The title card reads `WAR IDOLS`**, the game is *War Idol*. Consider making the card an in-world broadcast ident — the plural then means the show and the singular means the game.
+- **The chant payoff — rewrite before using.** Canon wants the beat *and* supplies wording: *"It was
+  four, damn it. / But never let the numbers fuck up a good chant."* The rule is ***no census*, not
+  *no temper*** — a fumble given up in the same breath. As previously written ("Three of us came
+  back. Two of us are still here") it **does the census** the rule forbids.
+- **`Good girl.` on its own line** — a pause before the verdict.
+- **A hand on the shoulder** after *"He says it as a kindness."* Stages the cruel kindness in
+  reported fact instead of naming it, and rhymes with Chip putting her hand on his arm at the bar.
+- **Keno's myth line** is currently reported narration. With `K=Captain Keno` it could be his mouth.
+- **`@ input_name` is never called**, so Player renders as the default name for the whole chapter.
+- **The title card reads `WAR IDOLS`**, the game is *War Idol*. Consider making the card an in-world
+  broadcast ident — the plural then means the show and the singular means the game.
 
 ---
 
@@ -67,7 +162,13 @@ Pasted here so nobody undoes them later, you included.
 Three readers. Quote-anchored, and worth more than anything else in this file, because it is the
 only evidence here that does not come from the author or from me.
 
-### E1. The fight reads as dissociation, but nobody can see it
+**Provenance note.** In E1–E5, the *quotes and the observations* are the readers'. The diagnoses,
+the suggested fixes and any claim about what the chapter's subject is are **mine**, written into
+this file afterwards. E2 in particular: the readers supplied only *which two images landed*; the
+prologue link and "foundational image" are my conclusion, not a finding of record, and not a rule
+the way style guide §6 is. Discount accordingly.
+
+### E1. The fight reads as dissociation, but nobody can see it — **OPEN**
 
 `"I don't remember deciding. Three recoils. A pipe across my back. The heft of the tantalum cane
 through a neck, an ankle, and the gun level on a third. / Scatter."`
@@ -90,7 +191,7 @@ decision: make `"I don't remember ___"` the pattern for the staging too. *"I don
 deciding."* … *"I don't remember crossing the floor."* The omissions become the information, which
 is the same trick the passage is already using.
 
-### E2. The two images that landed are the same image
+### E2. The two images that landed are the same image — **OPEN (lens, not a task)**
 
 **Jupiter's eye**, and **the fall on the stairs.**
 
@@ -100,7 +201,7 @@ foundational image may already be in place and may have arrived by accident. Wor
 deliberate. The art brief already puts Jupiter in frame for exteriors; this is the narrative side
 of the same instruction.
 
-### E3. Chip fell flat — and the suggested fix is the wrong lever
+### E3. Chip fell flat — and the suggested fix is the wrong lever — **HALF DONE**
 
 One reader wanted more flirtation and more rebuffing.
 
@@ -114,55 +215,53 @@ well she flirts.
 **The collision that is missing is already in the premise:** she wants footage, and he is hiding
 something. Those are the same object. Let one of her questions *land* — let it cost him a beat he
 does not recover from in the same line. That is stakes, not chemistry, and it is one exchange.
+**Not done.**
 
-**And her fear has nowhere to go.** *"She holds back a shriek and lets out something like a
-croak"* is genuine — and the act resumes on the next line with the thesaurus police. Let the drop
-breathe for one beat before she covers it. It makes her a person rather than a bit, and it pays
-off in the alley.
+**And her fear has nowhere to go** — *"She holds back a shriek and lets out something like a
+croak"* is genuine, and the act used to resume on the next line. **Done:** the drop now breathes
+for three beats (the croak, the narrator's aside on harsh lessons, the sweat on her brow) before
+the thesaurus police. Keep it.
 
-### E4. Why the three notes are one note
+### E4. Why the three notes are one note — **lens**
 
 Being *seen* while you are *down* is the chapter's subject. E2 is that image landing; E1 is the
 staging hiding who is looking from where; E3 is the watcher having no stake. **Chip is the Eye in
 human form** — the girl with the camera and the red spot in the sky are doing the same thing to
 him. Worth holding in mind while revising all three.
 
-### E5. Make the refusal explicit — but do NOT let him argue
+### E5. Make the refusal explicit — **MOSTLY DECLINED, one item open**
 
-A reader wants the recruiter to say plainly that it is the leg, and wants the narrator to
-*fight back* before being told *"you're not that guy anymore."*
+A reader wanted the recruiter to say plainly that it is the leg, and wanted the narrator to *fight
+back* before being told he's not that guy anymore.
 
-**The explicitness is right, and it builds the false floor rather than damaging it.** Two refusals
-are in play and they are different bodies: the **army's** refusal (this desk) and the **brass's**
-refusal (Chaac). The desk can be perfectly explicit about the leg, because the desk's reason is
-mundane and sincere — which makes the *Chaac* refusal louder by contrast. One refusal explained,
-one silent. That is exactly what canon §4 wants.
+**Declined on the explicitness.** Reason given: too wordy, and readers understand the meaning
+without it. The structure holds up without it, and better than expected — the desk's *"not fresh
+out of the barracks"* is proved true three beats later by the fall on the stairs, so the
+true-but-insufficient reason is demonstrated rather than stated, and the body still gets named
+without naming Chaac. See C.
 
-**Guardrail:** he may be explicit about the leg and must be *ignorant* about Chaac. *"Someone put
-you to this?"* is puzzlement, not knowledge. Any hint that this man knows something collapses the
-ambiguity.
+**Guardrail — respected.** He may be explicit about the leg and must be *ignorant* about Chaac.
+*"Somebody put you to this?"* is puzzlement, not knowledge. Any hint that this man knows something
+collapses the ambiguity.
 
-**But the narrator must not argue.** Pleading breaks his one defining habit: he amends names
-privately and never to a face, he reports and does not reflect, he takes the refusal and walks.
-The friction the reader wants has to come from somewhere else.
+**The narrator must not argue — respected.** He reports, doesn't plead, and walks.
 
-**It already does — his silence is the weapon, and it is currently written as passive.** *"I wait
-in silence"* is waiting. Make it pressure and the whole second half works: **he refuses to help the
-man be kind, so the man is forced to be honest.** One clause converts it. Then the recruiter's
-cruel sentence is *caused* by the narrator, which stops it being something done to him — and it is
-the same mechanism as Chip, who also escalates when he will not answer.
+**But his silence is still written as passive — DECLINED.** *"as I wait in silence"* is waiting,
+and per canon §13 that is the **correct** form: the Grand Inquisitor's prisoner answers with a
+gesture, never with pressure, and the old man adheres to his idea anyway. E5 wanted the silence
+turned into pressure so the recruiter's cruelty would be *caused* by the narrator. Not needed —
+the form is already right, and pushing would make the narrator a participant in the pitch.
 
-**And the reader has handed over the chapter's thesis by accident:**
+**And the reader handed over the chapter's thesis by accident:**
 
 > "they won't even bother with checking your physical, security will take you."
 
 That is the opening move of a **lesser door**. They will take his body and not his name — which is
-precisely *"I wanted a name on mine"* forty lines later. **So the recruiter should be the first
-person to offer him the illegitimate version**, and the narrator should visibly *decline* it. Then
-the ladder reads: the brass refuse him, the army refuses him and offers him the merc, **he refuses
-the honest illegitimate job** — and later accepts the counterfeit legitimate one. That refusal is
-what makes the licence damning.
+precisely *"I wanted a name on mine"* later. The offer is now in the scene and it's sharper than
+the draft's (*"they won't give a damn about your physical"*). **What's missing is the refusal of
+it:** the ladder should read — the brass refuse him, the army refuses him and offers the merc,
+**he refuses the honest illegitimate job**, and later accepts the counterfeit legitimate one. That
+refusal is what makes the licence damning. **Still open.**
 
-**Note this should REPLACE the existing alternative, not add to it.** *"Vulkan Security is always
-hiring. And there's always the mercs… you can skip the physical"* is the same offer said twice.
-One sharp version does more.
+*(The doubled offer is settled: there is now one sharp version rather than Vulkan and the mercs
+saying the same thing twice.)*

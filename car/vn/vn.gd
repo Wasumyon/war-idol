@@ -29,6 +29,7 @@ extends Control
 ##     @ shake                   brief shake of the text area
 ##     @ glitch [seconds]        brief full-screen glitch (feed failing)
 ##     @ page                    start a new page (break the narration block)
+##                               "---" alone on a line means the same thing
 ##     @ img <name>              swap the full-screen illustration (sticky)
 ##                               files live in res://vn/img/<name>.png|webp|jpg
 ##                               "@ img none" clears it
@@ -58,7 +59,8 @@ extends Control
 ##     @ cast Captain Keno, C=Chip, P=Player
 ##   (A single word before ":" is always treated as a speaker anyway.)
 ##
-##   INLINE: *bold* -> [b]bold[/b],  _italic_ -> [i]italic[/i]
+##   INLINE: ***bi*** bold-italic,  **bold**,  *italic*,  _italic_  (___ and __ too).
+##   \* \_ \` \^ \,  give a LITERAL mark.  Backticks give [code].
 ##
 ## A line is dialogue ONLY if the text before the first ":" is one word.
 ## So "Chip: hi" is dialogue, but "Our contract: split 50/50" is narration.
@@ -239,6 +241,11 @@ func _parse(text: String) -> void:
 			pending_blank = true   # a blank line in the source = a gap on the page
 			continue
 		if line.begins_with("#"):
+			continue
+
+		# "---" alone on a line (three or more hyphens) is an alias for "@ page".
+		if line.length() >= 3 and line.replace("-", "") == "":
+			pending_page = true
 			continue
 
 		if line.begins_with("=="):
@@ -635,25 +642,45 @@ func _compose_text(node: Dictionary) -> String:
 	return _inline(t)
 
 
-## Inline shorthand: *bold* -> [b]bold[/b], _italic_ -> [i]italic[/i].
+## Inline shorthand, Markdown/CommonMark order. Triples and doubles run BEFORE the
+## singles, or ***bold italic*** is read as a bold pair plus two loose asterisks, and
+## __bold__ comes out as garbage. \* \_ \` \^ \, make a LITERAL mark: they are parked in
+## control characters for the duration of the passes and restored at the end, which is
+## what keeps a stray mark from mangling a line.
 ## Needs a matching pair; a lone mark is left alone.
 func _inline(s: String) -> String:
-	var t := _wrap(s, "*", "b")
-	t = _wrap(t, "_", "i")
+	var t := s
+	var park := {"\\*": "\u0001", "\\_": "\u0002", "\\`": "\u0003", "\\^": "\u0004", "\\,": "\u0005"}
+	for k in park:
+		t = t.replace(k, park[k])
+	t = _wrap(t, "***", "b", "i")   # ***bold italic***
+	t = _wrap(t, "___", "b", "i")   # ___bold italic___
+	t = _wrap(t, "**", "b")         # **bold**
+	t = _wrap(t, "__", "b")         # __bold__
+	t = _wrap(t, "*", "i")          # *italic*
+	t = _wrap(t, "_", "i")          # _italic_
+	t = _wrap(t, "`", "code")       # `code`
 	t = _wrap(t, "^^", "sup")   # ^^x^^  superscript
 	t = _wrap(t, "^", "sup")    # ^x^    superscript (single form also works)
 	t = _wrap(t, ",,", "sub")   # ,,x,,  subscript  (~ collides with Chip's tildes)
+	for k in park:
+		t = t.replace(park[k], k.substr(1))
 	return t
 
 
-func _wrap(s: String, mark: String, tag: String) -> String:
+func _wrap(s: String, mark: String, tag: String, tag2 := "") -> String:
 	var parts := s.split(mark)
 	if parts.size() < 3:
 		return s
+	var open := "[%s]" % tag
+	var close := "[/%s]" % tag
+	if tag2 != "":
+		open += "[%s]" % tag2
+		close = "[/%s]" % tag2 + close
 	var out := ""
 	for idx in parts.size():
 		if idx % 2 == 1:
-			out += "[%s]%s[/%s]" % [tag, parts[idx], tag]
+			out += open + parts[idx] + close
 		else:
 			out += parts[idx]
 	return out

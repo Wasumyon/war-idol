@@ -28,6 +28,15 @@ Those are not slips, and "fixing" them would be the mistake. The test is whether
 
 Hardboiled, dry, terse. He reports; he does not reflect.
 
+**Two axes, and they are independent: *flat* is the delivery, *specific* is the content.** Do not collapse them.
+
+- The **tone** never rises — no ornament, no drama, no lyric register, no word the man would be proud of.
+- The **nouns** never go generic — *gore* over *blood*, *knife-rent* over *mutilated*, *the Horned* over *the enemy*, the unusual word order over the expected one.
+
+**So "plainer" is not the same as "flatter."** Reaching for a safer synonym makes the prose **less flat and less specific at once**, because a plainer noun is a more *worn* noun, and worn nouns are the generic ones. When the baseline register is this dry, the variance has to come from somewhere — and it comes from word choice and word order, never from raising the temperature.
+
+**And variance is spent deliberately.** The flat baseline is what *buys* the exception: a beautiful or technical word inside a beautiful paragraph is worth nothing, while the same word in a sea of nouns is an event. Budget it — **one or two bursts a scene, never two in a paragraph, and never the same burst twice.** This is what licenses a line like *The Louche Effect.*: a term dropped into plain prose reads as a burst, where the same term inside a paragraph of explanation would read as the author enjoying their own research.
+
 **He keeps the subject when he acts, and drops it when he's acted upon.**
 
 | he acts | he is acted upon |
@@ -75,6 +84,19 @@ Articles carry meaning too, and they are **lowercase, part of the name**: *the p
 
 *A fourth word for the same thing would be a synonym, and synonyms are the enemy of this system. Keep the three separate.* *Sectoid* is Chip's because official vocabulary is free prestige and she takes what is free — the same instinct as everything else she does.
 
+**And *bugs* is the word the lie is built on, so the narrator keeps it.** Vermin get *exterminated*; beasts get *fought*. The Ministry's method is contempt rather than fear — which is why the visor weaponises disgust — and *bugs* is what makes the enemy pest control instead of a war. So his contempt is load-bearing, and it is **supposed to be wrong**.
+
+*Beasts* is not a synonym and is not banned. It is his **reflective** word, where *bugs* is his **reactive** one:
+
+| when | word |
+|---|---|
+| he is angry, tired, bleeding | **bugs** |
+| he is summing up, being considered | **beasts** |
+| a civilian is talking | **the Horned** |
+| someone is writing it down | **Sectoid** |
+
+In the prologue the slur sits three lines before *"Wait, that's not right. You're not…"*, and that doubt only works because the word he has just used was cheap. **Do not let *beasts* become his default**, or he ends up standing above the crowd he belongs to.
+
 **And the form itself never names the creature.** A Ministry paper files the *condition*: an incident, a consolidation, a write-off. The desk names the loss, not the monster. That is the useful gap — the paperwork has an entry for what happened to a man and no entry for what he became.
 
 *The name is often the lie* (§5) applies hardest here: *Sectoid* is accurate about the resemblance and silent about the person.
@@ -86,6 +108,8 @@ Articles carry meaning too, and they are **lowercase, part of the name**: *the p
 **He names things. He does not gesture at them.**
 
 His myth references are all proper nouns — **Io, Juno, Argus Panoptes, Cicero, Nemean, Vulkan**. *"The bearing of a divine nymph"* is what someone says when they don't know which nymph; *"Bernini's Daphne"* is what he says. Specificity is the tell, and it's the character.
+
+**And his common nouns skew epic too.** *Gore*, not *blood*. It comes from Old English *gor* — filth, dung — and it is the word English epic translation reaches for: the field after a slaughter, swords drunk with it. A man who reads the world through myth does not say *blood*; that's a liquid. **Gore is the aftermath as a material.** The modern horror-fandom sense (*gore film*, *gorehound*) is a reader's reflex, not a property of the word, so do not let it scare you off the epic noun. It is his.
 
 **And the one thing he can't name is load-bearing.** *"...something older underneath it that I haven't got a name for."* A man who names everything failing to name something is the strongest move available. Don't spend it.
 
@@ -130,7 +154,6 @@ The Eye can be **blotted out** — cloud kills Jupiter. The rain is the only pri
 
 ## 9. What the narrator never does
 
-- Explains a mechanism. (The recuperator exists in *your* notes, never on the page.)
 - Explains an allusion.
 - Compliments her.
 - Says a brand's word for something when a worker's word exists.
@@ -141,9 +164,30 @@ The Eye can be **blotted out** — cloud kills Jupiter. The rain is the only pri
 ## 10. Engine syntax
 
 ```
-* bold *        _ italic _        ,, sub ,,        ^^ sup ^^
+** bold **      * italic *      _ italic _      ,, sub ,,      ^^ sup ^^
 ```
 Subscript and superscript are custom (`car/vn/script_effect.gd`) — stock Godot BBCode has neither. Single `^x^` also works for superscript. Tilde is **not** a mark; Chip's lines use `~` as style and it renders literally.
+
+**The full set, in the order the engine parses it:**
+
+| form | result |
+|---|---|
+| `***x***` | **bold italic** |
+| `___x___` | **bold italic** |
+| `**x**` | **bold** |
+| `__x__` | **bold** |
+| `*x*` | *italic* |
+| `_x_` | *italic* |
+| `^^x^^` / `^x^` | superscript |
+| `,,x,,` | subscript |
+| backticks | `[code]`, monospace |
+| `\*` `\_` `\`` `\^` `\,` | a **literal** mark, no formatting |
+
+Longer marks must run first — `***` before `**` before `*` — or the shorter pass eats the longer one. That is why `__` and `___` are listed even though `_` alone is italic: `__bold__` with only an `_` pass produces garbage. The escapes are parked in control characters for the duration of the passes and restored afterwards, which is what stops a stray mark from mangling a line.
+
+**Not marks here:** `~~strike~~`, `==highlight==`, `[text](url)`, `<b>`. The first two would collide with Chip's tildes and with the label syntax (`== beat`); links and HTML have no use in a VN. For strikethrough, underline, code blocks or links, write BBCode directly — `[s]`, `[u]`, `[codeblock]`, `[url=…]` — the engine passes it through untouched.
+
+**One hazard left, from how the wrapper works.** It splits on the mark and wraps every *other* segment, so **two or more unescaped marks in a line** can close and open spans you never intended — one underscore is safe (`leg_pool` is untouched), two are not, and the fix is to escape the one you meant literally. And the pass order above is load-bearing; don't reorder it.
 
 **Directives**
 
@@ -155,6 +199,7 @@ Subscript and superscript are custom (`car/vn/script_effect.gd`) — stock Godot
 ```
 
 - **A line is dialogue only if the text before the first `:` is ONE word, or matches a name on `@ cast`.** So `Chip:` works; `Our contract: 50/50` stays narration; `Captain Keno:` needs the cast line.
+- **`---` alone on a line means `@ page`.** Both still work; `---` is the readable form and is preferred in new prose. Three or more hyphens, nothing else on the line.
 - **A mistyped directive fails silently.** No error, no effect. Check anything starting with `@` against the list above.
 - **One line = one click.** Line breaks are pacing. `|` inside a line is an extra click mid-line.
 - **Switching between narration and dialogue clears the accumulated narration page.** Use `@ page` at scene breaks and `@ stage` for short interior beats that sit between dialogue.
@@ -165,6 +210,10 @@ Subscript and superscript are custom (`car/vn/script_effect.gd`) — stock Godot
 ## 11. File conventions
 
 - Scene files live in `car/vn/scenes/`, named `NN_scene.txt`. Files starting `_` are ignored by the manifest scanner.
+- **Plain-text reading copies** are generated by `powershell -File Notes\make_plain.ps1`. They strip every
+  directive and comment, keep the prose, turn a page break into a bare `---`, and expand the cast
+  shorthand to display names. **The break is never dropped** — a reading copy without it loses the
+  scene's structure, which is the whole point of reading one.
 - **Audio is split by kind**: one-shot effects in `car/vn/sfx/`, looping music in `car/vn/music/`. `@ sfx` and `@ music` resolve to their own folder, and the two have different import needs — music is streamed and looped, effects are short and played many at once.
 - **Lowercase asset filenames.** `keno.png`, not `Keno.png` — case sensitivity will bite on export.
 - Re-run `powershell -File Notes\commission.ps1` after writing; it regenerates `Notes/asset_commission.md`, the list of every img/sfx/music the scripts ask for and which are still missing.

@@ -26,6 +26,10 @@
 #   @ zoom <factor>   zoom the illustration (@ zoom 1 resets)
 #   @ shake / @ sfx <name> / @ glitch / @ page
 #   @ preset / @ tremble   (defined just below)
+# Inline: ***bold italic***  **bold**  *italic*  _italic_    (___x___ and __x__ also work)
+#   \* \_ \` \^ \,  give a literal mark. Backticks give [code]. ^x^ sup, ,,x,, sub.
+#   Presets are PER-SCENE: "tremble" is defined in this file, for this file. Another
+#   scene needs its own copy. And "---" alone on a line is the same as "@ page".
 
 @ narration
 @ preset tremble = shake + zoom 1.15 + sfx shuffle

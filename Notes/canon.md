@@ -21,18 +21,34 @@ Every element serves the licence. If a beat does not touch this, it is decoratio
 ## 2. The lie — the biggest fact
 
 **There is no pathogen.** No virus, no nanomachine, no "redemption" agent, no
-water-borne cause. **The infestation is a fabrication.** The colonists did not become
-anything.
+water-borne cause. **The infestation is a fabrication.**
+
+**CORRECTED — and it matters what the lie is.** *The lie is not "they are monstrous." The
+lie is "they are not human."*
+
+- The colonists **appear** human-machine **fused**, genuinely and horribly, and the doc's own
+  touchstones are body horror for a reason: the Beast, the Infested Terran. Bodies welded
+  into rigs, suits that no longer come off, prosthetics grown over. **The horror the reader
+  sees is real.** None of the imagery is a trick.
+- What the visor invents is the **species**. It takes a fused human and files it as vermin.
+  So the machine does not manufacture the monstrosity — it **dehumanises** it.
+- Therefore **the reader is never cheated.** Everything they saw was true and the *category*
+  was false. Their revulsion is legitimate; their contempt is the crime. They were right to
+  be horrified and wrong to think *bug*.
+- **This is a better trap than "it was all a rendering"**, which risks feeling like a cheat.
+  And the doc already says it: "the HUD renders the original human colonists as insectoid
+  aliens." The *aliens* are the invention. The bodies are not.
 
 **What is real**
 - The colonists are **heavily cybernetic**, for practical reasons — Io is a hard-rock
-  industrial colony. The metal is real. (Why that is not a moral failing: style guide §5
-  on euphemism, and the note that "purity of the body" is a bourgeois concern.)
+  industrial colony. The metal is real, and so is the flesh it has gone into. (Why that is
+  not a moral failing: style guide §5 on euphemism, and the note that "purity of the body"
+  is a bourgeois concern.)
 - A **military junta** holds Io under martial law, and it wants the moon.
 - A **separatist** movement exists and fights.
 
 **What is false**
-- That the colonists *changed*. The horror is a **rendering**.
+- The **species**. Not the horror. The bodies are that bad; the *category* is manufactured.
 
 **The visor is where the lie lives.** AR visor suits are regulated by the colonial
 government and now issued through the junta's **logistics branch**. Its HUD renders
@@ -58,6 +74,10 @@ Consequences, and they bind every scene:
 - Io has no water; Europa has excess. The railguns trade water for Io's sulfur, iron
   and SF6 **when the orbits align**, and the transfer is ***the Kiss*** officially and
   ***the Hump*** everywhere else.
+- **The word arrives first as an ingredient.** It rides the water into civilian life, so a
+  bar card lists *the Kiss* the way it lists sugar — *a spoon, sugar, and the Kiss in a
+  scrambler*. The bar names and never glosses, which is the rule anyway: the trade is
+  learned on the field, the first time a pillar is witnessed.
 - **The water caused nothing.** The rumour that it did is **Ministry marketing**, and
   the marketing is what created the scare.
 - **Assured water** — the Ministry's certified brand, in its own bottles, at its own
@@ -221,6 +241,13 @@ it is about.
 - **The tax is the number you WANT to move.** A figure that changes is more memorable
   than one that doesn't, and the Ministry raising the levy is the difficulty curve made
   of story.
+- **Money slang: *dust*.** The everyday coin — pocket money, the payment for a small thing. A mass
+  noun: *a hundred dust*, *no dust*, *that's dust*. It sits under **the water**, which is money at
+  scale (§3). The ground produces the word twice over: the tide spits realgar dust, and a crater
+  becomes a claim. *Chips* stays the physical coin — the metal in a pocket.
+- **Money slang: *cake*.** The other money — platform money, the soft kind: dome food, topside money,
+  what the Feed pays out. *That's cake* means *easy* as well as *paid*, and the double is free,
+  because for the people taking it those are the same thing. **Cake is hers; dust is his.**
 
 ---
 
@@ -319,6 +346,12 @@ have decided the air is survivable enough.
 
 The Kiss arrives as **ice**, not as a slug of water. A mass driver can put a block on Io
 for almost nothing; what it cannot do is put it down gently.
+
+**Where the reader learns it.** The intro's narration used to carry the trade — the 3.5-day orbit,
+the mass drivers, the tonnage. Cut from there on purpose: it belongs *here*, the first time a pillar
+is witnessed on the field. What the bar keeps is the **name** and nothing else — *the Kiss* on a card
+as an ingredient, *"Hump it"* from a customer, *"the scrambler"* in the narrator's mouth — all
+unglossed, which is fine. He knows what they mean and never explains.
 
 **Speed decides what you get.**
 - **Fast delivery** — the block flashes on impact. That is the *kiss-flash*, the most
@@ -468,11 +501,65 @@ and some leave a crater. Nothing arrives where it was aimed.
 ## 12. Physics — the numbers, so nothing contradicts
 
 - **Surface gravity: 0.183 g.** About one fifth of Earth, a shade over the Moon's 0.166.
-- **The ground is a tide.** Jupiter flexes the solid surface by up to roughly **100 m**,
-  twice per Io day (42.5 h). The flex travels with the sub-Jupiter point, so a *fixed*
-  spire has to be a **stalled tectonic uplift** — and that is what real Io's mountains
-  are: Boösaule Montes is about 17.5 km and is not a volcano. Hence the Steeple's height
-  varies over the orbit, which the doc already implies with "3–4.3 miles".
+- **The ground is a tide.** Jupiter flexes the solid surface by up to roughly **100 m**. Io is
+  tidally locked, so the bulge sits at a **fixed** spot on the surface and only the *amplitude*
+  swells — **one peak per 42.5-hour orbit**, called **perijove** (closest approach; **apojove**
+  is the far end). Because the bulge does not travel, a *fixed* spire has to be a **stalled
+  tectonic uplift** — and that is what real Io's mountains are: Boösaule Montes is about 17.5 km
+  and is not a volcano. Hence the Steeple's height varies over the orbit, which the doc already
+  implies with "3–4.3 miles".
+  - **What it is called.** The worker's word is **a land tide**. The Ministry's word is
+    **the Settling** — a press-office name for a hundred metres of ground moving twice a
+    day, in the same family as *the Revelation* (style guide §5). The scientific vocabulary
+    stays in the notes: *body tide*, *tidal flexure*, *tidal heating*, *Love number*.
+  - **At real scale you cannot see it.** 100 m against a radius of 1,821 km is a slope of
+    about 0.003° — invisible, and you rise with the ground, so there is no relative motion
+    to notice either. **The body tide is a schedule, not a spectacle.** It is legible only
+    through what it does: pools re-levelling, long straight runs failing at their joints,
+    fresh scarps opening, and the landform it has raised over centuries. You see the tide
+    the way you see wind — in what it made.
+  - **The prop that makes it present indoors: a tide clock.** As ordinary as a clock, in
+    every public room, and nobody looks at it. One belongs beside the Feed screen in
+    Keno's: two instruments, what to think about and what to be afraid of,
+    and *who watches which* is characterisation for free.
+  - **DECIDED: the tide is a slow rise, and the ripples are events.** The baseline flexure is
+    the invisible ~100 m above — a schedule nobody watches. On top of it the crust **rolls**:
+    wave trains a few times a day, worst at perijove, and a bad one parts the raft and glows.
+    - **The mechanism is real.** Io's Love number implies a global magma ocean at shallow
+      depth, so the crust is a **raft on a liquid**, and visible ground can heave like a sheet
+      on a swell. The folk vocabulary therefore turns **nautical**:
+      *a set*, *the swell*, *a sea*, *the roll*. On a moon with no water, the only sea
+      anyone knows is the floor.
+    - **What makes it visible is WAVELENGTH, not amplitude.** 100 m over a 1–2 km swell is
+      3–6° of tilt — enough to read on the horizon, to tip a vehicle, to spill a glass.
+      "Exaggerated" means *shorter waves*, not bigger numbers.
+    - **Feet first.** Seismic waves arrive before the dust does, so the order is: vibration,
+      then the horizon dips and rises, then the dust front comes across the plain.
+    - **Architecture becomes mooring.** If the ground rolls, nothing gets *founded* — things
+      sit on bearings, cables and flexible mounts. **A building on Io is a boat tied to a
+      dock.** That is what the joints are for: not a slow rise, but shock.
+    - **And a bad one opens the floor.** The raft parts and what is underneath is molten.
+      Which is what a *patera* is — a place the raft has already parted — and why settlements
+      sit on the **rims**: the rim is the high ground.
+    - **The clock and the alarm.** The tide clock exists because the tide is invisible. The
+      ripple is why nobody entirely trusts it: the clock says when to be afraid, and the
+      ground says when the clock was wrong.
+    - **The words for the peak.** *Perijove* is the **official** term — astronomical, neutral,
+      and the same Latinate family as *the Revelation* and *the Kiss*. The worker's word for
+      the same moment is **high water**, which sits in the nautical set above and keeps the
+      paradox: on a moon with no water, high water means the ground.
+    - **And the calendar already resonates — the existing numbers line up.** Io's period is
+      1.769 days, Europa's 3.551 — the 2:1 Laplace resonance, so Io laps Europa once per Europa
+      orbit. The doc's "every 3.5 days their orbits are closest" **is Europa's period**, which
+      puts the Kiss launch every **second** Io orbit: *two tides, then the water.* So the tide
+      table and the launch table are the same table, and the springs pulse on the water beat.
+    - **Three clocks, all predictable, all expensive:** the tide at **42.5 h**, the water at
+      **3.5 d**, the tax at **5 d**. Only the last one is in the game so far, which is a great
+      deal of rhythm sitting unused.
+    - **And perijove is knowable to the minute, which is the trap.** Keplerian, tabulated,
+      forecast like weather. The *timing* is certain; the *behaviour* is not. Knowing when the
+      swell peaks tells you when to be afraid and nothing about whether the raft will part.
+    - Keep the flat ~100 m figure in the notes as the number the Ministry quotes.
 - **Heat flux is enormous** — on the order of **2.5 W/m²**, some thirty times Earth's
   average. The ground is a radiator. A cave is warm near a patera and merely sheltered
   away from one, and **beside a lava lake the engineering problem is cooling, not cold.**
@@ -511,3 +598,102 @@ dig: a cave that keeps the poison out is already worth the dig.
 Which gives the class marker for free: **certified air, certified water, certified war.**
 The Ministry sells all three, and the domes are the third product with a wall around it.
 The rich buy the conditions; everyone else breathes the dawn.
+
+---
+
+## 13. The Authority and Albrecht
+
+**The office.** **Grand Executor Albrecht** — chief of the government, which sits above the
+Ministry of Logistics and Public Relations. The title is *Grand Executor*, not *Executor*: *Grand*
+is real institutional usage (Grand Master, Grand Vizier, Grand Inquisitor), so the form is
+authentic rather than pulp.
+
+**The echo that earns the title: the Grand Inquisitor.** The motives rhyme. An authority whose
+warrant he knows is unsound, held anyway for the sake of people he pities, argued rather than
+enforced. The Inquisitor's instrument is the **argument**, he wants agreement rather than
+obedience, and he gets none — a kiss and silence, and *"the old man adheres to his idea."*
+
+**Miracle, mystery, authority** — the three powers the Inquisitor names as the price of peace.
+All three already exist here: **the Feed** is the miracle, **the withheld cause** is the mystery
+(*"the rumor is it's the water"*), **the licence** is the authority. That is the exchange rate the
+story runs on. The stat list already carries **Patriotism**, so the recruiter's *"true Ionian
+patriots"* has a system behind it.
+
+**Division of labour, and it must hold: the recruiter quotes, Albrecht argues.** The clerk repeats
+a doctrine he does not own — he reads it off the pamphlet. If the recruiter ever argues on his own
+behalf there are two Grand Inquisitors and no cell.
+
+**The narrator's silence is the correct form.** The prisoner answers with a gesture, never with
+pressure; *"as I wait in silence"* is that form. In the intro his gesture is the cloak — the
+emblem argues, the room goes quiet, nobody is converted. (This is the answer to punchlist E5's
+*"make the silence pressure."*)
+
+**Give him one scene of self-justification or the title is decoration** — a man defending an
+indefensible thing to somebody who will not answer. The slot already exists: *"Let it surface at
+the reckoning."*
+
+**Open — who says which form.** Proposed rule: **the full title is paper, deference, or devotion**
+(*Grand Executor* on a document; also from a man who wants something from him; also from an
+idolater) and **the short form is a man at work** (*the Executor*, from a clerk doing his job).
+The **narrator**, being a legitimist who reaches for the big word, uses the full title — he
+believes in the ladder. The intro now has the **recruiter** saying *"Grand Executor Albrecht"*, i.e.
+the full form, so he is deferring or devoted rather than a man doing his job. Decide which he is.
+The narrator's own form is still unspent: he never says the name.
+
+**Proposed, not settled.**
+
+- **The government's name: the Authority.** It rhymes with the licence, which grants *authority*,
+  and it follows the naming system — the Ministry, the Feed, the Kiss. The bare form is also right
+  for an entity whose problem is *being* one: canon has the Ministry selling the licence that
+  authenticates the war, so the Authority is the buyer of its own legitimacy.
+- **The Ministry's collection arm: the Contribution.** The historical word for a levy paid to be
+  spared — i.e. the five-day tax — and it sounds voluntary while being extracted. Device:
+  *Der Krieg ernährt den Krieg*, **the war feeds the war** (the phrase attached to Wallenstein's
+  contribution system). German on the seal, English in the mouth; the seal is inherited paper in a
+  language nobody on Io reads, so it decorates and explains nothing.
+- **The previous administration was the Giant Leap Pioneer Project** — a chartered development
+  project, not a government. No citizens, only claimants and contract-holders; law by contract;
+  administration organised by deliverable. When the dream popped, nothing replaced it, so nobody
+  was left holding clean title. That vacuum is why the licence exists at all.
+
+---
+
+## 14. The flight, and the Metamorphosis
+
+**The menu.** Keno's house flight is **the four jewels of Io**, drunk in myth order — **the White
+Cow, the Peacock, the Gadfly, the Metamorphosis**. The name is stated once, at the order, and never
+pointed at again. It pays off in the catalogue, where each drink is described as a stone —
+milkstone, sapphire, opal, peridot, topaz — so the last one arrives as its own title.
+
+**The Metamorphosis is a water drink** — absinthe's service with a different cause. A topaz-specked
+syrup in a **Pontarlier** (stemmed, thick pinched bulb, dose line cut in it), served with *a spoon,
+sugar, and the Kiss in a scrambler*. The trigger is the imported water, under the same name the
+trade uses, on a card, with no gloss.
+
+**Two results, and they are the thesis:**
+
+| pour | the drink | the point |
+|---|---|---|
+| right — slow, through the sugar | one flat colour, *"flat as snowy Europa"* | the method reproduces the **source**. Nothing is created; you are shown the moon the water came from |
+| wrong — dumped in | topaz → emerald → rivers of blue → white cloud → clear | the **destination**: land, sea, sky in order, and then gone |
+
+*Snowball Earth* is the real term for a frozen world, and it is the read on the first row.
+Never say it (§4).
+
+**The mechanism, and it is why the ritual matters.** A slow drip through sugar makes a fine, even
+emulsion and one colour. Dumped fast, the emulsion goes coarse, the phases separate, and each
+colourant blooms on its own before it settles. So the procedure is the Ministry's method and the
+method is the sell: follow the steps, get a snowball; ignore them, get a world — for four seconds,
+in a glass, at the price of a round.
+
+**It ends clear, on Chip's reflection, and that is the point.** The recruiter sells *a real sky*;
+the drink performs it nightly and drains it. The water caused nothing, and what is left is a girl
+who got the whole thing by accident.
+
+**Keno's reaction is the plant.** He lifts the scrambler, looks at what's left, and sets it back —
+no interiority, no gear-turning; the narrator infers from acts and never asks. He will eventually
+sell a drink named after her.
+
+**Rejected: the Albrecht Effect.** Naming the effect after the Executor was considered and dropped.
+The press-office naming is already the Ministry's; the warm half of the same impulse belongs to
+Keno, at his own scale, and that is the one worth having.
