@@ -28,6 +28,8 @@ extends Control
 ##     @ music <name>            play vn/music/<name>, looping; "@ music stop"
 ##     @ shake                   brief shake of the text area
 ##     @ glitch [seconds]        brief full-screen glitch (feed failing)
+##     @ auto [seconds]          play this node through by itself, then move on
+##                               (default 1.2; a click still skips it)
 ##     @ page                    start a new page (break the narration block)
 ##                               "---" alone on a line means the same thing
 ##     @ img <name>              swap the full-screen illustration (sticky)
@@ -80,7 +82,7 @@ const SFX_DIR := "res://vn/sfx/"
 const MUSIC_DIR := "res://vn/music/"
 const SFX_EXTS := ["ogg", "wav", "mp3"]
 const MODE_VERBS := ["fullscreen", "narration", "box", "center", "right", "small", "large", "fast", "speed"]
-const EVENT_VERBS := ["stage", "sfx", "music", "shake", "glitch", "page", "img", "image", "zoom", "pan", "sat", "saturate", "fade", "input_name", "call"]
+const EVENT_VERBS := ["stage", "sfx", "music", "shake", "glitch", "auto", "page", "img", "image", "zoom", "pan", "sat", "saturate", "fade", "input_name", "call"]
 const IMG_DIR := "res://vn/img/"
 const IMG_EXTS := ["png", "webp", "jpg", "jpeg"]
 const BG_DEFAULT := Color(0.07, 0.07, 0.09, 1)
@@ -113,6 +115,8 @@ var _dlg_seg := 0                 # dialogue: current segment
 var _narr_pos := 0.0       # narration typewriter cursor (visible chars)
 var _narr_target := 0      # total chars in the current narration page
 var _narr_typing := false
+var _auto_delay := 0.0            # "@ auto": seconds between self-advances; 0 = off
+var _auto_left := 0.0
 var _narr_units: Array = []        # current block: reveal units {"t": text, "b": new-line?}
 var _narr_shown := 0
 var _page: Array = []              # revealed units on the narration page (same shape)
@@ -458,6 +462,15 @@ func _goto(id: String, keep_page := false) -> void:
 			_fade_reset()
 		else:
 			_fade_to_black(float(fa) if fa != "" else 1.5)
+
+	# "@ auto <seconds>": play this node by itself. Re-armed on EVERY node, so a
+	# timer left running by the previous one can never leak into this one.
+	if _has_staging(node, "auto"):
+		var aa := _staging_arg(node, "auto")
+		_auto_delay = float(aa) if aa != "" else 1.2
+	else:
+		_auto_delay = 0.0
+	_auto_left = _auto_delay
 
 	_clear_choices()
 	hint.text = ""
@@ -965,6 +978,7 @@ func _clear_choices() -> void:
 
 
 func _process(delta: float) -> void:
+	_tick_auto(delta)
 	if _narr_typing and narration_label.visible:
 		_narr_pos += _narr_speed * delta
 		if _narr_pos >= float(_narr_target):
@@ -1013,8 +1027,36 @@ func _unhandled_input(event: InputEvent) -> void:
 	if name_panel.visible:
 		return   # name entry is modal
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		_auto_delay = 0.0        # a click always wins the race with the timer
 		_advance()
 	elif event is InputEventKey and event.pressed and (event.keycode == KEY_SPACE or event.keycode == KEY_ENTER):
+		_auto_delay = 0.0
+		_advance()
+
+
+## EVENT: "@ auto [seconds]" - play this node through by itself, then leave it.
+##
+## It is a DRIVER, not a timer over one line. _advance() is a state machine:
+## finish the typing, append the next narration unit, finish the reveal, step to
+## the next dialogue segment, and only then leave the node. So this calls it on a
+## schedule and stops when the node changes or a choice is presented.
+##
+## The first tick waits for the typing to finish, so a line is never cut off
+## mid-word. Any click disarms it. Default is 1.2 s.
+func _tick_auto(delta: float) -> void:
+	if _auto_delay <= 0.0 or name_panel.visible:
+		return
+	if _narr_typing or _revealing:
+		return
+	if _node_id == "" or not _nodes.get("nodes", {}).has(_node_id):
+		return
+	var node: Dictionary = _nodes["nodes"][_node_id]
+	if node.has("choices") and not node["choices"].is_empty():
+		_auto_delay = 0.0        # waiting on the player; stop driving
+		return
+	_auto_left -= delta
+	if _auto_left <= 0.0:
+		_auto_left = _auto_delay
 		_advance()
 
 
