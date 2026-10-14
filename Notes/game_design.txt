@@ -1,9 +1,8 @@
 WAR IDOL -- GAME DESIGN
 =======================
 
-Tracking document. This is the live version of the campaign's tracked state and it
-supersedes the stat list currently in canon 11, which still describes a three-stat
-version and needs revising to match.
+Tracking document. This is where the tracked state is described. Canon 11 keeps the
+campaign around it -- days, loop, shop, tone, Kathay -- and points here for the system.
 
 Open questions are marked [OPEN]. The author's decisions are unmarked. Anything marked
 "(mine)" is an observation from the design pass, not a decision.
