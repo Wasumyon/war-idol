@@ -133,6 +133,13 @@ Corollary: **the name is often the lie.** *The Revelation* claims the truth came
 
 *"Old-fashioned huh? But I don't mind that."* is a character being clever. If the *prose* starts winking, the narrator becomes a man performing that he's been through it, and the sincerity built on the stairs and the red pavement is spent.
 
+**The carve-out: a pun the narration does not notice.** §9 bans only *a pun the narration is proud of*. A word doing double duty in passing — where nobody points at it, and the scene reads exactly the same if you miss it — is not a wink, and is allowed. Two instances, both kept on purpose:
+
+- *"The show landed; but I landed harder"* — deadpan, self-deprecating, and *on account of* hides the hinge.
+- *"She props her phone up against the empty glass"* — *props* as a stage property, in a chapter that ends on *theatre and audience*.
+
+**The test is not whether the pun exists. It is whether the prose leans on it.** A pun the sentence would be worse without is a wink. A pun that rides along unnoticed is just a good word.
+
 ---
 
 ## 7. The Eye
