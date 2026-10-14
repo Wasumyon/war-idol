@@ -47,10 +47,6 @@ re-verified in this pass. Everything else was checked against the files.
 - **`car/vn/scenes/Notes.txt` is a live scene.** The game loads it as one named *Notes*, and
   `make_plain.ps1` generates `_read_Notes.txt` for it. It also breaks the `NN_name` convention.
   Underscore-prefix it or move it out of `scenes/`.
-- **Drink names are quoted inconsistently** — `"the White Cow"` and `"Hump it"` carry quotes;
-  `the Kiss`, `the will-o'-the-wisp`, `the Peacock`, `the Gadfly` do not. Note this may be
-  expressive rather than sloppy: *Technically it's the "White Cow"* reads as scare quotes for the
-  paper name against what everyone calls it. Decide whether that is the device, and if so apply it.
 
 ### Tooling
 
@@ -87,7 +83,12 @@ re-verified in this pass. Everything else was checked against the files.
   of the world's idols rather than of the work, and it is the only place the title is said in-world —
   so the plural may be right exactly there. Decide whether it stays, or whether the title is singular
   everywhere.
-- **B7. Carried, not re-checked** — from `01_intro_punchlist` §B and §D: the closing bold spanning
+- **B7. The narrator's quoting device — is it the rule?** `Technically it's the "White Cow"` puts the
+  **official name** in quotes against what everyone calls it. That is not a drink-name inconsistency:
+  the flight's first pour shares the bar's name, from the same myth. But the same shape exists
+  ready-made for `the Kiss` / `the Hump`, so the question is whether quoting the official form is the
+  device, and it should then be applied wherever the paper name meets the street name.
+- **B8. Carried, not re-checked** — from `01_intro_punchlist` §B and §D: the closing bold spanning
   two clicks; *he whistles* a list of battles; *orbits are closest*; two *as* clauses in the cloak
   line; *small chest*; *The transformation bewilders*; *booty*; *a Nelson*; *in the bacon*; the
   pamphlet losing its pointing; the chant payoff and its *no census* rule; *Good girl* as its own

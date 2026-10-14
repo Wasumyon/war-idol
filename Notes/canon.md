@@ -669,6 +669,11 @@ Cow, the Peacock, the Gadfly, the Metamorphosis**. The name is stated once, at t
 pointed at again. It pays off in the catalogue, where each drink is described as a stone —
 milkstone, sapphire, opal, peridot, topaz — so the last one arrives as its own title.
 
+**And the first drink shares the bar's name.** *The White Cow* is the place's paper name (§9) and the
+flight's first pour is the same string, from the same myth: Io hidden as a cow. So the house drink is
+called what the house is called, and ordering the White Cow inside the White Cow is not a mistake. Do
+not rename either to clear the collision — the collision is the point.
+
 **The Metamorphosis is a water drink** — absinthe's service with a different cause. A topaz-specked
 syrup in a **Pontarlier** (stemmed, thick pinched bulb, dose line cut in it), served with *a spoon,
 sugar, and the Kiss in a scrambler*. The trigger is the imported water, under the same name the
