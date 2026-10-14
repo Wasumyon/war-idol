@@ -187,8 +187,12 @@ Consequences, and they bind every scene:
 ## 6. The Three — Chaac Patera
 
 **The count.** Three others made it out of the verdigris hellpits of Chaac Patera, plus
-the narrator. One of them was dead three weeks later. So **four landed, one is dead,
+the narrator. One of them died in the weeks after. So **four landed, one is dead,
 three are alive.**
+
+**And the number stays soft.** The prose calls it *"a month later"* — keep it vague. He
+itemises his own rehabilitation to the month and rounds off his friend's death, and the blur
+is the tell. Do not tighten it to a figure, and do not reconcile it to this note.
 
 **Chaac is also public knowledge** — a byword for a massacre, not a secret. The recruiter
 goes solemn at the name because he knows what happened there. He is sorry, not suspicious,

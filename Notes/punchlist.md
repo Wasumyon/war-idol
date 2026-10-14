@@ -40,8 +40,6 @@ re-verified in this pass. Everything else was checked against the files.
 
 ### The work — consistency
 
-- **The survivor's timing contradicts canon.** File: `one was gone a month later`. Canon §6:
-  `One of them was dead three weeks later`. Pick one.
 - **Quote convention flips inside one scene.** `01_intro` carries 39 quoted dialogue lines and 13
   bare, with the flip at the aftermath; `02`, `03` and `04` are 100% bare. Decide once.
 - **Label convention differs.** `01_intro` uses `@ cast` shorthand (`S:`, `C:`, `P:`, `K:`, `R:`);
@@ -112,3 +110,7 @@ Recorded so nobody re-fixes them.
   and never glossed; the correct pour *"flat as snowy Europa"*, the wrong one topaz → emerald →
   blue → cloud → clear, ending on Chip's reflection; the flight named *the four jewels of Io* at
   the order rather than at the climax. Filed to canon §3 and §14.
+- **The survivor's timing is settled, and the fix was canon's.** The intro's `one was gone a month
+  later` stands. *Gone* is a euphemism paired with the next line's *I'm sorry, buddy*, and *a month*
+  is the only rounded duration in a passage that otherwise itemises to the month. Canon §6 no longer
+  gives a figure, and now says the blur is the tell.
