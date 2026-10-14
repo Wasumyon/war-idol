@@ -92,6 +92,11 @@ Numbers are stable handles, so a closed item leaves a gap rather than renumberin
   the flight's first pour shares the bar's name, from the same myth. But the same shape exists
   ready-made for `the Kiss` / `the Hump`, so the question is whether quoting the official form is the
   device, and it should then be applied wherever the paper name meets the street name.
+- **B9. Does the narrator's glass show anywhere?** The plant for him is one clause at *"Eyes turn
+  towards us. It's my turn to feel sweat on my brow."* — *My glass is in the way.* It never says he is
+  drunk; it puts the drink between him and the thing he is good at, which is §8's rule that props do
+  the characterisation. Not in. Deliberately kept out of the three places where it would change what
+  the beat *is*: the pistol, *"Not hard, just enough to stop her"*, and *"I laugh. It's been a while."*
 - **B8. Carried, not re-checked** — from `01_intro_punchlist` §B and §D: the closing bold spanning
   two clicks; *he whistles* a list of battles; *orbits are closest*; two *as* clauses in the cloak
   line; *small chest*; *The transformation bewilders*; *booty*; *a Nelson*; *in the bacon*; the
@@ -135,3 +140,7 @@ Recorded so nobody re-fixes them.
   plural because it states a *rule*, and rules govern a class — the idols, in-world. The card stays
   singular: the form, the ideal. The glitch that would display both is deferred to the `@ auto`
   engine item in A.
+- **Chip's drunkenness is planted once, at the will-o'-the-wisp** — *her second or third*, which is
+  his count failing rather than hers, and which rhymes with his own opening, *the first two bars — or
+  was it three?* Chosen over a second plant at her arrival, and *Swaying on her stool* stays the
+  single payoff.
