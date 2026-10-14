@@ -180,7 +180,7 @@ S: "About the smell - is it true what they say? Say, teach me some Ionian swears
 
 P: "Lady, you've got no gun, no muscle, and no dictionary. What's a tart like you doing out here?"
 
-C: "Content!"
+S: "Content!"
 
 I pull out my las-pistol and level it at her small chest.
 
@@ -192,7 +192,7 @@ Maybe a harsh lesson for such a young girl, but best to learn it now before she 
 I can see the sweat bead on her brow as she raises her hands. Her smile curdles, but she holds strong.
 She presses her ribcage into the cold steel.
 
-C: "Oh, deary me! Chat, you see what rapscallions will do to a damsel out in these boondocks!? Constable! Call the thesaurus police!~"
+S: "Oh, deary me! Chat, you see what rapscallions will do to a damsel out in these boondocks!? Constable! Call the thesaurus police!~"
 
 Eyes turn towards us. It's my turn to feel sweat on my brow. I move to put the gun away. Her ruby eyes gleam.
 Like a viper, she catches my hand, thrusts her slim arm over my elbow, and turns her back into my chest.
@@ -200,7 +200,7 @@ Like a viper, she catches my hand, thrusts her slim arm over my elbow, and turns
 She holds my hand with the gun barrel up to her lips and snaps a selfie of her miming blowing smoke off it. 
 The phone explodes reading out the donations.
 
-C: "See! Heheh. I know how to shoot too, hotshot."
+S: "See! Heheh. I know how to shoot too, hotshot."
 # TODO: the "Player Name" display should become "Hotshot" from this line on. Note canon §8 has the PC
 # nicknamed Meathead/Blockhead — reconcile before wiring.
 # ["Player Name" should change to "Hotshot" here.]
@@ -211,30 +211,30 @@ P: "Hump it, pipsqueak."
 
 She doesn't. 
 
-C: "Oh, is that the local slang?!"
+S: "Oh, is that the local slang?!"
 
 She slides back into the stool beside me like we've known each other for years, thumb already scrolling.
 On the Feed is the clip of us and our... dance. Notifications ring out of her phone and she starts reading off donations and comments.
 
-C: "Fifty. Seventy. Two-hundred! Oh~ Thank you chat! Sounds like drinks are on me today, old man!"
+S: "Fifty. Seventy. Two-hundred! Oh~ Thank you chat! Sounds like drinks are on me today, old man!"
 
 She taps in a bunch of cocktails on the touch monitor and begins to swipe her phone over it.
 I grab her wrist. Not hard, just enough to stop her.
 
 P: "You saying I can't pay for my own? _and I ain't an old man..._"
-C: "I'm saying a *lady* sometimes feels generous."
+S: "I'm saying a *lady* sometimes feels generous."
 P: "Generous ladies are dangerous. And guys pay for the first date. It's common sense."
 
 She doesn't pull away and instead searches my face for something.
 
-C: "Old-fashioned, huh? But I don't mind that."
+S: "Old-fashioned, huh? But I don't mind that."
 
 She plays with the word on her tongue and gnaws on the syllables with her teeth and finishes it off with a wink. 
 She lifts her martini glass and pours the will-o'-the-wisp down her gullet. 
 
 She reaches out to buy another bounty. I grab her wrist again.
 
-C: "Hey! What gives?"
+S: "Hey! What gives?"
 
 P: "Newbie, this is Io. And the goddess herself brought you to the best dive on the whole stinking moon. This is how you do it."
 
@@ -296,7 +296,9 @@ That old softie.
 He does this three more times and even I start feeling sorry for him. 
 I laugh.| It's been a while.
 
-Oblivious, she downs each savoring them like a happy calf at her mother's udders. 
+Oblivious, she downs each savoring them like a happy calf at her mother's udders.
+
+Some princess. 
 
 C: "Thanks for showing me a good time~!"
 
