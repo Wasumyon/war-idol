@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://djowi0u1ytnrk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l2nf8"]
+radius = 20.0
+height = 78.0
+
+[sub_resource type="Gradient" id="Gradient_sh265"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l2nf8"]
+gradient = SubResource("Gradient_sh265")
+
+[node name="Player" type="CharacterBody2D" unique_id=48993606]
+
+[node name="CharacterSprite" type="Sprite2D" parent="." unique_id=759356372]
+
+[node name="BodyCollider" type="CollisionShape2D" parent="." unique_id=439882800]
+shape = SubResource("CapsuleShape2D_l2nf8")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=667742240]
+texture = SubResource("GradientTexture2D_l2nf8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1109601007]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+color = Color(0.43248025, 0.84558046, 0.6290673, 1)
