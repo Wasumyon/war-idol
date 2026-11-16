@@ -14,7 +14,7 @@ never emits `finished`, never spends a slot. It is an overlay like Pause, owned 
   tree and drawn above it (`layer` higher than Pause's). Being later in the tree it sees Esc
   before Pause, so Esc closes the files first, then the pause menu.
 - `process_mode = ALWAYS`, so it works while the tree is paused.
-- API: `open()`, `close()`, `notify_filed(id)`. Esc or the back button calls `close()`.
+- API: `open(id := "")` (opens on that entry when given), `close()`, `notify_filed(id)`. Esc or the back button calls `close()`.
 - **From the hub:** the `Dossiers` hotspot emits a new signal `dossiers_requested`; MainGame
   connects it to `dossier.open`. The hub never references the layer (its contract stays
   "setup + signals"). The hotspot label shows the unread count: `DOSSIERS · 3 NEW`.
@@ -34,6 +34,7 @@ image: cohort_crest
 info: Formed | 2187, Callisto
 info: Strength | two droungoi
 source: canon/15_military.md, io_story_bible.md
+terms: Nemean Cohort, the Cohort
 
 == before
 ## The Ministry's Own
@@ -49,11 +50,14 @@ The Cohort is the colony's answer to the {{swarm|seen_hive}}. Its tourmarch repo
   `order` sorts the list and gives the number shown beside the title. `image` resolves like
   `@ img` (`vn/img/`). `info:` lines are the details block, label `|` value, in file order.
   `source:` lists the repo files the entry's facts come from (never shown in game; see §10).
+  `terms:` lists the exact forms of the entry's name that are linked automatically wherever
+  they appear (§11).
 - **`== before` / `== after`:** the pre- and post-reveal versions (§5). An entry with no
   `==` sections has one body for all time.
 - **`## heading`** is a sub-heading (accent colour, the little square).
 - **Inline marks** are the VN's (`**bold**`, `*italic*`, …, style guide §10), plus two:
-  - **`[[id|shown text]]`** a highlighted term linking to entry `id`. Clickable only when that
+  - **`[[id|shown text]]`** a hand-made link, for wording that isn't one of the entry's
+    `terms:` (those link themselves, §11). Links to entry `id`. Clickable only when that
     entry is filed; otherwise plain highlighted text. `[[id]]` alone shows the target's title.
   - **`{{text}}`** a **glitched** span: the visor or the record is unsure of it. It renders as
     noise (§6). **`{{text|flag}}`** clears to plain text once `flag` is set.
@@ -151,3 +155,28 @@ retells it in-world and names those files on its `source:` line. Rules:
   each hit is an entry to reread (often still fine), not an automatic rewrite.
 - A canon change that renames a thing (*Tourma*, a unit, a place) is also a grep across
   `vn/dossier/entries/` and the `[[links]]`; validation catches broken link ids.
+
+## 11. Terms in the story
+
+A file opens only once the story has shown it (`@ file`, §3). From then on, **every**
+appearance of one of its `terms:` is underlined, so a player who forgot what *the Kiss* or the
+*Nemean Cohort* is can check it at any point.
+
+- **Where:** VN dialogue and narration (`vn.gd`), and dossier entry bodies. Not choice buttons,
+  the phone or the hub.
+- **When:** a term links only if its entry is filed **when the line is shown**. The line that
+  carries `@ file <id>` is already linked, so the first mention is the first underline. Before
+  that the term is plain text: no locked links, no spoilers.
+- **Matching:** case-sensitive, whole words, longest form first (*Nemean Cohort* wins over
+  *Cohort*). Writers list every form they use (`Nemean Cohort, the Cohort`). A backslash before
+  a term's first letter (`\The Kiss`) leaves that one occurrence plain, for an ordinary use of
+  the words. Text inside a `{{glitch}}` span is never linked. Linking runs before the inline
+  mark passes, like `[[ ]]`.
+- **Look:** underline in the accent colour, regular weight. Every occurrence, but quiet.
+- **Click:** opens the dossier on that entry (`dossier.open(id)`). The click must not also
+  advance the line: `vn.gd` swallows the click that hit a link. Opened from the VN, the
+  dossier pauses the tree and unpauses on close (unless the pause menu was already open).
+- **Validation:** a term listed by two entries; a term that appears in a scene before any
+  `@ file` of its entry (warning only: usually a missing `@ file`).
+- **Build:** after §8 step 5, as step 5b, with a test case: a filed term is underlined and
+  clicking it opens the entry; an unfiled one is plain; `\Term` is plain.
