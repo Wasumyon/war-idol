@@ -21,29 +21,28 @@ constant in code, so it can move.
 
 - Acts by the bible's percentages: Act 1 = days 1–10, Act 2 = 11–30, Act 3 = 31–40. The EMP and
   capture (70–75%) land on days 28–30; the interrogation and fork on day 31.
-- The outline has about 26 beats that happen on the calendar (07–32; 01–06 are the prologue the
-  written scenes already cover inside Day 1), plus three from the bible that the outline lacks
-  (Albrecht's rescue, the capture, the interrogation). Several share a day and the ice sequence
-  (16–21) runs four days, which gives roughly 24–28 story days.
+- The outline has 34 beats on the calendar (07–40, plus Route B's epilogue; 01–06 are the prologue
+  the written scenes already cover inside Day 1). Several share a day and the ice sequence (20–25)
+  runs four days, which gives roughly 24–28 story days.
 - That leaves about 12 fully free days, plus the open slot on story days that use only one. About
   half of the 80 slots are the player's. This is what "Hype is floor plus window" needs: story
   days supply the floor, free slots supply the window.
 - 30 days would leave Act 2 with no free days; 50 would put more filler than story in Act 1.
 
-Draft placement (the outline restructure is a separate task and will correct this):
+Placement, by the beat numbers of the three-act `outline.md`:
 
 | days | content |
 |---|---|
-| 1 | Opening as written: cold open, prologue, intro, first stream, first shot, aftermath (beats 07–10). No hub. |
-| 2–4 | Aysel at Keno's (11), Watcher 6 interview (12), free slots |
-| 5 | Checkpoint. Kathay's banned stream in the evening (canon 11); Ottenok's leak (13) |
-| 6–10 | Investigation offers; Day 7 Kathay at the LZ (canon 11); free days; checkpoint at 10 closes Act 1 |
-| 11–15 | Albrecht's rescue; Ottenok's trap and death (14–15); free days |
-| 16–19 | Ice sequence (16–21): hub locked, four scripted days |
-| 20–27 | Crew reorganised (22), gala and the plot (23–24), vendetta (25), the bait (26), free days |
-| 28–30 | EMP, the visor falls (27–28), captured |
-| 31 | Interrogation and the fork. Route B: epilogue, calendar ends here |
-| 32–40 | Route A: breakout, inadmissible truth (29), assembly (30), breach (31), broadcast (32) |
+| 1 | Opening as written: cold open, prologue, intro, first stream, first shot, aftermath (beats 01–10). No hub. |
+| 2–4 | Aysel at Keno's (11), Watcher 6 interview (12), the red flag (13), free slots |
+| 5 | Checkpoint. Kathay's banned stream in the evening (14, canon 11); Ottenok's leak (15) |
+| 6–10 | Investigation offers; Day 7 Kathay at the LZ (16, canon 11); free days; checkpoint at 10 closes Act 1 |
+| 11–15 | Albrecht's rescue (17); Ottenok's trap and death (18–19); free days |
+| 16–19 | Ice sequence (20–25): hub locked, four scripted days |
+| 20–27 | Crew reorganised (26), gala and the hardware (27–28), vendetta (29), the bait (30), free days |
+| 28–30 | EMP, the visor falls, captured (31–33) |
+| 31 | Interrogation and the fork (34). Route B: epilogue (B1), calendar ends here |
+| 32–40 | Route A: breakout (35), inadmissible truth (36), assembly (37), heist (38), escape (39), broadcast (40) |
 
 The ending stays open: days 31–40 are placeholders gated on a `route` flag, and the calendar
 does not assume Model A or Model B.

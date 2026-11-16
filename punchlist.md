@@ -92,6 +92,26 @@ Numbers are stable handles, so a closed item leaves a gap rather than renumberin
   drunk; it puts the drink between him and the thing he is good at, which is §8's rule that props do
   the characterisation. Not in. Deliberately kept out of the three places where it would change what
   the beat *is*: the pistol, *"Not hard, just enough to stop her"*, and *"I laugh. It's been a while."*
+- **B10. Albrecht's rescue — where and from what** (outline Beat 17). Proposed: its own beat at the
+  top of Act 2, on one of Ottenok's new routes, before the trap. The alternative is to make
+  Ottenok's trap (18) the cornering he rescues them from — tighter, but then the Ministry's trap
+  and Albrecht's rescue sit in one scene, which tips the double meaning early.
+- **B11. The gala finds the hardware, not the plan** (Beat 28). The old outline revealed the
+  collision plan at Aysel's server, which spends Albrecht's one scene of self-justification
+  (bible, Act 3) twenty days early. Proposed: mass-driver procurement and the Terpsichore boosters,
+  unexplained until Beat 34. The old discovery also had the plan "wiping out the 8 Families",
+  which the bible does not say.
+- **B12. Who is in the interrogation room** (Beat 34). Canon §8 says the heist proves to Aysel that
+  Albrecht knowingly ran it; if she hears him justify it in Beat 34, that reveal is spent.
+  Proposed: the narrator and Chip only; Aysel held apart as the hostage he respects.
+- **B13. Kathay — conditional rescue, permanent role.** The Day 7 LZ (Beat 16) is gated (canon §11)
+  but she is load-bearing later, so Beat 18 is written as the shared fallback where a player who
+  missed the LZ meets her. After Ottenok she takes his chair as the info dealer (bible), not a seat
+  in the crew: Beats 28 and 37 use her as a hired hand, Beat 30 as the leak.
+- **B14. Threads with no beat yet.** Langley's father (Watcher 6 → the recording → Aysel's bait →
+  nothing). Aysel's locker drive — proposed cracked in Beat 36. First contact with the separatists
+  before Route A needs them (35, 39). The red flag (13) could instead replace the monologue on Day
+  1's street (03), but that changes a written scene.
 - **B8. Carried, not re-checked** — from `01_intro_punchlist` §B and §D: the closing bold spanning
   two clicks; *he whistles* a list of battles; *orbits are closest*; two *as* clauses in the cloak
   line; *small chest*; *The transformation bewilders*; *booty*; *a Nelson*; *in the bacon*; the

@@ -69,10 +69,9 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 
 ## In progress
 - **Game jam (about a week, from 2026-10-24):** build `tunnel/` (own project, never references `car/`).
-- Restructure `outline.md` to the bible's three acts (add Albrecht's rescue, the capture, the
-  interrogation; fix Beat 14 and Beat 22 for Kathay).
-- Fill the calendar: days 2–40 are placeholders. The day placement in `maingame_spec.md` is a
-  draft that waits on the outline restructure.
+- `outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
+  B10–B14 wait on a yes before scenes are written against them.
+- Fill the calendar: days 2–40 are placeholders, placed by `maingame_spec.md` §2.
 - Port the runner from `car/slice/` into `vn/runner/` behind the segment contract.
 - The hub's real room (3D bunker, characters possibly 2D); Dossiers and News/Stats are stubs.
 - Update `Game` stats to match `vn_game_design.md` (the dials), and move `lane_x()` out of it.

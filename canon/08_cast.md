@@ -40,7 +40,7 @@ detail and the supporting cast. The original design doc's cast table is the sour
     The survivors — support staff and minor members — called her home to the family manor
     in Juno, the new capital. **She wants revenge and blames the bugs.** The torture
     streams are fear and grief pointed at the thing the visor tells her to hate.
-  - **Ottenok (outline Beat 15):**
+  - **Ottenok (outline Beat 19):**
     - She went to him to **buy the truth about her family's deaths**. He had started to
       find out it wasn't bugs. The Ministry killed him before he could sell it.
     - He shoved her into a locker as a witness, along with **a drive or code word she
@@ -49,7 +49,7 @@ detail and the supporting cast. The original design doc's cast table is the sour
       gun up, shaking, make-up running, the first time anyone sees the fear. She bolts.
     - **Each side blames the other.** The Ministry tells her the team did it, and that
       grudge drives her hunt and her EMP trap.
-  - **She doesn't know yet.** Her own EMP trap knocks out the AR (Beats 27–28) and she
+  - **She doesn't know yet.** Her own EMP trap knocks out the AR (Beats 31–32) and she
     sees the truth with the team. She realises what Ottenok was chasing was real, and she
     **turns** and joins the team. The logic points at whoever gained most, but **she won't
     believe it's Albrecht**. He's soft-spoken, grounded, rational to a fault, no villain.
