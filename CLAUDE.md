@@ -51,9 +51,8 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 ## Rules
 - **Every fact lives in one file. The bible wins any conflict**; fix canon or the outline to match.
 - Canon changes as the story is written. Record decisions; don't infer them from old drafts.
-- `car/` is the sandbox. Nothing in it is merged into `vn/` as-is: a mechanic that works gets
-  written up as a spec and reimplemented.
-- Sandbox code may use the core; **core code (`vn/`) never references the sandbox (`car/`).**
+- `car/` is the sandbox, a separate Godot project. Sandbox code may use the core; **core code
+  (`vn/`) never references the sandbox (`car/`)**, so anything the game needs is copied into `vn/`.
 - New playable content is a segment listed in `calendar_data.gd`. Never call
   `change_scene_to_file` in `vn/`.
 - Files starting `_` are drafts or generated reading copies (`_read_*.txt`). Don't edit them or
