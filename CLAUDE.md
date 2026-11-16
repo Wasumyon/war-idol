@@ -14,7 +14,10 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 (`vn/project.godot`). `sandbox/` is the old sandbox project and `tunnel/` is a separate one.
 
 - Main scene: `vn/main/main_game.tscn` (**MainGame**), the one persistent scene. Layers: World /
-  Story / HUD / Pause / Transition / Debug (F3 in debug builds).
+  Story / HUD / Pause / Dossier (the files, an overlay, not a segment) / Transition / Debug.
+- **Debug builds:** F3 opens the debug panel; F4 files every dossier entry; F5 toggles the visor
+  reveal. A new key is one `_hotkey()` line in `vn/main/debug.gd` plus a `debug_*` function on
+  MainGame; the panel lists them all. F6–F11 are free.
 - One autoload: `Game` (`vn/autoload/game.gd`) — the save (`user://campaign.save`), stats, flags,
   chapter, player name, and the calendar position (day, slot, segment in play).
 - **The calendar drives the game.** A day has two slots (day, evening). A slot is scripted (fixed
@@ -41,6 +44,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 | `vn/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
 | `vn/main/`, `vn/hub/`, `vn/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
 | `vn/opener/`, `vn/first_shot/`, `vn/phone/` | Day 1's cold open and filming request; the phone |
+| `vn/dossier/` | the files screen; `entries/<id>.txt` are the entries (placeholders for now). A scene line's `@ file <id>` files one |
 | `vn/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
 | `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `vn/` |
 | `sandbox/slice/` | the runner prototype — **sandbox**; copied into `vn/runner/` (ported 2026-11-16), now frozen — edit `vn/runner/` |
@@ -76,6 +80,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 - Fill the calendar: days 2–40 are placeholders, placed by `maingame_spec.md` §2.
 - Runner: ported into `vn/runner/` behind the segment contract (2026-11-16), a straight copy, not playtested in a window. Next: playtest, then hook its followers/money into the outcome payouts (the calendar currently pays fixed per-outcome amounts).
 - The hub's real room (3D bunker, characters possibly 2D); News/Stats is a stub.
-- Dossiers: specced in `dossier_spec.md` (2026-11-15), not built; its §9 story points are open.
+- Dossiers: built from `dossier_spec.md` (merged 2026-11-16), four placeholder entries, no
+  `@ file` in any scene yet. Next: settle its §9 story points, then write entries (Opus) and file them in scenes.
 - Stealth minigame: specced in `stealth_spec.md` (2026-11-15), not built; its §10 points are open.
 - Update `Game` stats to match `vn_game_design.md` (the dials), and move `lane_x()` out of it.

@@ -5,6 +5,10 @@ The in-game files: world tidbits the player collects and rereads. Models: the Fi
 picture) and the Event Archive in *13 Sentinels* (a details block, a found counter). Build from
 this spec with Sonnet; entry text is story work (Opus) and obeys canon like any scene.
 
+**Status (2026-11-16):** built and merged; §8 steps 1–7 and §11 are done. The entries are
+placeholders and no scene files one yet; §9 is open. Test: `vn/tests/dossier_test.tscn`. In a
+debug build, F4 files every entry and F5 toggles `visor_revealed`.
+
 ## 1. What it is in Godot
 
 A scene (`vn/dossier/dossier.tscn`), but **not a segment**: it is not in `calendar_data.gd`,
