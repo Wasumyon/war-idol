@@ -146,7 +146,13 @@ func is_alerted() -> bool:
 func can_see(target: CharacterBody3D) -> bool:
 	if state == State.KNOCKED_OUT:
 		return false
+	if director and director.is_concealed(target.global_position):
+		return false
 	var to := target.global_position - global_position
+	# High ground: he is hidden from guards below him, and a guard above does not see the
+	# floor below unless he is already alerted.
+	if to.y > height_step or (to.y < -height_step and not is_alerted()):
+		return false
 	to.y = 0.0
 	if to.length() > cone_length:
 		return false
@@ -179,6 +185,15 @@ func enter_alarm() -> void:
 		return
 	meter = 1.0
 	_set_state(State.ALARMED)
+
+
+## A noise reached him: he walks to its centre. An alarmed guard has better things to do.
+func hear_noise(center: Vector3) -> void:
+	if state == State.KNOCKED_OUT or state == State.ALARMED:
+		return
+	meter = maxf(meter, suspicious_at)
+	_unnoticed = 0.0
+	_enter_suspicious(center)
 
 
 ## The alarm lost him: look around where he was last seen, then go back to the patrol.
@@ -460,7 +475,15 @@ func _ray_length(space: PhysicsDirectSpaceState3D, from: Vector3, dir: Vector3,
 	return from.distance_to(hit.position) if hit else length
 
 
-## Step 3 cuts the cone at a drop to lower ground.
-func _clip_to_floor(_space: PhysicsDirectSpaceState3D, _eye: Vector3, _dir: Vector3,
+## A guard who is not alerted does not see lower ground: cut his cone where the floor
+## drops away by more than height_step.
+func _clip_to_floor(space: PhysicsDirectSpaceState3D, eye: Vector3, dir: Vector3,
 		length: float) -> float:
+	if is_alerted():
+		return length
+	var drop := Vector3.DOWN * (eye_height + height_step)
+	for i in range(1, floor_probe_steps + 1):
+		var at := eye + dir * (length * i / floor_probe_steps)
+		if _ray_clear(space, at, at + drop, L.SOLID):
+			return length * (i - 1) / floor_probe_steps
 	return length

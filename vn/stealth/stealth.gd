@@ -9,6 +9,7 @@ const DEFAULT_MAP := "res://stealth/maps/test_map.tscn"
 const MAP_DIR := "res://stealth/maps/%s.tscn"
 const PLAYER_SCENE := preload("res://stealth/player.tscn")
 const Guard := preload("res://stealth/guard.gd")
+const StealthNoise := preload("res://stealth/noise.gd")
 
 ## What the visor overlay shows in real time (stealth_spec.md §3). The overlay view (Q)
 ## always shows everything.
@@ -37,6 +38,9 @@ const HINT := "WASD move   Ctrl/C crouch   Q overlay view   V camera   O overlay
 ## Each crisis level adds this fraction to how fast detection meters fill.
 @export var crisis_step := 0.35
 @export var catch_fade_time := 0.6
+@export_group("Debug")
+## Radius of the test noise the N key fires at the player (debug builds).
+@export var debug_noise_radius := 6.0
 
 var crisis_level := 0
 var alarms := 0
@@ -109,6 +113,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		overlay_mode = ((overlay_mode + 1) % OverlayMode.size()) as OverlayMode
 		_redraw_guards()
 		_update_status()
+	elif event.is_action_pressed(&"stealth_debug_noise") and OS.is_debug_build() \
+			and not overlay_view:
+		emit_noise(player.global_position, debug_noise_radius)
 
 
 # --- the director: what guards ask and tell ---
@@ -118,6 +125,21 @@ func overlay_level() -> int:
 	if overlay_view or overlay_mode == OverlayMode.ALWAYS:
 		return Guard.Overlay.FULL
 	return Guard.Overlay.FACING if overlay_mode == OverlayMode.FACING else Guard.Overlay.NONE
+
+
+## Inside a concealment patch nobody can be seen.
+func is_concealed(pos: Vector3) -> bool:
+	return map.is_concealed(pos)
+
+
+## Fires a noise at a point: guards inside its outline walk to the centre.
+func emit_noise(pos: Vector3, radius: float) -> Node3D:
+	var noise: Node3D = StealthNoise.new()
+	noise.radius = radius
+	map.add_child(noise)
+	noise.global_position = pos
+	noise.fire(map.guards)
+	return noise
 
 
 func detection_multiplier() -> float:
@@ -193,6 +215,7 @@ func _physics_process(delta: float) -> void:
 			for guard in map.guards:
 				guard.start_search(last_seen_pos)
 	var pos := player.global_position
+	player.set_concealed(map.is_concealed(pos))
 	var zone: Node3D = map.checkpoint_at(pos)
 	if zone and zone != _checkpoint_zone:
 		_set_checkpoint(zone)

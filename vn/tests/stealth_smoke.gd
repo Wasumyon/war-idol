@@ -16,7 +16,15 @@ func _ready() -> void:
 
 
 func _run() -> void:
+	# A script error must not leave the run hanging: give up after 10 simulated minutes.
+	get_tree().create_timer(600.0).timeout.connect(func() -> void:
+		print("stealth smoke: timed out")
+		get_tree().quit(2))
 	_s = STEALTH.instantiate()
+	if not _s.has_method(&"begin"):
+		print("stealth smoke: the segment root failed to load")
+		get_tree().quit(2)
+		return
 	_s.begin({"map": "test_map"})
 	_s.finished.connect(func(result: Dictionary) -> void: _result = result)
 	add_child(_s)
@@ -24,6 +32,8 @@ func _run() -> void:
 	_guards_run(false)
 	await _movement()
 	await _senses()
+	await _hiding()
+	await _noise()
 	await _alarm()
 	await _exit()
 	print("stealth smoke: %d failures" % _failures)
@@ -185,6 +195,92 @@ func _senses() -> void:
 	_s.overlay_mode = _s.OverlayMode.ALWAYS
 	_check(_s.overlay_level() == g.Overlay.FULL, "always shows cones in real time")
 	_s.overlay_mode = _s.OverlayMode.FACING
+
+
+func _hiding() -> void:
+	var p: CharacterBody3D = _s.player
+	var g: CharacterBody3D = _s.map.get_node("Guards/Platform")
+
+	# Concealment: the guard stands north of the steam vent, looking at it.
+	g.global_position = Vector3(-1, 0, 4)
+	g.rotation.y = PI
+	await _place(Vector3(2, 0, 9))
+	_check(g.can_see(p), "beside the concealment patch he is seen")
+	await _place(Vector3(-1, 0, 9))
+	_check(not g.can_see(p) and _s.is_concealed(p.global_position), "inside it he is hidden")
+	await _shot("7_concealed")
+
+	# Height: the player on the platform, the guard at the foot of the ramp.
+	g.global_position = Vector3(-3.5, 0, -3)
+	g.rotation.y = 0.0
+	await _place(Vector3(-3.5, 2, -10.5))
+	_check(not g.can_see(p), "on high ground he is hidden from a guard below")
+	g._set_state(g.State.ALARMED)
+	_check(not g.can_see(p), "even an alerted one")
+	g._set_state(g.State.PATROL)
+
+	# The guard on the platform, the player on the yard floor below.
+	g.global_position = Vector3(-3.5, 2, -9)
+	g.rotation.y = PI
+	await _place(Vector3(-0.5, 0, -3))
+	_check(not g.can_see(p), "a guard on high ground does not see the floor below")
+	var mid: int = g.cone_rays / 2
+	var calm: float = g._cone_reach()[mid]
+	g._set_state(g.State.SUSPICIOUS)
+	_check(g.can_see(p), "unless he is already alerted")
+	var alert: float = g._cone_reach()[mid]
+	_check(calm < 6.0 and is_equal_approx(alert, g.cone_length),
+		"and his drawn cone stops at the drop until then (%.1f m, then %.1f m)" % [calm, alert])
+	g._set_state(g.State.PATROL)
+	g.meter = 0.0
+
+
+func _noise() -> void:
+	var p: CharacterBody3D = _s.player
+	var g: CharacterBody3D = _s.map.get_node("Guards/EastSentry")
+	var plat: CharacterBody3D = _s.map.get_node("Guards/Platform")
+	var north: CharacterBody3D = _s.map.get_node("Guards/NorthRoom")
+	for guard in _s.map.guards:
+		guard.reset_to_patrol()
+	await _place(Vector3(-17, 0, 13))
+	var center := Vector3(10, 0, 9)
+
+	g._set_state(g.State.KNOCKED_OUT)
+	var noise: Node3D = _s.emit_noise(center, 6.0)
+	_check(noise.guards_inside(_s.map.guards).is_empty(), "a knocked-out guard is not counted by a noise")
+	await _frames(60)
+	_check(g.state == g.State.KNOCKED_OUT, "nor alerted by it")
+	g._set_state(g.State.PATROL)
+	await _frames(60)
+	_check(not is_instance_valid(noise), "a noise clears itself away")
+
+	noise = _s.emit_noise(center, 6.0)
+	_check(noise.guards_inside(_s.map.guards) == [g], "a noise catches the guards inside its outline")
+	await _frames(4)
+	_check(g.state == g.State.PATROL, "the ring has not reached him yet")
+	await _shot("8_noise")
+	await _frames(40)
+	_check(g.state == g.State.SUSPICIOUS and g._interest.is_equal_approx(center),
+		"when it does he is alerted and heads for the centre")
+	_check(plat.state == g.State.PATROL and north.state == g.State.PATROL,
+		"guards outside the outline are unaffected")
+	g.set_physics_process(true)
+	var arrived := false
+	for i in 300:
+		await get_tree().physics_frame
+		if g.global_position.distance_to(center) < 1.0:
+			arrived = true
+			break
+	_check(arrived, "he walks to the centre")
+	g.set_physics_process(false)
+
+	await _place(Vector3(-15, 0, 12))
+	_press(&"stealth_debug_noise")
+	await _frames(2)
+	var fired := get_tree().get_nodes_in_group(&"stealth_noise")
+	_check(fired.size() == 1 and fired[0].global_position.distance_to(p.global_position) < 0.1,
+		"the debug key fires a test noise at the player")
+	await _frames(120)
 
 
 func _alarm() -> void:
