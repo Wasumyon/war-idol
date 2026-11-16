@@ -50,6 +50,9 @@ extends Control
 ##     @ input_name              open the name-entry panel
 ##     @ call first_shot         start Chip's filming request after the line
 ##     @ call phone              open the stream receipt after the line
+##     @ file <id>               file the dossier entry <id> (dossier_spec.md §3): sets
+##                               flag file:<id>, emits filed(id), toasts. Before the line shows,
+##                               so the first mention of its terms is already underlined.
 ##
 ##   PRESETS - name a bundle of effects once, then reuse the name in this scene.
 ##     @ preset tremble = shake + zoom 1.15 + sfx shuffle
@@ -85,7 +88,7 @@ const SFX_DIR := "res://sfx/"
 const MUSIC_DIR := "res://music/"
 const SFX_EXTS := ["ogg", "wav", "mp3"]
 const MODE_VERBS := ["fullscreen", "narration", "box", "center", "right", "small", "large", "fast", "speed"]
-const EVENT_VERBS := ["stage", "sfx", "music", "shake", "glitch", "auto", "page", "img", "image", "zoom", "pan", "sat", "saturate", "fade", "input_name", "call"]
+const EVENT_VERBS := ["stage", "sfx", "music", "shake", "glitch", "auto", "page", "img", "image", "zoom", "pan", "sat", "saturate", "fade", "input_name", "call", "file"]
 const IMG_DIR := "res://img/"
 const IMG_EXTS := ["png", "webp", "jpg", "jpeg"]
 const BG_DEFAULT := Color(0.07, 0.07, 0.09, 1)
@@ -107,6 +110,8 @@ void fragment() {
 signal finished(result: Dictionary)
 ## Emitted for "@ call first_shot" once the request is saved. MainGame swaps the minigame in.
 signal call_requested(call_name: String)
+## Emitted when "@ file <id>" newly files an entry. MainGame forwards it to the dossier.
+signal filed(id: String)
 
 ## Leave blank to play through Game.chapters in order; set a path to play one file.
 @export var chapter_file := ""
@@ -494,6 +499,7 @@ func _goto(id: String, keep_page := false) -> void:
 	_node_id = id
 	var node: Dictionary = _nodes["nodes"][id]
 	_apply_effects(node.get("effects", {}))
+	_file_entries(node)
 	_handle_audio(node)
 	if _has_staging(node, "shake"):
 		_shake()
@@ -917,6 +923,17 @@ func _apply_camera(dur: float) -> void:
 	_cam_tween.set_parallel(true)
 	_cam_tween.tween_property(bg_image, "scale", to_scale, dur)
 	_cam_tween.tween_property(bg_image, "position", to_pos, dur)
+
+
+## "@ file <id>": the story files a dossier entry. Only the first time announces it.
+func _file_entries(node: Dictionary) -> void:
+	for d in node.get("staging", []):
+		var parts := str(d).split(" ", true, 1)
+		if str(parts[0]) == "file" and parts.size() > 1:
+			var id := str(parts[1]).strip_edges()
+			if id != "" and not Game.has_flag("file:" + id):
+				Game.set_flag("file:" + id)
+				filed.emit(id)
 
 
 ## Plays any @ sfx / @ music directives attached to this line.

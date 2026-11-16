@@ -203,6 +203,7 @@ Longer marks must run first — `***` before `**` before `*` — or the shorter 
 @ page         @ zoom <f>     @ pan <dx> <dy> [sec]   @ sat <v> [sec]
 @ fade [s]     @ glitch [s]   @ shake          @ stage <text>
 @ input_name   @ fast [mult]  @ fast off       @ preset name = fx + fx
+@ file <id>    (files a dossier entry; its terms underline from this line on)
 ```
 
 - **A line is dialogue only if the text before the first `:` is ONE word, or matches a name on `@ cast`.** So `Chip:` works; `Our contract: 50/50` stays narration; `Captain Keno:` needs the cast line.
