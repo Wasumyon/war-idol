@@ -1,0 +1,17 @@
+title: Placeholder Person
+category: people
+order: 10
+info: Role | PLACEHOLDER
+source: canon/08_cast.md
+terms: Placeholder Person
+
+== before
+## PLACEHOLDER
+PLACEHOLDER TEXT, not canon. This entry exists to exercise the dossier screen: a **bold** word,
+an *italic* word, a link to [[placeholder_unit|a unit]] and a glitched span {{xxxxxxxx|visor_revealed}}
+that clears once the flag is set.
+
+== after
+## PLACEHOLDER (revised)
+PLACEHOLDER TEXT, not canon. The post-reveal version of the same file, linking to
+[[placeholder_unit]] by its title.
