@@ -16,7 +16,7 @@ The story bible owns the big picture and **wins any conflict**.
   roof hatch lifts her into a roof cage: **the ring**. She owns the roof and the paint,
   he owns the hull and the gun. Paint states track the campaign (Day 1 bare grey → Day 3
   wrap → Day 20 cover-up → Day 25 stripped and anonymous).
-- **The engineer — working name "Tank"** (provisional). The prosthetic vendor whose upgrade
+- **The engineer — Tank.** The prosthetic vendor whose upgrade
   the player refuses. Female, cold palette (steel, off-white, charcoal, teal) against Chip's
   warm pink and yellow. Teal hose, oversized welding torch. Round **toothed pauldrons** — the
   "horns" the visor misreads.
@@ -47,11 +47,14 @@ The story bible owns the big picture and **wins any conflict**.
     toothed disc with a bolt ring — excellent gear, but *flat*, so the HUD has nothing conical
     to misread. Give it a projecting, tapering form (the hose fitting flaring out, or a curved
     exhaust) and keep the gear reading underneath. Gear first, horn second.
-  - **COLLISION:** "tank" is already the vehicle class — `Enemy models/`, and README.md lists
-    "drone, buggy, tank". In a game with vehicle combat, a person called Tank and an enemy
-    called a tank will collide in every line of dialogue and every spec. Keep it as a
-    file/asset name for now; settle the spoken name in the scene where she is introduced.
-    (Where it came from: the sheets contain both a black tank top and a gas canister on her
-    belt. The working name describes her *gear*, not her.)
+  - **Why she is called Tank (decided 2026-11-15).** Her father, a middle-aged military
+    enthusiast, named her after the old Earth tanks — the way someone names a son Leo. On Io
+    nobody says *tank* for a vehicle any more: the army's armour is the **cheirosiphon**
+    (canon §15), so her name is an antique, and that is the joke. Told once, as a joke, if it
+    comes up; never a lore dump.
+  - **The old collision is gone in dialogue.** "Tank" stays an asset/enemy-class file name
+    (`Enemy models/`, README's "drone, buggy, tank"), but on the page a vehicle is a
+    cheirosiphon or *Cheiro*, never a tank. (Where the name came from on the sheets: a black
+    tank top and a gas canister on her belt.)
 - **The prologue** — one painted plate, the camera does the work. `leg_pool`, `stomp`,
   `black`. `arm_crawl` and `grab_leg` were cut, and their assets deleted.

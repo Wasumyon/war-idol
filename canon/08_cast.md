@@ -9,7 +9,7 @@ The four streamers and their arcs are in the **story bible, "Characters"**. This
 detail and the supporting cast. The original design doc's cast table is the source both draw on.
 
 - **The player character** is nicknamed **Meathead** or **Blockhead** and handles admin
-  and security; the streamers handle media. (Default render until a name is entered.)
+  and security; the streamers handle media. (The player enters his name at New Game, before the Chaac briefing.)
 - **Langley** — says she's poor; **1,807 kills** on blurring fingers. Her father left
   for Io with the Pioneer Project, calls faded from daily to yearly, and she enlisted
   for revenge. E-4 pay is too low, so she mercs off-rotation. **Believes her father is
@@ -23,6 +23,10 @@ detail and the supporting cast. The original design doc's cast table is the sour
   protection spell. Explains communion, and whether an alien could be baptised — which
   depends on whether it has a soul. (The moral bomb: they are people.)
 - **The moon-touched soldier** — rants about the enemy's teeth: **"They're not bugs!"**
+- **Captain Keno** — runs the White Cow in Juno. His selected visual design is **The House Boss**:
+  broad shoulders, a shaved head, a graying beard, a faded hibiscus aloha shirt, and a repaired
+  prosthetic pince-nez with smoky amber lenses. [Concept sheet](../Characters/captain-keno-concept.png)
+  · [Character sheet](../Characters/captain-keno-character-sheet.png).
 - **Aysel Terpsichore** ("Aysel of Phobos" on stream) — gyaru idol, #1 War Idol stream.
   Late 20s (up to early 30s; it doesn't show). **Not an act: this is who she is.**
   Impulsive, raucous, can't hide anything, a natural magnet for attention, good and bad.

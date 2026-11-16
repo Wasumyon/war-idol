@@ -13,7 +13,7 @@ The story bible owns the big picture and **wins any conflict**.
   tectonic uplift** — and that is what real Io's mountains are: Boösaule Montes is about 17.5 km
   and is not a volcano. Hence the Steeple's height varies over the orbit, which the doc already
   implies with "3–4.3 miles".
-  - **What it is called.** The worker's word is **a land tide**. The Ministry's word is
+  - **What it is called.** The worker's word is **a landtide** (one word). The Ministry's word is
     **the Settling** — a press-office name for a hundred metres of ground moving twice a
     day, in the same family as *the Revelation* (style guide §5). The scientific vocabulary
     stays in the notes: *body tide*, *tidal flexure*, *tidal heating*, *Love number*.

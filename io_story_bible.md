@@ -65,7 +65,8 @@ Every element serves the licence. If a beat does not touch this, it is decoratio
 
 ### The narrator (MC)
 * A disabled war veteran, maimed at **Chaac Patera**, turned frontline camera assistant and
-  security for a streamer. Nickname **Meathead** / **Blockhead** until named.
+  security for a streamer. The player names him at New Game; Chip's nicknames for him are
+  **Meathead** / **Blockhead**.
 * **Motive he admits to: boredom.** Nothing at home can kill him or make him care, so she sells him
   a calling. **The trauma is real** but not a motive he can see.
 * **Phantom pain is the tell.** His missing leg flares when he gets close to the truth of what he

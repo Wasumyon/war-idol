@@ -54,6 +54,20 @@ came from.
 **Klibanophoroi** ("oven-wearers") are the heavy exosuit troops. Before the reform they were the
 **clibanarii**, the real late-Roman heavy cavalry; the Greek word is the same unit renamed.
 
+**The cheirosiphon** ("hand-siphon", the Byzantine hand-held Greek-fire projector) is the army's
+armoured fighting vehicle, crew of four: driver, comms, leader, gunner. Crews say **Cheiro**.
+Nobody on Io says *tank*; it is an old Earth word (which is why the engineer's name is a joke,
+§10). *Decided 2026-11-15.*
+
+**At Chaac (decided 2026-11-15).** The narrator was the leader of a cheirosiphon crew in the
+**Nemean Cohort**; his crew call him **Dek** (from *dekarchos*; *Archos* is the fallback if
+"Dek" reads as a name). The order that drove his Cheiro into the landtide was his — see
+`chaac_run_spec.md`, and §4: the page never says so in his voice.
+
+**Readability on the page.** Where a unit name is spoken, prefer the form a player can read
+(*Nemean Cohort*). The Greek forms (*Tourma*, *Droungos*…) are world-building for the
+**dossiers**, not for dialogue.
+
 **The narrator is a dekarchos marked for promotion to kentarchos** — in Roman terms an *optio ad
 spem ordinis*, "optio in hope of the rank". He keeps dodging it: he would rather fight than think,
 and he would rather keep his small unit. A kentarchos running a contubernium-sized crew is the
