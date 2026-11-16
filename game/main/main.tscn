@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://main/main_game.gd" id="1"]
+[ext_resource type="Script" path="res://main/main.gd" id="1"]
 [ext_resource type="Script" path="res://ui/pause.gd" id="2"]
 [ext_resource type="Script" path="res://main/transition.gd" id="3"]
 [ext_resource type="Script" path="res://ui/debug.gd" id="4"]
 [ext_resource type="PackedScene" path="res://dossier/dossier.tscn" id="5"]
 
-[node name="MainGame" type="Node"]
+[node name="Main" type="Node"]
 script = ExtResource("1")
 
 [node name="Pause" type="CanvasLayer" parent="."]

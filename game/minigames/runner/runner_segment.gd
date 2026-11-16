@@ -1,7 +1,7 @@
 extends Node
 ## The runner as a calendar segment. Wraps slice.tscn behind the segment contract:
 ## begin({route, zone}) before entering the tree, then finished({outcome, followers, money}).
-## Never changes scene, advances the day or writes the save; MainGame applies results.
+## Never changes scene, advances the day or writes the save; Main applies results.
 
 signal finished(result: Dictionary)
 

@@ -1,5 +1,5 @@
 extends Node2D
-## The cold open. MainGame decides whether it plays; it only reports finished.
+## The cold open. Main decides whether it plays; it only reports finished.
 
 signal finished(result: Dictionary)
 

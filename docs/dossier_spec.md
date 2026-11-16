@@ -12,14 +12,14 @@ debug build, F4 files every entry and F5 toggles `visor_revealed`.
 ## 1. What it is in Godot
 
 A scene (`game/dossier/dossier.tscn`), but **not a segment**: it is not in `calendar_data.gd`,
-never emits `finished`, never spends a slot. It is an overlay like Pause, owned by MainGame.
+never emits `finished`, never spends a slot. It is an overlay like Pause, owned by Main.
 
-- New layer **`Dossier`** (CanvasLayer) in `main_game.tscn`, placed **after `Pause`** in the
+- New layer **`Dossier`** (CanvasLayer) in `main.tscn`, placed **after `Pause`** in the
   tree and drawn above it (`layer` higher than Pause's). Being later in the tree it sees Esc
   before Pause, so Esc closes the files first, then the pause menu.
 - `process_mode = ALWAYS`, so it works while the tree is paused.
 - API: `open(id := "")` (opens on that entry when given), `close()`, `notify_filed(id)`. Esc or the back button calls `close()`.
-- **From the hub:** the `Dossiers` hotspot emits a new signal `dossiers_requested`; MainGame
+- **From the hub:** the `Dossiers` hotspot emits a new signal `dossiers_requested`; Main
   connects it to `dossier.open`. The hub never references the layer (its contract stays
   "setup + signals"). The hotspot label shows the unread count: `DOSSIERS · 3 NEW`.
 - **From Pause:** a **Files** button between Resume and Quit calls
@@ -74,7 +74,7 @@ State lives in `Game.flags`, so nothing new goes in the save format.
 
 - **Filed:** flag `file:<id>`. Set by:
   - a new VN directive **`@ file <id>`** (attaches to the next node like `@ sfx`). `vn.gd` sets
-    the flag and emits a new signal `filed(id)`; MainGame forwards it to
+    the flag and emits a new signal `filed(id)`; Main forwards it to
     `dossier.notify_filed(id)`, which shows a short toast: *File added — The Nemean Cohort*.
   - a segment's outputs (`{"flags": {"file:<id>": true}}`), for minigames.
 - **Read:** flag `seen:<id>`, set when the entry is opened. **New** = filed and not seen.
@@ -115,7 +115,7 @@ word's shape.
 
 ## 7. Validation and test
 
-`dossier_data.gd` loads and checks the entries. In debug builds MainGame pushes its problems
+`dossier_data.gd` loads and checks the entries. In debug builds Main pushes its problems
 like `CALENDAR.validate()`:
 - unknown category, duplicate `order` in a category, missing image;
 - `[[id]]` pointing at no entry;
@@ -132,7 +132,7 @@ is new again; checks a `{{x|f}}` span renders glitched, then clear after `f` is 
 1. `dossier_data.gd`: parse entries, the two versions, links and glitch spans; validation.
 2. `glitch_effect.gd`.
 3. `dossier.tscn` + `dossier.gd`: tabs, list, entry pane, counter, toggle, toast.
-4. MainGame: the `Dossier` layer; hub `dossiers_requested`; Pause **Files** button.
+4. Main: the `Dossier` layer; hub `dossiers_requested`; Pause **Files** button.
 5. `vn.gd`: `@ file <id>` and the `filed` signal; add `@ file` to the style guide's directive list.
 6. `tools/stale_dossiers.ps1` (§10).
 7. Three or four sample entries (placeholder text) and the test. The campaign test still passes.

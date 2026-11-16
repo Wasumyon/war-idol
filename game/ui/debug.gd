@@ -3,7 +3,7 @@ extends CanvasLayer
 ##
 ## Hotkeys work anywhere in a debug build, panel open or not. Each is also a button in the
 ## panel's bottom row, labelled with its key, so the panel is the list of them.
-## To add one: a _hotkey() line in _ready() and a debug_* function on MainGame.
+## To add one: a _hotkey() line in _ready() and a debug_* function on Main.
 ## F1–F2 and F12 are left free (help, OS screenshot tools); F3 is the panel itself.
 
 var _state: Label

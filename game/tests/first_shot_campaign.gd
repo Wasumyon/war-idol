@@ -1,10 +1,10 @@
 extends Node
 ## Run with --headless --path game res://tests/first_shot_campaign.tscn.
 ##
-## Drives MainGame the way a player would: the Day 1 opening and its payout, then the
+## Drives Main the way a player would: the Day 1 opening and its payout, then the
 ## calendar loop (free slot, scripted VN day, scripted minigame day, resume, end).
 
-const MAIN_GAME := preload("res://main/main_game.tscn")
+const MAIN := preload("res://main/main.tscn")
 
 var _failures := 0
 var _save_path := ""
@@ -226,7 +226,7 @@ func _choose(hub: Node, id: String) -> Node:
 	return await _main.shown
 
 
-## Clicks through a VN until MainGame swaps it out; returns what replaced it.
+## Clicks through a VN until Main swaps it out; returns what replaced it.
 func _play_vn(story: Node) -> Node:
 	for step in 2000:
 		if story.name_panel.visible:
@@ -239,13 +239,13 @@ func _play_vn(story: Node) -> Node:
 	return null
 
 
-## A relaunch: a new MainGame over whatever Game holds now.
+## A relaunch: a new Main over whatever Game holds now.
 func _boot() -> Node:
-	# Never free MainGame from inside its own signal: let the emit return first.
+	# Never free Main from inside its own signal: let the emit return first.
 	await get_tree().process_frame
 	if is_instance_valid(_main):
 		_main.free()
-	_main = MAIN_GAME.instantiate()
+	_main = MAIN.instantiate()
 	get_tree().root.add_child(_main)
 	return await _main.shown
 

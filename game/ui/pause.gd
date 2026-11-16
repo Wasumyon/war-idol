@@ -1,6 +1,6 @@
 extends CanvasLayer
 ## Esc pauses the tree. This layer keeps processing while everything else stops.
-## It sits first under MainGame so it sees Esc last: an open phone closes first.
+## It sits first under Main so it sees Esc last: an open phone closes first.
 
 var _resume: Button
 

@@ -360,7 +360,7 @@ static func image_exists(name: String) -> bool:
 	return false
 
 
-## Problems that should fail a build. Debug builds push these from MainGame.
+## Problems that should fail a build. Debug builds push these from Main.
 static func validate() -> Array[String]:
 	var out: Array[String] = []
 	out.append_array(_load_problems_now())

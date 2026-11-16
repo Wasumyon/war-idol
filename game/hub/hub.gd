@@ -2,11 +2,11 @@ extends Control
 ## The hub: where the player decides what to do with a slot. PLACEHOLDER layout.
 ##
 ## Everything outside this scene sees only setup(offers) and the two signals, so the
-## room can become 3D, or painted, without touching MainGame.
+## room can become 3D, or painted, without touching Main.
 
 signal segment_chosen(id: String)
 signal menu_requested
-signal dossiers_requested   ## MainGame opens the files; the hub never touches that layer
+signal dossiers_requested   ## Main opens the files; the hub never touches that layer
 
 const CALENDAR := preload("res://calendar/calendar.gd")
 const DOSSIER_DATA := preload("res://dossier/dossier_data.gd")
@@ -93,7 +93,7 @@ func _hotspot(node_name: String, text: String, rect: Rect2, action: Callable) ->
 	return button
 
 
-## DOSSIERS, or DOSSIERS · 3 NEW. MainGame calls this when the files close.
+## DOSSIERS, or DOSSIERS · 3 NEW. Main calls this when the files close.
 func refresh_dossier_count() -> void:
 	var fresh := DOSSIER_DATA.new_count()
 	_dossier_button.text = "DOSSIERS" if fresh == 0 else "DOSSIERS

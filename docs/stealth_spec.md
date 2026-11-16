@@ -2,7 +2,7 @@
 
 Status: **design agreed 2026-11-15, not built.** §10 lists what is still open. Project: root `game/`,
 folder `game/minigames/stealth/`. Sources: the bible (Act 3, the heist), `outline.md` beats 16, 18, 27–28, 35,
-38, 39, canon 8 and 11, `game_design.md`, `maingame_spec.md` §3 and §5. Replaces the
+38, 39, canon 8 and 11, `game_design.md`, `main_spec.md` §3 and §5. Replaces the
 provisional note `boundarypush/heist-escape-minigame.md`.
 
 Reference for feel only: the exploration layer of GFL2's Boundary Push (move one leader in real
@@ -180,7 +180,7 @@ resource for Kathay. They join canon 11's shop lines as personal gear and stream
 
 ## 9. Segment contract
 
-A `minigame` segment like the runner (`maingame_spec.md` §5). Root scene
+A `minigame` segment like the runner (`main_spec.md` §5). Root scene
 `res://minigames/stealth/stealth.tscn` with `signal finished(result: Dictionary)` and `func begin(args)`.
 It never changes scene, advances the day, or writes the save.
 

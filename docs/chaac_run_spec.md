@@ -2,7 +2,7 @@
 
 Status: **draft, not approved.** Replaces the cold-open shooter (`game/story/opener/`) on Day 1 with a
 playable Battle of Chaac Patera in the runner, ending in `00_prologue`. Sources: the bible,
-canon §4, §6, §12, §15, `outline.md` Beat 01, `maingame_spec.md` §5, the `sandbox/slice/` prototype.
+canon §4, §6, §12, §15, `outline.md` Beat 01, `main_spec.md` §5, the `sandbox/slice/` prototype.
 
 ## 1. Why
 
@@ -140,7 +140,7 @@ and the next click is *"A leg."* Battle ambience plays under it, far away, then 
   args `{weapon = "gun", timeline = "chaac"}`, returns `{}`. It never fails: every path ends at
   beat 8.
 - Day 1 becomes `[d01_chaac_run, opening VN]`. The opener (`game/story/opener/`) is retired.
-- The segment contract of `maingame_spec.md` §5 applies: `begin(args)`, `finished(result)`, no
+- The segment contract of `main_spec.md` §5 applies: `begin(args)`, `finished(result)`, no
   scene changes.
 
 ## 10. Build order (commit before each)
@@ -154,12 +154,12 @@ and the next click is *"A leg."* Battle ambience plays under it, far away, then 
 3. **Port** into `game/minigames/runner/` behind the segment contract; `Game.lane_x()` moves out of `Game`.
 4. **`@ wake`** in `vn.gd`; add it to `00_prologue.txt`.
 5. **Calendar:** Day 1 swaps the opener for `d01_chaac_run`; update the campaign test.
-6. **Docs:** `outline.md` Beat 01 (tank, the order), `maingame_spec.md` §1 and §2 Day 1,
+6. **Docs:** `outline.md` Beat 01 (tank, the order), `main_spec.md` §1 and §2 Day 1,
    the bible (naming), `CLAUDE.md`.
 
 ## 11. Front end: title menu and name entry
 
-Amends `maingame_spec.md` §5 step 1: a fresh launch boots to the title, not straight into the
+Amends `main_spec.md` §5 step 1: a fresh launch boots to the title, not straight into the
 calendar.
 
 **Look.** Simple green, techy: phosphor-green text on near-black, monospace, thin rules, a

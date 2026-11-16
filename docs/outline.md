@@ -1,7 +1,7 @@
 # War Idol — Master Story Outline & Scene Roadmap
 
 **What this file owns:** the beats, in order. The acts and the endings are the bible's
-(`io_story_bible.md`, "Structure"); day placement is `maingame_spec.md` §2; open story questions
+(`io_story_bible.md`, "Structure"); day placement is `main_spec.md` §2; open story questions
 are in `punchlist.md` §B. Beats marked *proposed* fill a gap the bible leaves and wait on a yes.
 
 ## Structure Overview

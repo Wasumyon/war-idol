@@ -1,4 +1,4 @@
-# MainGame and the calendar — spec
+# Main and the calendar — spec
 
 Status: **approved and built** (placeholder content from Day 2 on). One departure: `first_shot` still records its own result through `Game.record_first_shot`, which keeps its save-retry screen. Project: root `game/`. Sources: the bible
 (three acts, 40 days), canon 11, `outline.md`, `game_design.md`.
@@ -80,9 +80,9 @@ One data file, `game/calendar/calendar_data.gd`, validated at startup in debug b
 outputs and advances slot and day in a single `_commit`, so a payout can never apply twice.
 The dials and `lane_x()` are untouched.
 
-## 4. MainGame layers
+## 4. Main layers
 
-`game/main/main_game.tscn`, set as the main scene.
+`game/main/main.tscn`, set as the main scene.
 
 | node | role |
 |---|---|
@@ -103,22 +103,22 @@ that scene later and changes nothing outside it.
 
 Every segment root has `signal finished(result: Dictionary)` and `func begin(args)`.
 
-1. Boot: `MainGame` asks the calendar what is next: the `active_segment` to resume, a scripted
+1. Boot: `Main` asks the calendar what is next: the `active_segment` to resume, a scripted
    segment on a `skip_hub` day, or the hub.
 2. Hub: the player picks an offer. On a scripted slot Missions shows the one mandatory item.
 3. `Transition` swaps the hub out and the segment in; `active_segment` is saved.
 4. The segment plays and emits `finished(result)`. It does not change scene or advance the day.
-5. `MainGame` calls `Game.complete_segment`, then goes to step 1. After the evening slot the day
+5. `Main` calls `Game.complete_segment`, then goes to step 1. After the evening slot the day
    advances; after the last day an ending placeholder shows.
 
 Changes to existing scenes:
 - `opener.gd`, `first_shot.gd`: drop `change_scene_to_file`, emit `finished`.
 - `vn.gd`: emit `call_requested("first_shot")` instead of changing scene, and `finished` where
   it now shows "— end —". It still walks chapters 00–04 for Day 1.
-- Day 1 is `[opener, opening VN]`; the VN's `first_shot` call makes `MainGame` swap in
+- Day 1 is `[opener, opening VN]`; the VN's `first_shot` call makes `Main` swap in
   `first_shot` and feed the result to the existing `Game.record_first_shot`.
 - `tests/first_shot_campaign.gd` opens scenes with `change_scene_to_file` and will be rewritten
-  to drive `MainGame`.
+  to drive `Main`.
 
 **Runner slot:** a `minigame` segment whose scene will be `res://minigames/runner/runner.tscn`, taking
 `{route, zone}` and returning `{footage, damage}`. Until it is ported, runner offers point at a
@@ -128,7 +128,7 @@ placeholder scene with two buttons (good run / bad run).
 
 1. `Game`: save version 2, `slot`, `active_segment`, `done_segments`, `complete_segment`.
 2. Calendar data and reader, with placeholder days 2–4: one VN day, one minigame day, one free day.
-3. `MainGame` with the six layers and the Transition swap; convert the three handoffs.
+3. `Main` with the six layers and the Transition swap; convert the three handoffs.
 4. Hub placeholder, Pause, Debug.
 5. Rewrite the campaign test; run with a clean debug output.
 6. Rewrite `CLAUDE.md` for the `game/` structure.

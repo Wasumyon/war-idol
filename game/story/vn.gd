@@ -108,13 +108,13 @@ void fragment() {
 }
 """
 
-## Emitted when the script runs out. MainGame listens; run alone, nothing does.
+## Emitted when the script runs out. Main listens; run alone, nothing does.
 signal finished(result: Dictionary)
-## Emitted for "@ call first_shot" once the request is saved. MainGame swaps the minigame in.
+## Emitted for "@ call first_shot" once the request is saved. Main swaps the minigame in.
 signal call_requested(call_name: String)
-## Emitted when "@ file <id>" newly files an entry. MainGame forwards it to the dossier.
+## Emitted when "@ file <id>" newly files an entry. Main forwards it to the dossier.
 signal filed(id: String)
-## Emitted when the player clicks an underlined term. MainGame opens the dossier on it.
+## Emitted when the player clicks an underlined term. Main opens the dossier on it.
 signal term_clicked(id: String)
 
 ## Leave blank to play through Game.chapters in order; set a path to play one file.
@@ -199,7 +199,7 @@ func _ready() -> void:
 	_open_chapter()
 
 
-## Segment contract: called by MainGame before the node enters the tree.
+## Segment contract: called by Main before the node enters the tree.
 func begin(args: Dictionary) -> void:
 	chapter_file = str(args.get("file", ""))
 

@@ -13,17 +13,17 @@ human colonists as monsters.
 Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/` project**
 (`game/project.godot`). `sandbox/` is the old sandbox project and `tunnel/` is a separate one.
 
-- Main scene: `game/main/main_game.tscn` (**MainGame**), the one persistent scene. Layers: World /
+- Main scene: `game/main/main.tscn` (**Main**), the one persistent scene. Layers: World /
   Story / HUD / Pause / Dossier (the files, an overlay, not a segment) / Transition / Debug.
 - **Debug builds:** F3 opens the debug panel; F4 files every dossier entry; F5 toggles the visor
   reveal. A new key is one `_hotkey()` line in `game/ui/debug.gd` plus a `debug_*` function on
-  MainGame; the panel lists them all. F6–F11 are free.
+  Main; the panel lists them all. F6–F11 are free.
 - One autoload: `Game` (`game/autoload/game.gd`) — the save (`user://campaign.save`), stats, flags,
   chapter, player name, and the calendar position (day, slot, segment in play).
 - **The calendar drives the game.** A day has two slots (day, evening). A slot is scripted (fixed
   segments) or free (the player picks an offer in the hub). Data: `game/calendar/calendar_data.gd`.
 - **A segment** is a VN scene or a minigame. Its root emits `finished(result)` and never changes
-  scene or advances the day; MainGame swaps it through the Transition layer and saves.
+  scene or advances the day; Main swaps it through the Transition layer and saves.
 - Test: `powershell -File tools/run_tests.ps1` runs every headless test in `game/tests/` (must say 0 failed).
 
 ## Where things are
@@ -36,7 +36,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `docs/style_guide.md` | how to write: tense, voice, register, engine syntax |
 | `docs/game_design.md` | tracked state: Hype, the dials, flags, ending models |
 | `docs/punchlist.md`, `docs/01_intro_punchlist.md` | open errors and considerations |
-| `docs/maingame_spec.md` | MainGame, the calendar data model, the draft 40-day placement |
+| `docs/main_spec.md` | Main, the calendar data model, the draft 40-day placement |
 | `docs/dossier_spec.md` | the in-game files: entry format, unlocks, pre/post-reveal versions, glitched text |
 | `docs/stealth_spec.md` | the stealth minigame (story beats and the on-foot job): rules, party, segment contract, build steps |
 | `HANDOVER.md` | the opening slice: direction and build order |
@@ -45,7 +45,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `tools/` | scripts: `run_tests.ps1`, `commission.ps1`, `make_plain.ps1`, `make_flatline.ps1`, `stale_dossiers.ps1` |
 | `game/story/scenes/NN_*.txt` | the written scenes the game runs (plain text, played by `game/story/vn.tscn`) |
 | `game/story/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
-| `game/main/`, `game/hub/`, `game/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
+| `game/main/`, `game/hub/`, `game/calendar/` | Main and its layers, the hub (placeholder layout), the calendar |
 | `game/story/opener/`, `game/story/first_shot/`, `game/phone/` | Day 1's cold open and filming request; the phone |
 | `game/dossier/` | the files screen; `entries/<id>.txt` are the entries (placeholders for now). A scene line's `@ file <id>` files one |
 | `game/minigames/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
@@ -80,7 +80,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 - **Game jam (about a week, from 2026-10-24):** build `tunnel/` (own project, never references `sandbox/`).
 - `outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
   B10–B14 wait on a yes before scenes are written against them.
-- Fill the calendar: days 2–40 are placeholders, placed by `maingame_spec.md` §2.
+- Fill the calendar: days 2–40 are placeholders, placed by `main_spec.md` §2.
 - Runner: ported into `game/minigames/runner/` behind the segment contract (2026-11-16), a straight copy, not playtested in a window. Next: playtest, then hook its followers/money into the outcome payouts (the calendar currently pays fixed per-outcome amounts).
 - The hub's real room (3D bunker, characters possibly 2D); News/Stats is a stub.
 - Dossiers: built from `dossier_spec.md` (merged 2026-11-16), four placeholder entries, no
