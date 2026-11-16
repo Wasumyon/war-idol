@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b83byylgmxq3l"
-path="res://.godot/imported/leg_pool.webp-a33dd57d7676bb016fff41d47afedb22.ctex"
+uid="uid://4h1lpl8vme6c"
+path="res://.godot/imported/stomp.webp-4c73b0da0fc62c0516833230aa6cfe51.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/leg_pool.webp"
-dest_files=["res://.godot/imported/leg_pool.webp-a33dd57d7676bb016fff41d47afedb22.ctex"]
+source_file="res://assets/img/stomp.webp"
+dest_files=["res://.godot/imported/stomp.webp-4c73b0da0fc62c0516833230aa6cfe51.ctex"]
 
 [params]
 

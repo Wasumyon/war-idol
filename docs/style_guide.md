@@ -222,7 +222,7 @@ Longer marks must run first — `***` before `**` before `*` — or the shorter 
   directive and comment, keep the prose, turn a page break into a bare `---`, and expand the cast
   shorthand to display names. **The break is never dropped** — a reading copy without it loses the
   scene's structure, which is the whole point of reading one.
-- **Audio is split by kind**: one-shot effects in `game/sfx/`, looping music in `game/music/`. `@ sfx` and `@ music` resolve to their own folder, and the two have different import needs — music is streamed and looped, effects are short and played many at once.
+- **Audio is split by kind**: one-shot effects in `game/assets/sfx/`, looping music in `game/assets/music/`. `@ sfx` and `@ music` resolve to their own folder, and the two have different import needs — music is streamed and looped, effects are short and played many at once.
 - **Lowercase asset filenames.** `keno.png`, not `Keno.png` — case sensitivity will bite on export.
 - Re-run `powershell -File toolsmmission.ps1` after writing; it regenerates `docs/asset_commission.md`, the list of every img/sfx/music the scripts ask for and which are still missing.
 

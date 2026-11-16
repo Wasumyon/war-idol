@@ -9,7 +9,7 @@ extends RefCounted
 const INLINE_MARKS := preload("res://story/inline_marks.gd")
 const ENTRY_DIR := "res://dossier/entries/"
 const SCENE_DIR := "res://story/scenes/"
-const IMG_DIR := "res://img/"
+const IMG_DIR := "res://assets/img/"
 const IMG_EXTS := ["png", "webp", "jpg", "jpeg"]
 const REVEAL_FLAG := "visor_revealed"
 const REVISED_FLAG := "dossier_revised"   ## the reveal has already cleared the seen:* flags

@@ -18,5 +18,5 @@ Re-run it after writing. `[x]` = exists, `[ ]` = still to make.
 
 ## Missing
 
-- **img** (game/img/): `chip-skull`, `Keno`
-- **music** (game/music/): `Keno`
+- **img** (game/assets/img/): `chip-skull`, `Keno`
+- **music** (game/assets/music/): `Keno`

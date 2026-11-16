@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://676j8kkn520k"
-path="res://.godot/imported/flatline.wav-a3d5d2042c7e5e8109fada28f63fd215.sample"
+path="res://.godot/imported/flatline.wav-b3bcad947798e55238008ef0846232d3.sample"
 
 [deps]
 
-source_file="res://sfx/flatline.wav"
-dest_files=["res://.godot/imported/flatline.wav-a3d5d2042c7e5e8109fada28f63fd215.sample"]
+source_file="res://assets/sfx/flatline.wav"
+dest_files=["res://.godot/imported/flatline.wav-b3bcad947798e55238008ef0846232d3.sample"]
 
 [params]
 

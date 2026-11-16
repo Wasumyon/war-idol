@@ -52,7 +52,7 @@ The Cohort is the colony's answer to the {{swarm|seen_hive}}. Its tourmarch repo
 
 - **Header lines** until the first blank line. `category` must be one of the tab ids (§4).
   `order` sorts the list and gives the number shown beside the title. `image` resolves like
-  `@ img` (`game/img/`). `info:` lines are the details block, label `|` value, in file order.
+  `@ img` (`game/assets/img/`). `info:` lines are the details block, label `|` value, in file order.
   `source:` lists the repo files the entry's facts come from (never shown in game; see §10).
   `terms:` lists the exact forms of the entry's name that are linked automatically wherever
   they appear (§11).

@@ -6,15 +6,15 @@
 #
 # Run from anywhere:   powershell -File toolsmmission.ps1
 #
-# img  -> game/img/<name>.png|webp|jpg|jpeg
-# sfx  -> game/sfx/<name>.ogg|wav|mp3
-# music-> game/music/<name>.ogg|wav|mp3
+# img  -> game/assets/img/<name>.png|webp|jpg|jpeg
+# sfx  -> game/assets/sfx/<name>.ogg|wav|mp3
+# music-> game/assets/music/<name>.ogg|wav|mp3
 
 $root   = Split-Path -Parent $PSScriptRoot
 $scnDir = Join-Path $root 'game\story\scenes'
-$imgDir = Join-Path $root 'game\img'
-$sfxDir = Join-Path $root 'game\sfx'
-$musicDir = Join-Path $root 'game\music'
+$imgDir = Join-Path $root 'game\assets\img'
+$sfxDir = Join-Path $root 'game\assets\sfx'
+$musicDir = Join-Path $root 'game\assets\music'
 $outMd  = Join-Path $root 'docs\asset_commission.md'
 
 $imgExt = @('png', 'webp', 'jpg', 'jpeg')
@@ -74,7 +74,7 @@ if ($missing.Count -eq 0) {
 	foreach ($k in @('img', 'sfx', 'music')) {
 		$names = @($missing | Where-Object { $_.Kind -eq $k } | ForEach-Object { $_.Name })
 		if ($names.Count -gt 0) {
-			$where = if ($k -eq 'img') { 'game/img/' } elseif ($k -eq 'music') { 'game/music/' } else { 'game/sfx/' }
+			$where = if ($k -eq 'img') { 'game/assets/img/' } elseif ($k -eq 'music') { 'game/assets/music/' } else { 'game/assets/sfx/' }
 			$md += ('- **{0}** ({1}): {2}' -f $k, $where, (($names | ForEach-Object { "``$_``" }) -join ', '))
 		}
 	}

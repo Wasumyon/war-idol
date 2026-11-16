@@ -24,8 +24,8 @@ extends Control
 ##
 ##   EVENT (ONE-SHOT) - happens on the line it is attached to, then gone.
 ##     @ stage <text>            stage direction -> italic line above
-##     @ sfx <name>              play game/sfx/<name> (one-shot)
-##     @ music <name>            play game/music/<name>, looping; "@ music stop"
+##     @ sfx <name>              play game/assets/sfx/<name> (one-shot)
+##     @ music <name>            play game/assets/music/<name>, looping; "@ music stop"
 ##     @ shake                   brief shake of the text area
 ##     @ glitch [seconds]        brief full-screen glitch (feed failing)
 ##     @ auto [seconds]          play this node through by itself, then move on
@@ -33,7 +33,7 @@ extends Control
 ##     @ page                    start a new page (break the narration block)
 ##                               "---" alone on a line means the same thing
 ##     @ img <name>              swap the full-screen illustration (sticky)
-##                               files live in res://img/<name>.png|webp|jpg
+##                               files live in res://assets/img/<name>.png|webp|jpg
 ##                               "@ img none" clears it
 ##     @ zoom <factor>           zoom the illustration; "@ zoom 1" resets
 ##     @ pan <dx> <dy> [sec]     slide the illustration, px at 960x540, from the
@@ -86,12 +86,12 @@ const GLITCH_FX := preload("res://dossier/glitch_effect.gd")
 const CAMPAIGN_PHONE := preload("res://phone/campaign_phone.gd")
 const CHARS_PER_SEC := 45.0
 const NARR_CHARS_PER_SEC := 80.0    # narration typewriter speed (brisk; tune to taste)
-const SFX_DIR := "res://sfx/"
-const MUSIC_DIR := "res://music/"
+const SFX_DIR := "res://assets/sfx/"
+const MUSIC_DIR := "res://assets/music/"
 const SFX_EXTS := ["ogg", "wav", "mp3"]
 const MODE_VERBS := ["fullscreen", "narration", "box", "center", "right", "small", "large", "fast", "speed"]
 const EVENT_VERBS := ["stage", "sfx", "music", "shake", "glitch", "auto", "page", "img", "image", "zoom", "pan", "sat", "saturate", "fade", "input_name", "call", "file"]
-const IMG_DIR := "res://img/"
+const IMG_DIR := "res://assets/img/"
 const IMG_EXTS := ["png", "webp", "jpg", "jpeg"]
 const BG_DEFAULT := Color(0.07, 0.07, 0.09, 1)
 
