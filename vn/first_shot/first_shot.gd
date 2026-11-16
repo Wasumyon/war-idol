@@ -1,4 +1,8 @@
 extends Node2D
+## Chip's first filming request. Records its own result (Game.record_first_shot is
+## idempotent and gated on the chapter), then reports it with finished.
+
+signal finished(result: Dictionary)
 
 const BATTLEFIELD := preload("res://opener/io_battlefield.webp")
 const FRAME := Vector2(960, 540)
@@ -18,7 +22,7 @@ var _leaving := false
 
 func _ready() -> void:
 	if not Game.first_shot_outcome.is_empty():
-		_open_aftermath.call_deferred()
+		_report.call_deferred()
 
 
 func _process(delta: float) -> void:
@@ -52,13 +56,11 @@ func _save_result() -> void:
 		return
 	_leaving = true
 	await get_tree().create_timer(0.65).timeout
-	_open_aftermath()
+	_report()
 
 
-func _open_aftermath() -> void:
-	var error := get_tree().change_scene_to_file(Game.VN_SCENE)
-	if error != OK:
-		push_error("First shot: could not open aftermath (%s)" % error_string(error))
+func _report() -> void:
+	finished.emit({"outcome": Game.first_shot_outcome})
 
 
 func _draw() -> void:

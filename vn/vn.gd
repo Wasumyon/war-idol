@@ -102,7 +102,12 @@ void fragment() {
 }
 """
 
-## Leave blank to play through Game.chapters in order; set a path to test one file.
+## Emitted when the script runs out. MainGame listens; run alone, nothing does.
+signal finished(result: Dictionary)
+## Emitted for "@ call first_shot" once the request is saved. MainGame swaps the minigame in.
+signal call_requested(call_name: String)
+
+## Leave blank to play through Game.chapters in order; set a path to play one file.
 @export var chapter_file := ""
 
 var _nodes := {}
@@ -176,9 +181,14 @@ func _ready() -> void:
 	_open_chapter()
 
 
+## Segment contract: called by MainGame before the node enters the tree.
+func begin(args: Dictionary) -> void:
+	chapter_file = str(args.get("file", ""))
+
+
 func _open_chapter() -> void:
 	var in_campaign := chapter_file.is_empty()
-	phone_button.visible = in_campaign and not Game.first_shot_outcome.is_empty()
+	phone_button.visible = not Game.first_shot_outcome.is_empty()
 	var path := Game.current_chapter() if in_campaign else chapter_file
 	if path.is_empty():
 		box.hide()
@@ -1142,8 +1152,8 @@ func _advance() -> void:
 			"first_shot":
 				if Game.start_first_shot() != OK:
 					hint.text = "Progress could not be saved. Click to retry."
-				elif get_tree().change_scene_to_file(Game.FIRST_SHOT_SCENE) != OK:
-					hint.text = "Filming could not start. Click to retry."
+				else:
+					call_requested.emit("first_shot")
 				return
 			"phone":
 				if not _receipt_opened and phone_button.visible:
@@ -1173,3 +1183,4 @@ func _end_story() -> void:
 	_ended = true
 	print("VN end. ", Game.debug_line())
 	hint.text = "— end —"
+	finished.emit({})

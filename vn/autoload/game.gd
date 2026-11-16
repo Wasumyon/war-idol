@@ -1,8 +1,6 @@
 extends Node
 ## Shared game state, autoloaded as `Game`.
 ##
-const VN_SCENE := "res://vn.tscn"
-const FIRST_SHOT_SCENE := "res://first_shot/first_shot.tscn"
 const FIRST_SHOT_CHAPTER := 3
 const AFTERMATH_CHAPTER := 4
 const STARTING_RIG_DEBT := 600

@@ -1,4 +1,7 @@
 extends Node2D
+## The cold open. MainGame decides whether it plays; it only reports finished.
+
+signal finished(result: Dictionary)
 
 enum Phase { CONTACT, INCOMING, IMPACT, SETBACK, HANDOFF }
 
@@ -28,10 +31,6 @@ var _save_failed := false
 func _ready() -> void:
 	if Game.load_error != OK:
 		_enter(Phase.HANDOFF)
-	elif Game.first_shot_pending or (Game.debug_first_shot and Game.first_shot_outcome.is_empty()):
-		_handoff.call_deferred(Game.FIRST_SHOT_SCENE)
-	elif Game.has_checkpoint:
-		_handoff.call_deferred(Game.VN_SCENE)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -76,13 +75,7 @@ func _save_and_handoff() -> void:
 	_enter(Phase.HANDOFF)
 	_save_failed = Game.save_campaign() != OK
 	if not _save_failed:
-		_handoff(Game.VN_SCENE)
-
-
-func _handoff(path: String) -> void:
-	var result := get_tree().change_scene_to_file(path)
-	if result != OK:
-		push_error("Opener: could not open %s (%s)" % [path, error_string(result)])
+		finished.emit({})
 
 
 func _enter(phase: Phase) -> void:
