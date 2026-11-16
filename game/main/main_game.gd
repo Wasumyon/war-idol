@@ -15,7 +15,7 @@ const CALENDAR := preload("res://calendar/calendar.gd")
 const VN_SCENE := preload("res://story/vn.tscn")
 const FIRST_SHOT_SCENE := preload("res://story/first_shot/first_shot.tscn")
 const HUB_SCENE := preload("res://hub/hub.tscn")
-const PHONE := preload("res://phone/campaign_phone.gd")
+const PHONE := preload("res://ui/phone.gd")
 const DOSSIER_DATA := preload("res://dossier/dossier_data.gd")
 const OPENING_SEGMENT := "d01_opening"
 

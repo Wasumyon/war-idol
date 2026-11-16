@@ -16,7 +16,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 - Main scene: `game/main/main_game.tscn` (**MainGame**), the one persistent scene. Layers: World /
   Story / HUD / Pause / Dossier (the files, an overlay, not a segment) / Transition / Debug.
 - **Debug builds:** F3 opens the debug panel; F4 files every dossier entry; F5 toggles the visor
-  reveal. A new key is one `_hotkey()` line in `game/main/debug.gd` plus a `debug_*` function on
+  reveal. A new key is one `_hotkey()` line in `game/ui/debug.gd` plus a `debug_*` function on
   MainGame; the panel lists them all. F6–F11 are free.
 - One autoload: `Game` (`game/autoload/game.gd`) — the save (`user://campaign.save`), stats, flags,
   chapter, player name, and the calendar position (day, slot, segment in play).
