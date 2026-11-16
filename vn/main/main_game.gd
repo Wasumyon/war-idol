@@ -138,6 +138,7 @@ func _show_vn(file: String) -> void:
 	var id := current_id
 	vn.finished.connect(func(result: Dictionary) -> void: _complete(id, result), CONNECT_ONE_SHOT)
 	vn.filed.connect(dossier.notify_filed)
+	vn.term_clicked.connect(dossier.open)
 	vn.call_requested.connect(func(call_name: String) -> void:
 		if call_name == "first_shot":
 			_show_first_shot())

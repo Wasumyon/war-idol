@@ -81,6 +81,8 @@ extends Control
 
 const SCRIPT_FX := preload("res://script_effect.gd")
 const INLINE_MARKS := preload("res://inline_marks.gd")
+const DOSSIER_DATA := preload("res://dossier/dossier_data.gd")
+const GLITCH_FX := preload("res://dossier/glitch_effect.gd")
 const CAMPAIGN_PHONE := preload("res://phone/campaign_phone.gd")
 const CHARS_PER_SEC := 45.0
 const NARR_CHARS_PER_SEC := 80.0    # narration typewriter speed (brisk; tune to taste)
@@ -112,6 +114,8 @@ signal finished(result: Dictionary)
 signal call_requested(call_name: String)
 ## Emitted when "@ file <id>" newly files an entry. MainGame forwards it to the dossier.
 signal filed(id: String)
+## Emitted when the player clicks an underlined term. MainGame opens the dossier on it.
+signal term_clicked(id: String)
 
 ## Leave blank to play through Game.chapters in order; set a path to play one file.
 @export var chapter_file := ""
@@ -144,6 +148,7 @@ var _phone: CAMPAIGN_PHONE
 var _receipt_opened := false
 var _continue_after_phone := false
 var _ended := false
+var _link_hover := 0               # labels with the mouse over a dossier link
 
 @onready var box: ColorRect = $Box
 @onready var portrait: TextureRect = $Portrait
@@ -177,7 +182,14 @@ func _ready() -> void:
 		var sup_fx := SCRIPT_FX.new()
 		sup_fx.bbcode = "sup"
 		sup_fx.rise = -9.0
-		lbl.custom_effects = [sub_fx, sup_fx]
+		lbl.custom_effects = [sub_fx, sup_fx, GLITCH_FX.new()]
+		# Dossier links: the label must see the mouse to report clicks (PASS lets the
+		# click through to _unhandled_input, which skips it while a link is hovered).
+		lbl.mouse_filter = Control.MOUSE_FILTER_PASS
+		lbl.meta_underlined = false
+		lbl.meta_clicked.connect(_on_term_clicked)
+		lbl.meta_hover_started.connect(func(_m: Variant) -> void: _link_hover += 1)
+		lbl.meta_hover_ended.connect(func(_m: Variant) -> void: _link_hover = maxi(_link_hover - 1, 0))
 	name_input.text_submitted.connect(_on_name_submitted)
 	$NamePanel/VBox/Confirm.pressed.connect(_confirm_name)
 	_phone = CAMPAIGN_PHONE.new()
@@ -713,7 +725,7 @@ func _compose_text(node: Dictionary) -> String:
 			t = "[font_size=22]%s[/font_size]" % t
 		"large":
 			t = "[font_size=40]%s[/font_size]" % t
-	return _inline(t)
+	return DOSSIER_DATA.mark_up(t)
 
 
 ## Inline shorthand lives in inline_marks.gd (shared with the dossier). See there.
@@ -1056,10 +1068,17 @@ func _apply_effects(effects: Dictionary) -> void:
 		Game.add_stat(str(k), int(effects[k]))
 
 
+## A click on an underlined term opens its file and must NOT also advance the line.
+func _on_term_clicked(meta: Variant) -> void:
+	term_clicked.emit(str(meta))
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if name_panel.visible or _phone.visible or _ended:
 		return   # name entry is modal
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if _link_hover > 0:
+			return   # that click belongs to a dossier link
 		_auto_delay = 0.0        # a click always wins the race with the timer
 		_advance()
 	elif event is InputEventKey and event.pressed and (event.keycode == KEY_SPACE or event.keycode == KEY_ENTER):
