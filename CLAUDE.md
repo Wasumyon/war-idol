@@ -10,8 +10,18 @@ film dangerous events with the cursor (Pokémon Snap-like). The twist: the AR vi
 human colonists as monsters.
 
 ## Engine
-Godot **4.7.x**, GDScript, Forward Plus, 960×540. The project is `car/project.godot` (to be renamed
-`game/`). One autoload: `Game` (`car/autoload/game.gd`) — stats, flags, chapter, player name.
+Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` project**
+(`vn/project.godot`). `car/` is the old sandbox project and `tunnel/` is a separate one.
+
+- Main scene: `vn/main/main_game.tscn` (**MainGame**), the one persistent scene. Layers: World /
+  Story / HUD / Pause / Transition / Debug (F3 in debug builds).
+- One autoload: `Game` (`vn/autoload/game.gd`) — the save (`user://campaign.save`), stats, flags,
+  chapter, player name, and the calendar position (day, slot, segment in play).
+- **The calendar drives the game.** A day has two slots (day, evening). A slot is scripted (fixed
+  segments) or free (the player picks an offer in the hub). Data: `vn/calendar/calendar_data.gd`.
+- **A segment** is a VN scene or a minigame. Its root emits `finished(result)` and never changes
+  scene or advances the day; MainGame swaps it through the Transition layer and saves.
+- Test: `godot --headless --path vn res://tests/first_shot_campaign.tscn` (must print 0 failures).
 
 ## Where things are
 | path | what |
@@ -23,8 +33,15 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. The project is `car/project.g
 | `style_guide.md` | how to write: tense, voice, register, engine syntax |
 | `vn_game_design.md` | tracked state: Hype, the dials, flags, ending models |
 | `punchlist.md`, `01_intro_punchlist.md` | open errors and considerations |
-| `car/vn/scenes/NN_*.txt` | the written scenes (plain text, run by `car/vn/vn.tscn`) |
-| `car/slice/` | the runner prototype — **sandbox**, AI-written |
+| `maingame_spec.md` | MainGame, the calendar data model, the draft 40-day placement |
+| `HANDOVER.md` | the opening slice: direction and build order |
+| `vn/scenes/NN_*.txt` | the written scenes the game runs (plain text, played by `vn/vn.tscn`) |
+| `vn/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
+| `vn/main/`, `vn/hub/`, `vn/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
+| `vn/opener/`, `vn/first_shot/`, `vn/phone/` | Day 1's cold open and filming request; the phone |
+| `vn/runner/` | the runner's slot: a two-button stand-in until the runner is ported |
+| `car/vn/` | the older copy of the VN and its drafts — superseded by `vn/` |
+| `car/slice/` | the runner prototype — **sandbox**, AI-written, not yet ported |
 | `car/wip/`, `car/test*.tscn` | older car-physics tests — sandbox |
 | `tunnel/` | **game-jam piece** (Tunnel Escape): separate Godot project, short stealth/light-puzzle walk in 5 chambers. Design doc: Google Doc "War Idol Tunnel Escape". Ported from another universe; re-theme to War Idols |
 | `_archive/` | superseded docs — do not use as reference |
@@ -32,9 +49,11 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. The project is `car/project.g
 ## Rules
 - **Every fact lives in one file. The bible wins any conflict**; fix canon or the outline to match.
 - Canon changes as the story is written. Record decisions; don't infer them from old drafts.
-- `slice/` and `vn/` are prototypes. Nothing in them is merged into the real game as-is: a
-  mechanic that works gets written up as a spec and reimplemented.
-- Sandbox code may use the core; **core code never references the sandbox.**
+- `car/` is the sandbox. Nothing in it is merged into `vn/` as-is: a mechanic that works gets
+  written up as a spec and reimplemented.
+- Sandbox code may use the core; **core code (`vn/`) never references the sandbox (`car/`).**
+- New playable content is a segment listed in `calendar_data.gd`. Never call
+  `change_scene_to_file` in `vn/`.
 - Files starting `_` are drafts or generated reading copies (`_read_*.txt`). Don't edit them or
   use them as source.
 - Move files only inside Godot's FileSystem dock, and commit to git before each step.
@@ -52,6 +71,8 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. The project is `car/project.g
 - **Game jam (about a week, from 2026-10-24):** build `tunnel/` (own project, never references `car/`).
 - Restructure `outline.md` to the bible's three acts (add Albrecht's rescue, the capture, the
   interrogation; fix Beat 14 and Beat 22 for Kathay).
-- Folder reorganisation and the `MainGame` scene (World / Story / HUD / Pause / Transition /
-  Debug layers).
+- Fill the calendar: days 2–40 are placeholders. The day placement in `maingame_spec.md` is a
+  draft that waits on the outline restructure.
+- Port the runner from `car/slice/` into `vn/runner/` behind the segment contract.
+- The hub's real room (3D bunker, characters possibly 2D); Dossiers and News/Stats are stubs.
 - Update `Game` stats to match `vn_game_design.md` (the dials), and move `lane_x()` out of it.
