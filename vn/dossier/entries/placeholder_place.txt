@@ -1,0 +1,11 @@
+title: Placeholder Place
+category: io
+order: 10
+image: leg_pool
+info: Location | PLACEHOLDER
+source: canon/09_places.md
+terms: Placeholder Place
+
+## PLACEHOLDER
+PLACEHOLDER TEXT, not canon. One body for all time (no before/after). The picture is a stand-in
+image and means nothing.

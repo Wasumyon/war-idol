@@ -1,0 +1,10 @@
+title: Placeholder Feed
+category: media
+order: 10
+info: Kind | PLACEHOLDER
+source: canon/04_narrator.md
+terms: Placeholder Feed
+
+## PLACEHOLDER
+PLACEHOLDER TEXT, not canon. A line with {{a glitched span that never clears}} and a literal
+\*asterisk\* to show the escapes still work.

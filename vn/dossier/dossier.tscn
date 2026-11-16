@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://dossier/dossier.gd" id="1"]
+
+[node name="Dossier" type="CanvasLayer"]
+layer = 35
+script = ExtResource("1")

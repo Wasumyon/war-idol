@@ -27,6 +27,11 @@ func _ready() -> void:
 	_resume.text = "Resume"
 	_resume.pressed.connect(close)
 	column.add_child(_resume)
+	var files := Button.new()
+	files.name = "Files"
+	files.text = "Files"
+	files.pressed.connect(func() -> void: get_parent().dossier.open())
+	column.add_child(files)
 	var quit := Button.new()
 	quit.name = "Quit"
 	quit.text = "Quit to desktop"

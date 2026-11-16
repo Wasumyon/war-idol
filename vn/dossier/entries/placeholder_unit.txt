@@ -1,0 +1,16 @@
+title: Placeholder Unit
+category: military
+order: 10
+info: Formed | PLACEHOLDER
+info: Strength | PLACEHOLDER
+source: canon/15_military.md, io_story_bible.md
+terms: Placeholder Unit, the Unit
+
+== before
+## PLACEHOLDER
+PLACEHOLDER TEXT, not canon. A second entry to link to. It mentions the Placeholder Person,
+which links itself once that file is filed.
+
+== after
+## PLACEHOLDER (revised)
+PLACEHOLDER TEXT, not canon. Revised copy of the unit file.
