@@ -36,7 +36,7 @@ func _ready() -> void:
 	var shortcuts := VBoxContainer.new()
 	shortcuts.add_theme_constant_override("separation", 8)
 	left.add_child(shortcuts)
-	_label(shortcuts, "DAY %02d" % Game.day, 14, ACCENT)
+	_label(shortcuts, "DAY %02d" % GameState.day, 14, ACCENT)
 	_space(shortcuts)
 	var group := ButtonGroup.new()
 	for tab in ["Feed", "Wallet", "Shop"]:
@@ -91,25 +91,25 @@ func _dismiss() -> void:
 
 func _show_tab(tab: String) -> void:
 	_shortcuts[tab].set_pressed_no_signal(true)
-	_wallet_balance.text = "$%d" % Game.money
+	_wallet_balance.text = "$%d" % GameState.money
 	for child in _content.get_children():
 		_content.remove_child(child)
 		child.queue_free()
 	_label(_content, tab, 32, INK)
 	match tab:
 		"Feed":
-			_label(_content, "%d followers" % Game.followers, 22, ACCENT)
+			_label(_content, "%d followers" % GameState.followers, 22, ACCENT)
 			_add_receipt()
 		"Wallet":
 			_add_receipt()
 			_space(_content)
-			_label(_content, "Rig debt   $%d" % Game.rig_debt, 22, INK)
-			if Game.first_installment_paid:
-				_label(_content, "First installment paid  ·  $%d" % Game.FIRST_INSTALLMENT, 17, ACCENT)
+			_label(_content, "Rig debt   $%d" % GameState.rig_debt, 22, INK)
+			if GameState.first_installment_paid:
+				_label(_content, "First installment paid  ·  $%d" % GameState.FIRST_INSTALLMENT, 17, ACCENT)
 			else:
-				var pay := _button(_content, "Pay $%d toward rig debt" % Game.FIRST_INSTALLMENT)
+				var pay := _button(_content, "Pay $%d toward rig debt" % GameState.FIRST_INSTALLMENT)
 				pay.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-				pay.disabled = Game.money < Game.FIRST_INSTALLMENT or Game.rig_debt < Game.FIRST_INSTALLMENT
+				pay.disabled = GameState.money < GameState.FIRST_INSTALLMENT or GameState.rig_debt < GameState.FIRST_INSTALLMENT
 				pay.pressed.connect(_repay)
 				if _payment_error:
 					_label(_content, "Payment could not be saved. Try again.", 15, Color("#ffac9c"))
@@ -118,7 +118,7 @@ func _show_tab(tab: String) -> void:
 
 
 func _add_receipt() -> void:
-	var capture := Game.first_shot_outcome == "capture"
+	var capture := GameState.first_shot_outcome == "capture"
 	var outcome := "Scout drone captured" if capture else "Scout drone missed"
 	var receipt := _panel(_content)
 	receipt.add_theme_stylebox_override("panel", _surface(Color("#1c3036"), STROKE, 10, 10))
@@ -126,13 +126,13 @@ func _add_receipt() -> void:
 	receipt.add_child(details)
 	_label(details, "First stream  /  " + outcome, 17, INK)
 	_label(details, "+%d followers     +$%d donations" % [
-		Game.first_shot_receipt.get("followers", 0),
-		Game.first_shot_receipt.get("cash", 0),
+		GameState.first_shot_receipt.get("followers", 0),
+		GameState.first_shot_receipt.get("cash", 0),
 	], 16, ACCENT)
 
 
 func _repay() -> void:
-	_payment_error = Game.repay_first_installment() != OK
+	_payment_error = GameState.repay_first_installment() != OK
 	_show_tab("Wallet")
 	_shortcuts["Wallet"].grab_focus()
 

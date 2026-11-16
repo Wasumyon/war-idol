@@ -17,18 +17,18 @@ func _ready() -> void:
 
 
 func _run() -> void:
-	var defaults: Node = Game.get_script().new()
+	var defaults: Node = GameState.get_script().new()
 	_fresh = defaults._snapshot()
 	defaults.free()
 	_save_path = OS.get_temp_dir().path_join("war-idol-campaign-test-%d.save" % OS.get_process_id())
-	Game._save_path = _save_path
-	Game.load_error = OK
-	Game.has_checkpoint = false
-	Game.debug_first_shot = false
-	Game._restore(_fresh.duplicate(true))
+	GameState._save_path = _save_path
+	GameState.load_error = OK
+	GameState.has_checkpoint = false
+	GameState.debug_first_shot = false
+	GameState._restore(_fresh.duplicate(true))
 
 	_check_migration()
-	Game._restore(_fresh.duplicate(true))
+	GameState._restore(_fresh.duplicate(true))
 	DirAccess.remove_absolute(_save_path)
 
 	var opener: Node = await _boot()
@@ -40,11 +40,11 @@ func _run() -> void:
 	opener._process(1.0)
 	opener._process(2.0)
 	var story: Node = await _main.shown
-	_check(story.name == &"Vn" and Game.segment_done("d01_opener"), "the opener hands off to the story")
+	_check(story.name == &"Vn" and GameState.segment_done("d01_opener"), "the opener hands off to the story")
 	var shot: Node = await _play_vn(story)
 	_check(shot != null and shot.name == &"FirstShot", "campaign hands off to Chip's filming request")
 	_reload()
-	_check(Game.first_shot_pending and Game.active_segment == "d01_opening", "reload the unspent shot checkpoint")
+	_check(GameState.first_shot_pending and GameState.active_segment == "d01_opening", "reload the unspent shot checkpoint")
 	await _boot()
 	await _check_outcome("capture", 120, 180)
 	await _check_calendar()
@@ -68,19 +68,19 @@ func _check_migration() -> void:
 	var file := FileAccess.open(_save_path, FileAccess.WRITE)
 	file.store_var(old)
 	file.close()
-	_check(Game.load_campaign() == OK, "a version 1 save loads")
-	_check(Game.chapter_index == 2 and Game.segment_done("d01_opener") and Game.slot == 0,
+	_check(GameState.load_campaign() == OK, "a version 1 save loads")
+	_check(GameState.chapter_index == 2 and GameState.segment_done("d01_opener") and GameState.slot == 0,
 		"a version 1 save resumes after the opener")
 
 
 func _check_outcome(mode: String, expected_followers: int, expected_cash: int) -> void:
 	if mode != "capture":
-		Game._restore(_fresh.duplicate(true))
-		Game.chapter_index = Game.FIRST_SHOT_CHAPTER
-		Game.done_segments = {"d01_opener": 1}
-		Game.active_segment = "d01_opening"
-		Game.first_shot_pending = true
-		_check(Game.save_campaign() == OK, "write fresh filming checkpoint")
+		GameState._restore(_fresh.duplicate(true))
+		GameState.chapter_index = GameState.FIRST_SHOT_CHAPTER
+		GameState.done_segments = {"d01_opener": 1}
+		GameState.active_segment = "d01_opening"
+		GameState.first_shot_pending = true
+		_check(GameState.save_campaign() == OK, "write fresh filming checkpoint")
 		await _boot()
 	var shot: Node = _main.current
 	if not _check(shot.name == &"FirstShot", "filming scene entered"):
@@ -93,16 +93,16 @@ func _check_outcome(mode: String, expected_followers: int, expected_cash: int) -
 		_click(Vector2(100, 100) if mode == "capture" else shot._subject)
 	await _main.shown
 	_check(_main.current.name == &"Vn", mode + " returns to the story")
-	_check(Game.first_shot_outcome == outcome, mode + " records the correct outcome")
-	_check(Game.chapter_index == Game.AFTERMATH_CHAPTER and Game.day == 1, mode + " saves the aftermath on Day 1")
-	_check(Game.followers == expected_followers and Game.money == expected_cash, mode + " awards exactly one payout")
-	_check(Game.rig_debt == Game.STARTING_RIG_DEBT, mode + " preserves initial debt")
+	_check(GameState.first_shot_outcome == outcome, mode + " records the correct outcome")
+	_check(GameState.chapter_index == GameState.AFTERMATH_CHAPTER and GameState.day == 1, mode + " saves the aftermath on Day 1")
+	_check(GameState.followers == expected_followers and GameState.money == expected_cash, mode + " awards exactly one payout")
+	_check(GameState.rig_debt == GameState.STARTING_RIG_DEBT, mode + " preserves initial debt")
 	if mode == "capture":
-		_check(Game.player_name == "Test Pilot", "player name survives the handoff")
+		_check(GameState.player_name == "Test Pilot", "player name survives the handoff")
 
 	_reload()
-	_check(Game.record_first_shot(mode != "capture") == OK, mode + " handles a duplicate submission")
-	_check(Game.first_shot_outcome == outcome and Game.money == expected_cash and Game.followers == expected_followers,
+	_check(GameState.record_first_shot(mode != "capture") == OK, mode + " handles a duplicate submission")
+	_check(GameState.first_shot_outcome == outcome and GameState.money == expected_cash and GameState.followers == expected_followers,
 		mode + " duplicate submission preserves original outcome and payout")
 	var story: Node = await _boot()
 	var expected_line := "Right in the frame!" if outcome == "capture" else "Aaaand there it goes."
@@ -118,8 +118,8 @@ func _check_outcome(mode: String, expected_followers: int, expected_cash: int) -
 			pay = child
 	if _check(pay != null and not pay.disabled, mode + " offers an affordable repayment"):
 		pay.pressed.emit()
-	_check(Game.repay_first_installment() == ERR_ALREADY_EXISTS, mode + " rejects another repayment")
-	_check(Game.money == expected_cash - 40 and Game.rig_debt == 560, mode + " debits cash and debt once")
+	_check(GameState.repay_first_installment() == ERR_ALREADY_EXISTS, mode + " rejects another repayment")
+	_check(GameState.money == expected_cash - 40 and GameState.rig_debt == 560, mode + " debits cash and debt once")
 	_reload()
 	story = await _boot()
 	story.phone_button.pressed.emit()
@@ -129,8 +129,8 @@ func _check_outcome(mode: String, expected_followers: int, expected_cash: int) -
 		if child is Label and child.text.begins_with("First installment paid"):
 			paid_label = true
 		_check(not child is Button, mode + " removes the repay button on revisit")
-	_check(paid_label and Game.first_installment_paid, mode + " shows the saved payment on revisit")
-	_check(Game.money == expected_cash - 40 and Game.rig_debt == 560 and Game.followers == expected_followers,
+	_check(paid_label and GameState.first_installment_paid, mode + " shows the saved payment on revisit")
+	_check(GameState.money == expected_cash - 40 and GameState.rig_debt == 560 and GameState.followers == expected_followers,
 		mode + " preserves all balances after reloading and revisiting")
 	await get_tree().process_frame
 	var shell: PanelContainer = phone.get_child(0).get_child(0)
@@ -154,9 +154,9 @@ func _check_outcome(mode: String, expected_followers: int, expected_cash: int) -
 		choice.pressed.emit()
 		var hub: Node = await _play_vn(story)
 		_check(hub != null and hub.name == &"Hub", "the opening ends in the hub")
-		_check(Game.day == 2 and Game.slot == 0, "finishing the opening advances to Day 2")
+		_check(GameState.day == 2 and GameState.slot == 0, "finishing the opening advances to Day 2")
 		_reload()
-		_check(Game.day == 2 and Game.current_chapter().is_empty() and Game.active_segment == "",
+		_check(GameState.day == 2 and GameState.current_chapter().is_empty() and GameState.active_segment == "",
 			"opening completion survives reload")
 
 
@@ -175,14 +175,14 @@ func _check_calendar() -> void:
 	_check(not "offer_runner_hard" in offers, "a flag-gated offer stays hidden")
 
 	hub = await _choose(hub, "offer_rest")
-	_check(hub.name == &"Hub" and Game.day == 2 and Game.slot == 1, "resting passes one slot")
+	_check(hub.name == &"Hub" and GameState.day == 2 and GameState.slot == 1, "resting passes one slot")
 	_check(_offers(hub) == ["d02_keno_evening"], "a scripted slot offers only its story segment")
 	var story: Node = await _choose(hub, "d02_keno_evening")
 	_check(story.name == &"Vn", "a VN day plays in the story layer")
 	hub = await _play_vn(story)
-	_check(hub != null and hub.name == &"Hub" and Game.day == 3 and Game.slot == 0,
+	_check(hub != null and hub.name == &"Hub" and GameState.day == 3 and GameState.slot == 0,
 		"the VN day ends and the day advances")
-	_check(Game.has_flag("met_keno_evening"), "a segment's flag output is applied")
+	_check(GameState.has_flag("met_keno_evening"), "a segment's flag output is applied")
 
 	_check(_offers(hub) == ["d03_frontline"], "Day 3 scripts the frontline")
 	var runner: Node = await _choose(hub, "d03_frontline")
@@ -190,20 +190,20 @@ func _check_calendar() -> void:
 	runner._slice._end_run()
 	runner.continue_run()
 	hub = await _main.shown
-	_check(Game.followers == 320 and Game.money == 290, "the minigame outcome pays once")
-	_check(Game.has_flag("perimeter_filmed") and Game.day == 3 and Game.slot == 1, "the minigame day uses one slot")
+	_check(GameState.followers == 320 and GameState.money == 290, "the minigame outcome pays once")
+	_check(GameState.has_flag("perimeter_filmed") and GameState.day == 3 and GameState.slot == 1, "the minigame day uses one slot")
 	_check("offer_runner_hard" in _offers(hub), "the flag opens the gated offer")
 	_reload()
-	_check(Game.followers == 320 and Game.money == 290 and Game.slot == 1, "the payout survives reload")
+	_check(GameState.followers == 320 and GameState.money == 290 and GameState.slot == 1, "the payout survives reload")
 
 	hub = await _boot()
 	story = await _choose(hub, "offer_canteen")
 	_reload()
-	_check(Game.active_segment == "offer_canteen", "the segment in play is saved")
+	_check(GameState.active_segment == "offer_canteen", "the segment in play is saved")
 	story = await _boot()
 	_check(story.name == &"Vn" and _main.current_id == "offer_canteen", "a relaunch resumes the segment")
 	hub = await _play_vn(story)
-	_check(hub != null and Game.day == 4 and Game.slot == 0, "the evening slot ends the day")
+	_check(hub != null and GameState.day == 4 and GameState.slot == 0, "the evening slot ends the day")
 	_check(not "offer_canteen" in _offers(hub), "a once-only offer does not return")
 
 	_main.debug_jump(41)
@@ -239,7 +239,7 @@ func _play_vn(story: Node) -> Node:
 	return null
 
 
-## A relaunch: a new Main over whatever Game holds now.
+## A relaunch: a new Main over whatever GameState holds now.
 func _boot() -> Node:
 	# Never free Main from inside its own signal: let the emit return first.
 	await get_tree().process_frame
@@ -251,8 +251,8 @@ func _boot() -> Node:
 
 
 func _reload() -> void:
-	Game._restore(_fresh.duplicate(true))
-	_check(Game.load_campaign() == OK, "the save reloads")
+	GameState._restore(_fresh.duplicate(true))
+	_check(GameState.load_campaign() == OK, "the save reloads")
 
 
 func _click(point: Vector2) -> void:

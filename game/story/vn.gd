@@ -76,7 +76,7 @@ extends Control
 ##   "|"         = an extra click: the typewriter pauses there, but the
 ##                 text keeps rendering on the same line  (a|b -> "a b")
 ##
-## "Player:" resolves to Game.display_name() - "Blockhead" until the player
+## "Player:" resolves to GameState.display_name() - "Blockhead" until the player
 ## enters a name, then that name. "{player}" in text expands the same way.
 
 const SCRIPT_FX := preload("res://story/script_effect.gd")
@@ -117,7 +117,7 @@ signal filed(id: String)
 ## Emitted when the player clicks an underlined term. Main opens the dossier on it.
 signal term_clicked(id: String)
 
-## Leave blank to play through Game.chapters in order; set a path to play one file.
+## Leave blank to play through GameState.chapters in order; set a path to play one file.
 @export var chapter_file := ""
 
 var _nodes := {}
@@ -206,8 +206,8 @@ func begin(args: Dictionary) -> void:
 
 func _open_chapter() -> void:
 	var in_campaign := chapter_file.is_empty()
-	phone_button.visible = not Game.first_shot_outcome.is_empty()
-	var path := Game.current_chapter() if in_campaign else chapter_file
+	phone_button.visible = not GameState.first_shot_outcome.is_empty()
+	var path := GameState.current_chapter() if in_campaign else chapter_file
 	if path.is_empty():
 		box.hide()
 		portrait.hide()
@@ -215,10 +215,10 @@ func _open_chapter() -> void:
 		return
 	_load(path)
 	var start := str(_nodes.get("start", ""))
-	if path == Game.chapters[Game.AFTERMATH_CHAPTER]:
+	if path == GameState.chapters[GameState.AFTERMATH_CHAPTER]:
 		var label := "mission_clear"
-		if in_campaign and not Game.first_shot_outcome.is_empty():
-			label = "first_shot_" + Game.first_shot_outcome
+		if in_campaign and not GameState.first_shot_outcome.is_empty():
+			label = "first_shot_" + GameState.first_shot_outcome
 		start = str(_nodes.get("labels", {}).get(label, start))
 	_goto(start)
 
@@ -698,7 +698,7 @@ func _shake() -> void:
 func _speaker_name(node: Dictionary) -> String:
 	var spk := str(node.get("speaker", ""))
 	if spk == "Player" or spk == "{player}":
-		return Game.display_name()
+		return GameState.display_name()
 	return spk
 
 
@@ -710,7 +710,7 @@ func _compose_text(node: Dictionary) -> String:
 		var parts := str(d).split(" ", true, 1)
 		if parts.size() == 2 and parts[0] == "stage":
 			shown.append("(%s)" % parts[1])
-	var t := str(node.get("text", "")).replace("{player}", Game.display_name())
+	var t := str(node.get("text", "")).replace("{player}", GameState.display_name())
 	if not shown.is_empty():
 		t = "[i]%s[/i]\n%s" % ["\n".join(shown), t]
 
@@ -943,8 +943,8 @@ func _file_entries(node: Dictionary) -> void:
 		var parts := str(d).split(" ", true, 1)
 		if str(parts[0]) == "file" and parts.size() > 1:
 			var id := str(parts[1]).strip_edges()
-			if id != "" and not Game.has_flag("file:" + id):
-				Game.set_flag("file:" + id)
+			if id != "" and not GameState.has_flag("file:" + id):
+				GameState.set_flag("file:" + id)
 				filed.emit(id)
 
 
@@ -1003,7 +1003,7 @@ func _play_music(name: String) -> void:
 
 func _show_name_input() -> void:
 	name_panel.visible = true
-	name_input.text = Game.player_name
+	name_input.text = GameState.player_name
 	name_input.grab_focus()
 
 
@@ -1012,7 +1012,7 @@ func _on_name_submitted(_text: String) -> void:
 
 
 func _confirm_name() -> void:
-	Game.set_player_name(name_input.text)
+	GameState.set_player_name(name_input.text)
 	name_panel.visible = false
 	name_label.text = _speaker_name(_nodes["nodes"][_node_id])
 
@@ -1065,7 +1065,7 @@ func _choose(option: Dictionary) -> void:
 
 func _apply_effects(effects: Dictionary) -> void:
 	for k in effects.keys():
-		Game.add_stat(str(k), int(effects[k]))
+		GameState.add_stat(str(k), int(effects[k]))
 
 
 ## A click on an underlined term opens its file and must NOT also advance the line.
@@ -1148,7 +1148,7 @@ func _advance() -> void:
 	if chapter_file.is_empty():
 		match _staging_arg(node, "call"):
 			"first_shot":
-				if Game.start_first_shot() != OK:
+				if GameState.start_first_shot() != OK:
 					hint.text = "Progress could not be saved. Click to retry."
 				else:
 					call_requested.emit("first_shot")
@@ -1168,10 +1168,10 @@ func _advance() -> void:
 
 func _finish() -> void:
 	if chapter_file.is_empty():
-		if Game.advance_chapter() != OK:
+		if GameState.advance_chapter() != OK:
 			hint.text = "Progress could not be saved. Click to retry."
 			return
-		if not Game.current_chapter().is_empty():
+		if not GameState.current_chapter().is_empty():
 			_open_chapter()
 			return
 	_end_story()
@@ -1179,6 +1179,6 @@ func _finish() -> void:
 
 func _end_story() -> void:
 	_ended = true
-	print("VN end. ", Game.debug_line())
+	print("VN end. ", GameState.debug_line())
 	hint.text = "— end —"
 	finished.emit({})

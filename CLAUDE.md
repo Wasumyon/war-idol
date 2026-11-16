@@ -18,7 +18,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 - **Debug builds:** F3 opens the debug panel; F4 files every dossier entry; F5 toggles the visor
   reveal. A new key is one `_hotkey()` line in `game/ui/debug.gd` plus a `debug_*` function on
   Main; the panel lists them all. F6–F11 are free.
-- One autoload: `Game` (`game/autoload/game.gd`) — the save (`user://campaign.save`), stats, flags,
+- One autoload: `GameState` (`game/autoload/game_state.gd`) — the save (`user://campaign.save`), stats, flags,
   chapter, player name, and the calendar position (day, slot, segment in play).
 - **The calendar drives the game.** A day has two slots (day, evening). A slot is scripted (fixed
   segments) or free (the player picks an offer in the hub). Data: `game/calendar/calendar_data.gd`.
@@ -86,4 +86,4 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 - Dossiers: built from `dossier_spec.md` (merged 2026-11-16), four placeholder entries, no
   `@ file` in any scene yet. Next: settle its §9 story points, then write entries (Opus) and file them in scenes.
 - Stealth minigame: specced in `stealth_spec.md` (2026-11-15), not built; its §10 points are open.
-- Update `Game` stats to match `docs/game_design.md` (the dials), and move `lane_x()` out of it.
+- Update `GameState` stats to match `docs/game_design.md` (the dials), and move `lane_x()` out of it.

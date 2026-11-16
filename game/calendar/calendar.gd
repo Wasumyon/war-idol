@@ -1,17 +1,17 @@
 extends RefCounted
-## Reads calendar_data.gd against the saved Game state. Holds no state of its own.
+## Reads calendar_data.gd against the saved GameState state. Holds no state of its own.
 
 const DATA := preload("res://calendar/calendar_data.gd")
 
 
 ## What plays next: {"kind": "segment" | "hub" | "end", "id": String}.
 static func next_step() -> Dictionary:
-	if Game.day > DATA.LAST_DAY:
+	if GameState.day > DATA.LAST_DAY:
 		return {"kind": "end", "id": ""}
-	if DATA.SEGMENTS.has(Game.active_segment):
-		return {"kind": "segment", "id": Game.active_segment}
+	if DATA.SEGMENTS.has(GameState.active_segment):
+		return {"kind": "segment", "id": GameState.active_segment}
 	var fixed := scripted_pending()
-	if fixed != "" and DATA.DAYS[Game.day].get("skip_hub", false):
+	if fixed != "" and DATA.DAYS[GameState.day].get("skip_hub", false):
 		return {"kind": "segment", "id": fixed}
 	return {"kind": "hub", "id": ""}
 
@@ -22,14 +22,14 @@ static func segment(id: String) -> Dictionary:
 
 ## The scripted list for the current slot; empty on a free slot.
 static func scripted_list() -> Array:
-	var slots: Dictionary = DATA.DAYS.get(Game.day, {}).get("slots", {})
-	return slots.get(DATA.SLOT_KEYS[Game.slot], [])
+	var slots: Dictionary = DATA.DAYS.get(GameState.day, {}).get("slots", {})
+	return slots.get(DATA.SLOT_KEYS[GameState.slot], [])
 
 
 ## The next unplayed scripted segment in the current slot, or "".
 static func scripted_pending() -> String:
 	for id in scripted_list():
-		if not Game.segment_done(id):
+		if not GameState.segment_done(id):
 			return id
 	return ""
 
@@ -42,9 +42,9 @@ static func offers() -> Array[String]:
 	var out: Array[String] = []
 	for id in DATA.OFFERS:
 		var seg: Dictionary = DATA.SEGMENTS[id]
-		if seg.get("once", false) and Game.segment_done(id):
+		if seg.get("once", false) and GameState.segment_done(id):
 			continue
-		if int(seg.get("slots", 1)) > Game.SLOTS_PER_DAY - Game.slot:
+		if int(seg.get("slots", 1)) > GameState.SLOTS_PER_DAY - GameState.slot:
 			continue
 		if allowed(seg.get("requires", {})):
 			out.append(id)
@@ -53,13 +53,13 @@ static func offers() -> Array[String]:
 
 static func allowed(requires: Dictionary) -> bool:
 	for flag in requires.get("flags_all", []):
-		if not Game.has_flag(flag):
+		if not GameState.has_flag(flag):
 			return false
 	for flag in requires.get("flags_none", []):
-		if Game.has_flag(flag):
+		if GameState.has_flag(flag):
 			return false
-	return Game.day >= int(requires.get("min_day", 1)) \
-		and Game.day <= int(requires.get("max_day", DATA.LAST_DAY))
+	return GameState.day >= int(requires.get("min_day", 1)) \
+		and GameState.day <= int(requires.get("max_day", DATA.LAST_DAY))
 
 
 ## Slots this segment uses up when it finishes: 0 while its scripted list has more to play.
@@ -87,7 +87,7 @@ static func is_checkpoint(day: int) -> bool:
 
 
 static func slot_name() -> String:
-	return DATA.SLOT_NAMES[Game.slot]
+	return DATA.SLOT_NAMES[GameState.slot]
 
 
 ## Debug builds only: every problem found in the data, as text.

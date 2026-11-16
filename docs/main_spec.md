@@ -1,6 +1,6 @@
 # Main and the calendar — spec
 
-Status: **approved and built** (placeholder content from Day 2 on). One departure: `first_shot` still records its own result through `Game.record_first_shot`, which keeps its save-retry screen. Project: root `game/`. Sources: the bible
+Status: **approved and built** (placeholder content from Day 2 on). One departure: `first_shot` still records its own result through `GameState.record_first_shot`, which keeps its save-retry screen. Project: root `game/`. Sources: the bible
 (three acts, 40 days), canon 11, `outline.md`, `game_design.md`.
 
 ## 1. What exists in `game/` today
@@ -8,9 +8,9 @@ Status: **approved and built** (placeholder content from Day 2 on). One departur
 - Main scene `opener/opener.tscn` (cold-open shooter) → `vn.tscn` → `first_shot/first_shot.tscn`
   → `vn.tscn` (aftermath). Every handoff is `get_tree().change_scene_to_file()`:
   `opener.gd:83`, `vn.gd:1145`, `first_shot.gd:59`.
-- `Game` autoload holds the save (`user://campaign.save`, atomic `_commit`), the chapter list
+- `GameState` autoload holds the save (`user://campaign.save`, atomic `_commit`), the chapter list
   (`scenes/00`–`04`), and the first-shot state (`first_shot_pending`, `_outcome`, `_receipt`).
-  `Game.day` exists and is saved, but nothing ever changes it.
+  `GameState.day` exists and is saved, but nothing ever changes it.
 - When chapter 04 ends the VN prints "— end —" and stops. There is no hub.
 - The runner was ported from `sandbox/slice/` into `game/minigames/runner/` (2026-11-16); `sandbox/slice/` is now frozen.
 
@@ -75,7 +75,7 @@ One data file, `game/calendar/calendar_data.gd`, validated at startup in debug b
 **Offer pool** — segments with no fixed day. In a free slot the hub lists every offer whose
 `requires` passes. Runner routes (easy / medium / hard), interviews and evening scenes live here.
 
-**Saved state added to `Game`** (save version 2, with version 1 saves migrated): `slot`,
+**Saved state added to `GameState`** (save version 2, with version 1 saves migrated): `slot`,
 `active_segment`, `done_segments`. One new call, `complete_segment(id, result)`, applies the
 outputs and advances slot and day in a single `_commit`, so a payout can never apply twice.
 The dials and `lane_x()` are untouched.
@@ -108,7 +108,7 @@ Every segment root has `signal finished(result: Dictionary)` and `func begin(arg
 2. Hub: the player picks an offer. On a scripted slot Missions shows the one mandatory item.
 3. `Transition` swaps the hub out and the segment in; `active_segment` is saved.
 4. The segment plays and emits `finished(result)`. It does not change scene or advance the day.
-5. `Main` calls `Game.complete_segment`, then goes to step 1. After the evening slot the day
+5. `Main` calls `GameState.complete_segment`, then goes to step 1. After the evening slot the day
    advances; after the last day an ending placeholder shows.
 
 Changes to existing scenes:
@@ -116,7 +116,7 @@ Changes to existing scenes:
 - `vn.gd`: emit `call_requested("first_shot")` instead of changing scene, and `finished` where
   it now shows "— end —". It still walks chapters 00–04 for Day 1.
 - Day 1 is `[opener, opening VN]`; the VN's `first_shot` call makes `Main` swap in
-  `first_shot` and feed the result to the existing `Game.record_first_shot`.
+  `first_shot` and feed the result to the existing `GameState.record_first_shot`.
 - `tests/first_shot_campaign.gd` opens scenes with `change_scene_to_file` and will be rewritten
   to drive `Main`.
 
@@ -126,7 +126,7 @@ placeholder scene with two buttons (good run / bad run).
 
 ## 6. Build steps (commit before each)
 
-1. `Game`: save version 2, `slot`, `active_segment`, `done_segments`, `complete_segment`.
+1. `GameState`: save version 2, `slot`, `active_segment`, `done_segments`, `complete_segment`.
 2. Calendar data and reader, with placeholder days 2–4: one VN day, one minigame day, one free day.
 3. `Main` with the six layers and the Transition swap; convert the three handoffs.
 4. Hub placeholder, Pause, Debug.

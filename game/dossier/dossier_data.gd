@@ -2,7 +2,7 @@ extends RefCounted
 ## Dossier entries: loading, the two versions, links and glitch spans, validation.
 ## Spec: docs/dossier_spec.md. Static helpers only; the screen is dossier.gd.
 ##
-## State lives in Game.flags and nothing here saves:
+## State lives in GameState.flags and nothing here saves:
 ##   file:<id>   the story has filed the entry
 ##   seen:<id>   the player has opened it   (new = filed and not seen)
 
@@ -168,11 +168,11 @@ static func ids_in(category := "") -> Array[String]:
 
 
 static func is_filed(id: String) -> bool:
-	return all().has(id) and Game.has_flag("file:" + id)
+	return all().has(id) and GameState.has_flag("file:" + id)
 
 
 static func is_new(id: String) -> bool:
-	return is_filed(id) and not Game.has_flag("seen:" + id)
+	return is_filed(id) and not GameState.has_flag("seen:" + id)
 
 
 static func new_count() -> int:
@@ -185,18 +185,18 @@ static func new_count() -> int:
 
 
 static func revealed() -> bool:
-	return Game.has_flag(REVEAL_FLAG)
+	return GameState.has_flag(REVEAL_FLAG)
 
 
 ## The reveal flips versioned entries to `after`; they come back as new (spec §3).
 ## Done once, by flag, in memory only. Call before listing or counting.
 static func sync_reveal() -> void:
-	if not revealed() or Game.has_flag(REVISED_FLAG):
+	if not revealed() or GameState.has_flag(REVISED_FLAG):
 		return
 	for id in all():
 		if all()[id].versioned:
-			Game.set_flag("seen:" + id, false)
-	Game.set_flag(REVISED_FLAG)
+			GameState.set_flag("seen:" + id, false)
+	GameState.set_flag(REVISED_FLAG)
 
 
 static func body_text(id: String, original := false) -> String:
@@ -265,7 +265,7 @@ static func _glitch_span(inner: String) -> String:
 	if bar >= 0 and not inner.substr(bar + 1).contains(" "):
 		shown = inner.substr(0, bar)
 		flag = inner.substr(bar + 1).strip_edges()
-	if flag != "" and Game.has_flag(flag):
+	if flag != "" and GameState.has_flag(flag):
 		return shown
 	return "[glitch]%s[/glitch]" % shown
 

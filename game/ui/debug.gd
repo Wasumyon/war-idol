@@ -64,7 +64,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		return
 	if event.keycode == KEY_F3:
 		visible = not visible
-		_day.value = Game.day
+		_day.value = GameState.day
 		get_viewport().set_input_as_handled()
 	elif _hotkeys.has(event.keycode):
 		_hotkeys[event.keycode].call()
@@ -74,4 +74,4 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	if visible:
 		_state.text = "%s\nsegment: %s | done: %s" % [
-			Game.debug_line(), get_parent().current_id, str(Game.done_segments.keys())]
+			GameState.debug_line(), get_parent().current_id, str(GameState.done_segments.keys())]

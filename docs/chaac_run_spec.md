@@ -151,7 +151,7 @@ and the next click is *"A leg."* Battle ambience plays under it, far away, then 
    as-is.
 2. **Spec the runner port** from what step 1 proved: the runner, the timeline format, the two
    weapons.
-3. **Port** into `game/minigames/runner/` behind the segment contract; `Game.lane_x()` moves out of `Game`.
+3. **Port** into `game/minigames/runner/` behind the segment contract; `GameState.lane_x()` moves out of `GameState`.
 4. **`@ wake`** in `vn.gd`; add it to `00_prologue.txt`.
 5. **Calendar:** Day 1 swaps the opener for `d01_chaac_run`; update the campaign test.
 6. **Docs:** `outline.md` Beat 01 (tank, the order), `main_spec.md` §1 and §2 Day 1,

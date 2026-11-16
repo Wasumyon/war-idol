@@ -3,7 +3,7 @@ extends RefCounted
 ##
 ## SEGMENTS  id -> one playable thing.
 ##   type      "vn", "minigame", or "skip" (passes the slot, plays nothing)
-##   source    vn: a scenes/*.txt path; "" walks Game.chapters (the Day 1 opening).
+##   source    vn: a scenes/*.txt path; "" walks GameState.chapters (the Day 1 opening).
 ##             minigame: a scene whose root emits finished(result).
 ##   title     what the hub's Missions list shows
 ##   blurb     one line under the title

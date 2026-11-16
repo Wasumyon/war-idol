@@ -202,7 +202,7 @@ It never changes scene, advances the day, or writes the save.
 | `footage` | banked shot value |
 | `alarms`, `catches`, `knockouts` | counts, for outputs and later scenes |
 | `flags` | story flags a map sets (a subject filmed, an optional room reached) |
-| `items_used` | so `Game` can deduct them |
+| `items_used` | so `GameState` can deduct them |
 
 The calendar's `outputs` choose a set by `outcome`, as the runner's do by `capture` / `miss`.
 Knockouts do not feed Bloodlust.

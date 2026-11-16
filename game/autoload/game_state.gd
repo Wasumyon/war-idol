@@ -1,5 +1,5 @@
 extends Node
-## Shared game state, autoloaded as `Game`.
+## Shared game state, autoloaded as `GameState`.
 ##
 const FIRST_SHOT_CHAPTER := 3
 const AFTERMATH_CHAPTER := 4

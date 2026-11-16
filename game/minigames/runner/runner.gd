@@ -53,7 +53,7 @@ func _ready() -> void:
 	add_to_group("runner")
 	_ensure_jump_action()
 	_build_dash_fx()
-	lane = Game.lane_count / 2
+	lane = GameState.lane_count / 2
 	position.x = lane_x(lane)
 	$Hitbox.area_entered.connect(_on_area_entered)
 	$StreamHit.area_entered.connect(_on_stream_hit)
@@ -105,7 +105,7 @@ func _build_dash_fx() -> void:
 
 
 func lane_x(index: int) -> float:
-	return Game.lane_x(index)
+	return GameState.lane_x(index)
 
 
 ## Blink the car + streamer for `t` seconds (called on a hit).
@@ -123,7 +123,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("turnLeft"):
 		lane = max(0, lane - 1)
 	if Input.is_action_just_pressed("turnRight"):
-		lane = min(Game.lane_count - 1, lane + 1)
+		lane = min(GameState.lane_count - 1, lane + 1)
 	position.x = lerp(position.x, lane_x(lane), clamp(strafe_rate * delta, 0.0, 1.0))
 
 	# --- dash (physical key: modifier actions are unreliable) ---

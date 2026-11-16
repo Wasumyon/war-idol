@@ -35,7 +35,7 @@ func _ready() -> void:
 
 	var header := Label.new()
 	header.name = "Header"
-	header.text = "DAY %02d  ·  %s" % [Game.day, CALENDAR.slot_name().to_upper()]
+	header.text = "DAY %02d  ·  %s" % [GameState.day, CALENDAR.slot_name().to_upper()]
 	header.position = Vector2(20, 14)
 	header.add_theme_color_override("font_color", ACCENT)
 	add_child(header)
@@ -45,7 +45,7 @@ func _ready() -> void:
 	_hotspot("NewsStats", "NEWS / STATS", Rect2(250, 110, 170, 100), _open_stub.bind("News / Stats"))
 	_dossier_button = _hotspot("Dossiers", "DOSSIERS", Rect2(420, 250, 130, 60), func() -> void: dossiers_requested.emit())
 	refresh_dossier_count()
-	_hotspot("Calendar", "CALENDAR\n%02d" % Game.day, Rect2(640, 130, 110, 80), _open_calendar)
+	_hotspot("Calendar", "CALENDAR\n%02d" % GameState.day, Rect2(640, 130, 110, 80), _open_calendar)
 	_hotspot("Missions", "MISSIONS", Rect2(290, 350, 380, 120), _open_missions)
 	_hotspot("Menu", "MENU", Rect2(870, 484, 70, 40), func() -> void: menu_requested.emit())
 
@@ -138,9 +138,9 @@ func _open_calendar() -> void:
 			cell.text += "\ncheckpoint"
 			cell.add_theme_font_size_override("font_size", 11)
 		var tint := INK
-		if day < Game.day:
+		if day < GameState.day:
 			tint = MUTED
-		elif day == Game.day:
+		elif day == GameState.day:
 			tint = ACCENT
 			cell.text = "> " + cell.text
 		cell.add_theme_color_override("font_color", tint)

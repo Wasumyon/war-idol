@@ -299,7 +299,7 @@ func _show_entry(id: String) -> void:
 	current = id
 	_original.set_pressed_no_signal(false)
 	if id != "":
-		Game.set_flag("seen:" + id)
+		GameState.set_flag("seen:" + id)
 		var at := _list_ids.find(id)
 		if at >= 0:
 			_list.set_item_text(at, _row_text(id))

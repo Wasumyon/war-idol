@@ -211,7 +211,7 @@ ENGINE REQUIREMENTS
   Nothing above can be authored yet.
 
   -  The script can WRITE stats and deeds today (+ hype 5 and + spared_warden 1 both
-     work) and cannot READ them. get_stat and has_flag exist in autoload/game.gd and are
+     work) and cannot READ them. get_stat and has_flag exist in autoload/game_state.gd and are
      called from nowhere in the project. One conditional verb is the entire addition,
      placed so it attaches to the node it precedes, like @ glitch and @ auto.
 

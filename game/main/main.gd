@@ -69,7 +69,7 @@ func _input(event: InputEvent) -> void:
 # The loop: calendar -> segment -> calendar
 # ---------------------------------------------------------------------------
 func _next() -> void:
-	if Game.load_error != OK:
+	if GameState.load_error != OK:
 		_say("The campaign save could not be loaded.")
 		return
 	var step := CALENDAR.next_step()
@@ -99,10 +99,10 @@ func _dossier_closed() -> void:
 
 
 func _start(id: String) -> void:
-	if Game.debug_first_shot and id == Game.OPENER_SEGMENT:
+	if GameState.debug_first_shot and id == GameState.OPENER_SEGMENT:
 		await _complete(id, {})
 		return
-	await _save(func() -> Error: return Game.begin_segment(id))
+	await _save(func() -> Error: return GameState.begin_segment(id))
 	current_id = id
 	var seg := CALENDAR.segment(id)
 	match str(seg.get("type", "")):
@@ -124,13 +124,13 @@ func _start(id: String) -> void:
 func _complete(id: String, result: Dictionary) -> void:
 	var outputs := CALENDAR.outputs_for(id, result)
 	var used := CALENDAR.slots_used(id)
-	await _save(func() -> Error: return Game.complete_segment(id, outputs, used))
+	await _save(func() -> Error: return GameState.complete_segment(id, outputs, used))
 	current_id = ""
 	await _next()
 
 
 # ---------------------------------------------------------------------------
-# The Day 1 opening: the VN walks Game.chapters and calls the first shot
+# The Day 1 opening: the VN walks GameState.chapters and calls the first shot
 # ---------------------------------------------------------------------------
 func _show_vn(file: String) -> void:
 	var vn := VN_SCENE.instantiate()
@@ -152,7 +152,7 @@ func _show_first_shot() -> void:
 
 
 func _first_shot_due() -> bool:
-	return Game.first_shot_pending or (Game.debug_first_shot and Game.first_shot_outcome.is_empty())
+	return GameState.first_shot_pending or (GameState.debug_first_shot and GameState.first_shot_outcome.is_empty())
 
 
 # ---------------------------------------------------------------------------
@@ -176,7 +176,7 @@ func _refresh_phone(in_hub: bool) -> void:
 		_phone.queue_free()
 	_phone = PHONE.new()
 	hud.add_child(_phone)
-	_phone_button.visible = in_hub and not Game.first_shot_outcome.is_empty()
+	_phone_button.visible = in_hub and not GameState.first_shot_outcome.is_empty()
 
 
 func _save(action: Callable) -> void:
@@ -212,7 +212,7 @@ func debug_skip() -> void:
 func debug_jump(day: int) -> void:
 	if transition.is_busy():
 		return
-	await _save(func() -> Error: return Game.jump_to_day(day))
+	await _save(func() -> Error: return GameState.jump_to_day(day))
 	current_id = ""
 	_next()
 
@@ -220,8 +220,8 @@ func debug_jump(day: int) -> void:
 func debug_toggle_flag(flag: String) -> void:
 	if flag == "" or transition.is_busy():
 		return
-	Game.set_flag(flag, not Game.has_flag(flag))
-	await _save(Game.save_campaign)
+	GameState.set_flag(flag, not GameState.has_flag(flag))
+	await _save(GameState.save_campaign)
 	if current_id == "":
 		_next()
 
@@ -229,7 +229,7 @@ func debug_toggle_flag(flag: String) -> void:
 ## Files every dossier entry, as if the story had shown them all.
 func debug_file_all() -> void:
 	for id in DOSSIER_DATA.all():
-		Game.set_flag("file:" + id)
+		GameState.set_flag("file:" + id)
 	_debug_dossier_changed("Filed all %d entries" % DOSSIER_DATA.all().size())
 
 
@@ -237,9 +237,9 @@ func debug_file_all() -> void:
 ## clears the "already revised" mark, so turning it on again replays the reveal.
 func debug_toggle_reveal() -> void:
 	var on := not DOSSIER_DATA.revealed()
-	Game.set_flag(DOSSIER_DATA.REVEAL_FLAG, on)
+	GameState.set_flag(DOSSIER_DATA.REVEAL_FLAG, on)
 	if not on:
-		Game.set_flag(DOSSIER_DATA.REVISED_FLAG, false)
+		GameState.set_flag(DOSSIER_DATA.REVISED_FLAG, false)
 	_debug_dossier_changed("Visor reveal " + ("on" if on else "off"))
 
 
@@ -249,5 +249,5 @@ func _debug_dossier_changed(what: String) -> void:
 	if dossier.is_open():
 		dossier.close()
 	if current_id == "" and not transition.is_busy():
-		await _save(Game.save_campaign)
+		await _save(GameState.save_campaign)
 		_dossier_closed()

@@ -70,7 +70,7 @@ The Cohort is the colony's answer to the {{swarm|seen_hive}}. Its tourmarch repo
 
 ## 3. Unlocking and "new"
 
-State lives in `Game.flags`, so nothing new goes in the save format.
+State lives in `GameState.flags`, so nothing new goes in the save format.
 
 - **Filed:** flag `file:<id>`. Set by:
   - a new VN directive **`@ file <id>`** (attaches to the next node like `@ sfx`). `vn.gd` sets

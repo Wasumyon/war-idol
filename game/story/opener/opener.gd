@@ -29,7 +29,7 @@ var _save_failed := false
 
 
 func _ready() -> void:
-	if Game.load_error != OK:
+	if GameState.load_error != OK:
 		_enter(Phase.HANDOFF)
 
 
@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 
 func _save_and_handoff() -> void:
 	_enter(Phase.HANDOFF)
-	_save_failed = Game.save_campaign() != OK
+	_save_failed = GameState.save_campaign() != OK
 	if not _save_failed:
 		finished.emit({})
 
@@ -113,7 +113,7 @@ func _draw() -> void:
 		Phase.SETBACK, Phase.HANDOFF:
 			status = "SECOND STRIKE" if _elapsed < 0.55 else "RIG OFFLINE"
 			accent = RED
-	if Game.load_error != OK:
+	if GameState.load_error != OK:
 		status = "CAMPAIGN SAVE COULD NOT BE LOADED"
 	elif _save_failed:
 		status = "CAMPAIGN SAVE FAILED"

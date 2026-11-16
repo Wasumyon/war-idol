@@ -38,7 +38,7 @@ class_name LaneSpawner
 # --- filmer-targeting lasers ---
 @export var laser_interval := 7.0
 
-# Relative density per lane, DERIVED from Game.lane_count in _ready():
+# Relative density per lane, DERIVED from GameState.lane_count in _ready():
 # outermost lanes densest, centre sparsest (mirrored). Never hand-edited.
 var lane_weights: Array[float] = []
 
@@ -61,7 +61,7 @@ func _ready() -> void:
 ## Outermost lane = 3.0, centre = 1.0, mirrored. Matches [3,2,1,2,3] for 5 lanes.
 func _build_lane_weights() -> void:
 	lane_weights.clear()
-	var n: int = Game.lane_count
+	var n: int = GameState.lane_count
 	if n <= 1:
 		lane_weights.append(1.0)
 		return
@@ -72,7 +72,7 @@ func _build_lane_weights() -> void:
 
 
 func lane_x(index: int) -> float:
-	return Game.lane_x(index)
+	return GameState.lane_x(index)
 
 
 func _process(delta: float) -> void:
@@ -128,7 +128,7 @@ func _spawn_row(z: float) -> void:
 
 	var lane := _pick_lane()
 	if lane == _last_lane:
-		lane = (lane + 1) % Game.lane_count
+		lane = (lane + 1) % GameState.lane_count
 	_last_lane = lane
 
 	if randf() < emitter_chance and abs(z - _last_emitter_z) >= emitter_min_gap:
@@ -205,4 +205,4 @@ func _pick_lane() -> int:
 		r -= lane_weights[i]
 		if r <= 0.0:
 			return i
-	return Game.lane_count / 2
+	return GameState.lane_count / 2

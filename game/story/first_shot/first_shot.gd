@@ -1,5 +1,5 @@
 extends Node2D
-## Chip's first filming request. Records its own result (Game.record_first_shot is
+## Chip's first filming request. Records its own result (GameState.record_first_shot is
 ## idempotent and gated on the chapter), then reports it with finished.
 
 signal finished(result: Dictionary)
@@ -21,7 +21,7 @@ var _leaving := false
 
 
 func _ready() -> void:
-	if not Game.first_shot_outcome.is_empty():
+	if not GameState.first_shot_outcome.is_empty():
 		_report.call_deferred()
 
 
@@ -51,7 +51,7 @@ func _resolve(captured: bool) -> void:
 
 
 func _save_result() -> void:
-	_save_failed = Game.record_first_shot(_captured) != OK
+	_save_failed = GameState.record_first_shot(_captured) != OK
 	if _save_failed:
 		return
 	_leaving = true
@@ -60,7 +60,7 @@ func _save_result() -> void:
 
 
 func _report() -> void:
-	finished.emit({"outcome": Game.first_shot_outcome})
+	finished.emit({"outcome": GameState.first_shot_outcome})
 
 
 func _draw() -> void:

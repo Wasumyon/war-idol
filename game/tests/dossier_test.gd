@@ -1,6 +1,6 @@
 extends Node
 ## Run with --headless --path game res://tests/dossier_test.tscn.  Spec: docs/dossier_spec.md §7, §11.
-## Touches Game.flags in memory only; nothing here saves.
+## Touches GameState.flags in memory only; nothing here saves.
 
 const DATA := preload("res://dossier/dossier_data.gd")
 const DOSSIER_SCENE := preload("res://dossier/dossier.tscn")
@@ -22,7 +22,7 @@ func _check(ok: bool, what: String) -> bool:
 
 
 func _run() -> void:
-	Game.flags = {}
+	GameState.flags = {}
 	DATA.reload()
 
 	# --- data ---------------------------------------------------------------
@@ -41,13 +41,13 @@ func _run() -> void:
 	var a := "placeholder_person"
 	var b := "placeholder_unit"
 	_check(d.list_ids("new").is_empty(), "nothing filed: New is empty")
-	Game.set_flag("file:" + a)
+	GameState.set_flag("file:" + a)
 	_check(d.list_ids("new") == [a], "a filed entry is listed in New")
 	_check(d.list_ids("people") == [a] and d.list_ids("military").is_empty(), "tabs list their own category")
 	_check(DATA.new_count() == 1, "new count is 1")
 	d.open(a)
 	_check(d.is_open() and get_tree().paused, "open() shows the files and pauses the tree")
-	_check(Game.has_flag("seen:" + a), "opening an entry sets seen:<id>")
+	_check(GameState.has_flag("seen:" + a), "opening an entry sets seen:<id>")
 	_check(d.list_ids("new").is_empty() and DATA.new_count() == 0, "a read entry is no longer new")
 	_check(d.body_bbcode().contains("[glitch]xxxxxxxx[/glitch]"), "before-reveal text shows the glitched span")
 	_check(not d.body_bbcode().contains("[url=" + b), "a link to an unfiled entry is not clickable")
@@ -55,12 +55,12 @@ func _run() -> void:
 	d.close()
 	_check(not get_tree().paused, "close() unpauses a tree it paused")
 
-	Game.set_flag("file:" + b)
+	GameState.set_flag("file:" + b)
 	d.open(a)
 	_check(d.body_bbcode().contains("[url=" + b + "]"), "a link to a filed entry is clickable")
 	d.close()
 
-	Game.set_flag(d.REVEAL_FLAG)
+	GameState.set_flag(d.REVEAL_FLAG)
 	_check(d.list_ids("new") == [a, b] or d.list_ids("new") == [a], "the reveal makes revised files new again")
 	_check(d.list_ids("new").has(a), "entry a is new again after the reveal")
 	d.open(a)
@@ -71,13 +71,13 @@ func _run() -> void:
 
 	# --- glitch spans -------------------------------------------------------
 	_check(DATA.mark_up("{{x|f}}").contains("[glitch]x[/glitch]"), "a glitch span renders glitched")
-	Game.set_flag("f")
+	GameState.set_flag("f")
 	_check(DATA.mark_up("{{x|f}}") == "x", "a glitch span clears once its flag is set")
 	_check(DATA.mark_up("{{x}}").contains("[glitch]"), "a flagless glitch span never clears")
 
 	# --- story terms (§11) --------------------------------------------------
 	_check(not DATA.mark_up("The Placeholder Place is quiet.").contains("[url="), "an unfiled term stays plain")
-	Game.set_flag("file:placeholder_place")
+	GameState.set_flag("file:placeholder_place")
 	var linked := DATA.mark_up("The Placeholder Place is quiet.")
 	_check(linked.contains("[url=placeholder_place]") and linked.contains("[u]Placeholder Place[/u]"), "a filed term is underlined and linked")
 	_check(not DATA.mark_up("The \\Placeholder Place is quiet.").contains("[url="), "backslash-Term stays plain")
@@ -100,7 +100,7 @@ func _run() -> void:
 	vn.term_clicked.connect(func(id: String) -> void: clicked.append(id))
 	vn.term_clicked.connect(d.open)
 	add_child(vn)
-	_check(filed_ids == ["placeholder_feed"] and Game.has_flag("file:placeholder_feed"), "@ file sets the flag and emits filed")
+	_check(filed_ids == ["placeholder_feed"] and GameState.has_flag("file:placeholder_feed"), "@ file sets the flag and emits filed")
 	var shown: String = vn._compose_text({"text": "Placeholder Feed here.", "staging": [], "modes": {}})
 	_check(shown.contains("[url=placeholder_feed]"), "the first mention after @ file is already underlined")
 	vn._on_term_clicked("placeholder_unit")
@@ -123,7 +123,7 @@ func _run() -> void:
 	vn.queue_free()
 	d.queue_free()
 	DirAccess.remove_absolute(SCENE_FILE)
-	Game.flags = {}
+	GameState.flags = {}
 	get_tree().paused = false
 	print("Dossier test: %d failure(s)" % _failures)
 	get_tree().quit(1 if _failures > 0 else 0)
