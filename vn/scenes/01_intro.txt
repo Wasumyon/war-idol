@@ -1,0 +1,427 @@
+# War Idol - 01 - Intro
+# Source: Stories/test.txt (Intro).
+#
+# --- FORMAT REFERENCE -------------------------------------------------------
+# LINE TYPES
+#   Name: text      dialogue  -> bottom box, name label, typewriter
+#   text            narration -> full screen, no name, one line added per click
+#   ? choice text   a branch under the line above
+#   + stat n        effect for the branch/line above  (e.g. + hype 5)
+#   -> label        jump to a beat; blank ends the scene
+#   == label        a named beat to jump to
+#   # comment       ignored
+#
+# DIRECTIVES - two kinds
+#   MODE (sticky; lasts until changed - add "off" to undo):
+#     @ fullscreen / @ fullscreen off        @ box  (= fullscreen off)
+#     @ narration                            @ center [off]  @ right [off]
+#     @ small [off]  @ large [off]
+#     @ music <name>  (loops; "@ music stop")
+#   EVENT (one-shot; happens on this line only):
+#     @ stage <text>          italic line in the box, above the text
+#     @ sfx <name>            one-shot sound   (res://vn/sfx/<name>.ogg|wav|mp3)
+#     @ img <name>            swap the full-screen illustration (sticky)
+#                             "@ img none" clears it; "@ img black|white"
+#     @ zoom <factor>         "@ zoom 1" resets
+#     @ pan <dx> <dy> [sec]   px at 960x540; +y pans UP. "@ pan 0 0" resets
+#     @ sat <value> [sec]     1 = normal, 0 = grey, 2 = over-hot
+#     @ fade [sec] / @ fade off          @ glitch [sec]   @ shake
+#     @ page                  break the narration page here ("---" alone does the same)
+#     @ input_name            open the name-entry panel
+#     @ cast A=Alpha, Beta    declare speakers (see below)
+#     @ preset name = fx + fx + ...       then reuse "@ name"
+#
+# A line is dialogue if the text before the first ":" is ONE word, or matches a
+# name declared on "@ cast". So "Chip: hi" is dialogue; "Our contract: 50/50"
+# is narration; and "Captain Keno: ..." is dialogue ONLY because of the @ cast.
+# Inline: ***bold italic***  **bold**  *italic*  _italic_    (\* literal, backticks code)
+# ---------------------------------------------------------------------------
+
+== intro
+@ fullscreen
+@ center
+@ large
+WAR IDOL
+
+@ center off
+@ large off
+
+# cast shorthand: one letter stands in for a speaker; multi-word names have to be
+# declared here or they read as narration ("Captain Keno: ..." needs this line).
+@ cast S=Strange Pink Girl, C=Chip, P=Player, K=Captain Keno, R=Recruiter
+
+# Presets are per-scene, so a preset defined in one scene does not exist in another.
+# The prologue defines this one; without a copy here, "@tremble" parses and then does nothing.
+@ preset tremble = shake + zoom 1.15 + sfx shuffle
+
+Seven months since then. Four of those spent suspended on a torture rack resetting my spine. Another two for rehab. 
+
+Only three others made it out of the verdigris hellpits of Chaac Patera. And then one was gone a month later. 
+I'm sorry, buddy. I could have been there but... The brass didn't want me back. Is it just the leg?
+Anyway.
+
+@ img recruiting_office
+The bald recruiter with the bespectacled, beady eyes has them pegged on the leg, then my file, then my face, then quickly back to the file. 
+Must have looked like hell. 
+
+Something snags his eye; he stiffens his posture and his arm begins to snap to attention before he catches himself and coughs.
+
+"First Loki Patera, Tarsus Regio, Prometheus, Uruk Sulcus, Second Loki Patera, Conamara Chaos, Argus Panoptes!" he whistles.  
+His tone becomes somber.
+"Chaac Patera... Lost a brother there."
+
+He drops the papers and leans in conspiratorially.
+
+R: "Sarge, what are you doing here? Somebody put you to this?"
+
+P: "Enlisting." 
+
+R: "You knows what I-  Look behind you, we're not short on backlog. Hero's record like this, you should be living high on the hog on your VA benefits!"
+
+Phantom pain pulsates through my mechanical knee as I wait in silence. 
+He looks at the shoddy back-alley piece of work my leg is and stammers. Every word is punctuated with his hands. 
+
+R: "OK-OK! Maybe the Veterans' Assistance is swamped right now, but the boys upstairs are busy with winning this damn thing! Once we stomp all the bugs, all true Ionian patriots will get their just due, I'm sure!"
+
+P: "I'm sure."
+
+He heats at my curt answer. 
+
+R: "Look! You knows what they're going to take back from the bugs for Io? A *REAL* sky! We'll have true terraformers like our grandfathers dreamed of! Grand Executor Albrecht is going to cut the red tape! A real port, water rights, kids will be born who never have to see a suit 'til they fly off-moon! It says so in the pamphlet." 
+
+He crosses his arms and puts on a solemn mask.
+
+"It's those bastard oligarchs that are screwing us fighting folk over! Probably they're the ones humping your pension!"
+
+P: "Alright... Well, sign me up, and I'll fight for our water rights."
+
+R: "Oh, Uh... Sarge. Don't take this the wrong way. We're grateful for your service, truly. But, you're... Well... You ain't fresh from the barracks no more, you knows what I mean?" 
+
+He says it as a kindness.
+
+R: "If you need to make some dust to tide you over until victory day, I knows a guy. Vulkan Security, always hiring. And there's the mercs. I know them, they won't give a damn about your physical."
+
+I about-face. The cloak swings with me, and across it, the Triskelion Lion of Nemean Company proudly bares its fangs, swallowing Io, Europa, and Ganymede. It commands silence.
+The only sound in the room is the clack of my cane, all the way to the door.
+
+For a moment, I was satisfied that the show landed; but I landed harder on account of the stairs. For a moment, I shift my weight onto a leg that belongs to me. Then my cheek digs hard into the red pavement. 
+@ img great_red_eye
+I turn over. It's watching me again. That Great Red Eye. 
+@tremble
+Well, laugh, damn you!
+
+---
+@ img juno_alley
+No one turns their head. People pass around me like a stream around stone. Good. A man who can't get up by himself is as good as dead on Io.
+
+Baldy was right on one thing. The boom times, when dad moved out to the Jovian moons, are long over.
+The Giant Leap Pioneer Project dream popped in the bubble. The lost children of that era lived as sycophants, freeters, and burnouts.
+The only place you could find a dream was at a brothel or through a gun barrel - until the infestation of Io.
+
+Infestation... Invasion... They called it many things, as if they knew what happened, but the truth is no one knows what the hell is going on.
+Most called it The Revelation. The end of the world. 
+
+Whatever *it* is, it started in Argos, the colony's pride, on the fire sea of Loki Patera.
+
+*Something* there made the poor bastards' topside suits bore into their bodies. 
+*Something* changed their flesh into screaming horrors of metal and muscle.
+Chitin grew over their skin like armor; flesh stretched like a film over servos.
+Mechanical growths burst through their skulls, fusing into their helmets.
+
+It gives them horns.
+
+Some called them bugs, others bots. 
+But I reckon what they called them told you more about the person than about the abominations.
+
+Nobody knows what caused it, but the rumor is| it's the water.
+
+End times or not, life goes on. The fear jacked up prices and under that all-seeing eye, everyone's still gotta make a buck.
+Or get drunk and punch someone.
+---
+
+@ music keno
+@ img keno
+Can't remember the first two bars - or was it three? I had to get it out of my system. I had to win, even if the win was Pyrrhic.
+It felt good, getting cracked with that gazelle hook. Both the bastard and I learned that the cane is not just for the aura. 
+
+War is a fool's market, and whenever the bull comes to charge: sex, drink, and violence are the top sellers. 
+And retards like me inevitably flow to Keno's gutter. Best damned dive bar in the new capital, Juno. 
+Technically it's the "White Cow."
+If you ask the barman why, Keno will give you the line:
+"Io, one of Jupiter's harem. It's what he turned her into to hide her from his ever-jealous wife, Juno."
+But everyone calls it after the owner, Captain Keno himself. 
+---
+# TODO: the label switches from S to C only when she insists on the name to his face.
+# Everything before that stays "Strange Pink Girl" on purpose: she has announced herself
+# to the camera and he still hasn't registered it. That gap IS the point.
+Next thing I know, I'm nursing an old-fashioned, trying to endure the cacophony from a little pink-haired girl with her phone shining in my face.
+
+S: "Privetstuyu vas! Konbanwa! Nei hou ma~! Chip here, reporting to you from this *coooool* bar in the seedy underbelly of Io!"
+
+S: "But the decor is so fun and kitschy! It's like I walked into one of my great (great) grandpa's movies! Did you know, chat? They call places like this 'saloon', I think. Look how fancy the glasses are, like little crystals, not like the poly-plastics we have on Earth!"
+
+I can feel Keno bristling, but also brimming with pride.
+
+She leans in and whispers to her phone camera.
+
+S: "Everyone looks so stern and forlorn, I bet they're all mean killers! Look at this *tall, dark, and handsome hunk*, ladies - I bet he killed someone~"
+
+She catches herself and gasps. She shakes her head vigorously and pitches her voice into a higher register.
+
+S: "N-Not that I'm into that sort of thing, guys! Your little Chip is as pure as ever~!"
+
+She turns her phone to me and bombards me with questions.
+
+S: "Say, was it loud out there? Like actually loud? Or does it all just become white noise?"
+
+She leans in closer and tugs at my arm.
+
+S: "About the smell - is it true what they say? Say, teach me some Ionian swears! Say~ How many people have you killed?~"
+
+P: "Lady, you've got no gun, no muscle, and no dictionary. What's a tart like you doing out here?"
+
+S: "Content!"
+
+I pull out my las-pistol and level it at her small chest.
+
+P: "This the content you were looking for?"
+
+She bites down on a shriek and lets out a croak.
+Maybe a harsh lesson for such a young girl, but best to learn it now before she gets in *real* trouble.
+
+I can see the sweat bead on her brow as she raises her hands. Her smile curdles, but she holds strong.
+She presses her ribcage into the cold steel.
+
+S: "Oh, deary me! Chat, you see what rapscallions will do to a damsel out in these boondocks!? Constable! Call the thesaurus police!~"
+
+Eyes turn towards us. It's my turn to feel sweat on my brow. I move to put the gun away. Her ruby eyes gleam.
+Like a viper, she catches my hand, thrusts her slim arm over my elbow, and turns her back into my chest.
+
+She holds my hand with the gun barrel up to her lips and snaps a selfie of her miming blowing smoke off it. 
+The phone explodes reading out the donations.
+
+S: "See! Heheh. I know how to shoot too, hotshot."
+# TODO: the "Player Name" display should become "Hotshot" from this line on. Note canon §8 has the PC
+# nicknamed Meathead/Blockhead — reconcile before wiring.
+# ["Player Name" should change to "Hotshot" here.]
+
+I push the goblin off and she transfers the momentum into a spin and curtsies with her tongue out.
+
+P: "Hump it, pipsqueak."
+
+She doesn't. 
+
+S: "Oh, is that the local slang?!"
+
+She slides back into the stool beside me like we've known each other for years, thumb already scrolling.
+On the Feed is the clip of us and our... dance. Notifications ring out of her phone and she starts reading off donations and comments.
+
+S: "Fifty. Seventy. Two-hundred! Oh~ Thank you chat! Sounds like drinks are on me today, old man!"
+
+She taps in a bunch of cocktails on the touch monitor and begins to swipe her phone over it.
+I grab her wrist. Not hard, just enough to stop her.
+
+P: "You saying I can't pay for my own? _and I ain't an old man..._"
+S: "I'm saying a *lady* sometimes feels generous."
+P: "Generous ladies are dangerous. And guys pay for the first date. It's common sense."
+
+She doesn't pull away and instead searches my face for something.
+
+S: "Old-fashioned, huh? But I don't mind that."
+
+She plays with the word on her tongue and gnaws on the syllables with her teeth and finishes it off with a wink. 
+She lifts her martini glass, her second or third, and pours the will-o'-the-wisp down her gullet.
+
+She props her phone up against the empty glass, aiming it at the two of us. It takes a couple of tries. 
+
+She reaches out to buy another bounty. I grab her wrist again.
+
+S: "Hey! What gives?"
+
+P: "Newbie, this is Io. And the goddess herself brought you to the best dive on the whole stinking moon. This is how you do it."
+
+S: "I have a name, OK! It's Chip!"
+# TODO: the label switches S to C from here. He files her name in his narration while
+# ignoring her, which is the point: canon has him amend labels privately and never to a
+# face. Do not move the switch earlier — she has to insist first.
+# [Here "Strange Pink Girl" should change to "Chip."]
+
+She gestures her thumbs at herself and I ignore her.
+
+I select a flight, the four jewels of Io, in order: the White Cow, and the Peacock, the Gadfly, and the Metamorphosis.
+# UNWIRED: his own drink is a player choice. Line, options and stat effects still to build:
+# ? House and red   /   + …
+# ? Old fashioned  /   + …
+# ? Brimstone      /   + …
+# ? White Cow      /   + …
+# ? Peacock        /   + …
+# ? The Gadfly     /   + …
+# ? Metamorphosis  /   + …
+# ? Will-o'-the-wisp / + …
+
+I order a [choice] for myself.
+[House and Red, Old Fashioned, Brimstone, White Cow, Peacock, the Gadfly, Metamorphosis, Will-o-the-Wisp]
+
+C: "Something special about these?"
+
+P: "Maybe. They say if even a heifer drinks these in the right order she'll turn into a princess."
+I return her wink. She puffs out her cheeks and lightly drums me with her fists. It tickles.
+
+C: "Hey~!"
+
+Captain Keno lines up the drinks like he's done a million times before: 
+creamy milkstone-hued liquor in a short tumbler over ice, 
+thick lavender, olive, and blue sapphire liquors layered like an opal in a tall pousse-café straight-side, 
+a fizzy peridot draught that smells like a struck match in a highball, 
+and lastly, a topaz-specked syrup which looked like the surface of our home, in a stemmed bulbous glass with a dose line cut in it — served with a spoon, sugar, and the Kiss in a scrambler.
+
+He gestures to the last drink.
+
+K: "Try mixing those. That one's a Pontarlier — the water in the brouilleur goes in it, slow. The spoon-"
+
+Poured right it comes out as one colour. When the water goes through the sugar, slow, it settles white and flat as snowy Europa. That's how everyone drinks it. That's the drink.
+
+Swaying on her stool, she pours the Kiss in before he finishes — 
+
+— and it goes wrong. The topaz goes emerald. Rivers of blue branch in it and are gone. Then it billows with white clouds. And then they too vanish until all that is left is Chip's reflection on the surface. 
+
+Chip claps.
+
+Ever the professional, Keno whistles. He lifts the scrambler, looks at what's left, and sets it back.
+
+She reaches for the closest drink to her right. 
+
+K: "*Cough!*"
+Keno gestures with a turn of the head to the left. 
+That old softie. 
+
+He does this three more times and even I start feeling sorry for him. 
+I laugh.| It's been a while.
+
+Oblivious, she downs each savoring them like a happy calf at her mother's udders.
+
+Some princess. 
+
+C: "Thanks for showing me a good time~!"
+
+I turn to settle with old Keno in his vintage aloha shirt and prosthetic pince-nez working night shift. He has never raised his prices. Not since his own father's time.
+Never gouging, treating you like you're alive. That's the simple trick to fill the seats with every guttersnipe in the city. But only Keno gets it.
+
+He shakes his head.
+
+K: "Already paid."
+
+She's already at the door smiling with her phone raised on a silly stick, waving it like she's won something. The bright screen reads in big letters: **~PAID~ ~PAID~ ~PAID~**
+
+P: "You little-!"
+
+I grab from my pocket a bunch of old colonial lead chips, the ones before they had Albrecht's face on them, and slam them on the bar table.
+
+K: "Hey! What!?-"
+The Captain shrugs then rings a bell.
+"Free round for everyone on the Nemean!"
+
+Ex-Nemean, I think to myself.
+
+The crowd erupts in roaring and hooting as I push past them. Lads in the corner slam their beers in rhythm and chant:
+
+"THE THREE RETURNED! **ROAR** THE THREE RETURNED! **ROAR** THE THREE RETURNED!" **ROAR**
+
+I push past the bouncer and, scanning, find no sign of the pink pixie.
+---
+A week later I hear her again before I see her. Same bit, more practiced and bombastic. |The idiot took the wrong lesson from our night. 
+She's pulled a crowd in the slum-quarters alley three men deep. I shoulder in to see her and men crush in behind me.
+
+A bald thug with a neck of metal and plastic slaps the phone out of her hand. The screen audibly cracks. Before she can yelp, another punk with a Cassini Company emblem tattooed on his face comes up from the crowd opposite me, behind her. He pins her arms up in a Nelson and covers her face.
+The baldie retrieves the shattered phone, whips it around, and seeing the donations roll in, reads them aloud. Playing host.
+
+Thug: Now, let's show you boys what you *really* came to see. 
+The laughter pools like a bubbling sewer.
+
+Before he even places a big paw on her top, the pings fire off wildly. The counter climbs higher and higher as she screams. 
+None come to her rescue.
+
+Instead, she sees before her a growing mass of lecherous eyes, mocking fangs, and lashing tongues.
+He pulls hard.
+
+I don't remember deciding it. Three recoils. A pipe across my back. Flow with the blow and swing. The heft of the tantalum cane through a neck, an ankle, and my gun, heavy, level on a third.
+Scatter. 
+
+Nobody but me and the girl.
+I hobble to her and look down at her crumpled figure. She doesn't look up at me.
+I unfasten my cloak and drape her in it. The phone, though broken, still rings out tallies of booty. I give it to her.
+She snatches it away and holds it close to her chest as she starts to cry.
+I hold her shoulders.
+
+P: Don't do that.
+
+She shakes her head, transmuting her pain into anger, and holds it down. Only a whimper escapes. Good girl.
+
+I look at the aftermath. Two burned-out craters in the chest of the fat bald one, one dead center in the forehead of the Cassini punk. 
+Three more meteors for Io. I spit.
+
+P: Not even the bugs do this.
+
+P: I told you that you'd get killed pulling stunts like this! Unless you're in a legit crowd, no one's gonna save you. Your little tricks won't work. 
+
+P: The moon will eat you up and spit you out!
+
+C: But... it did work though, didn't it?
+
+I don't have an answer for that, but I feel a flash of anger. 
+
+Airhead. Fresh meat. Dead by Wednesday. Too loud, too shiny. If you stand out like that you'll only get hammered. Not my problem. 
+
+I turn to leave but feel a tug on my sleeve. 
+
+I turn back to see her holding a gleaming glass badge of an eye. 
+
+A Civilian War Journalism License. Anyone can film whatever they want on Io. No one can stop them.
+One random voice on the Feed is just a curio, could be a scam, could be a rumor. 
+But when the Ministry of Logistics and Public Relations sanctions individuals to cover the plight on Io, it gives them authority.
+Not power in politics or capital, nor in the barrel of a gun, but something... softer, more subtle. 
+
+Faith. Legitimacy. Belief.
+
+C: I know what you want. I know people like you.
+C: *You're a dead man!*
+
+...
+There's something strange about this girl that makes me forget... everything.
+
+Suddenly, she looks up at me. She is Cicero addressing the senate. She lengthens through her fingers towards Jupiter obscured by the rain. Her other hand is splayed towards her solar plexus, tendons cording the back of her hand.
+My cloak falls open off her as if in slow motion as she moves. She doesn't notice. The artificial rain beads on her alabaster skin. 
+Next she is Bernini's Daphne, and something older underneath — I haven't got a name for it.
+For a brief moment nothing exists but us: theatre and audience. Tears well at the inner corners of her eyes. Are these artificial too?
+
+No. 
+
+C: You want to go back out there, right? Because you are only alive out there among the corpses. 
+C: Heh. Bodies don't even rot on Io; you live forever out there! 
+C: You boys think you're so clever and romantic!
+
+Like a figure skater, she closes her sad doe eyes and squeezes her arms into her core. Then she extends her hand with a desperate smile.
+
+C: I can give it to you. 
+
+@ sfx lightning-flash
+@ img chip-skull
+
+An acid storm flashes outside the dome, and the interior sprinklers start mirroring it. 
+For a split second half her face takes the appearance of a skull... Or am I seeing things?
+
+P: Dangerous...
+
+But I don't mind that neither. 
+
+I pull the cloak over her soaked body. She flushes and looks away.
+
+I accept her trembling hand.
+
+Our contract: I keep her breathing and she brings me out there and in the bacon. We cut it all fifty-fifty, profit and expense. 
+Death clause: All the belongings of the deceased transfer to the surviving member - after a Space Vultures Guild investigation confirms no foul play.
+
+For once in a long while, the path is clear if not bright:
+
+*Stay alive and elbow out the competition.* 
+**Those are the rules of the War Idols.**

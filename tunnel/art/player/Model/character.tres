@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cjqgeoxm48y5j"]
+
+[ext_resource type="Texture2D" uid="uid://iy2m1br5uapg" path="res://art/player/Model/diffuse.png" id="1_x7l6y"]
+[ext_resource type="Texture2D" uid="uid://c3qn3hcxajvb1" path="res://art/player/Model/MR.png" id="2_4qstw"]
+
+[resource]
+albedo_texture = ExtResource("1_x7l6y")
+metallic = 1.0
+metallic_specular = 0.1
+metallic_texture = ExtResource("2_4qstw")
+roughness_texture = ExtResource("2_4qstw")
+roughness_texture_channel = 1

@@ -1,3 +1,18 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Exported game builds (upload these to the jam page, not GitHub)
+build/
+
+# Local web-export zip and the stray unrigged model at the root (the real one is art/player/Model/)
+/War-Idol-Escape-HTML.zip
+/mainguy.glb
+/mainguy.glb.import
+/mainguy_MR.png
+/mainguy_MR.png.import
+/mainguy_diffuse.png
+/mainguy_diffuse.png.import
+
+# Linux Godot for Claude's test shell
+_tools/

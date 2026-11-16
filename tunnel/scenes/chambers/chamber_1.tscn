@@ -1,0 +1,318 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/follow_camera.gd" id="s_cam"]
+[ext_resource type="Script" path="res://scripts/tubeworm_cluster.gd" id="s_worm"]
+[ext_resource type="Script" path="res://scripts/hint_zone.gd" id="s_hint"]
+[ext_resource type="Script" path="res://scripts/checkpoint_zone.gd" id="s_check"]
+[ext_resource type="Script" path="res://scripts/exit_zone.gd" id="s_exit"]
+[ext_resource type="Script" path="res://scripts/acid_pool.gd" id="s_acid"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="p_player"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="p_hud"]
+[ext_resource type="Texture2D" path="res://art/light_radial.tres" id="t_light"]
+[ext_resource type="Script" path="res://scripts/chip_objective.gd" id="s_objective"]
+
+[sub_resource type="RectangleShape2D" id="R_wall"]
+size = Vector2(80, 1400)
+
+[sub_resource type="RectangleShape2D" id="R_ceil"]
+size = Vector2(4600, 400)
+
+[sub_resource type="RectangleShape2D" id="R_hint_walk"]
+size = Vector2(700, 300)
+
+[sub_resource type="RectangleShape2D" id="R_hint_lamp"]
+size = Vector2(330, 300)
+
+[sub_resource type="RectangleShape2D" id="R_check"]
+size = Vector2(60, 300)
+
+
+[sub_resource type="RectangleShape2D" id="R_exit"]
+size = Vector2(80, 300)
+
+[node name="Chamber1" type="Node2D"]
+
+[node name="GlobalDarkness" type="CanvasModulate" parent="."]
+color = Color(0.21, 0.20, 0.21, 1)
+
+[node name="Backdrop" type="Node2D" parent="."]
+z_index = -10
+
+[node name="BackWall" type="Polygon2D" parent="Backdrop"]
+color = Color(0.34, 0.33, 0.31, 1)
+polygon = PackedVector2Array(-700, -1000, 3700, -1000, 3700, 20, -700, 20)
+
+[node name="Pillar0" type="Polygon2D" parent="Backdrop"]
+color = Color(0.23, 0.22, 0.21, 1)
+polygon = PackedVector2Array(-165, -440, -35, -440, -35, 20, -165, 20)
+
+[node name="PillarFace0" type="Polygon2D" parent="Backdrop"]
+color = Color(0.28, 0.27, 0.26, 1)
+polygon = PackedVector2Array(-165, -440, -135, -440, -135, 20, -165, 20)
+
+[node name="Pillar1" type="Polygon2D" parent="Backdrop"]
+color = Color(0.23, 0.22, 0.21, 1)
+polygon = PackedVector2Array(435, -440, 565, -440, 565, 20, 435, 20)
+
+[node name="PillarFace1" type="Polygon2D" parent="Backdrop"]
+color = Color(0.28, 0.27, 0.26, 1)
+polygon = PackedVector2Array(435, -440, 465, -440, 465, 20, 435, 20)
+
+[node name="Pillar2" type="Polygon2D" parent="Backdrop"]
+color = Color(0.23, 0.22, 0.21, 1)
+polygon = PackedVector2Array(1035, -440, 1165, -440, 1165, 20, 1035, 20)
+
+[node name="PillarFace2" type="Polygon2D" parent="Backdrop"]
+color = Color(0.28, 0.27, 0.26, 1)
+polygon = PackedVector2Array(1035, -440, 1065, -440, 1065, 20, 1035, 20)
+
+[node name="Pillar3" type="Polygon2D" parent="Backdrop"]
+color = Color(0.23, 0.22, 0.21, 1)
+polygon = PackedVector2Array(1635, -440, 1765, -440, 1765, 20, 1635, 20)
+
+[node name="PillarFace3" type="Polygon2D" parent="Backdrop"]
+color = Color(0.28, 0.27, 0.26, 1)
+polygon = PackedVector2Array(1635, -440, 1665, -440, 1665, 20, 1635, 20)
+
+[node name="Pillar4" type="Polygon2D" parent="Backdrop"]
+color = Color(0.23, 0.22, 0.21, 1)
+polygon = PackedVector2Array(2235, -440, 2365, -440, 2365, 20, 2235, 20)
+
+[node name="PillarFace4" type="Polygon2D" parent="Backdrop"]
+color = Color(0.28, 0.27, 0.26, 1)
+polygon = PackedVector2Array(2235, -440, 2265, -440, 2265, 20, 2235, 20)
+
+[node name="Pillar5" type="Polygon2D" parent="Backdrop"]
+color = Color(0.23, 0.22, 0.21, 1)
+polygon = PackedVector2Array(2835, -440, 2965, -440, 2965, 20, 2835, 20)
+
+[node name="PillarFace5" type="Polygon2D" parent="Backdrop"]
+color = Color(0.28, 0.27, 0.26, 1)
+polygon = PackedVector2Array(2835, -440, 2865, -440, 2865, 20, 2835, 20)
+
+[node name="SteelBeam" type="Polygon2D" parent="Backdrop"]
+color = Color(0.6, 0.32, 0.1, 1)
+polygon = PackedVector2Array(-700, -392, 3700, -392, 3700, -370, -700, -370)
+
+[node name="SteelBeamShade" type="Polygon2D" parent="Backdrop"]
+color = Color(0.38, 0.2, 0.07, 1)
+polygon = PackedVector2Array(-700, -370, 3700, -370, 3700, -364, -700, -364)
+
+[node name="Strip0" type="Polygon2D" parent="Backdrop"]
+color = Color(1, 0.86, 0.36, 1)
+polygon = PackedVector2Array(165, -356, 235, -356, 235, -350, 165, -350)
+
+[node name="StripLight0" type="PointLight2D" parent="Backdrop"]
+position = Vector2(200, -330)
+color = Color(1, 0.74, 0.34, 1)
+energy = 0.6
+texture = ExtResource("t_light")
+texture_scale = 1.1
+
+[node name="Strip1" type="Polygon2D" parent="Backdrop"]
+color = Color(1, 0.86, 0.36, 1)
+polygon = PackedVector2Array(765, -356, 835, -356, 835, -350, 765, -350)
+
+[node name="StripLight1" type="PointLight2D" parent="Backdrop"]
+position = Vector2(800, -330)
+color = Color(1, 0.74, 0.34, 1)
+energy = 0.6
+texture = ExtResource("t_light")
+texture_scale = 1.1
+
+[node name="Strip3" type="Polygon2D" parent="Backdrop"]
+color = Color(1, 0.86, 0.36, 1)
+polygon = PackedVector2Array(1965, -356, 2035, -356, 2035, -350, 1965, -350)
+
+[node name="StripLight3" type="PointLight2D" parent="Backdrop"]
+position = Vector2(2000, -330)
+color = Color(1, 0.74, 0.34, 1)
+energy = 0.6
+texture = ExtResource("t_light")
+texture_scale = 1.1
+
+[node name="Strip5" type="Polygon2D" parent="Backdrop"]
+color = Color(1, 0.86, 0.36, 1)
+polygon = PackedVector2Array(3165, -356, 3235, -356, 3235, -350, 3165, -350)
+
+[node name="StripLight5" type="PointLight2D" parent="Backdrop"]
+position = Vector2(3200, -330)
+color = Color(1, 0.74, 0.34, 1)
+energy = 0.6
+texture = ExtResource("t_light")
+texture_scale = 1.1
+
+[node name="WarmHaze" type="PointLight2D" parent="Backdrop"]
+enabled = false
+position = Vector2(700, -200)
+color = Color(1, 0.6, 0.3, 1)
+energy = 0.18
+texture = ExtResource("t_light")
+texture_scale = 7.0
+
+[node name="CeilingSlab" type="Polygon2D" parent="Backdrop"]
+color = Color(0.11, 0.105, 0.1, 1)
+polygon = PackedVector2Array(-700, -1000, 3700, -1000, 3700, -440, -700, -440)
+
+[node name="PuzzlesAndHazards" type="Node2D" parent="."]
+
+[node name="AcidGlow" type="PointLight2D" parent="PuzzlesAndHazards"]
+position = Vector2(2260, -10)
+color = Color(0.55, 0.95, 0.2, 1)
+energy = 0.5
+texture = ExtResource("t_light")
+texture_scale = 2.6
+
+[node name="ShallowAcidGlow" type="PointLight2D" parent="PuzzlesAndHazards"]
+position = Vector2(500, -6)
+color = Color(0.55, 0.95, 0.2, 1)
+energy = 0.5
+texture = ExtResource("t_light")
+texture_scale = 1.55
+
+[node name="EnvironmentWalls" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="FloorCollider" type="CollisionPolygon2D" parent="EnvironmentWalls"]
+polygon = PackedVector2Array(-700, 0, 335, 0, 375, 31, 625, 31, 665, 0, 1876, 0, 1951, 60, 2505, 60, 2580, 0, 3700, 0, 3700, 420, -700, 420)
+
+[node name="FloorBand" type="Polygon2D" parent="EnvironmentWalls"]
+z_index = 2
+color = Color(0.065, 0.06, 0.065, 1)
+polygon = PackedVector2Array(-700, 0, 335, 0, 375, 31, 625, 31, 665, 0, 1876, 0, 1951, 60, 2505, 60, 2580, 0, 3700, 0, 3700, 420, -700, 420)
+
+[node name="FloorLip" type="Line2D" parent="EnvironmentWalls"]
+z_index = 2
+points = PackedVector2Array(-700, 0, 335, 0, 375, 31, 625, 31, 665, 0, 1876, 0, 1951, 60, 2505, 60, 2580, 0, 3700, 0)
+width = 4.0
+default_color = Color(0.4, 0.39, 0.37, 1)
+
+[node name="LeftWall" type="CollisionShape2D" parent="EnvironmentWalls"]
+position = Vector2(-300, -300)
+shape = SubResource("R_wall")
+
+[node name="RightWall" type="CollisionShape2D" parent="EnvironmentWalls"]
+position = Vector2(3060, -300)
+shape = SubResource("R_wall")
+
+[node name="Ceiling" type="CollisionShape2D" parent="EnvironmentWalls"]
+position = Vector2(1500, -640)
+shape = SubResource("R_ceil")
+
+[node name="TubewormWall" type="Area2D" parent="PuzzlesAndHazards"]
+z_index = 1
+position = Vector2(1090, 6)
+script = ExtResource("s_worm")
+width = 240.0
+max_height = 440.0
+stalk_count = 14
+kill_if_caught = false
+random_seed = 7
+light_reach = 170.0
+retract_time = 0.8
+
+[node name="TubewormWall2" type="Area2D" parent="PuzzlesAndHazards"]
+z_index = 1
+position = Vector2(1300, 6)
+script = ExtResource("s_worm")
+width = 240.0
+max_height = 420.0
+stalk_count = 14
+kill_if_caught = false
+random_seed = 20
+light_reach = 170.0
+retract_time = 0.8
+
+[node name="TubewormWall3" type="Area2D" parent="PuzzlesAndHazards"]
+z_index = 1
+position = Vector2(1510, 6)
+script = ExtResource("s_worm")
+width = 240.0
+max_height = 400.0
+stalk_count = 14
+kill_if_caught = false
+random_seed = 33
+light_reach = 170.0
+retract_time = 0.8
+
+[node name="ShallowAcidPool" type="Area2D" parent="PuzzlesAndHazards" node_paths=PackedStringArray("glow")]
+z_index = 3
+position = Vector2(500, 7)
+script = ExtResource("s_acid")
+half_width = 156.0
+bottom_half_width = 125.0
+depth = 24.0
+has_dense_bed = false
+entry_stalk_x = 89.0
+entry_stalk_reach = 30.0
+entry_warn_time = 1.25
+glow = NodePath("../ShallowAcidGlow")
+
+[node name="AcidPool" type="Area2D" parent="PuzzlesAndHazards" node_paths=PackedStringArray("glow")]
+z_index = 3
+position = Vector2(2260, 10)
+script = ExtResource("s_acid")
+half_width = 307.0
+bottom_half_width = 245.0
+entry_extension = 64.0
+depth = 50.0
+danger_start = -30.0
+entry_stalk_x = -228.0
+entry_stalk_reach = 30.0
+light_hold_time = 0.95
+warn_time = 0.34
+glow = NodePath("../AcidGlow")
+
+[node name="Zones" type="Node2D" parent="."]
+
+[node name="HintWalk" type="Area2D" parent="Zones"]
+position = Vector2(250, -150)
+script = ExtResource("s_hint")
+text = "A / D  or  ← →   walk     SHIFT   hurry (short burst)"
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/HintWalk"]
+shape = SubResource("R_hint_walk")
+
+[node name="HintLamp" type="Area2D" parent="Zones"]
+position = Vector2(770, -150)
+script = ExtResource("s_hint")
+text = "SPACE   lamp on / off"
+hide_when_torch_on = true
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/HintLamp"]
+shape = SubResource("R_hint_lamp")
+
+[node name="Checkpoint" type="Area2D" parent="Zones"]
+position = Vector2(1800, -150)
+script = ExtResource("s_check")
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/Checkpoint"]
+shape = SubResource("R_check")
+
+[node name="Exit" type="Area2D" parent="Zones"]
+position = Vector2(2920, -150)
+script = ExtResource("s_exit")
+next_scene = "res://scenes/chambers/chamber_2.tscn"
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/Exit"]
+shape = SubResource("R_exit")
+
+[node name="Player" parent="." instance=ExtResource("p_player")]
+z_index = 1
+position = Vector2(0, 0)
+
+[node name="ChipObjective" type="PanelContainer" parent="Player"]
+script = ExtResource("s_objective")
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2(0, -130)
+limit_left = -340
+limit_top = -640
+limit_right = 3100
+limit_bottom = 240
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+script = ExtResource("s_cam")
+target_path = NodePath("../Player")
+
+[node name="HUD" parent="." instance=ExtResource("p_hud")]

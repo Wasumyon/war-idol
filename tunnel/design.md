@@ -6,7 +6,36 @@ Copied from the Google Doc "War Idol Tunnel Escape" on 2026-10-24
 
 The design was written for another universe and is being re-themed to War Idols. Bold text marks the doc's own open notes.
 
-Open question: **look of the character?**
+## 0. War Idols re-theme (settled 2026-10-26)
+
+- **Story slot:** right after Ottenok's ambush where the crew saves Kathay (outline Beat 14). The
+  damaged vehicle is stashed in an abandoned deep-bore tunnel and they go on foot. The jam build
+  stands alone; judges need no lore.
+- **Player:** the MC, the one-legged veteran. The missing leg is why there's no jumping.
+  **Look (settled):** black double-breasted greatcoat with gold buttons and trim, peaked cap, a
+  black faceplate/visor with gold ear units, black gloves, a gold eagle-head cane, and a grey
+  mechanical prosthetic leg. Outfits: canonical cape (black outside, cream lining, tattered hem,
+  gold winged-compass crest on the back), service coat, short jacket, off duty. For the jam, use
+  the service coat or short jacket; the cape is costly to animate. The cane goes into the walk
+  cycle, and the hide pose can be him flattening against the wall with the cane tucked in.
+- **Vines:** tubeworm-like growths, part of the bio-terraforming project. *(New fact; if it sticks,
+  move it into canon.)*
+- **Guards, including the spotlight and catwalk guard:** AR monsters. In canon these are humans
+  in exosuits that the visor renders as monsters; the AR transformation stays on for the whole jam
+  piece.
+- **Stretch goal:** design the Ministry (searchlights, uniforms, signage) if time allows.
+- **Chamber 0 corpse (settled):** a dead "bug" with **no AR deformation**: a plain human in an
+  industrial exosuit. This is the one hint at the twist. Suggested logic: the visor only skins
+  live targets, so a corpse shows as it really is. Optionally the overlay flickers on and off once.
+- **Light source (leaning):** the MC pulls a work lamp off the corpse's suit. It's the same model the
+  guards carry, so his light and theirs read alike. The player is carrying the "monster's" light.
+- **Environment reference:** the GPT mockups (9 panels): brutalist industrial facility, amber/orange
+  structure, grey concrete, yellow strip lights, white tubeworm clusters with red plumes. Rough map:
+  panel 2 (catwalk over glowing pit) → Chamber 4; panel 4 (pillars and catwalk) → Chamber 3;
+  panel 9 (warm room, furnace, bed) → Chamber 5, with the furnace replacing the campfire.
+  The mockups are in 3/4 perspective; the game is a side-scroller, so each room needs a flat side view.
+- **Still open:** how much more of the AR twist the jam piece shows beyond the corpse.
+
 
 ---
 
@@ -134,6 +163,9 @@ export (HTML5, Compatibility renderer). Clean, modular code, no placeholders, st
 - **ReactiveVines.gd (Area2D):** if the torch light overlaps and `player.is_torch_on`, play
   "retract"; if the torch goes off while the player is inside, play "grow". In Chamber 4, touching
   expanded vines kills the player.
+  **Built as `tubeworm_cluster.gd`, rule settled 2026-10-26:** grown worms are a safe solid wall;
+  being *inside* a cluster when it regrows kills (`kill_if_caught`). Touch-to-kill (`deadly`) is kept
+  but off, in case Chamber 4 needs it.
 - **LightSensor.gd (Area2D):** emits `sensor_activated` when a light (or the torch) hits it;
   toggles when a crate blocks the light.
 

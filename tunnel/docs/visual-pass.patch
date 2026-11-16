@@ -1,0 +1,364 @@
+--- a/scripts/room0_fall.gd
++++ b/scripts/room0_fall.gd
+@@ -45,6 +45,7 @@
+ 	for n: Node in get_tree().get_nodes_in_group("vent_worms"):
+ 		var w: TubewormCluster = n as TubewormCluster
+ 		w.growth = 0.0
++		w.visible = false
+ 		_worms.append(w)
+ 	_worms.sort_custom(func(a: TubewormCluster, b: TubewormCluster) -> bool:
+ 		return a.global_position.y < b.global_position.y)
+@@ -109,6 +110,7 @@
+ 
+ ## Something thumps inside the duct wall ahead of him; the plumes peek out of the crack.
+ func _knock(w: TubewormCluster, depth: float) -> void:
++	w.visible = true
+ 	_play("vent_knock", lerpf(-14.0, -1.0, depth), randf_range(0.9, 1.1))
+ 	_shake = maxf(_shake, lerpf(2.0, 7.0, depth))
+ 	var t: Tween = create_tween()
+@@ -117,7 +119,7 @@
+ 	t.tween_interval(0.12)
+ 	t.tween_property(w, "growth", 0.16, 0.07)
+ 	t.tween_property(w, "growth", 0.03, 0.2)
+-	_dust(w.global_position, w.rotation, 10)
++	_dust(w.global_position, w.rotation, 5)
+ 
+ 
+ ## The worms lunge out of the wall, but he's already past them.
+@@ -129,7 +131,7 @@
+ 	t.tween_property(w, "growth", 1.0, 0.16)
+ 	t.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+ 	t.tween_property(w, "growth", 0.7, 1.2)
+-	_dust(w.global_position, w.rotation, 18)
++	_dust(w.global_position, w.rotation, 9)
+ 
+ 
+ func _land() -> void:
+@@ -137,7 +139,7 @@
+ 	_player.velocity = Vector2.ZERO
+ 	_play("land_thud", 0.0, 1.0)
+ 	_shake = 16.0
+-	_dust(_player.global_position, 0.0, 30)
++	_dust(_player.global_position, 0.0, 16)
+ 	# Landed in the dark: his glow fades back to almost nothing.
+ 	create_tween().tween_property(_presence, "energy", _presence_energy, 1.0)
+ 	await get_tree().create_timer(get_up_delay).timeout
+--- a/scripts/tubeworm_cluster.gd
++++ b/scripts/tubeworm_cluster.gd
+@@ -38,6 +38,13 @@
+ var _dark_timer: float = 0.0
+ var _tween: Tween
+ var _blocker_shape: CollisionShape2D
++## Visual-only controls: 0 redraw_fps restores the original every-tick drawing.
++@export var redraw_fps: float = 30.0
++@export_range(3, 12) var curve_segments: int = 8
++@export_range(3, 12) var plume_feathers: int = 7
++@export var cull_offscreen_drawing: bool = true
++var _draw_timer: float = 0.0
++var _visibility: VisibleOnScreenNotifier2D
+ var _time: float = 0.0
+ 
+ const BONE: Color = Color(0.90, 0.87, 0.80)
+@@ -54,6 +61,11 @@
+ 	monitorable = false
+ 	_build_shapes()
+ 	_build_stalks()
++	_visibility = VisibleOnScreenNotifier2D.new()
++	# Include stalk sway, crowns and rubble, including rotated shaft clusters.
++	var top: float = -30.0 if from_ceiling else -max_height - 40.0
++	_visibility.rect = Rect2(-width * 0.6 - 40.0, top, width * 1.2 + 80.0, max_height + 80.0)
++	add_child(_visibility)
+ 
+ 
+ func _physics_process(delta: float) -> void:
+@@ -80,7 +92,12 @@
+ 		for body: Node2D in get_overlapping_bodies():
+ 			if body is Player and _is_inside_core(body):
+ 				(body as Player).kill()
+-	queue_redraw()
++	# Physics/light sensing above remains at full rate, even off screen.
++	_draw_timer += delta
++	if (not cull_offscreen_drawing or _visibility.is_on_screen()) \
++			and (redraw_fps <= 0.0 or _draw_timer >= 1.0 / redraw_fps):
++		_draw_timer = 0.0
++		queue_redraw()
+ 
+ 
+ ## True if the body stands in the middle of the cluster, where the wall closes.
+@@ -179,7 +196,7 @@
+ 		if h < 2.0:
+ 			continue
+ 		var points: PackedVector2Array = PackedVector2Array()
+-		var segments: int = 10
++		var segments: int = curve_segments
+ 		for k: int in segments + 1:
+ 			var t: float = float(k) / float(segments)
+ 			var wobble: float = sin(_time * (1.3 + squirm * 4.0) + (s["phase"] as float) + t * 2.2)
+@@ -210,7 +227,7 @@
+ 	var forward: Vector2 = heading.normalized()
+ 	var spread: float = 0.35 + 0.75 * growth
+ 	var length: float = (s["plume"] as float) * (0.4 + 0.6 * growth)
+-	var count: int = 9
++	var count: int = plume_feathers
+ 	for i: int in count:
+ 		var t: float = (float(i) / float(count - 1)) * 2.0 - 1.0
+ 		var angle: float = t * spread + sin(_time * 2.0 + (s["phase"] as float) + t) * 0.08
+--- a/scenes/chambers/chamber_0.tscn
++++ b/scenes/chambers/chamber_0.tscn
+@@ -244,6 +244,7 @@
+ texture_scale = 3.2
+ 
+ [node name="ShaftSpill1" type="PointLight2D" parent="Backdrop"]
++enabled = false
+ position = Vector2(0, -2600)
+ color = Color(1, 0.6, 0.35, 1)
+ energy = 0.3
+@@ -258,6 +259,7 @@
+ texture_scale = 3.2
+ 
+ [node name="ShaftSpill3" type="PointLight2D" parent="Backdrop"]
++enabled = false
+ position = Vector2(0, -900)
+ color = Color(1, 0.6, 0.35, 1)
+ energy = 0.1
+@@ -392,126 +394,82 @@
+ z_index = 2
+ 
+ [node name="Worms0" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(-140, -3700)
++position = Vector2(-140, -3000)
+ rotation = 1.570796
+ script = ExtResource("s_worm")
+ width = 150.0
+ max_height = 150.0
+-stalk_count = 10
++stalk_count = 3
+ kill_if_caught = false
+ blocks_path = false
+ random_seed = 11
+ 
+ [node name="Worms1" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(140, -3370)
++position = Vector2(140, -2300)
+ rotation = -1.570796
+ script = ExtResource("s_worm")
+ width = 150.0
+ max_height = 150.0
+-stalk_count = 10
++stalk_count = 4
+ kill_if_caught = false
+ blocks_path = false
+ random_seed = 18
+ 
+ [node name="Worms2" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(-140, -3040)
++position = Vector2(-140, -1800)
+ rotation = 1.570796
+ script = ExtResource("s_worm")
+ width = 150.0
+ max_height = 150.0
+-stalk_count = 10
++stalk_count = 5
+ kill_if_caught = false
+ blocks_path = false
+ random_seed = 25
+ 
+ [node name="Worms3" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(140, -2710)
++position = Vector2(140, -1400)
+ rotation = -1.570796
+ script = ExtResource("s_worm")
+ width = 150.0
+ max_height = 150.0
+-stalk_count = 10
++stalk_count = 6
+ kill_if_caught = false
+ blocks_path = false
+ random_seed = 32
+ 
+ [node name="Worms4" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(-140, -2380)
++position = Vector2(-140, -1050)
+ rotation = 1.570796
+ script = ExtResource("s_worm")
+ width = 150.0
+ max_height = 150.0
+-stalk_count = 10
++stalk_count = 7
+ kill_if_caught = false
+ blocks_path = false
+ random_seed = 39
+ 
+ [node name="Worms5" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(140, -2050)
++position = Vector2(140, -720)
+ rotation = -1.570796
+ script = ExtResource("s_worm")
+ width = 150.0
+ max_height = 150.0
+-stalk_count = 10
++stalk_count = 8
+ kill_if_caught = false
+ blocks_path = false
+ random_seed = 46
+ 
+-[node name="Worms6" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(-140, -1720)
+-rotation = 1.570796
+-script = ExtResource("s_worm")
+-width = 150.0
+-max_height = 150.0
+-stalk_count = 10
+-kill_if_caught = false
+-blocks_path = false
+-random_seed = 53
+-
+-[node name="Worms7" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(140, -1390)
+-rotation = -1.570796
+-script = ExtResource("s_worm")
+-width = 150.0
+-max_height = 150.0
+-stalk_count = 10
+-kill_if_caught = false
+-blocks_path = false
+-random_seed = 60
+-
+-[node name="Worms8" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(-140, -1060)
+-rotation = 1.570796
+-script = ExtResource("s_worm")
+-width = 150.0
+-max_height = 175.0
+-stalk_count = 10
+-kill_if_caught = false
+-blocks_path = false
+-random_seed = 67
+-
+-[node name="Worms9" type="Area2D" parent="VentWorms" groups=["vent_worms"]]
+-position = Vector2(140, -730)
+-rotation = -1.570796
+-script = ExtResource("s_worm")
+-width = 150.0
+-max_height = 175.0
+-stalk_count = 10
+-kill_if_caught = false
+-blocks_path = false
+-random_seed = 74
+-
+ [node name="VentLungers" type="Node2D" parent="."]
+ z_index = -5
+ 
+ [node name="Lunger0" type="Node2D" parent="VentLungers"]
+-position = Vector2(-30, -3050)
++position = Vector2(-30, -2600)
+ script = ExtResource("s_lunge")
+ tip_radius = 28.0
+ random_seed = 5
+ 
+ [node name="Lunger1" type="Node2D" parent="VentLungers"]
+-position = Vector2(40, -2230)
++position = Vector2(40, -2050)
+ script = ExtResource("s_lunge")
+ tip_radius = 30.0
+ random_seed = 9
+--- a/scenes/chambers/chamber_1.tscn
++++ b/scenes/chambers/chamber_1.tscn
+@@ -141,6 +141,7 @@
+ texture_scale = 1.1
+ 
+ [node name="WarmHaze" type="PointLight2D" parent="Backdrop"]
++enabled = false
+ position = Vector2(700, -200)
+ color = Color(1, 0.6, 0.3, 1)
+ energy = 0.18
+@@ -195,7 +196,7 @@
+ script = ExtResource("s_worm")
+ width = 240.0
+ max_height = 440.0
+-stalk_count = 22
++stalk_count = 14
+ kill_if_caught = false
+ random_seed = 7
+ light_reach = 170.0
+@@ -207,7 +208,7 @@
+ script = ExtResource("s_worm")
+ width = 240.0
+ max_height = 420.0
+-stalk_count = 22
++stalk_count = 14
+ kill_if_caught = false
+ random_seed = 20
+ light_reach = 170.0
+@@ -219,7 +220,7 @@
+ script = ExtResource("s_worm")
+ width = 240.0
+ max_height = 400.0
+-stalk_count = 22
++stalk_count = 14
+ kill_if_caught = false
+ random_seed = 33
+ light_reach = 170.0
+--- a/scenes/chambers/chamber_2.tscn
++++ b/scenes/chambers/chamber_2.tscn
+@@ -177,6 +177,7 @@
+ polygon = PackedVector2Array(1770, -350, 1830, -350, 1925, 0, 1675, 0)
+ 
+ [node name="WarmHaze" type="PointLight2D" parent="Backdrop"]
++enabled = false
+ position = Vector2(1600, -200)
+ color = Color(1, 0.6, 0.3, 1)
+ energy = 0.12
+@@ -289,7 +290,7 @@
+ script = ExtResource("s_worm")
+ width = 110.0
+ max_height = 110.0
+-stalk_count = 8
++stalk_count = 4
+ from_ceiling = true
+ blocks_path = false
+ kill_if_caught = false
+--- a/scenes/chambers/chamber_3.tscn
++++ b/scenes/chambers/chamber_3.tscn
+@@ -106,6 +106,7 @@
+ polygon = PackedVector2Array(-800, 120, 5200, 120, 5200, 900, -800, 900)
+ 
+ [node name="ChasmGlow" type="PointLight2D" parent="Backdrop"]
++enabled = false
+ position = Vector2(2100, 500)
+ color = Color(1, 0.45, 0.2, 1)
+ energy = 0.25
+@@ -120,6 +121,7 @@
+ texture_scale = 3.5
+ 
+ [node name="Fill1" type="PointLight2D" parent="Backdrop"]
++enabled = false
+ position = Vector2(1100, -350)
+ color = Color(0.55, 0.65, 0.85, 1)
+ energy = 0.35
+@@ -134,6 +136,7 @@
+ texture_scale = 3.5
+ 
+ [node name="Fill3" type="PointLight2D" parent="Backdrop"]
++enabled = false
+ position = Vector2(2500, -350)
+ color = Color(0.55, 0.65, 0.85, 1)
+ energy = 0.35
+@@ -148,6 +151,7 @@
+ texture_scale = 3.5
+ 
+ [node name="Fill5" type="PointLight2D" parent="Backdrop"]
++enabled = false
+ position = Vector2(3900, -350)
+ color = Color(0.55, 0.65, 0.85, 1)
+ energy = 0.35
+--- a/scenes/chambers/chamber_4.tscn
++++ b/scenes/chambers/chamber_4.tscn
+@@ -88,6 +88,7 @@
+ polygon = PackedVector2Array(-700, -1300, 3700, -1300, 3700, -860, -700, -860)
+ 
+ [node name="Haze" type="PointLight2D" parent="Backdrop"]
++enabled = false
+ position = Vector2(1500, -300)
+ color = Color(0.6, 0.55, 0.6, 1)
+ energy = 0.12

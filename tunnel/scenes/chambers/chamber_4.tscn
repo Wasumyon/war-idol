@@ -1,0 +1,750 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/follow_camera.gd" id="s_cam"]
+[ext_resource type="Script" path="res://scripts/hint_zone.gd" id="s_hint"]
+[ext_resource type="Script" path="res://scripts/checkpoint_zone.gd" id="s_check"]
+[ext_resource type="Script" path="res://scripts/exit_zone.gd" id="s_exit"]
+[ext_resource type="Script" path="res://scripts/hide_zone.gd" id="s_hide"]
+[ext_resource type="Script" path="res://scripts/catwalk_guard.gd" id="s_guard"]
+[ext_resource type="Script" path="res://scripts/tubeworm_cluster.gd" id="s_worm"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="p_player"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="p_hud"]
+[ext_resource type="Texture2D" path="res://art/light_radial.tres" id="t_light"]
+
+[sub_resource type="RectangleShape2D" id="R_wall"]
+size = Vector2(80, 1800)
+
+[sub_resource type="RectangleShape2D" id="R_ceil"]
+size = Vector2(5000, 400)
+
+[sub_resource type="RectangleShape2D" id="R_hint_start"]
+size = Vector2(400, 300)
+
+[sub_resource type="RectangleShape2D" id="R_hint_island"]
+size = Vector2(180, 300)
+
+[sub_resource type="RectangleShape2D" id="R_check"]
+size = Vector2(60, 300)
+
+[sub_resource type="RectangleShape2D" id="R_exit"]
+size = Vector2(80, 300)
+
+[sub_resource type="RectangleShape2D" id="R_hide_support"]
+size = Vector2(160, 300)
+
+[sub_resource type="RectangleShape2D" id="R_hide_door"]
+size = Vector2(120, 300)
+
+[node name="Chamber4" type="Node2D"]
+
+[node name="GlobalDarkness" type="CanvasModulate" parent="."]
+color = Color(0.17, 0.16, 0.17, 1)
+
+[node name="Backdrop" type="Node2D" parent="."]
+z_index = -10
+
+[node name="BackWall" type="Polygon2D" parent="Backdrop"]
+color = Color(0.25, 0.24, 0.24, 1)
+polygon = PackedVector2Array(-700, -1300, 3700, -1300, 3700, 40, -700, 40)
+
+[node name="Rib0" type="Polygon2D" parent="Backdrop"]
+color = Color(0.19, 0.185, 0.185, 1)
+polygon = PackedVector2Array(-200, -1300, -90, -1300, -120, 40, -170, 40)
+
+[node name="Rib1" type="Polygon2D" parent="Backdrop"]
+color = Color(0.19, 0.185, 0.185, 1)
+polygon = PackedVector2Array(250, -1300, 360, -1300, 330, 40, 280, 40)
+
+[node name="Rib2" type="Polygon2D" parent="Backdrop"]
+color = Color(0.19, 0.185, 0.185, 1)
+polygon = PackedVector2Array(700, -1300, 810, -1300, 780, 40, 730, 40)
+
+[node name="Rib3" type="Polygon2D" parent="Backdrop"]
+color = Color(0.19, 0.185, 0.185, 1)
+polygon = PackedVector2Array(1150, -1300, 1260, -1300, 1230, 40, 1180, 40)
+
+[node name="Rib4" type="Polygon2D" parent="Backdrop"]
+color = Color(0.19, 0.185, 0.185, 1)
+polygon = PackedVector2Array(1600, -1300, 1710, -1300, 1680, 40, 1630, 40)
+
+[node name="Rib5" type="Polygon2D" parent="Backdrop"]
+color = Color(0.19, 0.185, 0.185, 1)
+polygon = PackedVector2Array(2050, -1300, 2160, -1300, 2130, 40, 2080, 40)
+
+[node name="Rib6" type="Polygon2D" parent="Backdrop"]
+color = Color(0.19, 0.185, 0.185, 1)
+polygon = PackedVector2Array(2500, -1300, 2610, -1300, 2580, 40, 2530, 40)
+
+[node name="Rib7" type="Polygon2D" parent="Backdrop"]
+color = Color(0.19, 0.185, 0.185, 1)
+polygon = PackedVector2Array(2950, -1300, 3060, -1300, 3030, 40, 2980, 40)
+
+[node name="Rib8" type="Polygon2D" parent="Backdrop"]
+color = Color(0.19, 0.185, 0.185, 1)
+polygon = PackedVector2Array(3400, -1300, 3510, -1300, 3480, 40, 3430, 40)
+
+[node name="CeilingSlab" type="Polygon2D" parent="Backdrop"]
+color = Color(0.1, 0.095, 0.095, 1)
+polygon = PackedVector2Array(-700, -1300, 3700, -1300, 3700, -860, -700, -860)
+
+[node name="Haze" type="PointLight2D" parent="Backdrop"]
+enabled = false
+position = Vector2(1500, -300)
+color = Color(0.6, 0.55, 0.6, 1)
+energy = 0.12
+texture = ExtResource("t_light")
+texture_scale = 8.0
+
+[node name="Catwalk" type="Node2D" parent="."]
+z_index = -1
+
+[node name="Deck0" type="Polygon2D" parent="Catwalk"]
+color = Color(0.16, 0.15, 0.15, 1)
+polygon = PackedVector2Array(-500, -460, 1190, -460, 1190, -442, -500, -442)
+
+[node name="DeckEdge0" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(-500, -460, 1190, -460)
+width = 3.0
+default_color = Color(0.45, 0.42, 0.4, 1)
+
+[node name="Rail0" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(-500, -540, 1190, -540)
+width = 4.0
+default_color = Color(0.32, 0.3, 0.28, 1)
+
+[node name="Post0" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(-480, -540, -480, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post1" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(-340, -540, -340, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post2" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(-200, -540, -200, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post3" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(-60, -540, -60, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post4" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(80, -540, 80, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post5" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(220, -540, 220, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post6" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(360, -540, 360, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post7" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(500, -540, 500, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post8" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(640, -540, 640, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post9" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(780, -540, 780, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post10" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(920, -540, 920, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post11" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(1060, -540, 1060, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Truss12" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(-500, -442, -360, -400, -220, -442)
+width = 5.0
+default_color = Color(0.13, 0.12, 0.12, 1)
+
+[node name="Truss13" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(-220, -442, -80, -400, 60, -442)
+width = 5.0
+default_color = Color(0.13, 0.12, 0.12, 1)
+
+[node name="Truss14" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(60, -442, 200, -400, 340, -442)
+width = 5.0
+default_color = Color(0.13, 0.12, 0.12, 1)
+
+[node name="Truss15" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(340, -442, 480, -400, 620, -442)
+width = 5.0
+default_color = Color(0.13, 0.12, 0.12, 1)
+
+[node name="Truss16" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(620, -442, 760, -400, 900, -442)
+width = 5.0
+default_color = Color(0.13, 0.12, 0.12, 1)
+
+[node name="Truss17" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(900, -442, 1040, -400, 1180, -442)
+width = 5.0
+default_color = Color(0.13, 0.12, 0.12, 1)
+
+[node name="Chain18" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(-380, -860, -380, -460)
+width = 3.0
+default_color = Color(0.2, 0.19, 0.18, 1)
+
+[node name="Chain19" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(140, -860, 140, -460)
+width = 3.0
+default_color = Color(0.2, 0.19, 0.18, 1)
+
+[node name="Chain20" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(660, -860, 660, -460)
+width = 3.0
+default_color = Color(0.2, 0.19, 0.18, 1)
+
+[node name="Chain21" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(1180, -860, 1180, -460)
+width = 3.0
+default_color = Color(0.2, 0.19, 0.18, 1)
+
+[node name="Deck1" type="Polygon2D" parent="Catwalk"]
+color = Color(0.16, 0.15, 0.15, 1)
+polygon = PackedVector2Array(1780, -460, 2760, -460, 2760, -442, 1780, -442)
+
+[node name="DeckEdge1" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(1780, -460, 2760, -460)
+width = 3.0
+default_color = Color(0.45, 0.42, 0.4, 1)
+
+[node name="Rail1" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(1780, -540, 2760, -540)
+width = 4.0
+default_color = Color(0.32, 0.3, 0.28, 1)
+
+[node name="Post22" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(1800, -540, 1800, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post23" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(1940, -540, 1940, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post24" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(2080, -540, 2080, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post25" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(2220, -540, 2220, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post26" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(2360, -540, 2360, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post27" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(2500, -540, 2500, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Post28" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(2640, -540, 2640, -460)
+width = 3.0
+default_color = Color(0.28, 0.26, 0.25, 1)
+
+[node name="Truss29" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(1780, -442, 1920, -400, 2060, -442)
+width = 5.0
+default_color = Color(0.13, 0.12, 0.12, 1)
+
+[node name="Truss30" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(2060, -442, 2200, -400, 2340, -442)
+width = 5.0
+default_color = Color(0.13, 0.12, 0.12, 1)
+
+[node name="Truss31" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(2340, -442, 2480, -400, 2620, -442)
+width = 5.0
+default_color = Color(0.13, 0.12, 0.12, 1)
+
+[node name="Chain32" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(1900, -860, 1900, -460)
+width = 3.0
+default_color = Color(0.2, 0.19, 0.18, 1)
+
+[node name="Chain33" type="Line2D" parent="Catwalk"]
+points = PackedVector2Array(2420, -860, 2420, -460)
+width = 3.0
+default_color = Color(0.2, 0.19, 0.18, 1)
+
+[node name="EndBulkhead" type="Polygon2D" parent="Catwalk"]
+color = Color(0.15, 0.145, 0.14, 1)
+polygon = PackedVector2Array(2730, -860, 2790, -860, 2790, -400, 2730, -400)
+
+[node name="Supports" type="Node2D" parent="."]
+z_index = -1
+light_mask = 2
+
+[node name="Pillar0" type="Polygon2D" parent="Supports"]
+light_mask = 2
+color = Color(0.21, 0.2, 0.19, 1)
+polygon = PackedVector2Array(1190, -860, 1330, -860, 1330, 10, 1190, 10)
+
+[node name="PillarFace0" type="Polygon2D" parent="Supports"]
+light_mask = 2
+color = Color(0.27, 0.26, 0.25, 1)
+polygon = PackedVector2Array(1190, -860, 1214, -860, 1214, 10, 1190, 10)
+
+[node name="Plinth0" type="Polygon2D" parent="Supports"]
+light_mask = 2
+color = Color(0.19, 0.18, 0.17, 1)
+polygon = PackedVector2Array(1160, -34, 1360, -34, 1360, 10, 1160, 10)
+
+[node name="Pillar1" type="Polygon2D" parent="Supports"]
+light_mask = 2
+color = Color(0.21, 0.2, 0.19, 1)
+polygon = PackedVector2Array(1640, -860, 1780, -860, 1780, 10, 1640, 10)
+
+[node name="PillarFace1" type="Polygon2D" parent="Supports"]
+light_mask = 2
+color = Color(0.27, 0.26, 0.25, 1)
+polygon = PackedVector2Array(1640, -860, 1664, -860, 1664, 10, 1640, 10)
+
+[node name="Plinth1" type="Polygon2D" parent="Supports"]
+light_mask = 2
+color = Color(0.19, 0.18, 0.17, 1)
+polygon = PackedVector2Array(1610, -34, 1810, -34, 1810, 10, 1610, 10)
+
+[node name="Doorway" type="Polygon2D" parent="Supports"]
+color = Color(0.08, 0.08, 0.09, 1)
+polygon = PackedVector2Array(-10, -240, 130, -240, 130, 0, -10, 0)
+
+[node name="EntryWall" type="Polygon2D" parent="Supports"]
+color = Color(0.22, 0.21, 0.2, 1)
+polygon = PackedVector2Array(-500, -860, -10, -860, -10, 30, -500, 30)
+
+[node name="ExitArch" type="Polygon2D" parent="Supports"]
+color = Color(0.08, 0.08, 0.09, 1)
+polygon = PackedVector2Array(2990, -240, 3110, -240, 3110, 0, 2990, 0)
+
+[node name="ExitWall" type="Polygon2D" parent="Supports"]
+color = Color(0.22, 0.21, 0.2, 1)
+polygon = PackedVector2Array(3110, -860, 3700, -860, 3700, 30, 3110, 30)
+
+[node name="ExitLight" type="PointLight2D" parent="Supports"]
+position = Vector2(3050, -150)
+color = Color(1, 0.7, 0.35, 1)
+energy = 0.6
+texture = ExtResource("t_light")
+texture_scale = 0.8
+
+[node name="EnvironmentWalls" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="FloorCollider" type="CollisionPolygon2D" parent="EnvironmentWalls"]
+polygon = PackedVector2Array(-500, 0, 3700, 0, 3700, 200, -500, 200)
+
+[node name="FloorBand" type="Polygon2D" parent="EnvironmentWalls"]
+z_index = 2
+color = Color(0.065, 0.06, 0.065, 1)
+polygon = PackedVector2Array(-500, 0, 3700, 0, 3700, 200, -500, 200)
+
+[node name="FloorLip" type="Line2D" parent="EnvironmentWalls"]
+z_index = 2
+points = PackedVector2Array(-500, 0, 3700, 0)
+width = 4.0
+default_color = Color(0.4, 0.39, 0.37, 1)
+
+[node name="Bed0" type="Polygon2D" parent="EnvironmentWalls"]
+z_index = 2
+color = Color(0.12, 0.04, 0.05, 1)
+polygon = PackedVector2Array(420, 0, 1160, 0, 1160, 10, 420, 10)
+
+[node name="BedGlow0" type="PointLight2D" parent="EnvironmentWalls"]
+position = Vector2(790, 30)
+color = Color(0.9, 0.25, 0.2, 1)
+energy = 0.45
+texture = ExtResource("t_light")
+texture_scale = 3.2
+
+[node name="Bed1" type="Polygon2D" parent="EnvironmentWalls"]
+z_index = 2
+color = Color(0.12, 0.04, 0.05, 1)
+polygon = PackedVector2Array(1360, 0, 1610, 0, 1610, 10, 1360, 10)
+
+[node name="BedGlow1" type="PointLight2D" parent="EnvironmentWalls"]
+position = Vector2(1485, 30)
+color = Color(0.9, 0.25, 0.2, 1)
+energy = 0.45
+texture = ExtResource("t_light")
+texture_scale = 3.2
+
+[node name="Bed2" type="Polygon2D" parent="EnvironmentWalls"]
+z_index = 2
+color = Color(0.12, 0.04, 0.05, 1)
+polygon = PackedVector2Array(1810, 0, 2620, 0, 2620, 10, 1810, 10)
+
+[node name="BedGlow2" type="PointLight2D" parent="EnvironmentWalls"]
+position = Vector2(2215, 30)
+color = Color(0.9, 0.25, 0.2, 1)
+energy = 0.45
+texture = ExtResource("t_light")
+texture_scale = 3.2
+
+[node name="LeftWall" type="CollisionShape2D" parent="EnvironmentWalls"]
+position = Vector2(-300, -500)
+shape = SubResource("R_wall")
+
+[node name="RightWall" type="CollisionShape2D" parent="EnvironmentWalls"]
+position = Vector2(3190, -500)
+shape = SubResource("R_wall")
+
+[node name="Ceiling" type="CollisionShape2D" parent="EnvironmentWalls"]
+position = Vector2(1500, -1060)
+shape = SubResource("R_ceil")
+
+[node name="Tubeworms" type="Node2D" parent="."]
+
+[node name="Worms0" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(490, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 11
+
+[node name="Worms1" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(600, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 18
+
+[node name="Worms2" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(710, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 25
+
+[node name="Worms3" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(820, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 32
+
+[node name="Worms4" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(930, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 39
+
+[node name="Worms5" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(1040, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 46
+
+[node name="Worms6" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(1430, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 53
+
+[node name="Worms7" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(1540, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 60
+
+[node name="Worms8" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(1880, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 67
+
+[node name="Worms9" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(1990, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 74
+
+[node name="Worms10" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(2100, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 81
+
+[node name="Worms11" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(2210, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 88
+
+[node name="Worms12" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(2320, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 95
+
+[node name="Worms13" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(2430, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 102
+
+[node name="Worms14" type="Area2D" parent="Tubeworms"]
+z_index = 1
+position = Vector2(2540, 6)
+script = ExtResource("s_worm")
+width = 140.0
+max_height = 230.0
+stalk_count = 9
+deadly = true
+kill_if_caught = false
+blocks_path = false
+retract_time = 0.4
+regrow_delay = 0.5
+regrow_time = 1.0
+random_seed = 109
+
+[node name="GuardA" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(350, -460)
+script = ExtResource("s_guard")
+patrol_left = 350.0
+patrol_right = 1030.0
+start_facing = 1
+floor_y = 0.0
+sight_min_x = -100000.0
+sight_max_x = 1250.0
+light_min_x = -100000.0
+light_max_x = 1190.0
+
+[node name="GuardB" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(2100, -460)
+script = ExtResource("s_guard")
+patrol_left = 1940.0
+patrol_right = 2290.0
+start_facing = -1
+floor_y = 0.0
+sight_min_x = 1720.0
+sight_max_x = 2760.0
+light_min_x = 1810.0
+light_max_x = 2620.0
+
+[node name="Zones" type="Node2D" parent="."]
+
+[node name="HintStart" type="Area2D" parent="Zones"]
+position = Vector2(220, -150)
+script = ExtResource("s_hint")
+text = "His light holds the worms down. Keep to its dim edge, out of the bright centre"
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/HintStart"]
+shape = SubResource("R_hint_start")
+
+[node name="HintGap" type="Area2D" parent="Zones"]
+position = Vector2(1260, -150)
+script = ExtResource("s_hint")
+text = "Nobody watches the gap. Your lamp holds the worms down too"
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/HintGap"]
+shape = SubResource("R_hint_island")
+
+[node name="HintLamp" type="Area2D" parent="Zones"]
+position = Vector2(1710, -150)
+script = ExtResource("s_hint")
+text = "W / ↑   hide.   Lamp on only while his back is turned"
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/HintLamp"]
+shape = SubResource("R_hint_island")
+
+[node name="HideDoorway" type="Area2D" parent="Zones"]
+position = Vector2(60, -150)
+script = ExtResource("s_hide")
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/HideDoorway"]
+shape = SubResource("R_hide_door")
+
+[node name="HidePillar0" type="Area2D" parent="Zones"]
+position = Vector2(1260, -150)
+script = ExtResource("s_hide")
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/HidePillar0"]
+shape = SubResource("R_hide_support")
+
+[node name="HidePillar1" type="Area2D" parent="Zones"]
+position = Vector2(1710, -150)
+script = ExtResource("s_hide")
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/HidePillar1"]
+shape = SubResource("R_hide_support")
+
+[node name="Exit" type="Area2D" parent="Zones"]
+position = Vector2(3050, -150)
+script = ExtResource("s_exit")
+next_scene = "res://scenes/chambers/chamber_5.tscn"
+
+[node name="Shape" type="CollisionShape2D" parent="Zones/Exit"]
+shape = SubResource("R_exit")
+
+[node name="Player" parent="." instance=ExtResource("p_player")]
+z_index = 1
+position = Vector2(0, 0)
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2(0, -130)
+zoom = Vector2(0.8, 0.8)
+limit_left = -340
+limit_top = -900
+limit_right = 3230
+limit_bottom = 260
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+script = ExtResource("s_cam")
+target_path = NodePath("../Player")
+vertical_offset = -260.0
+
+[node name="HUD" parent="." instance=ExtResource("p_hud")]

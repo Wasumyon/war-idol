@@ -1,0 +1,218 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/follow_camera.gd" id="s_cam"]
+[ext_resource type="Script" path="res://scripts/ending_sequence.gd" id="s_end"]
+[ext_resource type="Script" path="res://scripts/flicker_light.gd" id="s_flick"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="p_player"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="p_hud"]
+[ext_resource type="Texture2D" path="res://art/light_radial.tres" id="t_light"]
+
+[sub_resource type="RectangleShape2D" id="R_wall"]
+size = Vector2(80, 1400)
+
+[sub_resource type="RectangleShape2D" id="R_ceil"]
+size = Vector2(3000, 400)
+
+[sub_resource type="RectangleShape2D" id="R_trigger"]
+size = Vector2(60, 300)
+
+[node name="Chamber5" type="Node2D"]
+
+[node name="GlobalDarkness" type="CanvasModulate" parent="."]
+color = Color(0.14, 0.12, 0.11, 1)
+
+[node name="Backdrop" type="Node2D" parent="."]
+z_index = -10
+
+[node name="PassageWall" type="Polygon2D" parent="Backdrop"]
+color = Color(0.22, 0.23, 0.25, 1)
+polygon = PackedVector2Array(-700, -1000, 520, -1000, 520, 20, -700, 20)
+
+[node name="RoomWall" type="Polygon2D" parent="Backdrop"]
+color = Color(0.36, 0.3, 0.25, 1)
+polygon = PackedVector2Array(520, -1000, 1840, -1000, 1840, 20, 520, 20)
+
+[node name="Doorframe" type="Polygon2D" parent="Backdrop"]
+color = Color(0.18, 0.16, 0.14, 1)
+polygon = PackedVector2Array(490, -420, 550, -420, 550, 20, 490, 20)
+
+[node name="Wainscot" type="Polygon2D" parent="Backdrop"]
+color = Color(0.27, 0.21, 0.16, 1)
+polygon = PackedVector2Array(550, -110, 1840, -110, 1840, 20, 550, 20)
+
+[node name="CotFrame" type="Polygon2D" parent="Backdrop"]
+color = Color(0.2, 0.17, 0.14, 1)
+polygon = PackedVector2Array(750, -55, 1050, -55, 1050, -40, 750, -40)
+
+[node name="CotBlanket" type="Polygon2D" parent="Backdrop"]
+color = Color(0.42, 0.28, 0.2, 1)
+polygon = PackedVector2Array(750, -55, 1050, -55, 1040, -78, 780, -80)
+
+[node name="CotPillow" type="Polygon2D" parent="Backdrop"]
+color = Color(0.62, 0.56, 0.48, 1)
+polygon = PackedVector2Array(755, -95, 810, -95, 810, -76, 755, -76)
+
+[node name="CotLeg0" type="Polygon2D" parent="Backdrop"]
+color = Color(0.16, 0.13, 0.11, 1)
+polygon = PackedVector2Array(754, -40, 766, -40, 766, 0, 754, 0)
+
+[node name="CotLeg1" type="Polygon2D" parent="Backdrop"]
+color = Color(0.16, 0.13, 0.11, 1)
+polygon = PackedVector2Array(1034, -40, 1046, -40, 1046, 0, 1034, 0)
+
+[node name="Chimney" type="Polygon2D" parent="Backdrop"]
+color = Color(0.14, 0.13, 0.12, 1)
+polygon = PackedVector2Array(1392, -420, 1448, -420, 1448, -230, 1392, -230)
+
+[node name="FurnaceBody" type="Polygon2D" parent="Backdrop"]
+color = Color(0.17, 0.15, 0.14, 1)
+polygon = PackedVector2Array(1310, 0, 1530, 0, 1515, -230, 1325, -230)
+
+[node name="FurnaceRim" type="Polygon2D" parent="Backdrop"]
+color = Color(0.55, 0.3, 0.1, 1)
+polygon = PackedVector2Array(1320, -236, 1520, -236, 1520, -226, 1320, -226)
+
+[node name="FurnaceMouth" type="Polygon2D" parent="Backdrop"]
+color = Color(1.0, 0.55, 0.2, 1)
+polygon = PackedVector2Array(1365, -120, 1475, -120, 1475, -40, 1365, -40)
+
+[node name="Embers" type="Polygon2D" parent="Backdrop"]
+color = Color(1.0, 0.8, 0.4, 1)
+polygon = PackedVector2Array(1370, -40, 1470, -40, 1450, -62, 1385, -58)
+
+[node name="VentDuct" type="Polygon2D" parent="Backdrop"]
+color = Color(0.2, 0.18, 0.16, 1)
+polygon = PackedVector2Array(1020, -420, 1140, -420, 1140, -358, 1020, -358)
+
+[node name="VentHole" type="Polygon2D" parent="Backdrop"]
+color = Color(0.03, 0.03, 0.03, 1)
+polygon = PackedVector2Array(1025, -358, 1135, -358, 1135, -302, 1025, -302)
+
+[node name="CeilingSlab" type="Polygon2D" parent="Backdrop"]
+color = Color(0.1, 0.09, 0.085, 1)
+polygon = PackedVector2Array(-700, -1000, 1840, -1000, 1840, -420, -700, -420)
+
+[node name="Vent" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(1080, -330)
+
+[node name="Grille" type="Node2D" parent="Vent"]
+
+[node name="Bar0" type="Polygon2D" parent="Vent/Grille"]
+color = Color(0.42, 0.38, 0.33, 1)
+polygon = PackedVector2Array(-58, -30, 58, -30, 58, -24, -58, -24)
+
+[node name="Bar1" type="Polygon2D" parent="Vent/Grille"]
+color = Color(0.42, 0.38, 0.33, 1)
+polygon = PackedVector2Array(-58, 24, 58, 24, 58, 30, -58, 30)
+
+[node name="Bar2" type="Polygon2D" parent="Vent/Grille"]
+color = Color(0.42, 0.38, 0.33, 1)
+polygon = PackedVector2Array(-53, -30, -47, -30, -47, 30, -53, 30)
+
+[node name="Bar3" type="Polygon2D" parent="Vent/Grille"]
+color = Color(0.42, 0.38, 0.33, 1)
+polygon = PackedVector2Array(-33, -30, -27, -30, -27, 30, -33, 30)
+
+[node name="Bar4" type="Polygon2D" parent="Vent/Grille"]
+color = Color(0.42, 0.38, 0.33, 1)
+polygon = PackedVector2Array(-13, -30, -7, -30, -7, 30, -13, 30)
+
+[node name="Bar5" type="Polygon2D" parent="Vent/Grille"]
+color = Color(0.42, 0.38, 0.33, 1)
+polygon = PackedVector2Array(7, -30, 13, -30, 13, 30, 7, 30)
+
+[node name="Bar6" type="Polygon2D" parent="Vent/Grille"]
+color = Color(0.42, 0.38, 0.33, 1)
+polygon = PackedVector2Array(27, -30, 33, -30, 33, 30, 27, 30)
+
+[node name="Bar7" type="Polygon2D" parent="Vent/Grille"]
+color = Color(0.42, 0.38, 0.33, 1)
+polygon = PackedVector2Array(47, -30, 53, -30, 53, 30, 47, 30)
+
+[node name="PassageLight" type="PointLight2D" parent="."]
+position = Vector2(100, -300)
+color = Color(0.6, 0.68, 0.85, 1)
+energy = 0.35
+texture = ExtResource("t_light")
+texture_scale = 2.5
+
+[node name="FurnaceLight" type="PointLight2D" parent="."]
+position = Vector2(1420, -80)
+color = Color(1, 0.55, 0.25, 1)
+energy = 1.4
+texture = ExtResource("t_light")
+texture_scale = 3.2
+script = ExtResource("s_flick")
+
+[node name="RoomGlow" type="PointLight2D" parent="."]
+position = Vector2(1080, -250)
+color = Color(1, 0.62, 0.35, 1)
+energy = 0.35
+texture = ExtResource("t_light")
+texture_scale = 5.0
+script = ExtResource("s_flick")
+strength = 0.08
+
+[node name="MouthGlow" type="Polygon2D" parent="."]
+z_index = 1
+color = Color(1, 0.6, 0.3, 0.12)
+polygon = PackedVector2Array(1365, -120, 1475, -120, 1580, 0, 1220, 0)
+
+[node name="EnvironmentWalls" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="FloorCollider" type="CollisionPolygon2D" parent="EnvironmentWalls"]
+polygon = PackedVector2Array(-700, 0, 1840, 0, 1840, 420, -700, 420)
+
+[node name="FloorBand" type="Polygon2D" parent="EnvironmentWalls"]
+z_index = 2
+color = Color(0.065, 0.055, 0.05, 1)
+polygon = PackedVector2Array(-700, 0, 1840, 0, 1840, 420, -700, 420)
+
+[node name="FloorLip" type="Line2D" parent="EnvironmentWalls"]
+z_index = 2
+points = PackedVector2Array(-700, 0, 1840, 0)
+width = 4.0
+default_color = Color(0.4, 0.34, 0.28, 1)
+
+[node name="LeftWall" type="CollisionShape2D" parent="EnvironmentWalls"]
+position = Vector2(-300, -300)
+shape = SubResource("R_wall")
+
+[node name="RightWall" type="CollisionShape2D" parent="EnvironmentWalls"]
+position = Vector2(1640, -300)
+shape = SubResource("R_wall")
+
+[node name="Ceiling" type="CollisionShape2D" parent="EnvironmentWalls"]
+position = Vector2(700, -620)
+shape = SubResource("R_ceil")
+
+[node name="Ending" type="Area2D" parent="."]
+position = Vector2(640, -150)
+script = ExtResource("s_end")
+sit_x = 1250.0
+furnace_light_path = NodePath("../FurnaceLight")
+vent_path = NodePath("../Vent")
+camera_path = NodePath("../MainCamera")
+chip_land_x = 1080.0
+
+[node name="Shape" type="CollisionShape2D" parent="Ending"]
+shape = SubResource("R_trigger")
+
+[node name="Player" parent="." instance=ExtResource("p_player")]
+z_index = 1
+position = Vector2(0, 0)
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2(0, -130)
+limit_left = -340
+limit_top = -640
+limit_right = 1680
+limit_bottom = 240
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+script = ExtResource("s_cam")
+target_path = NodePath("../Player")
+
+[node name="HUD" parent="." instance=ExtResource("p_hud")]

@@ -1,0 +1,61 @@
+# War Idol - 04 - Mission clear
+# Source: Stories/test.txt (Mission 1 clear).
+# NOTE: the canteen / shop spending lines were omitted per request.
+#
+# --- FORMAT REFERENCE -------------------------------------------------------
+# LINE TYPES
+#   Name: text      dialogue  -> bottom box, name label, typewriter
+#   text            narration -> full screen, no name, one line added per click
+#   ? choice text   a branch under the line above
+#   + stat n        effect for the branch/line above  (e.g. + hype 5)
+#   -> label        jump to a beat; blank ends the scene
+#   == label        a named beat to jump to
+#   # comment       ignored
+#
+# DIRECTIVES - two kinds
+#   MODE (sticky; lasts until changed - add "off" to undo):
+#     @ fullscreen / @ fullscreen off        @ box  (= fullscreen off)
+#     @ center / @ center off                @ right / @ right off
+#     @ small / @ small off                  @ large / @ large off
+#     @ music <name>  (loops; @ music stop)
+#   EVENT (one-shot; happens on this line only):
+#     @ stage <text>   @ sfx <name>   @ shake   @ input_name
+# ---------------------------------------------------------------------------
+
+== first_shot_capture
+@ call phone
+Chip: Right in the frame! Chat's clipping it already. Check your phone, musclebrains.
+-> mission_clear
+
+== first_shot_miss
+@ call phone
+Chip: Aaaand there it goes. Chat tipped anyway. Check your phone before they change their minds.
+-> mission_clear
+
+== mission_clear
+Player: [i]Cake walk.[/i]
+@ stage Holds his fist out
+Chip: Not bad, musclebrains.
+@ stage Pleading
+Chip: Buy me a round at the canteen for a job well done?
+
+? Anything for you babe
+-> c_babe
+
+? Alright, but just ONE this time
+-> c_one
+
+? Heh, you BUM!
+-> c_bum
+
+== c_babe
+Chip: Haha, what the hell is that? Never mind, I take it back!
+->
+
+== c_one
+Chip: WAHOO~! BOOZE!
+->
+
+== c_bum
+Chip: You cheapskate!
+->
