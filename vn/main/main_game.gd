@@ -224,3 +224,30 @@ func debug_toggle_flag(flag: String) -> void:
 	await _save(Game.save_campaign)
 	if current_id == "":
 		_next()
+
+
+## Files every dossier entry, as if the story had shown them all.
+func debug_file_all() -> void:
+	for id in DOSSIER_DATA.all():
+		Game.set_flag("file:" + id)
+	_debug_dossier_changed("Filed all %d entries" % DOSSIER_DATA.all().size())
+
+
+## Flips the entries between their before and after versions. Turning it off also
+## clears the "already revised" mark, so turning it on again replays the reveal.
+func debug_toggle_reveal() -> void:
+	var on := not DOSSIER_DATA.revealed()
+	Game.set_flag(DOSSIER_DATA.REVEAL_FLAG, on)
+	if not on:
+		Game.set_flag(DOSSIER_DATA.REVISED_FLAG, false)
+	_debug_dossier_changed("Visor reveal " + ("on" if on else "off"))
+
+
+## Saves only between segments: mid-VN the flags ride along with the next commit (spec §3).
+func _debug_dossier_changed(what: String) -> void:
+	print("Debug: ", what)
+	if dossier.is_open():
+		dossier.close()
+	if current_id == "" and not transition.is_busy():
+		await _save(Game.save_campaign)
+		_dossier_closed()

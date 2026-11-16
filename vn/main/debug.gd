@@ -1,9 +1,15 @@
 extends CanvasLayer
 ## Debug builds only. F3 shows it: the saved state, a day jump, a flag toggle, a segment skip.
+##
+## Hotkeys work anywhere in a debug build, panel open or not. Each is also a button in the
+## panel's bottom row, labelled with its key, so the panel is the list of them.
+## To add one: a _hotkey() line in _ready() and a debug_* function on MainGame.
+## F1–F2 and F12 are left free (help, OS screenshot tools); F3 is the panel itself.
 
 var _state: Label
 var _day: SpinBox
 var _flag: LineEdit
+var _hotkeys := {}   ## keycode -> Callable
 
 
 func _ready() -> void:
@@ -34,6 +40,16 @@ func _ready() -> void:
 	row.add_child(_flag)
 	_button(row, "Toggle flag", func() -> void: get_parent().debug_toggle_flag(_flag.text.strip_edges()))
 	_button(row, "Skip segment", func() -> void: get_parent().debug_skip())
+	var keys := HBoxContainer.new()
+	column.add_child(keys)
+	_hotkey(keys, KEY_F4, "File all entries", func() -> void: get_parent().debug_file_all())
+	_hotkey(keys, KEY_F5, "Toggle visor reveal", func() -> void: get_parent().debug_toggle_reveal())
+
+
+func _hotkey(parent: Node, key: Key, text: String, action: Callable) -> void:
+	assert(not _hotkeys.has(key) and key != KEY_F3, "debug hotkey taken: " + OS.get_keycode_string(key))
+	_hotkeys[key] = action
+	_button(parent, "%s  %s" % [OS.get_keycode_string(key), text], action)
 
 
 func _button(parent: Node, text: String, action: Callable) -> void:
@@ -44,9 +60,14 @@ func _button(parent: Node, text: String, action: Callable) -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F3:
+	if not (event is InputEventKey and event.pressed and not event.echo):
+		return
+	if event.keycode == KEY_F3:
 		visible = not visible
 		_day.value = Game.day
+		get_viewport().set_input_as_handled()
+	elif _hotkeys.has(event.keycode):
+		_hotkeys[event.keycode].call()
 		get_viewport().set_input_as_handled()
 
 
