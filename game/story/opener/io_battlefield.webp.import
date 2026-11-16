@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i2jm72oth7p0"
-path="res://.godot/imported/io_battlefield.webp-009adcea43a4439f0362f5b30cf3c241.ctex"
+path="res://.godot/imported/io_battlefield.webp-be6665c44199081521a7e7c0a3257d81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://opener/io_battlefield.webp"
-dest_files=["res://.godot/imported/io_battlefield.webp-009adcea43a4439f0362f5b30cf3c241.ctex"]
+source_file="res://story/opener/io_battlefield.webp"
+dest_files=["res://.godot/imported/io_battlefield.webp-be6665c44199081521a7e7c0a3257d81.ctex"]
 
 [params]
 

@@ -5,7 +5,7 @@ signal finished(result: Dictionary)
 
 enum Phase { CONTACT, INCOMING, IMPACT, SETBACK, HANDOFF }
 
-const BATTLEFIELD := preload("res://opener/io_battlefield.webp")
+const BATTLEFIELD := preload("res://story/opener/io_battlefield.webp")
 const FRAME := Vector2(960, 540)
 const FIRE_POINT := Vector2(480, 490)
 const TARGET_RADIUS := 30.0

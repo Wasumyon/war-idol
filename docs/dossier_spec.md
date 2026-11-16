@@ -120,7 +120,7 @@ like `CALENDAR.validate()`:
 - unknown category, duplicate `order` in a category, missing image;
 - `[[id]]` pointing at no entry;
 - `== after` present without `== before` (or the reverse) when both are expected;
-- `@ file <id>` in any `game/scenes/*.txt` naming no entry;
+- `@ file <id>` in any `game/story/scenes/*.txt` naming no entry;
 - a `source:` path that doesn't exist (checked in the test, which runs from the repo).
 
 `tests/dossier_test.tscn`: loads all entries with 0 problems; sets `file:a`, checks the New tab

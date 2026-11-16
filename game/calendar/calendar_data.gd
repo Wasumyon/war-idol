@@ -28,7 +28,7 @@ const SLOT_KEYS := ["day", "evening"]
 const SEGMENTS := {
 	"d01_opener": {
 		"type": "minigame",
-		"source": "res://opener/opener.tscn",
+		"source": "res://story/opener/opener.tscn",
 		"title": "Contact",
 	},
 	"d01_opening": {
@@ -39,7 +39,7 @@ const SEGMENTS := {
 	},
 	"d02_keno_evening": {
 		"type": "vn",
-		"source": "res://scenes/placeholder/d02_keno_evening.txt",
+		"source": "res://story/scenes/placeholder/d02_keno_evening.txt",
 		"title": "Keno's, after hours",
 		"blurb": "Story. Chip wants to talk about the numbers.",
 		"outputs": {"flags": {"met_keno_evening": true}},
@@ -80,7 +80,7 @@ const SEGMENTS := {
 	},
 	"offer_canteen": {
 		"type": "vn",
-		"source": "res://scenes/placeholder/offer_canteen.txt",
+		"source": "res://story/scenes/placeholder/offer_canteen.txt",
 		"title": "Canteen with Chip",
 		"blurb": "A short scene.",
 		"once": true,

@@ -4,7 +4,7 @@ extends Node
 
 const DATA := preload("res://dossier/dossier_data.gd")
 const DOSSIER_SCENE := preload("res://dossier/dossier.tscn")
-const VN_SCENE := preload("res://vn.tscn")
+const VN_SCENE := preload("res://story/vn.tscn")
 const SCENE_FILE := "user://dossier_test_scene.txt"
 
 var _failures := 0

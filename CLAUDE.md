@@ -43,10 +43,10 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `docs/` | every design doc: bible, canon, outline, specs, punchlists, `game_design.md`, `restructure_plan.md`, the design-doc `.docx`, `stories/`, `boundarypush/` |
 | `source_art/` | unshipped art and prompts (characters, backgrounds, enemy models, concept art, UI base, raw sources, review thumbnails, source music). Not part of any Godot project |
 | `tools/` | scripts: `run_tests.ps1`, `commission.ps1`, `make_plain.ps1`, `make_flatline.ps1`, `stale_dossiers.ps1` |
-| `game/scenes/NN_*.txt` | the written scenes the game runs (plain text, played by `game/vn.tscn`) |
-| `game/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
+| `game/story/scenes/NN_*.txt` | the written scenes the game runs (plain text, played by `game/story/vn.tscn`) |
+| `game/story/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
 | `game/main/`, `game/hub/`, `game/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
-| `game/opener/`, `game/first_shot/`, `game/phone/` | Day 1's cold open and filming request; the phone |
+| `game/story/opener/`, `game/story/first_shot/`, `game/phone/` | Day 1's cold open and filming request; the phone |
 | `game/dossier/` | the files screen; `entries/<id>.txt` are the entries (placeholders for now). A scene line's `@ file <id>` files one |
 | `game/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
 | `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `game/` |

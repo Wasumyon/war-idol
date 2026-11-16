@@ -79,8 +79,8 @@ extends Control
 ## "Player:" resolves to Game.display_name() - "Blockhead" until the player
 ## enters a name, then that name. "{player}" in text expands the same way.
 
-const SCRIPT_FX := preload("res://script_effect.gd")
-const INLINE_MARKS := preload("res://inline_marks.gd")
+const SCRIPT_FX := preload("res://story/script_effect.gd")
+const INLINE_MARKS := preload("res://story/inline_marks.gd")
 const DOSSIER_DATA := preload("res://dossier/dossier_data.gd")
 const GLITCH_FX := preload("res://dossier/glitch_effect.gd")
 const CAMPAIGN_PHONE := preload("res://phone/campaign_phone.gd")

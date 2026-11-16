@@ -12,8 +12,8 @@ signal shown(node: Node)   ## a swap has completed; the tests wait on this
 signal _clicked
 
 const CALENDAR := preload("res://calendar/calendar.gd")
-const VN_SCENE := preload("res://vn.tscn")
-const FIRST_SHOT_SCENE := preload("res://first_shot/first_shot.tscn")
+const VN_SCENE := preload("res://story/vn.tscn")
+const FIRST_SHOT_SCENE := preload("res://story/first_shot/first_shot.tscn")
 const HUB_SCENE := preload("res://hub/hub.tscn")
 const PHONE := preload("res://phone/campaign_phone.gd")
 const DOSSIER_DATA := preload("res://dossier/dossier_data.gd")

@@ -8,14 +8,14 @@
 #
 #   powershell -File tools\make_plain.ps1
 #
-#   source : game/scenes/NN_*.txt      (files starting "_" are skipped)
-#   output : game/scenes/_read_NN_*.txt
+#   source : game/story/scenes/NN_*.txt      (files starting "_" are skipped)
+#   output : game/story/scenes/_read_NN_*.txt
 #
 # A reading copy is a diagnostic as much as a convenience: if a scene reads as
 # fragments without the art, the scene is under-written.
 
 $root   = Split-Path -Parent $PSScriptRoot
-$scnDir = Join-Path $root 'game\scenes'
+$scnDir = Join-Path $root 'game\story\scenes'
 
 function Convert-Scene([string]$src, [string]$dst) {
 	$lines = [IO.File]::ReadAllLines($src)

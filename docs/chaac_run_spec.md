@@ -1,6 +1,6 @@
 # The Chaac run — spec
 
-Status: **draft, not approved.** Replaces the cold-open shooter (`game/opener/`) on Day 1 with a
+Status: **draft, not approved.** Replaces the cold-open shooter (`game/story/opener/`) on Day 1 with a
 playable Battle of Chaac Patera in the runner, ending in `00_prologue`. Sources: the bible,
 canon §4, §6, §12, §15, `outline.md` Beat 01, `maingame_spec.md` §5, the `sandbox/slice/` prototype.
 
@@ -139,7 +139,7 @@ and the next click is *"A leg."* Battle ambience plays under it, far away, then 
 - `minigame` segment `d01_chaac_run`, scene `res://runner/runner.tscn`,
   args `{weapon = "gun", timeline = "chaac"}`, returns `{}`. It never fails: every path ends at
   beat 8.
-- Day 1 becomes `[d01_chaac_run, opening VN]`. The opener (`game/opener/`) is retired.
+- Day 1 becomes `[d01_chaac_run, opening VN]`. The opener (`game/story/opener/`) is retired.
 - The segment contract of `maingame_spec.md` §5 applies: `begin(args)`, `finished(result)`, no
   scene changes.
 

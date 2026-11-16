@@ -44,7 +44,7 @@ Import `game/project.godot` in Godot 4.7.x and press **F5** (it opens MainGame).
 **Notes**
 - `.godot/` is git-ignored; Godot regenerates it the first time you open the project.
 - The prototype is a **grey-box test build** — some art is still placeholder.
-- The **visual novel** player is `game/vn.tscn`. Scenes are plain text in `game/scenes/`. (`sandbox/vn/` is an older copy.)
+- The **visual novel** player is `game/story/vn.tscn`. Scenes are plain text in `game/story/scenes/`. (`sandbox/vn/` is an older copy.)
 - `sandbox/test.tscn` is a driving sandbox and `sandbox/test_static.tscn` is an asset-viewer rig; neither is the game.
 
 ## Git

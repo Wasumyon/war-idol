@@ -6,9 +6,9 @@ extends RefCounted
 ##   file:<id>   the story has filed the entry
 ##   seen:<id>   the player has opened it   (new = filed and not seen)
 
-const INLINE_MARKS := preload("res://inline_marks.gd")
+const INLINE_MARKS := preload("res://story/inline_marks.gd")
 const ENTRY_DIR := "res://dossier/entries/"
-const SCENE_DIR := "res://scenes/"
+const SCENE_DIR := "res://story/scenes/"
 const IMG_DIR := "res://img/"
 const IMG_EXTS := ["png", "webp", "jpg", "jpeg"]
 const REVEAL_FLAG := "visor_revealed"

@@ -4,7 +4,7 @@ extends Node2D
 
 signal finished(result: Dictionary)
 
-const BATTLEFIELD := preload("res://opener/io_battlefield.webp")
+const BATTLEFIELD := preload("res://story/opener/io_battlefield.webp")
 const FRAME := Vector2(960, 540)
 const WINDOW := 5.0
 const RADIUS := 29.0
