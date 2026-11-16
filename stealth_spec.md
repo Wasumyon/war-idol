@@ -45,8 +45,13 @@ map size.
 - **Height:** on high ground you are hidden from guards below. A guard on high ground does not see
   the floor below unless he is already alerted.
 - **Concealment:** patches (steam vents, sulfur fog, hanging tarps) hide anyone inside them.
-- **Noise:** every noise is a circle on the floor with a sound symbol on it, shown before you
-  commit to the action that makes it. Guards inside the circle turn and walk to its centre.
+- **Hearing:** guards also have a hearing range, drawn as a fainter arc than the vision cone.
+  Footsteps inside it fill the detection meter slowly; crouching shrinks your footsteps.
+- **Noise:** an action's noise is a **red dashed outline** on the floor with a sound symbol,
+  centred on whoever makes it and shown in aim mode before you commit. On the action, a soft
+  white ring travels outward from the centre and stops at that outline. **Every guard inside the
+  outline who was not knocked out by the action is alerted** and walks to the centre; everyone
+  outside it is unaffected. Guards the outline would catch are marked while you aim.
 - **Guard states:** patrol → suspicious (walks to what he noticed) → alarmed → searching → patrol.
   A knocked-out guard who is found by another raises suspicion in that guard.
 
@@ -82,7 +87,8 @@ down for the rest of the map.
 - The mouse is the viewfinder, as in the runner. Put it on a **subject** in line of sight and hold:
   a focus ring fills. When it is full, click to snap.
 - Moving while focusing slows you to a walk. Losing line of sight empties the ring.
-- **The snap makes a noise circle** (shutter and flash). Guards inside it come to look.
+- **The snap makes noise** (shutter and flash) by the rule in §3: its red outline shows while the
+  ring fills, so you know who will hear it before you click.
 - Each subject — a guard post, a machine, a document, a room — holds a fixed number of **shots**
   and is exhausted after that. Exhausted subjects are marked.
 - **Distance to danger** multiplies a shot's worth: the nearer an un-alerted guard's cone is to
@@ -90,6 +96,31 @@ down for the rest of the map.
 - Shots are **banked at checkpoints** and at the exit. Getting caught loses the unbanked ones.
 - In the job, the map ends at the exit; the payout depends on banked value against the quota.
   Story maps may carry subjects too (the evidence in Beat 38 is one) but have no quota.
+
+### The job in the fiction
+
+The job is **collecting dirt**, not streaming. The crew photographs fortified positions — the
+Ministry's side or the enemy's — and sells the pictures to dark buyers. Nothing goes on the
+channel.
+
+- **It pays a lot of cash and little or no Hype or followers.** The runner is the reverse. A
+  free slot is a choice between money and audience.
+- **The Ministry must not find out.** Being caught on a job is worse than a lost payout: catches
+  and alarms on Ministry-side maps feed a trouble flag *(proposed: a Ministry visit, a fine, a
+  search of the garage)*, the way the dials' dangerous ends do in `vn_game_design.md`.
+- Subjects are what a buyer wants: gun positions, stores, rosters, who meets whom.
+- **How the job opens: the loanshark** (author, 2026-11-15; scene not yet placed or written).
+  Chip has borrowed from shady lenders. The first payment is made, and the collector — calm, and
+  an automaton — produces a clause with compound interest. The narrator threatens him and gets
+  nowhere. The collector shows a holodisc: coordinates and the schematics of a base. Do this job
+  for his master and the debt is forgiven. That job is the **first stealth map**, scripted, and
+  finishing it unlocks the repeatable job offer in the hub.
+  - Calendar: a scripted VN segment followed by a `stealth` segment in `story` mode; its
+    `outputs` clear the debt and set the flag the job offers require.
+  - This answers `vn_game_design.md` open question 3 (the loanshark softlock): the debt is paid
+    in service.
+- *(mine)* After that the buyer is most naturally the info dealer — Ottenok, then Kathay — or the
+  loanshark's master again. Not decided.
 
 ## 6. The alarm
 
@@ -166,9 +197,9 @@ with patrol paths, subjects, cover, concealment, checkpoints, exit, barrels, tra
 
 ## 10. Open points
 
-- **What the job is in the fiction.** Who is being filmed on foot before the reveal, and why it
-  pays. If the subjects are "nests" — colonist camps — those shots become evidence after the
-  reveal. Proposed, not decided; needs a yes before job maps are written.
+- **The job's loose ends** (§5): who the dark buyers are, what the Ministry trouble event is, and
+  what "the enemy's fortified areas" look like through the visor before the reveal — a colonist
+  position rendered as a nest, whose pictures would mean something else afterwards.
 - **The overlay after the EMP.** Cones and circles are the visor's. In beats 35–39 the visors
   are dead or untrusted. Either Kathay's intrusion supplies the overlay, or the late maps run with
   less of it. Story decision.

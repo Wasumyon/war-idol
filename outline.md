@@ -105,6 +105,30 @@ money, pamphlets and soundbites (bible, Act 1).
 - **Action:** A moon-touched homeless veteran raves that the monsters are just men — "They're not bugs!", the teeth. Chip is filming. The narrator shoves money into his hand to shut him up, and gets a violent spike of phantom pain (canon §4).
 - **Payoff:** The first time the body answers for what the visor glosses. He tells himself it's the cold.
 
+### Beat 13A: The Collector — Fine Print *(proposed; placement open, days 2–6)*
+- **Source:** the author, 2026-11-15. The loan is Beat 08's. Mechanics: `stealth_spec.md` §5.
+- **Setting:** The garage or Keno's, after the first payment on the loan has been made.
+- **Action:** The collector comes anyway. He shows a slipped-in clause: legalese, compound interest, math jargon. The narrator moves to beat him; the collector stays completely calm. The narrator has him by the collar with one hand and jabs his pistol into his stomach with the other.
+- **Open:**
+  - **Whose loan.** The draft has Chip borrowing from shady people who come to collect. `03_car` (Beat 08, written) has the narrator take the predatory loan for the rig. Same loan with Chip as co-signer, or a second one of hers?
+  - **"Dekaros"** is not in the bible or canon, and the player names the narrator at New Game (canon §8).
+  - **Automatons** are not in the bible or canon. A man who is really a machine sits close to the twist; it needs a canon line.
+  - The `LOANSHARK` flag in `vn_game_design.md` describes a different collector (hacks the computer, damages the car).
+- **Draft lines** (the author's, not yet edited against the style guide):
+  - Collector: "Sure Dekaros. You can destroy me, that is your function. In addition, you are quite able at it. But what good will that do you?" He removes his head, showing that he is an automaton, then snaps it back on.
+  - Collector: "You call us usurers. Yes, we are. We exist because people require our services. Business, my dear, hasn't changed in a million years. It won't in a million either."
+  - Narrator: "You call this business? Rip off a greenhorn" (gesturing to Chip) "and then what? Sell her organs. Why not drink her blood while you're at it?" He pushes him and releases his grip, but never takes his gun or his eyes off the collector's vitals.
+  - Collector: "We're usurers, not devils."
+  - Narrator: "What's the difference?"
+  - The collector unzips and reaches into his jacket. The narrator tenses. He pulls out a holodisc. It shows the solar system, then Jove, then Io, then an area on it, then the schematics of a base.
+  - Collector: "It is in the subsection of that clause, you and your partner's services we find... unconventional and brash."
+  - Chip: "Thanks!"
+  - Collector: "Go to these coordinates, put your... rare abilities to my master's use, and we'll forgive this... mistake."
+  - Narrator, scoffing: "Devils make deals too. Ok, but this is the last time, you scam artist."
+  - Collector, dusting off his cloak: "Next time, get someone to read the fine print."
+  - Chip: "Looks like we made a new fan!"
+- **Payoff:** The base on the holodisc is the first stealth map, the narrator and Chip only. Finishing it clears the debt and opens the dirt-collecting job in the hub.
+
 ### Beat 14: Content First — Kathay's Banned Stream (Day 5, evening)
 - **Source:** canon §11, Kathay's order of arrival.
 - **Setting:** The rig or Keno's, after the Day 5 checkpoint.
