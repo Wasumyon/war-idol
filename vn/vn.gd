@@ -50,7 +50,7 @@ extends Control
 ##     @ input_name              open the name-entry panel
 ##     @ call first_shot         start Chip's filming request after the line
 ##     @ call phone              open the stream receipt after the line
-##     @ file <id>               file the dossier entry <id> (dossier_spec.md §3): sets
+##     @ file <id>               file the dossier entry <id> (docs/dossier_spec.md §3): sets
 ##                               flag file:<id>, emits filed(id), toasts. Before the line shows,
 ##                               so the first mention of its terms is already underlined.
 ##

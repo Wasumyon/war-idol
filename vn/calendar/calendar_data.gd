@@ -1,5 +1,5 @@
 extends RefCounted
-## The calendar as data. Spec: maingame_spec.md (repo root).
+## The calendar as data. Spec: docs/maingame_spec.md.
 ##
 ## SEGMENTS  id -> one playable thing.
 ##   type      "vn", "minigame", or "skip" (passes the slot, plays nothing)

@@ -1,9 +1,9 @@
-# Notes/make_flatline.ps1
+# tools/make_flatline.ps1
 #
-# Regenerates sandbox/vn/sfx/flatline.wav — the monitor sting under the prologue's last
+# Regenerates vn/sfx/flatline.wav — the monitor sting under the prologue's last
 # beat. Generated rather than sourced, so there is no licence to record.
 #
-#   powershell -File Notes\make_flatline.ps1
+#   powershell -File tools\make_flatline.ps1
 #
 # The tone TAPERS. A held sine at full scale is a klaxon. This one opens with a
 # fraction of a second of full tone and then decays to silence inside a second,
@@ -20,7 +20,7 @@ $tau     = 0.36     # decay time constant in seconds: ~63% quieter every 0.36 s.
 $sr      = 44100    # sample rate
 
 $root = Split-Path -Parent $PSScriptRoot
-$dst  = Join-Path $root 'car\vn\sfx\flatline.wav'
+$dst  = Join-Path $root 'vn\sfx\flatline.wav'
 
 $n = [int]($sr * $seconds)
 $ms = New-Object System.IO.MemoryStream

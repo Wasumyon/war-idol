@@ -1,5 +1,5 @@
 extends Node
-## The game's one persistent scene. Spec: maingame_spec.md (repo root).
+## The game's one persistent scene. Spec: docs/maingame_spec.md.
 ##
 ## It asks the calendar what plays next, swaps that in through the Transition layer,
 ## waits for the segment's finished(result), saves, and asks again. Segments never

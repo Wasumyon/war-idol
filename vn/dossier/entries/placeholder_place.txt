@@ -3,7 +3,7 @@ category: io
 order: 10
 image: leg_pool
 info: Location | PLACEHOLDER
-source: canon/09_places.md
+source: docs/canon/09_places.md
 terms: Placeholder Place
 
 ## PLACEHOLDER

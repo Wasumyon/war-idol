@@ -11,7 +11,7 @@ obey. It is split by topic so a task loads only the file it needs.
 | `canon/` (this index) | detailed rulings a scene must obey | is this line allowed? |
 | `outline.md` | the beats, in order | what happens when? |
 | `style_guide.md` | how to write: tense, voice, register, engine syntax | how is it written? |
-| `vn_game_design.md` | the tracked state: Hype, the dials, flags, the ending models | how does the game track it? |
+| `game_design.md` | the tracked state: Hype, the dials, flags, the ending models | how does the game track it? |
 
 **If the bible and canon disagree, the bible wins** and canon gets fixed. Canon is expected to
 change as the story is written; add here only when a fact is **decided**. Proposals belong in

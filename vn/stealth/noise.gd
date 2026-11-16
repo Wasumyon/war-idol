@@ -1,5 +1,5 @@
 extends Node3D
-## One noise (stealth_spec.md §3): a red dashed outline on the floor with a sound symbol,
+## One noise (docs/stealth_spec.md §3): a red dashed outline on the floor with a sound symbol,
 ## centred on its source. fire() sends a soft white ring out to the outline; each guard
 ## inside is alerted as the ring reaches him and walks to the centre. Guards outside are
 ## unaffected. Add it, place it, then fire it; before fire() it is only the outline, which

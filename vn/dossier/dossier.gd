@@ -1,5 +1,5 @@
 extends CanvasLayer
-## The files screen: an overlay owned by MainGame, NOT a segment. Spec: dossier_spec.md.
+## The files screen: an overlay owned by MainGame, NOT a segment. Spec: docs/dossier_spec.md.
 ##
 ## open(id := "")  close()  notify_filed(id).  It sets flags in memory and never saves.
 ## It keeps processing while the tree is paused (Pause and the VN pause it).

@@ -2,7 +2,7 @@ title: Placeholder Feed
 category: media
 order: 10
 info: Kind | PLACEHOLDER
-source: canon/04_narrator.md
+source: docs/canon/04_narrator.md
 terms: Placeholder Feed
 
 ## PLACEHOLDER

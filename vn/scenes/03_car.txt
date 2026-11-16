@@ -1,5 +1,5 @@
 # War Idol - 03 - The car
-# Source: Stories/test.txt (Opening scene 2).
+# Source: docs/stories/test.txt (Opening scene 2).
 #
 # --- FORMAT REFERENCE -------------------------------------------------------
 # LINE TYPES

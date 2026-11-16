@@ -2,7 +2,7 @@ title: Placeholder Person
 category: people
 order: 10
 info: Role | PLACEHOLDER
-source: canon/08_cast.md
+source: docs/canon/08_cast.md
 terms: Placeholder Person
 
 == before

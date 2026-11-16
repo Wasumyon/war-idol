@@ -1,6 +1,6 @@
 # Aysel Terpsichore — design brief
 
-Who she is lives in `canon/08_cast.md`. This file is only how she looks.
+Who she is lives in `docs/canon/08_cast.md`. This file is only how she looks.
 
 **Direction:** from field-soldier pin-up to a **gyaru idol who wears war as fashion and
 pomp**. She performs propaganda; she isn't a soldier any more (she still can fight). Every
@@ -72,7 +72,7 @@ YR545 (the huge puffy jacket, lime tights).
 - **Open:** the lower half is too bare. Either (1) a leotard covering the midriff with the
   crest printed on it, keeping the real tattoo hidden for off-camera scenes, or (2) glossy
   high-waisted shorts, with the tattoo visible above the waistband. Leaning (1).
-- Latest image: `Characters/aysel_gpt_v2.png` (ChatGPT, 2nd round). The top, highlights
+- Latest image: `source_art/characters/aysel_gpt_v2.png` (ChatGPT, 2nd round). The top, highlights
   and shoes are kept.
 
 ## Props

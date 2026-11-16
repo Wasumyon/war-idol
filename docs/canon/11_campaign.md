@@ -8,7 +8,7 @@ The story bible owns the big picture and **wins any conflict**.
 - **40 in-game days**, scrappy start-up to fugitive, **checkpoints every five days**.
 - **Core loop:** choose a route (easy / medium / hard) → vehicle combat mission → shop →
   canteen or evening scene.
-- **The tracked state lives in `vn_game_design.md`.** Hype, the dials, the event flags, the mechanics
+- **The tracked state lives in `game_design.md`.** Hype, the dials, the event flags, the mechanics
   rules and the engine gap are all there. This section keeps only the campaign around them, so there
   is one description of the system and not two.
 - **Shop lines:** personal gear (armour, lithium, alcohol), streaming gear (lens, gyro,

@@ -1,5 +1,5 @@
 # Lists dossier entries whose `source:` files have a later git commit than the entry itself.
-# Run after a canon session (dossier_spec.md section 10). Each hit is an entry to reread,
+# Run after a canon session (docs/dossier_spec.md section 10). Each hit is an entry to reread,
 # often still fine; it is not an automatic rewrite.
 #
 #   powershell -File tools/stale_dossiers.ps1

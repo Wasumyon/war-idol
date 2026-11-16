@@ -1,5 +1,5 @@
 extends RichTextEffect
-## [glitch]...[/glitch]: the visor or the record is unsure of this span. Spec: dossier_spec.md §6.
+## [glitch]...[/glitch]: the visor or the record is unsure of this span. Spec: docs/dossier_spec.md §6.
 ##
 ## Every character is swapped for a random block glyph a few times a second, with a small
 ## horizontal jitter and a colour split. The true letter shows through for a frame now and

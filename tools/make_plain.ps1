@@ -1,4 +1,4 @@
-# Notes/make_plain.ps1
+# tools/make_plain.ps1
 #
 # Generates plain-text reading copies of every VN scene. Strips every directive and
 # comment, keeps the prose WITH its inline markup (**bold** and *italic* / _italic_ survive
@@ -6,16 +6,16 @@
 # a page break as a bare "---" with a blank line above it and none below, so the structure
 # survives and the file still reads correctly as Markdown.
 #
-#   powershell -File Notes\make_plain.ps1
+#   powershell -File tools\make_plain.ps1
 #
-#   source : sandbox/vn/scenes/NN_*.txt      (files starting "_" are skipped)
-#   output : sandbox/vn/scenes/_read_NN_*.txt
+#   source : vn/scenes/NN_*.txt      (files starting "_" are skipped)
+#   output : vn/scenes/_read_NN_*.txt
 #
 # A reading copy is a diagnostic as much as a convenience: if a scene reads as
 # fragments without the art, the scene is under-written.
 
 $root   = Split-Path -Parent $PSScriptRoot
-$scnDir = Join-Path $root 'car\vn\scenes'
+$scnDir = Join-Path $root 'vn\scenes'
 
 function Convert-Scene([string]$src, [string]$dst) {
 	$lines = [IO.File]::ReadAllLines($src)

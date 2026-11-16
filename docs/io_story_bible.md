@@ -117,7 +117,7 @@ Supporting cast — Tank, Keno, the moon-touched soldier, the recruiter and othe
 ## Structure — three acts
 
 The campaign runs **40 in-game days**, with checkpoints every five. Loop and economy:
-`canon/11_campaign.md` and `vn_game_design.md`. Beat-by-beat order: `outline.md`.
+`canon/11_campaign.md` and `game_design.md`. Beat-by-beat order: `outline.md`.
 
 ### Act 1: The protective illusion (0–25%)
 * Establish the gritty reality of Io and the popular worship of Albrecht through money, pamphlets
@@ -148,4 +148,4 @@ The campaign runs **40 in-game days**, with checkpoints every five. Loop and eco
     **Aysel becomes the enemy** (rough, subject to change). The player may kill her. If they
     refuse, Albrecht moves to kill her, and the player may stop him. Each outcome changes the
     epilogue.
-* **How the run feeds the fork is open** — `vn_game_design.md`, "The ending".
+* **How the run feeds the fork is open** — `game_design.md`, "The ending".

@@ -1,5 +1,5 @@
 # War Idol - 04 - Mission clear
-# Source: Stories/test.txt (Mission 1 clear).
+# Source: docs/stories/test.txt (Mission 1 clear).
 # NOTE: the canteen / shop spending lines were omitted per request.
 #
 # --- FORMAT REFERENCE -------------------------------------------------------

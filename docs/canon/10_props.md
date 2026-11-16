@@ -53,7 +53,7 @@ The story bible owns the big picture and **wins any conflict**.
     (canon §15), so her name is an antique, and that is the joke. Told once, as a joke, if it
     comes up; never a lore dump.
   - **The old collision is gone in dialogue.** "Tank" stays an asset/enemy-class file name
-    (`Enemy models/`, README's "drone, buggy, tank"), but on the page a vehicle is a
+    (`source_art/enemy_models/`, README's "drone, buggy, tank"), but on the page a vehicle is a
     cheirosiphon or *Cheiro*, never a tank. (Where the name came from on the sheets: a black
     tank top and a gas canister on her belt.)
 - **The prologue** — one painted plate, the camera does the work. `leg_pool`, `stomp`,

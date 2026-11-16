@@ -1,5 +1,5 @@
 # War Idol - 01 - Intro
-# Source: Stories/test.txt (Intro).
+# Source: docs/stories/test.txt (Intro).
 #
 # --- FORMAT REFERENCE -------------------------------------------------------
 # LINE TYPES

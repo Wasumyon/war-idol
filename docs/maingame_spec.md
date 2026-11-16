@@ -1,7 +1,7 @@
 # MainGame and the calendar — spec
 
 Status: **approved and built** (placeholder content from Day 2 on). One departure: `first_shot` still records its own result through `Game.record_first_shot`, which keeps its save-retry screen. Project: root `vn/`. Sources: the bible
-(three acts, 40 days), canon 11, `outline.md`, `vn_game_design.md`.
+(three acts, 40 days), canon 11, `outline.md`, `game_design.md`.
 
 ## 1. What exists in `vn/` today
 

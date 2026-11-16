@@ -3,7 +3,7 @@ category: military
 order: 10
 info: Formed | PLACEHOLDER
 info: Strength | PLACEHOLDER
-source: canon/15_military.md, io_story_bible.md
+source: docs/canon/15_military.md, docs/io_story_bible.md
 terms: Placeholder Unit, the Unit
 
 == before

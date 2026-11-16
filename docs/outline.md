@@ -113,7 +113,7 @@ money, pamphlets and soundbites (bible, Act 1).
   - **Whose loan.** The draft has Chip borrowing from shady people who come to collect. `03_car` (Beat 08, written) has the narrator take the predatory loan for the rig. Same loan with Chip as co-signer, or a second one of hers?
   - **"Dekaros"** is not in the bible or canon, and the player names the narrator at New Game (canon §8).
   - **Automatons** are not in the bible or canon. A man who is really a machine sits close to the twist; it needs a canon line.
-  - The `LOANSHARK` flag in `vn_game_design.md` describes a different collector (hacks the computer, damages the car).
+  - The `LOANSHARK` flag in `game_design.md` describes a different collector (hacks the computer, damages the car).
 - **Draft lines** (the author's, not yet edited against the style guide):
   - Collector: "Sure Dekaros. You can destroy me, that is your function. In addition, you are quite able at it. But what good will that do you?" He removes his head, showing that he is an automaton, then snaps it back on.
   - Collector: "You call us usurers. Yes, we are. We exist because people require our services. Business, my dear, hasn't changed in a million years. It won't in a million either."
@@ -246,7 +246,7 @@ money, pamphlets and soundbites (bible, Act 1).
 - **Setting:** Albrecht's custody.
 - **Action:** Albrecht confronts them face to face. The numbers; the elites' corruption; the plan to send Io into Europa and fuse the wreck into **Eden**. His one scene of self-justification. He wants agreement, not obedience.
 - **Who is in the room** *(proposed)*: the narrator and Chip. Aysel is held apart, treated with respect — the hostage he respects (canon §8) — so she does not hear him, and the Route A heist stays her reveal.
-- **The Fork:** permanent. Reject him (Route A) or agree (Route B). How the run feeds the fork is open: `vn_game_design.md`, "The ending".
+- **The Fork:** permanent. Reject him (Route A) or agree (Route B). How the run feeds the fork is open: `game_design.md`, "The ending".
 
 ### Route B — Complicit, the hero (short epilogue)
 

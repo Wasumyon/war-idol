@@ -1,5 +1,5 @@
 extends RefCounted
-## The VN's inline shorthand (style_guide.md §10), shared by vn.gd and the dossier.
+## The VN's inline shorthand (docs/style_guide.md §10), shared by vn.gd and the dossier.
 
 
 ## Inline shorthand, Markdown/CommonMark order. Triples and doubles run BEFORE the

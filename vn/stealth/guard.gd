@@ -1,5 +1,5 @@
 extends CharacterBody3D
-## A guard: patrols, sees, hears, fills a detection meter and reacts (stealth_spec.md §3, §6).
+## A guard: patrols, sees, hears, fills a detection meter and reacts (docs/stealth_spec.md §3, §6).
 ## A capsule stand-in: the Visual node is what the modeller replaces.
 ##
 ## The segment root is his director: it owns the alarm, the crisis level and what the overlay

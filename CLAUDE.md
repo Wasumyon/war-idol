@@ -29,17 +29,20 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 ## Where things are
 | path | what |
 |---|---|
-| `io_story_bible.md` | **the big picture and the source of truth** — premise, twist, characters, Albrecht, acts, endings |
-| `canon.md` → `canon/NN_*.md` | detailed rulings a scene must obey, one topic per file ("canon §4" = `canon/04_narrator.md`) |
-| `outline.md` | the beats in order |
+| `docs/io_story_bible.md` | **the big picture and the source of truth** — premise, twist, characters, Albrecht, acts, endings |
+| `docs/canon.md` → `docs/canon/NN_*.md` | detailed rulings a scene must obey, one topic per file ("canon §4" = `docs/canon/04_narrator.md`) |
+| `docs/outline.md` | the beats in order |
 | `claude/decisions.md` (Claude Project, not the repo) | settled decisions not yet applied to their home files; "Still open" is the to-do list |
-| `style_guide.md` | how to write: tense, voice, register, engine syntax |
-| `vn_game_design.md` | tracked state: Hype, the dials, flags, ending models |
-| `punchlist.md`, `01_intro_punchlist.md` | open errors and considerations |
-| `maingame_spec.md` | MainGame, the calendar data model, the draft 40-day placement |
-| `dossier_spec.md` | the in-game files: entry format, unlocks, pre/post-reveal versions, glitched text |
-| `stealth_spec.md` | the stealth minigame (story beats and the on-foot job): rules, party, segment contract, build steps |
+| `docs/style_guide.md` | how to write: tense, voice, register, engine syntax |
+| `docs/game_design.md` | tracked state: Hype, the dials, flags, ending models |
+| `docs/punchlist.md`, `docs/01_intro_punchlist.md` | open errors and considerations |
+| `docs/maingame_spec.md` | MainGame, the calendar data model, the draft 40-day placement |
+| `docs/dossier_spec.md` | the in-game files: entry format, unlocks, pre/post-reveal versions, glitched text |
+| `docs/stealth_spec.md` | the stealth minigame (story beats and the on-foot job): rules, party, segment contract, build steps |
 | `HANDOVER.md` | the opening slice: direction and build order |
+| `docs/` | every design doc: bible, canon, outline, specs, punchlists, `game_design.md`, `restructure_plan.md`, the design-doc `.docx`, `stories/`, `boundarypush/` |
+| `source_art/` | unshipped art and prompts (characters, backgrounds, enemy models, concept art, UI base, raw sources, review thumbnails, source music). Not part of any Godot project |
+| `tools/` | scripts: `run_tests.ps1`, `commission.ps1`, `make_plain.ps1`, `make_flatline.ps1`, `stale_dossiers.ps1` |
 | `vn/scenes/NN_*.txt` | the written scenes the game runs (plain text, played by `vn/vn.tscn`) |
 | `vn/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
 | `vn/main/`, `vn/hub/`, `vn/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
@@ -61,7 +64,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
   `change_scene_to_file` in `vn/`.
 - Files starting `_` are drafts or generated reading copies (`_read_*.txt`). Don't edit them or
   use them as source.
-- Move files only inside Godot's FileSystem dock, and commit to git before each step.
+- Inside a Godot project, move files in the FileSystem dock, or on disk with Godot closed; elsewhere (`docs/`, `source_art/`, `tools/`) use `git mv`. Commit to git before each step.
 
 ## Working with Claude
 - **Load only what the task needs:** this file, the bible, the one or two canon files involved,
@@ -73,7 +76,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
   mechanical punchlist items.
 
 ## In progress
-- **Restructure** (decided 2026-11-16): `restructure_plan.md` has the new names and the steps. `car/` is now `sandbox/`; the rest waits on the stealth playtest.
+- **Restructure** (decided 2026-11-16): `docs/restructure_plan.md` has the new names and the steps. Done: `car/` → `sandbox/`, test runner, repo-root cleanup (steps 1–2). The rest waits on the stealth playtest.
 - **Game jam (about a week, from 2026-10-24):** build `tunnel/` (own project, never references `sandbox/`).
 - `outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
   B10–B14 wait on a yes before scenes are written against them.
@@ -83,4 +86,4 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 - Dossiers: built from `dossier_spec.md` (merged 2026-11-16), four placeholder entries, no
   `@ file` in any scene yet. Next: settle its §9 story points, then write entries (Opus) and file them in scenes.
 - Stealth minigame: specced in `stealth_spec.md` (2026-11-15), not built; its §10 points are open.
-- Update `Game` stats to match `vn_game_design.md` (the dials), and move `lane_x()` out of it.
+- Update `Game` stats to match `docs/game_design.md` (the dials), and move `lane_x()` out of it.

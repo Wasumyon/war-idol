@@ -25,8 +25,8 @@ detail and the supporting cast. The original design doc's cast table is the sour
 - **The moon-touched soldier** — rants about the enemy's teeth: **"They're not bugs!"**
 - **Captain Keno** — runs the White Cow in Juno. His selected visual design is **The House Boss**:
   broad shoulders, a shaved head, a graying beard, a faded hibiscus aloha shirt, and a repaired
-  prosthetic pince-nez with smoky amber lenses. [Concept sheet](../Characters/captain-keno-concept.png)
-  · [Character sheet](../Characters/captain-keno-character-sheet.png).
+  prosthetic pince-nez with smoky amber lenses. [Concept sheet](../../source_art/characters/captain-keno-concept.png)
+  · [Character sheet](../../source_art/characters/captain-keno-character-sheet.png).
 - **Aysel Terpsichore** ("Aysel of Phobos" on stream) — gyaru idol, #1 War Idol stream.
   Late 20s (up to early 30s; it doesn't show). **Not an act: this is who she is.**
   Impulsive, raucous, can't hide anything, a natural magnet for attention, good and bad.
@@ -74,7 +74,7 @@ detail and the supporting cast. The original design doc's cast table is the sour
   - **Route B (rough, subject to change):** she becomes the enemy. The player may kill her;
     if they refuse, Albrecht tries, and the player may stop him. Each changes the epilogue.
   - Wealthy and miserly; cute chibi avatar over the cruelty.
-  - Visual design: `Characters/aysel_design.md`.
+  - Visual design: `source_art/characters/aysel_design.md`.
 - **Kathay is a handle, not a name.** Nobody in this world goes by a real one — Chip,
   Aysel, Langley are all brands. She has an ordinary name nobody has used in years.
 - Unwritten stubs: Aysel's stream, **Issac Thermidor** (intelligence officer), special

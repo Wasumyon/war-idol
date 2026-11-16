@@ -18,8 +18,8 @@ whole repo (not `_archive/`, not `.claude/worktrees/`) for the old name or path:
 | `MainGame` (`main_game.gd/.tscn`) | `Main` (`main.gd/.tscn`) |
 | `Game` autoload | `GameState` |
 | `campaign_phone.gd` | `phone.gd` |
-| `vn_game_design.md` | `game_design.md` |
-| root docs | `docs/`; unshipped art -> `source_art/` (snake_case); `.ps1` at root -> `tools/` |
+| `vn_game_design.md` | `game_design.md` (**done**) |
+| root docs | `docs/`; unshipped art -> `source_art/` (snake_case); `.ps1` at root -> `tools/` (**done**) |
 
 Kept: `hub/`, `dossier/`, `calendar/`, `autoload/`, "segment", "calendar".
 Not now: inside the runner, `slice.*` -> `run.*` and `runner.gd` (the player vehicle) -> a clearer
@@ -27,9 +27,12 @@ name; the code uses group names such as "runner". Delete `runner_placeholder.*` 
 
 ## Steps
 1. **Done:** `car/` -> `sandbox/`, references updated. `tools/run_tests.ps1` added.
-2. **Repo root cleanup** (no game files touched; safe any time): `docs/`, `source_art/`, `.ps1` into
-   `tools/`. Update every path in CLAUDE.md, README, HANDOVER and the specs. Fix `commission.ps1` /
-   `make_*.ps1` paths.
+2. **Done:** repo root cleanup. Docs in `docs/` (+ `docs/stories/`, `docs/boundarypush/`), art in
+   `source_art/` (incl. `prompts/`, `music/`, `raw/`, `review_thumbs/`), scripts in `tools/`.
+   `vn_game_design.md` became `docs/game_design.md`. Dossier `source:` lines, code comments, scene
+   comments and the `.ps1` paths were rewritten; the scripts now point at the live `vn/` folders,
+   not `sandbox/vn/`. Left for the user to decide: `docs/opencode.md` (empty) and
+   `docs/io_vanguard_story_bible.md` (an older near-duplicate of the bible).
 3. **Wait:** stealth playtest finished and committed. Then tell Fable the new names.
 4. **`vn/` -> `game/`.** Folder only. Fix `.claude/launch.json`, the test runner, docs.
 5. **Folder moves**, one commit each: `scenes/` -> `story/` (with the VN player, `opener/`,

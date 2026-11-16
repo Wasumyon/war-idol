@@ -1,6 +1,6 @@
 extends RefCounted
 ## Dossier entries: loading, the two versions, links and glitch spans, validation.
-## Spec: dossier_spec.md (repo root). Static helpers only; the screen is dossier.gd.
+## Spec: docs/dossier_spec.md. Static helpers only; the screen is dossier.gd.
 ##
 ## State lives in Game.flags and nothing here saves:
 ##   file:<id>   the story has filed the entry

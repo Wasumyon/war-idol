@@ -1,5 +1,5 @@
 extends Node3D
-## The stealth minigame's segment root (stealth_spec.md §9). begin(args) before it enters the
+## The stealth minigame's segment root (docs/stealth_spec.md §9). begin(args) before it enters the
 ## tree, then finished(result) at the map's exit. It never changes scene, advances the day or
 ## writes the save. Opened on its own (F6) it loads the test map.
 
@@ -11,7 +11,7 @@ const PLAYER_SCENE := preload("res://stealth/player.tscn")
 const Guard := preload("res://stealth/guard.gd")
 const StealthNoise := preload("res://stealth/noise.gd")
 
-## What the visor overlay shows in real time (stealth_spec.md §3). The overlay view (Q)
+## What the visor overlay shows in real time (docs/stealth_spec.md §3). The overlay view (Q)
 ## always shows everything.
 enum OverlayMode { ALWAYS, FACING, AIM_ONLY }
 

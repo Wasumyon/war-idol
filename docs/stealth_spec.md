@@ -2,8 +2,8 @@
 
 Status: **design agreed 2026-11-15, not built.** §10 lists what is still open. Project: root `vn/`,
 folder `vn/stealth/`. Sources: the bible (Act 3, the heist), `outline.md` beats 16, 18, 27–28, 35,
-38, 39, canon 8 and 11, `vn_game_design.md`, `maingame_spec.md` §3 and §5. Replaces the
-provisional note `Boundarypush/heist-escape-minigame.md`.
+38, 39, canon 8 and 11, `game_design.md`, `maingame_spec.md` §3 and §5. Replaces the
+provisional note `boundarypush/heist-escape-minigame.md`.
 
 Reference for feel only: the exploration layer of GFL2's Boundary Push (move one leader in real
 time, read detection ranges, pick off exposed targets, noise draws the rest). Nothing of that
@@ -57,7 +57,7 @@ map size.
   A knocked-out guard who is found by another raises suspicion in that guard.
 
 The cones, circles and meters are the AR visor's overlay. That satisfies "no HUD without an
-instrument" (`vn_game_design.md`) and gives the reveal something to take away (§10).
+instrument" (`game_design.md`) and gives the reveal something to take away (§10).
 
 **What the overlay shows when** (decided 2026-11-16, to be confirmed in play):
 
@@ -123,7 +123,7 @@ channel.
   free slot is a choice between money and audience.
 - **The Ministry must not find out.** Being caught on a job is worse than a lost payout: catches
   and alarms on Ministry-side maps feed a trouble flag *(proposed: a Ministry visit, a fine, a
-  search of the garage)*, the way the dials' dangerous ends do in `vn_game_design.md`.
+  search of the garage)*, the way the dials' dangerous ends do in `game_design.md`.
 - Subjects are what a buyer wants: gun positions, stores, rosters, who meets whom.
 - **How the job opens: the loanshark** (author, 2026-11-15; scene not yet placed or written).
   Chip has borrowed from shady lenders. The first payment is made, and the collector — calm, and
@@ -133,7 +133,7 @@ channel.
   finishing it unlocks the repeatable job offer in the hub.
   - Calendar: a scripted VN segment followed by a `stealth` segment in `story` mode; its
     `outputs` clear the debt and set the flag the job offers require.
-  - This answers `vn_game_design.md` open question 3 (the loanshark softlock): the debt is paid
+  - This answers `game_design.md` open question 3 (the loanshark softlock): the debt is paid
     in service.
 - *(mine)* After that the buyer is most naturally the info dealer — Ottenok, then Kathay — or the
   loanshark's master again. Not decided.
