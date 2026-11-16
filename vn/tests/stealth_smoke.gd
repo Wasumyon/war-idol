@@ -21,7 +21,10 @@ func _run() -> void:
 	_s.finished.connect(func(result: Dictionary) -> void: _result = result)
 	add_child(_s)
 	await _frames(20)
+	_guards_run(false)
 	await _movement()
+	await _senses()
+	await _alarm()
 	await _exit()
 	print("stealth smoke: %d failures" % _failures)
 	get_tree().quit(1 if _failures else 0)
@@ -88,11 +91,198 @@ func _exit() -> void:
 	_check(_result.is_empty(), "no result before the exit")
 	p.teleport(Vector3(16, 0, 12))
 	await _frames(3)
-	_check(_result.has("outcome"), "reaching the exit emits finished with an outcome: %s" % [_result])
+	_check(_result.get("outcome") == "loud" and _result.get("alarms") == 2
+		and _result.get("catches") == 1, "reaching the exit emits finished: %s" % [_result])
 	await _shot("9_exit")
 
 
+func _senses() -> void:
+	var p: CharacterBody3D = _s.player
+	var g: CharacterBody3D = _s.map.get_node("Guards/EastSentry")
+	var dt := 1.0 / 60.0
+	_check(_s.map.guards.size() == 4, "the map's four guards are collected")
+	_check(g.state == g.State.PATROL and g.meter == 0.0, "guards start on patrol")
+
+	# The sentry stands at (13, 9) looking west; the tests turn him by hand.
+	g.rotation.y = PI / 2
+	await _place(Vector3(9.5, 0, 9))
+	_check(g.can_see(p), "a guard sees the player in his cone")
+	await _place(Vector3(16, 0, 9))
+	_check(not g.can_see(p), "not behind his back")
+	await _place(Vector3(6, 0, 9))
+	_check(not g.can_see(p), "not through a wall")
+	g.rotation.y = 0.0
+	await _place(Vector3(12, 0, 2.5))
+	_check(g.can_see(p), "low cover does not hide him standing")
+	Input.action_press(&"stealth_crouch")
+	await _frames(3)
+	_check(not g.can_see(p), "low cover hides him crouched")
+	Input.action_release(&"stealth_crouch")
+	await _frames(3)
+
+	await _place(Vector3(13.3, 0, 7))
+	g.meter = 0.0
+	for i in 6:
+		g._sense(dt)
+	var near: float = g.meter
+	await _place(Vector3(14, 0, 1))
+	g.meter = 0.0
+	g._set_state(g.State.PATROL)
+	for i in 6:
+		g._sense(dt)
+	var far: float = g.meter
+	_check(far > 0.0 and near > far * 2.0,
+		"the meter fills faster up close (%.3f against %.3f)" % [near, far])
+	_s.crisis_level = 2
+	g.meter = 0.0
+	for i in 6:
+		g._sense(dt)
+	_check(g.meter > far * 1.5, "and faster at a higher crisis level (%.3f)" % g.meter)
+	_s.crisis_level = 0
+	await _place(Vector3(13, 0, 12))
+	var full: float = g.meter
+	for i in 90:
+		g._sense(dt)
+	_check(g.meter < full, "it drains when he is not noticed (%.2f to %.2f)" % [full, g.meter])
+
+	# Footsteps 3 m behind him.
+	g.meter = 0.0
+	g._set_state(g.State.PATROL)
+	_steer(Vector3(1, 0, 0))
+	await _frames(10)
+	_check(not g.can_see(p) and g.can_hear(p), "walking behind him is heard")
+	g._sense(dt)
+	_check(g.meter > 0.0, "and fills the meter")
+	Input.action_press(&"stealth_crouch")
+	await _frames(10)
+	_check(not g.can_hear(p), "crouch-walking at that distance is not")
+	_steer(Vector3.ZERO)
+	Input.action_release(&"stealth_crouch")
+	await _frames(5)
+	g.meter = 0.0
+
+	# The overlay setting: one place decides what is drawn.
+	_check(_s.overlay_level() == g.Overlay.FACING, "by default real time shows facing only")
+	g.redraw()
+	_check(not g._hearing.visible and g._cone_mesh.get_surface_count() == 1,
+		"so the hearing ring is hidden and only the marker is drawn")
+	_s.overlay_mode = _s.OverlayMode.AIM_ONLY
+	g.redraw()
+	_check(g._cone_mesh.get_surface_count() == 0, "aim_only draws nothing in real time")
+	_press(&"stealth_overlay_view")
+	await _frames(3)
+	_check(_s.overlay_view and _s.overlay_level() == g.Overlay.FULL and g._hearing.visible,
+		"Q opens the overlay view with everything shown")
+	var before := p.global_position
+	_steer(Vector3(-1, 0, 0))
+	await _frames(10)
+	_steer(Vector3.ZERO)
+	_check(p.global_position.is_equal_approx(before), "and the world is stopped")
+	await _shot("5_overlay_view")
+	_press(&"stealth_overlay_view")
+	await _frames(3)
+	_guards_run(false)
+	_s.overlay_mode = _s.OverlayMode.ALWAYS
+	_check(_s.overlay_level() == g.Overlay.FULL, "always shows cones in real time")
+	_s.overlay_mode = _s.OverlayMode.FACING
+
+
+func _alarm() -> void:
+	var p: CharacterBody3D = _s.player
+	var g: CharacterBody3D = _s.map.get_node("Guards/EastSentry")
+	var plat: CharacterBody3D = _s.map.get_node("Guards/Platform")
+	var north: CharacterBody3D = _s.map.get_node("Guards/NorthRoom")
+	await _place(Vector3(-17, 0, 13))
+	for guard in _s.map.guards:
+		guard.reset_to_patrol()
+	_guards_run(true)
+	await _frames(40)
+	_check(absf(wrapf(g.rotation.y - PI / 2, -PI, PI)) < 0.05,
+		"a one-marker guard faces the way his marker points")
+	p.teleport(Vector3(9.5, 0, 9))
+	var saw_suspicious := false
+	for i in 300:
+		await get_tree().physics_frame
+		saw_suspicious = saw_suspicious or g.state == g.State.SUSPICIOUS
+		if _s.alarms > 0:
+			break
+	_check(saw_suspicious, "a filling meter makes him suspicious first")
+	_check(_s.alarms == 1 and _s.alarm_active and _s.crisis_level == 1,
+		"a full meter starts an alarm and raises the crisis level")
+	_check(g.state == g.State.ALARMED and plat.state == g.State.ALARMED,
+		"guards in the area are alarmed")
+	_check(north.state == g.State.PATROL, "a guard far away is not")
+	await _shot("6_alarm")
+	for i in 300:
+		await get_tree().physics_frame
+		if _s.catches > 0:
+			break
+	await _frames(3)
+	_check(_s.catches == 1, "an alarmed guard who reaches him catches him")
+	_check(p.global_position.distance_to(Vector3(-14, 0, 10)) < 0.2,
+		"he is back at the last checkpoint")
+	_check(_s.crisis_level == 1 and not _s.alarm_active,
+		"the crisis level is kept, the alarm is over")
+	_check(g.state == g.State.PATROL and g.meter == 0.0, "the guards are back on patrol")
+
+	# A second alarm, then out of sight: searching, then patrol.
+	await _place(Vector3(-17, 0, 13))
+	await _frames(40)
+	p.teleport(Vector3(9.5, 0, 9))
+	for i in 300:
+		await get_tree().physics_frame
+		if _s.alarms > 1:
+			break
+	_check(_s.alarms == 2 and _s.crisis_level == 2, "a second alarm raises the crisis level again")
+	p.teleport(Vector3(-17, 0, 13))
+	var searched := false
+	for i in 400:
+		await get_tree().physics_frame
+		if g.state == g.State.SEARCHING:
+			searched = true
+			break
+	_check(searched and not _s.alarm_active,
+		"out of sight for a few seconds, the alarm drops to searching")
+	_check(g.global_position.distance_to(Vector3(13, 0, 9)) > 1.0,
+		"he had converged on where the player was last seen")
+	var patrolling := false
+	for i in 700:
+		await get_tree().physics_frame
+		if g.state == g.State.PATROL:
+			patrolling = true
+			break
+	_check(patrolling, "and then back to patrol")
+	_check(_s.catches == 1, "without another catch")
+
+	var path := NavigationServer3D.map_get_path(get_viewport().world_3d.navigation_map,
+		Vector3(-14, 0, 10), Vector3(16, 0, 12), true)
+	_check(path.size() > 2 and path[-1].distance_to(Vector3(16, 0, 12)) < 1.0,
+		"the baked navigation finds a way through the doors (%d points)" % path.size())
+	var a := north.global_position
+	var walked := 0.0
+	var top := 0.0
+	for i in 1500:
+		await get_tree().physics_frame
+		walked = maxf(walked, north.global_position.distance_to(a))
+		top = maxf(top, plat.global_position.y)
+		if top > 1.9 and walked > 3.0:
+			break
+	_check(walked > 3.0, "patrolling guards walk their paths")
+	_check(top > 1.9, "and one patrol climbs the ramp onto the platform (y %.2f)" % top)
+	_guards_run(false)
+
+
 # --- helpers ---
+
+func _guards_run(on: bool) -> void:
+	for guard in _s.map.guards:
+		guard.set_physics_process(on)
+
+
+func _place(pos: Vector3) -> void:
+	_s.player.teleport(pos)
+	await _frames(2)
+
 
 func _frames(count: int) -> void:
 	for i in count:
