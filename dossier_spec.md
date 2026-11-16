@@ -33,6 +33,7 @@ order: 20
 image: cohort_crest
 info: Formed | 2187, Callisto
 info: Strength | two droungoi
+source: canon/15_military.md, io_story_bible.md
 
 == before
 ## The Ministry's Own
@@ -47,6 +48,7 @@ The Cohort is the colony's answer to the {{swarm|seen_hive}}. Its tourmarch repo
 - **Header lines** until the first blank line. `category` must be one of the tab ids (§4).
   `order` sorts the list and gives the number shown beside the title. `image` resolves like
   `@ img` (`vn/img/`). `info:` lines are the details block, label `|` value, in file order.
+  `source:` lists the repo files the entry's facts come from (never shown in game; see §10).
 - **`== before` / `== after`:** the pre- and post-reveal versions (§5). An entry with no
   `==` sections has one body for all time.
 - **`## heading`** is a sub-heading (accent colour, the little square).
@@ -110,7 +112,8 @@ like `CALENDAR.validate()`:
 - unknown category, duplicate `order` in a category, missing image;
 - `[[id]]` pointing at no entry;
 - `== after` present without `== before` (or the reverse) when both are expected;
-- `@ file <id>` in any `vn/scenes/*.txt` naming no entry.
+- `@ file <id>` in any `vn/scenes/*.txt` naming no entry;
+- a `source:` path that doesn't exist (checked in the test, which runs from the repo).
 
 `tests/dossier_test.tscn`: loads all entries with 0 problems; sets `file:a`, checks the New tab
 lists it; opens it, checks `seen:a`; sets `REVEAL_FLAG`, checks the `after` text and that `a`
@@ -123,7 +126,8 @@ is new again; checks a `{{x|f}}` span renders glitched, then clear after `f` is 
 3. `dossier.tscn` + `dossier.gd`: tabs, list, entry pane, counter, toggle, toast.
 4. MainGame: the `Dossier` layer; hub `dossiers_requested`; Pause **Files** button.
 5. `vn.gd`: `@ file <id>` and the `filed` signal; add `@ file` to the style guide's directive list.
-6. Three or four sample entries (placeholder text) and the test. The campaign test still passes.
+6. `tools/stale_dossiers.ps1` (§10).
+7. Three or four sample entries (placeholder text) and the test. The campaign test still passes.
 
 ## 9. Open points (story)
 
@@ -132,3 +136,18 @@ is new again; checks a `{{x|f}}` span renders glitched, then clear after `f` is 
   annotations, Chip's notes? It sets the voice of every entry and who "revises" them.
 - Whether glitched spans ever clear **before** the reveal (Act 2's cracks), and on which flags.
 - Where `visor_revealed` is set in the outline.
+
+## 10. When canon changes
+
+Entries are **presentation, not source**. A fact lives in the bible or a canon file; an entry
+retells it in-world and names those files on its `source:` line. Rules:
+
+- Never put a new fact in an entry first. Settle it in canon (or `claude/decisions.md`), then
+  write or revise the entry.
+- Write entries late: an entry for a topic waits until its canon file has stopped moving. Until
+  then the build uses placeholder entries.
+- **Staleness check:** a tool script, `tools/stale_dossiers.ps1`, lists every entry whose
+  `source:` files have a later git commit than the entry itself. Run it after a canon session;
+  each hit is an entry to reread (often still fine), not an automatic rewrite.
+- A canon change that renames a thing (*Tourma*, a unit, a place) is also a grep across
+  `vn/dossier/entries/` and the `[[links]]`; validation catches broken link ids.
