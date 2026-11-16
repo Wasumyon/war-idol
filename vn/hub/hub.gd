@@ -6,14 +6,17 @@ extends Control
 
 signal segment_chosen(id: String)
 signal menu_requested
+signal dossiers_requested   ## MainGame opens the files; the hub never touches that layer
 
 const CALENDAR := preload("res://calendar/calendar.gd")
+const DOSSIER_DATA := preload("res://dossier/dossier_data.gd")
 const WALL := Color("#2b2740")
 const INK := Color("#e8f6f2")
 const ACCENT := Color("#79ead1")
 const MUTED := Color("#7d8a99")
 
 var _offers: Array[String] = []
+var _dossier_button: Button
 var _panel: PanelContainer
 var _panel_title: Label
 var _panel_body: VBoxContainer
@@ -40,7 +43,8 @@ func _ready() -> void:
 	# Positions follow the bunker sketch: boards on the back wall, shelf under them,
 	# the table in front, the menu in the corner.
 	_hotspot("NewsStats", "NEWS / STATS", Rect2(250, 110, 170, 100), _open_stub.bind("News / Stats"))
-	_hotspot("Dossiers", "DOSSIERS", Rect2(420, 250, 130, 60), _open_stub.bind("Dossiers"))
+	_dossier_button = _hotspot("Dossiers", "DOSSIERS", Rect2(420, 250, 130, 60), func() -> void: dossiers_requested.emit())
+	refresh_dossier_count()
 	_hotspot("Calendar", "CALENDAR\n%02d" % Game.day, Rect2(640, 130, 110, 80), _open_calendar)
 	_hotspot("Missions", "MISSIONS", Rect2(290, 350, 380, 120), _open_missions)
 	_hotspot("Menu", "MENU", Rect2(870, 484, 70, 40), func() -> void: menu_requested.emit())
@@ -78,7 +82,7 @@ func _ready() -> void:
 	column.add_child(_panel_body)
 
 
-func _hotspot(node_name: String, text: String, rect: Rect2, action: Callable) -> void:
+func _hotspot(node_name: String, text: String, rect: Rect2, action: Callable) -> Button:
 	var button := Button.new()
 	button.name = node_name
 	button.text = text
@@ -86,6 +90,14 @@ func _hotspot(node_name: String, text: String, rect: Rect2, action: Callable) ->
 	button.size = rect.size
 	button.pressed.connect(action)
 	add_child(button)
+	return button
+
+
+## DOSSIERS, or DOSSIERS · 3 NEW. MainGame calls this when the files close.
+func refresh_dossier_count() -> void:
+	var fresh := DOSSIER_DATA.new_count()
+	_dossier_button.text = "DOSSIERS" if fresh == 0 else "DOSSIERS
+· %d NEW" % fresh
 
 
 func _open_panel(title: String) -> void:

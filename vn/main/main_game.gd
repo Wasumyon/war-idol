@@ -16,12 +16,14 @@ const VN_SCENE := preload("res://vn.tscn")
 const FIRST_SHOT_SCENE := preload("res://first_shot/first_shot.tscn")
 const HUB_SCENE := preload("res://hub/hub.tscn")
 const PHONE := preload("res://phone/campaign_phone.gd")
+const DOSSIER_DATA := preload("res://dossier/dossier_data.gd")
 const OPENING_SEGMENT := "d01_opening"
 
 @onready var world: Node = $World
 @onready var story: CanvasLayer = $Story
 @onready var hud: CanvasLayer = $HUD
 @onready var pause: CanvasLayer = $Pause
+@onready var dossier: CanvasLayer = $Dossier   ## the files: an overlay, not a segment
 @onready var transition: CanvasLayer = $Transition
 
 var current: Node          ## the hub or the segment on screen
@@ -47,9 +49,14 @@ func _ready() -> void:
 	_phone_button.hide()
 	_phone_button.pressed.connect(func() -> void: _phone.open())
 	hud.add_child(_phone_button)
+	dossier.closed.connect(_dossier_closed)
 	if OS.is_debug_build():
 		for problem in CALENDAR.validate():
 			push_error("Calendar: " + problem)
+		for problem in DOSSIER_DATA.validate():
+			push_error("Dossier: " + problem)
+		for warning in DOSSIER_DATA.warnings():
+			push_warning("Dossier: " + warning)
 	_next.call_deferred()
 
 
@@ -81,7 +88,14 @@ func _open_hub() -> void:
 	hub.setup(CALENDAR.offers())
 	hub.segment_chosen.connect(_start, CONNECT_ONE_SHOT)
 	hub.menu_requested.connect(pause.open)
+	hub.dossiers_requested.connect(dossier.open)
 	await _show(hub, world)
+
+
+## The hub's Dossiers label shows the unread count, which the files just changed.
+func _dossier_closed() -> void:
+	if is_instance_valid(current) and current.has_method("refresh_dossier_count"):
+		current.refresh_dossier_count()
 
 
 func _start(id: String) -> void:
