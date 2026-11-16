@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dbs0ostbamrob"
-path="res://.godot/imported/droneEdited20.glb-e62870e6d5d22b000fea50944a2fc99c.scn"
+path="res://.godot/imported/droneEdited20.glb-4bd473255cdb05e5a1d71f61d06296ca.scn"
 
 [deps]
 
-source_file="res://runner/droneEdited20.glb"
-dest_files=["res://.godot/imported/droneEdited20.glb-e62870e6d5d22b000fea50944a2fc99c.scn"]
+source_file="res://minigames/runner/droneEdited20.glb"
+dest_files=["res://.godot/imported/droneEdited20.glb-4bd473255cdb05e5a1d71f61d06296ca.scn"]
 
 [params]
 

@@ -3,7 +3,7 @@ extends Node
 ## Plays the stealth test map through its rules with synthetic input. Must print 0 failures.
 ## Set STEALTH_SHOTS to a folder and run without --headless to also save screenshots.
 
-const STEALTH := preload("res://stealth/stealth.tscn")
+const STEALTH := preload("res://minigames/stealth/stealth.tscn")
 
 var _failures := 0
 var _s: Node

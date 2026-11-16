@@ -5,7 +5,7 @@ extends Node3D
 ## unaffected. Add it, place it, then fire it; before fire() it is only the outline, which
 ## is what aim mode will show.
 
-const Draw := preload("res://stealth/draw.gd")
+const Draw := preload("res://minigames/stealth/draw.gd")
 
 const OUTLINE_COLOR := Color(1.0, 0.2, 0.15, 0.9)
 const RING_COLOR := Color(1.0, 1.0, 1.0, 0.55)

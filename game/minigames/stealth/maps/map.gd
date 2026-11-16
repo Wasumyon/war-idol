@@ -3,8 +3,8 @@ extends Node3D
 ## their patrol markers. This script collects them and bakes the guards' navigation mesh
 ## from the blocks at load.
 
-const L := preload("res://stealth/layers.gd")
-const Zone := preload("res://stealth/maps/zone.gd")
+const L := preload("res://minigames/stealth/layers.gd")
+const Zone := preload("res://minigames/stealth/maps/zone.gd")
 
 @export_group("Navigation")
 @export var nav_agent_radius := 0.5

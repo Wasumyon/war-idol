@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://stealth/maps/map.gd" id="1"]
-[ext_resource type="Script" path="res://stealth/maps/block.gd" id="2"]
-[ext_resource type="Script" path="res://stealth/maps/zone.gd" id="3"]
-[ext_resource type="PackedScene" path="res://stealth/guard.tscn" id="4"]
+[ext_resource type="Script" path="res://minigames/stealth/maps/map.gd" id="1"]
+[ext_resource type="Script" path="res://minigames/stealth/maps/block.gd" id="2"]
+[ext_resource type="Script" path="res://minigames/stealth/maps/zone.gd" id="3"]
+[ext_resource type="PackedScene" path="res://minigames/stealth/guard.tscn" id="4"]
 
 [node name="TestMap" type="Node3D"]
 script = ExtResource("1")

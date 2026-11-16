@@ -80,7 +80,7 @@ func _build() -> void:
 	_base_emission = base * 0.55
 
 	# Real drone model (scaled + centred on the origin).
-	var ps := load("res://runner/droneEdited20.glb") as PackedScene
+	var ps := load("res://minigames/runner/droneEdited20.glb") as PackedScene
 	if ps != null:
 		var model: Node3D = ps.instantiate()
 		model.scale = Vector3.ONE * MODEL_SCALE

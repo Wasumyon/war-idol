@@ -22,7 +22,7 @@ Import `game/project.godot` in Godot 4.7.x and press **F5** (it opens MainGame).
 ## Running the runner prototype (old sandbox)
 
 1. Install **Godot 4.7.x** (standard build, no .NET needed).
-2. Import `sandbox/project.godot` (or run the same runner in the game, `game/runner/`).
+2. Import `sandbox/project.godot` (or run the same runner in the game, `game/minigames/runner/`).
 3. Open `sandbox/slice/slice.tscn` and press **F6** (run current scene).
 
 **Controls**

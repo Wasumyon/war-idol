@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://runner/runner_segment.gd" id="1_seg"]
+[ext_resource type="Script" path="res://minigames/runner/runner_segment.gd" id="1_seg"]
 
 [node name="RunnerSegment" type="Node"]
 script = ExtResource("1_seg")

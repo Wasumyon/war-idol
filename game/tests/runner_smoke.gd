@@ -12,7 +12,7 @@ func _check(ok: bool, what: String) -> void:
 
 
 func _ready() -> void:
-	var seg: Node = load("res://runner/runner_segment.tscn").instantiate()
+	var seg: Node = load("res://minigames/runner/runner_segment.tscn").instantiate()
 	seg.begin({"route": "easy", "zone": "supply_road"})
 	seg.finished.connect(func(r: Dictionary) -> void: _results.append(r))
 	add_child(seg)
@@ -36,7 +36,7 @@ func _ready() -> void:
 	_check(_results.size() == 1, "finished never fires twice")
 
 	# Bad outcome and restart, on a second segment.
-	var seg2: Node = load("res://runner/runner_segment.tscn").instantiate()
+	var seg2: Node = load("res://minigames/runner/runner_segment.tscn").instantiate()
 	seg2.begin({})
 	var results2: Array[Dictionary] = []
 	seg2.finished.connect(func(x: Dictionary) -> void: results2.append(x))

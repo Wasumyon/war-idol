@@ -5,7 +5,7 @@ extends Node
 
 signal finished(result: Dictionary)
 
-const SLICE := preload("res://runner/slice.tscn")
+const SLICE := preload("res://minigames/runner/slice.tscn")
 const KEYS := {
 	&"turnLeft": [KEY_A, KEY_LEFT],
 	&"turnRight": [KEY_D, KEY_RIGHT],

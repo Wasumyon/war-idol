@@ -48,9 +48,9 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `game/main/`, `game/hub/`, `game/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
 | `game/story/opener/`, `game/story/first_shot/`, `game/phone/` | Day 1's cold open and filming request; the phone |
 | `game/dossier/` | the files screen; `entries/<id>.txt` are the entries (placeholders for now). A scene line's `@ file <id>` files one |
-| `game/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
+| `game/minigames/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
 | `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `game/` |
-| `sandbox/slice/` | the runner prototype — **sandbox**; copied into `game/runner/` (ported 2026-11-16), now frozen — edit `game/runner/` |
+| `sandbox/slice/` | the runner prototype — **sandbox**; copied into `game/minigames/runner/` (ported 2026-11-16), now frozen — edit `game/minigames/runner/` |
 | `sandbox/wip/`, `sandbox/test*.tscn` | older car-physics tests — sandbox |
 | `tunnel/` | **game-jam piece** (Tunnel Escape): separate Godot project, short stealth/light-puzzle walk in 5 chambers. Design doc: Google Doc "War Idol Tunnel Escape". Ported from another universe; re-theme to War Idols |
 | `_archive/` | superseded docs — do not use as reference |
@@ -81,7 +81,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 - `outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
   B10–B14 wait on a yes before scenes are written against them.
 - Fill the calendar: days 2–40 are placeholders, placed by `maingame_spec.md` §2.
-- Runner: ported into `game/runner/` behind the segment contract (2026-11-16), a straight copy, not playtested in a window. Next: playtest, then hook its followers/money into the outcome payouts (the calendar currently pays fixed per-outcome amounts).
+- Runner: ported into `game/minigames/runner/` behind the segment contract (2026-11-16), a straight copy, not playtested in a window. Next: playtest, then hook its followers/money into the outcome payouts (the calendar currently pays fixed per-outcome amounts).
 - The hub's real room (3D bunker, characters possibly 2D); News/Stats is a stub.
 - Dossiers: built from `dossier_spec.md` (merged 2026-11-16), four placeholder entries, no
   `@ file` in any scene yet. Next: settle its §9 story points, then write entries (Opus) and file them in scenes.

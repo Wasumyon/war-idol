@@ -3,7 +3,7 @@ extends StaticBody3D
 ## A grey-box piece of a stealth map: one box with a size and a kind. The mesh and the
 ## collision shape are built from those, so a map scene is one node per block.
 
-const L := preload("res://stealth/layers.gd")
+const L := preload("res://minigames/stealth/layers.gd")
 
 enum Kind { WALL, LOW_COVER, FLOOR }
 

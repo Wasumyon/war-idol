@@ -3,7 +3,7 @@ extends Node3D
 ## A box-shaped region of a stealth map: a concealment patch, a checkpoint or the exit.
 ## The origin is the centre of the box's floor. No physics: the map asks contains().
 
-const Draw := preload("res://stealth/draw.gd")
+const Draw := preload("res://minigames/stealth/draw.gd")
 
 enum Kind { CONCEALMENT, CHECKPOINT, EXIT }
 

@@ -12,7 +12,7 @@ Status: **approved and built** (placeholder content from Day 2 on). One departur
   (`scenes/00`–`04`), and the first-shot state (`first_shot_pending`, `_outcome`, `_receipt`).
   `Game.day` exists and is saved, but nothing ever changes it.
 - When chapter 04 ends the VN prints "— end —" and stops. There is no hub.
-- The runner was ported from `sandbox/slice/` into `game/runner/` (2026-11-16); `sandbox/slice/` is now frozen.
+- The runner was ported from `sandbox/slice/` into `game/minigames/runner/` (2026-11-16); `sandbox/slice/` is now frozen.
 
 ## 2. Day count: 40
 
@@ -120,7 +120,7 @@ Changes to existing scenes:
 - `tests/first_shot_campaign.gd` opens scenes with `change_scene_to_file` and will be rewritten
   to drive `MainGame`.
 
-**Runner slot:** a `minigame` segment whose scene will be `res://runner/runner.tscn`, taking
+**Runner slot:** a `minigame` segment whose scene will be `res://minigames/runner/runner.tscn`, taking
 `{route, zone}` and returning `{footage, damage}`. Until it is ported, runner offers point at a
 placeholder scene with two buttons (good run / bad run).
 

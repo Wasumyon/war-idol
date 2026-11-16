@@ -5,11 +5,11 @@ extends Node3D
 
 signal finished(result: Dictionary)
 
-const DEFAULT_MAP := "res://stealth/maps/test_map.tscn"
-const MAP_DIR := "res://stealth/maps/%s.tscn"
-const PLAYER_SCENE := preload("res://stealth/player.tscn")
-const Guard := preload("res://stealth/guard.gd")
-const StealthNoise := preload("res://stealth/noise.gd")
+const DEFAULT_MAP := "res://minigames/stealth/maps/test_map.tscn"
+const MAP_DIR := "res://minigames/stealth/maps/%s.tscn"
+const PLAYER_SCENE := preload("res://minigames/stealth/player.tscn")
+const Guard := preload("res://minigames/stealth/guard.gd")
+const StealthNoise := preload("res://minigames/stealth/noise.gd")
 
 ## What the visor overlay shows in real time (docs/stealth_spec.md §3). The overlay view (Q)
 ## always shows everything.

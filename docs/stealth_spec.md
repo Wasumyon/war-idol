@@ -1,7 +1,7 @@
 # The stealth minigame — spec
 
 Status: **design agreed 2026-11-15, not built.** §10 lists what is still open. Project: root `game/`,
-folder `game/stealth/`. Sources: the bible (Act 3, the heist), `outline.md` beats 16, 18, 27–28, 35,
+folder `game/minigames/stealth/`. Sources: the bible (Act 3, the heist), `outline.md` beats 16, 18, 27–28, 35,
 38, 39, canon 8 and 11, `game_design.md`, `maingame_spec.md` §3 and §5. Replaces the
 provisional note `boundarypush/heist-escape-minigame.md`.
 
@@ -181,7 +181,7 @@ resource for Kathay. They join canon 11's shop lines as personal gear and stream
 ## 9. Segment contract
 
 A `minigame` segment like the runner (`maingame_spec.md` §5). Root scene
-`res://stealth/stealth.tscn` with `signal finished(result: Dictionary)` and `func begin(args)`.
+`res://minigames/stealth/stealth.tscn` with `signal finished(result: Dictionary)` and `func begin(args)`.
 It never changes scene, advances the day, or writes the save.
 
 `args`:
@@ -207,7 +207,7 @@ It never changes scene, advances the day, or writes the save.
 The calendar's `outputs` choose a set by `outcome`, as the runner's do by `capture` / `miss`.
 Knockouts do not feed Bloodlust.
 
-Files: `game/stealth/stealth.tscn` and `.gd` (the segment root), `guard.gd`, `player.gd`,
+Files: `game/minigames/stealth/stealth.tscn` and `.gd` (the segment root), `guard.gd`, `player.gd`,
 `subject.gd`, `noise.gd`, `aim_mode.gd`, `camera_rig.gd`, `maps/*.tscn`. Maps are data: guards
 with patrol paths, subjects, cover, concealment, checkpoints, exit, barrels, trap points.
 

@@ -5,8 +5,8 @@ extends CharacterBody3D
 ## The segment root is his director: it owns the alarm, the crisis level and what the overlay
 ## shows. Guards never read input.
 
-const L := preload("res://stealth/layers.gd")
-const Draw := preload("res://stealth/draw.gd")
+const L := preload("res://minigames/stealth/layers.gd")
+const Draw := preload("res://minigames/stealth/draw.gd")
 
 enum State { PATROL, SUSPICIOUS, ALARMED, SEARCHING, KNOCKED_OUT }
 ## What the director lets the overlay draw right now.

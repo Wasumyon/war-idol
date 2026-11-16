@@ -2,7 +2,7 @@ extends Node3D
 ## Orthographic follow camera with two presets, isometric and top-down, and a fade for
 ## whatever stands between the camera and the target. Expects a Camera3D child.
 
-const L := preload("res://stealth/layers.gd")
+const L := preload("res://minigames/stealth/layers.gd")
 
 enum Preset { ISOMETRIC, TOP_DOWN }
 

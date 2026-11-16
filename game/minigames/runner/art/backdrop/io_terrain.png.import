@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp2jvywwitffl"
-path="res://.godot/imported/io_sky.webp-28f44e4e178a5e4655db34613091122a.ctex"
+uid="uid://dg216o03nsacg"
+path="res://.godot/imported/io_terrain.png-304e8c39166250deff44eaf1a9501198.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://runner/art/backdrop/io_sky.webp"
-dest_files=["res://.godot/imported/io_sky.webp-28f44e4e178a5e4655db34613091122a.ctex"]
+source_file="res://minigames/runner/art/backdrop/io_terrain.png"
+dest_files=["res://.godot/imported/io_terrain.png-304e8c39166250deff44eaf1a9501198.ctex"]
 
 [params]
 
