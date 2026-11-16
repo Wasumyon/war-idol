@@ -44,7 +44,7 @@ re-verified in this pass. Everything else was checked against the files.
   bare, with the flip at the aftermath; `02`, `03` and `04` are 100% bare. Decide once.
 - **Label convention differs.** `01_intro` uses `@ cast` shorthand (`S:`, `C:`, `P:`, `K:`, `R:`);
   the later scenes use long form (`Chip:`, `Player:`). Both parse. Decide which is house.
-- **`car/vn/scenes/Notes.txt` is a live scene.** The game loads it as one named *Notes*, and
+- **`sandbox/vn/scenes/Notes.txt` is a live scene.** The game loads it as one named *Notes*, and
   `make_plain.ps1` generates `_read_Notes.txt` for it. It also breaks the `NN_name` convention.
   Underscore-prefix it or move it out of `scenes/`.
 

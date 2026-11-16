@@ -11,7 +11,7 @@ human colonists as monsters.
 
 ## Engine
 Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` project**
-(`vn/project.godot`). `car/` is the old sandbox project and `tunnel/` is a separate one.
+(`vn/project.godot`). `sandbox/` is the old sandbox project and `tunnel/` is a separate one.
 
 - Main scene: `vn/main/main_game.tscn` (**MainGame**), the one persistent scene. Layers: World /
   Story / HUD / Pause / Transition / Debug (F3 in debug builds).
@@ -21,7 +21,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
   segments) or free (the player picks an offer in the hub). Data: `vn/calendar/calendar_data.gd`.
 - **A segment** is a VN scene or a minigame. Its root emits `finished(result)` and never changes
   scene or advances the day; MainGame swaps it through the Transition layer and saves.
-- Test: `godot --headless --path vn res://tests/first_shot_campaign.tscn` (must print 0 failures).
+- Test: `powershell -File tools/run_tests.ps1` runs every headless test in `vn/tests/` (must say 0 failed).
 
 ## Where things are
 | path | what |
@@ -42,17 +42,17 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 | `vn/main/`, `vn/hub/`, `vn/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
 | `vn/opener/`, `vn/first_shot/`, `vn/phone/` | Day 1's cold open and filming request; the phone |
 | `vn/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
-| `car/vn/` | the older copy of the VN and its drafts — superseded by `vn/` |
-| `car/slice/` | the runner prototype — **sandbox**; copied into `vn/runner/` (ported 2026-11-16), now frozen — edit `vn/runner/` |
-| `car/wip/`, `car/test*.tscn` | older car-physics tests — sandbox |
+| `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `vn/` |
+| `sandbox/slice/` | the runner prototype — **sandbox**; copied into `vn/runner/` (ported 2026-11-16), now frozen — edit `vn/runner/` |
+| `sandbox/wip/`, `sandbox/test*.tscn` | older car-physics tests — sandbox |
 | `tunnel/` | **game-jam piece** (Tunnel Escape): separate Godot project, short stealth/light-puzzle walk in 5 chambers. Design doc: Google Doc "War Idol Tunnel Escape". Ported from another universe; re-theme to War Idols |
 | `_archive/` | superseded docs — do not use as reference |
 
 ## Rules
 - **Every fact lives in one file. The bible wins any conflict**; fix canon or the outline to match.
 - Canon changes as the story is written. Record decisions; don't infer them from old drafts.
-- `car/` is the sandbox, a separate Godot project. Sandbox code may use the core; **core code
-  (`vn/`) never references the sandbox (`car/`)**, so anything the game needs is copied into `vn/`.
+- `sandbox/` is the sandbox, a separate Godot project. Sandbox code may use the core; **core code
+  (`vn/`) never references the sandbox (`sandbox/`)**, so anything the game needs is copied into `vn/`.
 - New playable content is a segment listed in `calendar_data.gd`. Never call
   `change_scene_to_file` in `vn/`.
 - Files starting `_` are drafts or generated reading copies (`_read_*.txt`). Don't edit them or
@@ -69,7 +69,8 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
   mechanical punchlist items.
 
 ## In progress
-- **Game jam (about a week, from 2026-10-24):** build `tunnel/` (own project, never references `car/`).
+- **Restructure** (decided 2026-11-16): `restructure_plan.md` has the new names and the steps. `car/` is now `sandbox/`; the rest waits on the stealth playtest.
+- **Game jam (about a week, from 2026-10-24):** build `tunnel/` (own project, never references `sandbox/`).
 - `outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
   B10–B14 wait on a yes before scenes are written against them.
 - Fill the calendar: days 2–40 are placeholders, placed by `maingame_spec.md` §2.

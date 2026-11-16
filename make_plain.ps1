@@ -8,8 +8,8 @@
 #
 #   powershell -File Notes\make_plain.ps1
 #
-#   source : car/vn/scenes/NN_*.txt      (files starting "_" are skipped)
-#   output : car/vn/scenes/_read_NN_*.txt
+#   source : sandbox/vn/scenes/NN_*.txt      (files starting "_" are skipped)
+#   output : sandbox/vn/scenes/_read_NN_*.txt
 #
 # A reading copy is a diagnostic as much as a convenience: if a scene reads as
 # fragments without the art, the scene is under-written.

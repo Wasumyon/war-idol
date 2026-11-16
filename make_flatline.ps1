@@ -1,6 +1,6 @@
 # Notes/make_flatline.ps1
 #
-# Regenerates car/vn/sfx/flatline.wav — the monitor sting under the prologue's last
+# Regenerates sandbox/vn/sfx/flatline.wav — the monitor sting under the prologue's last
 # beat. Generated rather than sourced, so there is no licence to record.
 #
 #   powershell -File Notes\make_flatline.ps1

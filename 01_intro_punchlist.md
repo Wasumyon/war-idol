@@ -65,7 +65,7 @@ line; `somber` without *again*; `her slim arm`; `reads in big letters:`; the dou
 
 - **`@tremble` does nothing in this file.** Presets are per-scene and `tremble` is defined in the
   prologue, not here — so the line is parsed and never read. And if you *do* define it here, its
-  `sfx shuffle` is a missing asset: there is no `shuffle.ogg|wav|mp3` in `car/vn/sfx/`. Write the
+  `sfx shuffle` is a missing asset: there is no `shuffle.ogg|wav|mp3` in `sandbox/vn/sfx/`. Write the
   three effects out longhand, or define the preset here with a sound that exists.
 - **The closing bold spans two clicks.** `*Stay alive and elbow out the competition. / Those are the
   rules of the War Idols.*` opens the `*` on one click and closes it on the next. Check the renderer

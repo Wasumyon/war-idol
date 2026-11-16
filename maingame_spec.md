@@ -12,7 +12,7 @@ Status: **approved and built** (placeholder content from Day 2 on). One departur
   (`scenes/00`–`04`), and the first-shot state (`first_shot_pending`, `_outcome`, `_receipt`).
   `Game.day` exists and is saved, but nothing ever changes it.
 - When chapter 04 ends the VN prints "— end —" and stops. There is no hub.
-- The runner (`car/slice/`) is not in `vn/` and stays unported.
+- The runner was ported from `sandbox/slice/` into `vn/runner/` (2026-11-16); `sandbox/slice/` is now frozen.
 
 ## 2. Day count: 40
 

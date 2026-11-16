@@ -2,7 +2,7 @@
 
 Status: **draft, not approved.** Replaces the cold-open shooter (`vn/opener/`) on Day 1 with a
 playable Battle of Chaac Patera in the runner, ending in `00_prologue`. Sources: the bible,
-canon §4, §6, §12, §15, `outline.md` Beat 01, `maingame_spec.md` §5, the `car/slice/` prototype.
+canon §4, §6, §12, §15, `outline.md` Beat 01, `maingame_spec.md` §5, the `sandbox/slice/` prototype.
 
 ## 1. Why
 
@@ -105,7 +105,7 @@ Subtitled radio, not VN text boxes. The runner keeps running underneath.
 
 Comms (Bartok?) relays the net throughout as background orders.
 
-## 7. Mechanics: changes from `car/slice/`
+## 7. Mechanics: changes from `sandbox/slice/`
 
 | car (filming) | Chaac run (gunner) |
 |---|---|
@@ -145,7 +145,7 @@ and the next click is *"A leg."* Battle ambience plays under it, far away, then 
 
 ## 10. Build order (commit before each)
 
-1. **Sandbox.** In `car/slice/` (a new scene beside `slice.tscn`, so the filming slice stays):
+1. **Sandbox.** In `sandbox/slice/` (a new scene beside `slice.tscn`, so the filming slice stays):
    gun mode, `drone.take_hit()`, hull, the wave timeline, the tide set piece, chatter subtitles,
    the scripted missile. Placeholder art and text. Playtest the feel. Nothing here is merged
    as-is.
