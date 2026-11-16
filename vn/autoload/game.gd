@@ -9,6 +9,10 @@ const STARTING_RIG_DEBT := 600
 const FIRST_INSTALLMENT := 40
 const CAPTURE_RECEIPT := {"followers": 120, "cash": 180}
 const MISS_RECEIPT := {"followers": 15, "cash": 60}
+const SAVE_VERSION := 2
+const SLOTS_PER_DAY := 2
+## The cold open. A version 1 save was only ever written after it.
+const OPENER_SEGMENT := "d01_opener"
 
 var _save_path := "user://campaign.save"
 var has_checkpoint := false
@@ -25,6 +29,11 @@ var stats := {
 var followers := 0
 var money := 0
 var day := 1
+## Calendar position. `slot` is 0 (day) or 1 (evening). `active_segment` is the
+## segment in play, so a relaunch resumes it. `done_segments` counts completions.
+var slot := 0
+var active_segment := ""
+var done_segments := {}
 var flags := {}
 var rig_debt := STARTING_RIG_DEBT
 var first_shot_pending := false
@@ -131,6 +140,45 @@ func repay_first_installment() -> Error:
 	return _commit(state)
 
 
+func begin_segment(id: String) -> Error:
+	if active_segment == id:
+		return OK
+	var state := _snapshot()
+	state.active_segment = id
+	return _commit(state)
+
+
+## Applies a segment's outputs and moves the calendar on, in one write.
+## `outputs`: {"flags": {name: bool}, "stats": {name: delta}, "followers": n, "money": n}.
+func complete_segment(id: String, outputs: Dictionary, slots_used: int) -> Error:
+	var state := _snapshot()
+	state.active_segment = ""
+	state.done_segments[id] = int(state.done_segments.get(id, 0)) + 1
+	for key in outputs.get("flags", {}):
+		state.flags[key] = bool(outputs.flags[key])
+	for key in outputs.get("stats", {}):
+		state.stats[key] = int(state.stats.get(key, 0)) + int(outputs.stats[key])
+	state.followers = followers + int(outputs.get("followers", 0))
+	state.money = money + int(outputs.get("money", 0))
+	state.slot = slot + slots_used
+	if state.slot >= SLOTS_PER_DAY:
+		state.day = day + 1
+		state.slot = 0
+	return _commit(state)
+
+
+func jump_to_day(target: int) -> Error:
+	var state := _snapshot()
+	state.day = maxi(1, target)
+	state.slot = 0
+	state.active_segment = ""
+	return _commit(state)
+
+
+func segment_done(id: String) -> bool:
+	return int(done_segments.get(id, 0)) > 0
+
+
 func save_campaign() -> Error:
 	return _commit(_snapshot())
 
@@ -142,7 +190,14 @@ func load_campaign() -> Error:
 	if file == null:
 		return FileAccess.get_open_error()
 	var state: Variant = file.get_var()
-	if not state is Dictionary or state.get("version") != 1:
+	if not state is Dictionary:
+		return ERR_FILE_CORRUPT
+	if state.get("version") == 1:
+		state.version = SAVE_VERSION
+		state.slot = 0
+		state.active_segment = ""
+		state.done_segments = {OPENER_SEGMENT: 1}
+	if state.get("version") != SAVE_VERSION:
 		return ERR_FILE_CORRUPT
 	var expected := _snapshot()
 	for key in expected:
@@ -155,9 +210,12 @@ func load_campaign() -> Error:
 
 func _snapshot() -> Dictionary:
 	return {
-		"version": 1,
+		"version": SAVE_VERSION,
 		"chapter_index": chapter_index,
 		"day": day,
+		"slot": slot,
+		"active_segment": active_segment,
+		"done_segments": done_segments.duplicate(),
 		"player_name": player_name,
 		"stats": stats.duplicate(),
 		"flags": flags.duplicate(),
@@ -174,6 +232,9 @@ func _snapshot() -> Dictionary:
 func _restore(state: Dictionary) -> void:
 	chapter_index = state.chapter_index
 	day = state.day
+	slot = state.slot
+	active_segment = state.active_segment
+	done_segments = state.done_segments
 	player_name = state.player_name
 	stats = state.stats
 	flags = state.flags
@@ -225,6 +286,6 @@ func has_flag(key: String) -> bool:
 
 
 func debug_line() -> String:
-	return "day %d | followers %d | money %d | stats %s | flags %s" % [
-		day, followers, money, str(stats), str(flags)
+	return "day %d slot %d | followers %d | money %d | stats %s | flags %s" % [
+		day, slot, followers, money, str(stats), str(flags)
 	]
