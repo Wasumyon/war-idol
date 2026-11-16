@@ -30,7 +30,8 @@ map size.
 | Control | One leader (the narrator) in real time; crew are abilities, not bodies |
 | Detection | Alarm, then escape or hide. Caught while alarmed = back to the checkpoint |
 | Takedowns | Knockout only, always, before and after the reveal |
-| Pictures | Mouse viewfinder: hold on a subject to focus, then snap. The snap makes noise |
+| Pictures | An aim-mode action: Q, click the subject, it snaps. No hold. The snap makes noise |
+| Overlay | Real time shows guard facing and filling meters; Q shows everything. On a debug toggle to compare |
 | Character abilities | Only while that character is in the party |
 | Bought items | Run improvements and consumables come from the shop |
 | Kathay | Remote hacks by default; a body you escort at beats 16 and 18; sets and disarms traps |
@@ -58,14 +59,25 @@ map size.
 The cones, circles and meters are the AR visor's overlay. That satisfies "no HUD without an
 instrument" (`vn_game_design.md`) and gives the reveal something to take away (§10).
 
+**What the overlay shows when** (decided 2026-11-16, to be confirmed in play):
+
+- **In real time:** each guard's facing (a short marker on the floor) and his detection meter
+  once it starts to fill. Nothing else.
+- **In aim mode (Q):** the full picture — vision cones, hearing arcs, noise outlines, and which
+  guards an action would alert.
+- This is one exported setting on the segment root, switched from the Debug layer, with three
+  values: `always` (cones in real time too), `facing` (the default above) and `aim_only` (nothing
+  in real time, not even facing). Play all three on the first map, then keep one (§11 step 8).
+  The risk with `aim_only` is that the best play becomes tapping Q every two seconds.
+
 ## 4. Aim mode and actions
 
 One trigger key (Q) **stops the world** and opens aim mode. Everything in range lights up with
 what can be done to it and the noise circle it would cause. Pick a target, pick the action,
 confirm; the world resumes and the action plays. Leaving aim mode costs nothing.
 
-Aim mode is for crew abilities, items and planning. **Pictures are taken in real time** (§5),
-so that holding the frame is the risk.
+Aim mode is for everything: crew abilities, items, planning and **pictures** (§5). There is one
+way to act — stop, pick, confirm — and nothing is done by holding the mouse on a target.
 
 Actions on a target:
 
@@ -77,6 +89,7 @@ Actions on a target:
 | Open / blind | Kathay | Opens a locked door, or blinds a camera or turret for a while | None |
 | Trap | Kathay | Sets a trap on a marked point, or disarms one in the way. Spends her resource | Small |
 | Takedown | the narrator | Knock out a guard from behind at arm's length | Small |
+| Picture | the narrator | One shot of a subject in line of sight and in lens range (§5) | Medium, at the narrator |
 | Gas canister | item | Thrown; a small knockout cloud | Small |
 
 A knockout that another guard sees happening goes straight to alarm. Knocked-out guards stay
@@ -84,11 +97,14 @@ down for the rest of the map.
 
 ## 5. Pictures
 
-- The mouse is the viewfinder, as in the runner. Put it on a **subject** in line of sight and hold:
-  a focus ring fills. When it is full, click to snap.
-- Moving while focusing slows you to a walk. Losing line of sight empties the ring.
-- **The snap makes noise** (shutter and flash) by the rule in §3: its red outline shows while the
-  ring fills, so you know who will hear it before you click.
+- A picture is an aim-mode action (§4). Press Q, click a **subject** that is in line of sight and
+  within lens range, and the shot is taken when the world resumes. There is no focus ring and no
+  holding. *(Changed 2026-11-16 from hover-and-hold in real time.)*
+- **The snap makes noise** (shutter and flash) by the rule in §3: its red outline, centred on the
+  narrator, shows in aim mode while the subject is under the cursor, so you know who will hear it
+  before you click.
+- The risk is where you stand, not how long you wait: lens range forces you close, the outline
+  decides who hears, and distance to danger (below) pays for nerve.
 - Each subject — a guard post, a machine, a document, a room — holds a fixed number of **shots**
   and is exhausted after that. Exhausted subjects are marked.
 - **Distance to danger** multiplies a shot's worth: the nearer an un-alerted guard's cone is to
@@ -149,7 +165,7 @@ Character abilities exist only while that character is with the crew on that day
 | Aysel | Beats 38–39 | Her access: some doors and guards let the party pass *(proposed)* |
 
 **Shop items** improve a run and belong to nobody: gas canisters, soft soles (smaller footsteps),
-a quieter shutter, a longer lens (focus from further away), extra rounds for Langley, extra
+a quieter shutter, a longer lens (more lens range), extra rounds for Langley, extra
 resource for Kathay. They join canon 11's shop lines as personal gear and streaming gear.
 
 ## 8. View
@@ -215,10 +231,11 @@ with patrol paths, subjects, cover, concealment, checkpoints, exit, barrels, tra
 1. Grey-box test map, the narrator's movement, crouch, the camera rig with both presets.
 2. Guards: patrol paths, cones, detection meter, the state machine, the alarm and the checkpoint.
 3. Noise circles and concealment, cover and height.
-4. The viewfinder: subjects, focus, snap, shots, distance to danger, banking.
-5. Aim mode, with Chip's distraction and the narrator's takedown.
+4. Aim mode, with the narrator's takedown and Chip's distraction.
+5. Pictures as an aim-mode action: subjects, lens range, shots, distance to danger, banking.
 6. The segment root: `begin(args)`, `finished(result)`, and one job offer in `calendar_data.gd`.
    Extend `tests/first_shot_campaign` to play it headless (0 failures).
 7. Langley, barrels and gas. Kathay remote, then traps, then the escort.
-8. Play both camera presets and settle §8. Tune and record the numbers.
+8. Play both camera presets and settle §8; play the three overlay settings and settle §3. Tune
+   and record the numbers.
 9. Story maps, one per beat, each after its beat is approved in the outline.
