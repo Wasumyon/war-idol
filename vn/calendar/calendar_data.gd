@@ -46,7 +46,7 @@ const SEGMENTS := {
 	},
 	"d03_frontline": {
 		"type": "minigame",
-		"source": "res://runner/runner_placeholder.tscn",
+		"source": "res://runner/runner_segment.tscn",
 		"title": "Frontline: the perimeter road",
 		"blurb": "Story. Chip has a route and will not hear no.",
 		"args": {"route": "medium", "zone": "perimeter"},
@@ -57,7 +57,7 @@ const SEGMENTS := {
 	},
 	"offer_runner_easy": {
 		"type": "minigame",
-		"source": "res://runner/runner_placeholder.tscn",
+		"source": "res://runner/runner_segment.tscn",
 		"title": "Film the supply road",
 		"blurb": "Frontline, easy route.",
 		"args": {"route": "easy", "zone": "supply_road"},
@@ -68,7 +68,7 @@ const SEGMENTS := {
 	},
 	"offer_runner_hard": {
 		"type": "minigame",
-		"source": "res://runner/runner_placeholder.tscn",
+		"source": "res://runner/runner_segment.tscn",
 		"title": "Film the sulfur pits",
 		"blurb": "Frontline, hard route. Opens once the perimeter is on tape.",
 		"args": {"route": "hard", "zone": "sulfur_pits"},

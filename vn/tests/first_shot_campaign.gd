@@ -186,8 +186,9 @@ func _check_calendar() -> void:
 
 	_check(_offers(hub) == ["d03_frontline"], "Day 3 scripts the frontline")
 	var runner: Node = await _choose(hub, "d03_frontline")
-	_check(runner.name == &"RunnerPlaceholder", "a minigame day plays in the world layer")
-	runner.get_node("Column/Good").pressed.emit()
+	_check(runner.name == &"RunnerSegment", "a minigame day plays in the world layer")
+	runner._slice._end_run()
+	runner.continue_run()
 	hub = await _main.shown
 	_check(Game.followers == 320 and Game.money == 290, "the minigame outcome pays once")
 	_check(Game.has_flag("perimeter_filmed") and Game.day == 3 and Game.slot == 1, "the minigame day uses one slot")

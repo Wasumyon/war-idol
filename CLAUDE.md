@@ -41,9 +41,9 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 | `vn/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
 | `vn/main/`, `vn/hub/`, `vn/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
 | `vn/opener/`, `vn/first_shot/`, `vn/phone/` | Day 1's cold open and filming request; the phone |
-| `vn/runner/` | the runner's slot: a two-button stand-in until the runner is ported |
+| `vn/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
 | `car/vn/` | the older copy of the VN and its drafts — superseded by `vn/` |
-| `car/slice/` | the runner prototype — **sandbox**, AI-written, not yet ported |
+| `car/slice/` | the runner prototype — **sandbox**; copied into `vn/runner/` (ported 2026-11-16), now frozen — edit `vn/runner/` |
 | `car/wip/`, `car/test*.tscn` | older car-physics tests — sandbox |
 | `tunnel/` | **game-jam piece** (Tunnel Escape): separate Godot project, short stealth/light-puzzle walk in 5 chambers. Design doc: Google Doc "War Idol Tunnel Escape". Ported from another universe; re-theme to War Idols |
 | `_archive/` | superseded docs — do not use as reference |
@@ -73,7 +73,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 - `outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
   B10–B14 wait on a yes before scenes are written against them.
 - Fill the calendar: days 2–40 are placeholders, placed by `maingame_spec.md` §2.
-- Port the runner from `car/slice/` into `vn/runner/` behind the segment contract.
+- Runner: ported into `vn/runner/` behind the segment contract (2026-11-16), a straight copy, not playtested in a window. Next: playtest, then hook its followers/money into the outcome payouts (the calendar currently pays fixed per-outcome amounts).
 - The hub's real room (3D bunker, characters possibly 2D); News/Stats is a stub.
 - Dossiers: specced in `dossier_spec.md` (2026-11-15), not built; its §9 story points are open.
 - Stealth minigame: specced in `stealth_spec.md` (2026-11-15), not built; its §10 points are open.

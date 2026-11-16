@@ -10,7 +10,8 @@ extends Node3D
 ##   SHIFT            dash
 ##   RIGHT MOUSE      zoom (slower, tighter viewfinder)
 ##   mouse            aim the viewfinder
-##   R                restart (after the run ends)
+##   R                restart (handled by runner_segment.gd)
+##   ENTER            continue, after the run ends (runner_segment.gd)
 ##
 ## SCORING
 ##   Keep the viewfinder on a point of interest: FOLLOWERS accrue. DONATIONS
@@ -196,12 +197,6 @@ func _end_run() -> void:
 	vignette.material.set_shader_parameter("intensity", VIG_BASE)
 	points_label.text = "Followers: %d" % int(followers)
 	money_label.text = "$%d" % int(money)
-	shields_label.text = "RUN OVER  -  press R"
+	shields_label.text = "RUN OVER - R restart, Enter continue"
 	speed_label.text = ""
 	time_label.text = "00:00"
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	# R restarts at any time (alive or after the run ends).
-	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
-		get_tree().reload_current_scene()
