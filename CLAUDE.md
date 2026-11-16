@@ -43,16 +43,19 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `docs/` | every design doc: bible, canon, outline, specs, punchlists, `game_design.md`, `restructure_plan.md`, the design-doc `.docx`, `stories/`, `boundarypush/` |
 | `source_art/` | unshipped art and prompts (characters, backgrounds, enemy models, concept art, UI base, raw sources, review thumbnails, source music). Not part of any Godot project |
 | `tools/` | scripts: `run_tests.ps1`, `commission.ps1`, `make_plain.ps1`, `make_flatline.ps1`, `stale_dossiers.ps1` |
-| `game/story/scenes/NN_*.txt` | the written scenes the game runs (plain text, played by `game/story/vn.tscn`) |
-| `game/story/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
-| `game/main/`, `game/hub/`, `game/calendar/` | Main and its layers, the hub (placeholder layout), the calendar |
-| `game/story/opener/`, `game/story/first_shot/`, `game/phone/` | Day 1's cold open and filming request; the phone |
-| `game/dossier/` | the files screen; `entries/<id>.txt` are the entries (placeholders for now). A scene line's `@ file <id>` files one |
+| `game/story/` | the VN: player `vn.tscn`/`vn.gd` (+ `inline_marks.gd`, `script_effect.gd`), `scenes/NN_*.txt` (the written scenes, plain text), `scenes/placeholder/` (stand-ins for unwritten calendar days), and Day 1's `opener/` and `first_shot/` |
+| `game/main/` | **Main** (`main.tscn`, the conductor: layers, segment swap, save) and `transition.gd` |
+| `game/ui/` | the overlay layers' scripts: `phone.gd`, `pause.gd`, `debug.gd` |
+| `game/hub/`, `game/calendar/`, `game/dossier/` | the hub (placeholder layout), the calendar, the files screen (`entries/<id>.txt`; a scene line's `@ file <id>` files one) |
+| `game/autoload/` | `GameState` (`game_state.gd`), the only autoload |
 | `game/minigames/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
-| `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `game/` |
+| `game/minigames/stealth/` | the stealth minigame (`stealth.tscn` is the segment root) |
+| `game/assets/` | shared `img/` and `sfx/` (feature-specific art stays in its feature's folder) |
+| `game/tests/` | headless tests, run by `tools/run_tests.ps1` |
+| `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `game/story/` |
 | `sandbox/slice/` | the runner prototype — **sandbox**; copied into `game/minigames/runner/` (ported 2026-11-16), now frozen — edit `game/minigames/runner/` |
 | `sandbox/wip/`, `sandbox/test*.tscn` | older car-physics tests — sandbox |
-| `tunnel/` | **game-jam piece** (Tunnel Escape): separate Godot project, short stealth/light-puzzle walk in 5 chambers. Design doc: Google Doc "War Idol Tunnel Escape". Ported from another universe; re-theme to War Idols |
+| `tunnel/` | **game-jam piece** (Tunnel Escape): separate Godot project, short stealth/light-puzzle walk in 5 chambers. Design doc: Google Doc "War Idol Tunnel Escape". Ported from another universe; re-theme to War Idols. Later it is ported into `game/minigames/tunnel/` as a segment (copy, repoint paths, wrapper), like the runner |
 | `_archive/` | superseded docs — do not use as reference |
 
 ## Rules
@@ -64,7 +67,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
   `change_scene_to_file` in `game/`.
 - Files starting `_` are drafts or generated reading copies (`_read_*.txt`). Don't edit them or
   use them as source.
-- Inside a Godot project, move files in the FileSystem dock, or on disk with Godot closed; elsewhere (`docs/`, `source_art/`, `tools/`) use `git mv`. Commit to git before each step.
+- Inside `game/`, move files in the FileSystem dock, or on disk with Godot closed (then run `godot --headless --path game --import` and `tools/run_tests.ps1`); elsewhere (`docs/`, `source_art/`, `tools/`) use `git mv`. Commit to git before each step.
 
 ## Working with Claude
 - **Load only what the task needs:** this file, the bible, the one or two canon files involved,
@@ -76,14 +79,14 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
   mechanical punchlist items.
 
 ## In progress
-- **Restructure** (decided 2026-11-16): `docs/restructure_plan.md` has the new names and the steps. Done: `car/` → `sandbox/`, test runner, repo-root cleanup (steps 1–2). The rest waits on the stealth playtest.
+- **Restructure** (done 2026-11-16, `docs/restructure_plan.md`): `car/` → `sandbox/`, `vn/` → `game/`, `MainGame` → `Main`, autoload `Game` → `GameState`, `scenes/` etc. regrouped under `story/`, `minigames/`, `assets/`, `ui/`; docs in `docs/`, art in `source_art/`. **Old names are retired** (`car/`, `vn/` as the project folder, `MainGame`, `Game.`, `maingame_spec.md`, `vn_game_design.md`); if you see them, they are stale. Next small cleanups: inside the runner, `slice.*` and `runner.gd` (the player vehicle) want clearer names; `runner_placeholder.*` can go.
 - **Game jam (about a week, from 2026-10-24):** build `tunnel/` (own project, never references `sandbox/`).
-- `outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
+- `docs/outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
   B10–B14 wait on a yes before scenes are written against them.
-- Fill the calendar: days 2–40 are placeholders, placed by `main_spec.md` §2.
+- Fill the calendar: days 2–40 are placeholders, placed by `docs/main_spec.md` §2.
 - Runner: ported into `game/minigames/runner/` behind the segment contract (2026-11-16), a straight copy, not playtested in a window. Next: playtest, then hook its followers/money into the outcome payouts (the calendar currently pays fixed per-outcome amounts).
 - The hub's real room (3D bunker, characters possibly 2D); News/Stats is a stub.
-- Dossiers: built from `dossier_spec.md` (merged 2026-11-16), four placeholder entries, no
+- Dossiers: built from `docs/dossier_spec.md` (merged 2026-11-16), four placeholder entries, no
   `@ file` in any scene yet. Next: settle its §9 story points, then write entries (Opus) and file them in scenes.
-- Stealth minigame: specced in `stealth_spec.md` (2026-11-15), not built; its §10 points are open.
+- Stealth minigame: specced in `docs/stealth_spec.md` (2026-11-15); build steps 1–3 are in (map, guards and detection, noise and concealment); its §10 points are open.
 - Update `GameState` stats to match `docs/game_design.md` (the dials), and move `lane_x()` out of it.

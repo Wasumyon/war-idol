@@ -34,14 +34,19 @@ name; the code uses group names such as "runner". Delete `runner_placeholder.*` 
    not `sandbox/vn/`. Left for the user to decide: `docs/opencode.md` (empty) and
    `docs/io_vanguard_story_bible.md` (an older near-duplicate of the bible).
 3. **Wait:** stealth playtest finished and committed. Then tell Fable the new names.
-4. **`vn/` -> `game/`.** Folder only. Fix `.claude/launch.json`, the test runner, docs.
-5. **Folder moves**, one commit each: `scenes/` -> `story/` (with the VN player, `opener/`,
-   `first_shot/`); `runner/`, `stealth/` -> `minigames/`; `img/`, `sfx/` -> `assets/`; `phone/` and
-   pause/debug -> `ui/`. Rewrite `res://` strings in `.gd`, `.tscn`, `.tres`, `project.godot`; the
-   VN scene `.txt` files if they name image or sound paths; `calendar_data.gd` sources.
-6. **`MainGame` -> `Main`.** Files, class_name, the `main_scene` setting, tests, docs.
-7. **`Game` -> `GameState`.** Its own step: autoload entry in `project.godot`, every `Game.` use,
-   tests, docs. Grep `\bGame\b` and read each hit; the word also appears in prose.
-8. Rewrite CLAUDE.md's table and rules for the final layout; retire the old names in a line there.
-9. Later: tunnel ported into `minigames/tunnel/` as a real segment (copy, repoint paths, wrapper,
-   re-theme), after the jam build is settled.
+3. **Done:** stealth work was committed first (Fable has the new names).
+4. **Done:** `vn/` -> `game/`.
+5. **Done**, one commit each: `scenes/`, `opener/`, `first_shot/` and the VN player -> `game/story/`
+   (the written text stays in `story/scenes/`: "scene" is the writers' word for it); `runner/`,
+   `stealth/` -> `minigames/`; `img/`, `sfx/` -> `assets/`; `phone`, `pause`, `debug` -> `ui/`
+   (`campaign_phone.gd` -> `phone.gd`).
+6. **Done:** `MainGame` -> `Main` (`main.gd/.tscn`, node, `main_scene`, tests, docs;
+   `maingame_spec.md` -> `main_spec.md`).
+7. **Done:** `Game` -> `GameState` (`autoload/game_state.gd`).
+8. **Done:** CLAUDE.md rewritten for the new layout, old names retired in a line there.
+9. Later: tunnel ported into `game/minigames/tunnel/` as a real segment (copy, repoint paths,
+   wrapper, re-theme), after the jam build is settled. Runner internals (`slice.*`, `runner.gd`)
+   and `runner_placeholder.*`: see CLAUDE.md.
+
+Note: right after a batch of moves the first headless `--import` can print a transient
+"can't load autoload / f.is_null()" error from the old `.godot/` cache; a second import is clean.
