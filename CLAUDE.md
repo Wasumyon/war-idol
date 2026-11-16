@@ -34,6 +34,8 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 | `vn_game_design.md` | tracked state: Hype, the dials, flags, ending models |
 | `punchlist.md`, `01_intro_punchlist.md` | open errors and considerations |
 | `maingame_spec.md` | MainGame, the calendar data model, the draft 40-day placement |
+| `dossier_spec.md` | the in-game files: entry format, unlocks, pre/post-reveal versions, glitched text |
+| `stealth_spec.md` | the stealth minigame (story beats and the on-foot job): rules, party, segment contract, build steps |
 | `HANDOVER.md` | the opening slice: direction and build order |
 | `vn/scenes/NN_*.txt` | the written scenes the game runs (plain text, played by `vn/vn.tscn`) |
 | `vn/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
@@ -73,5 +75,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
   B10–B14 wait on a yes before scenes are written against them.
 - Fill the calendar: days 2–40 are placeholders, placed by `maingame_spec.md` §2.
 - Port the runner from `car/slice/` into `vn/runner/` behind the segment contract.
-- The hub's real room (3D bunker, characters possibly 2D); Dossiers and News/Stats are stubs.
+- The hub's real room (3D bunker, characters possibly 2D); News/Stats is a stub.
+- Dossiers: specced in `dossier_spec.md` (2026-11-15), not built; its §9 story points are open.
+- Stealth minigame: specced in `stealth_spec.md` (2026-11-15), not built; its §10 points are open.
 - Update `Game` stats to match `vn_game_design.md` (the dials), and move `lane_x()` out of it.
