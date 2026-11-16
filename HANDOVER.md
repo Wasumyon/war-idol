@@ -2,7 +2,7 @@
 
 ## Project layout
 
-- `vn/` is the destination Godot project and the proposed campaign entry point. It owns story progression, durable saves, and minigame handoffs.
+- `game/` is the destination Godot project and the proposed campaign entry point. It owns story progression, durable saves, and minigame handoffs.
 - The current VN source lives in `sandbox/vn/`. `sandbox/` is the driving and filming prototype. Its quarantined mechanics sandbox should remain available for playtesting.
 - `tunnel/` is a separate minigame. Integrate it when its campaign beat needs it.
 
@@ -12,8 +12,8 @@ Start in the simplified first mission as a playable shooter. Give the player a c
 
 ## Build order
 
-1. **Plan the minimal port · Sol Light.** Read-only. Trace the scenes, resources, input actions, and autoloads used by `sandbox/vn/` and the assets proposed for the cold open. Identify which files need to land under `vn/`, which references need updating, and how to verify the port. Flag any structural decision that requires a larger migration before editing.
-2. **Port the VN and connect the opener · Sol Medium.** First verify the VN independently in `vn/`. Preserve the existing prose pacing, page breaks, effects, audio, speaker aliases, player-name entry and substitution, and aftermath branches. Then make a fresh launch enter the simplified shooter and follow the planned loss into the VN. Verify the transition from a normal launch in Godot.
+1. **Plan the minimal port · Sol Light.** Read-only. Trace the scenes, resources, input actions, and autoloads used by `sandbox/vn/` and the assets proposed for the cold open. Identify which files need to land under `game/`, which references need updating, and how to verify the port. Flag any structural decision that requires a larger migration before editing.
+2. **Port the VN and connect the opener · Sol Medium.** First verify the VN independently in `game/`. Preserve the existing prose pacing, page breaks, effects, audio, speaker aliases, player-name entry and substitution, and aftermath branches. Then make a fresh launch enter the simplified shooter and follow the planned loss into the VN. Verify the transition from a normal launch in Godot.
 3. **Connect filming, payout, and debt · Sol Medium.** Capture and miss should both reach the aftermath with different Chip callbacks and phone payouts. Save campaign progress, followers, cash, and rig debt. Verify a repayment and confirm that loading or revisiting the aftermath never applies a payout or payment twice. Use Astra Light for a focused review if the save and transition design needs a second opinion.
 4. **Tune one follow-on stage · Sol Light.** Human-playtest the opening and first stream without coaching. Increase pressure on a learned skill in the next stage, then assess whether to introduce another control.
 

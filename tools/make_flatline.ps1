@@ -1,6 +1,6 @@
 # tools/make_flatline.ps1
 #
-# Regenerates vn/sfx/flatline.wav — the monitor sting under the prologue's last
+# Regenerates game/sfx/flatline.wav — the monitor sting under the prologue's last
 # beat. Generated rather than sourced, so there is no licence to record.
 #
 #   powershell -File tools\make_flatline.ps1
@@ -20,7 +20,7 @@ $tau     = 0.36     # decay time constant in seconds: ~63% quieter every 0.36 s.
 $sr      = 44100    # sample rate
 
 $root = Split-Path -Parent $PSScriptRoot
-$dst  = Join-Path $root 'vn\sfx\flatline.wav'
+$dst  = Join-Path $root 'game\sfx\flatline.wav'
 
 $n = [int]($sr * $seconds)
 $ms = New-Object System.IO.MemoryStream

@@ -7,7 +7,7 @@ Design and prototype repository. A war-journalism story set on Io, and a
 
 | Folder / file | Contents |
 |---|---|
-| `vn/` | **The game**: the Godot 4.7 project (MainGame, calendar, story, hub, runner, stealth, dossier). |
+| `game/` | **The game**: the Godot 4.7 project (MainGame, calendar, story, hub, runner, stealth, dossier). |
 | `sandbox/` | Old Godot sandbox project: the runner prototype (`slice/`), car-physics tests. Frozen. |
 | `tunnel/` | Game-jam piece (Tunnel Escape): a separate Godot project. |
 | `docs/` | Design docs: story bible, canon, outline, specs, punchlists, the design-doc `.docx`, prose in `stories/`. |
@@ -17,12 +17,12 @@ Design and prototype repository. A war-journalism story set on Io, and a
 
 ## Running the game
 
-Import `vn/project.godot` in Godot 4.7.x and press **F5** (it opens MainGame). Tests: `powershell -File tools/run_tests.ps1`.
+Import `game/project.godot` in Godot 4.7.x and press **F5** (it opens MainGame). Tests: `powershell -File tools/run_tests.ps1`.
 
 ## Running the runner prototype (old sandbox)
 
 1. Install **Godot 4.7.x** (standard build, no .NET needed).
-2. Import `sandbox/project.godot` (or run the same runner in the game, `vn/runner/`).
+2. Import `sandbox/project.godot` (or run the same runner in the game, `game/runner/`).
 3. Open `sandbox/slice/slice.tscn` and press **F6** (run current scene).
 
 **Controls**
@@ -44,7 +44,7 @@ Import `vn/project.godot` in Godot 4.7.x and press **F5** (it opens MainGame). T
 **Notes**
 - `.godot/` is git-ignored; Godot regenerates it the first time you open the project.
 - The prototype is a **grey-box test build** — some art is still placeholder.
-- The **visual novel** player is `vn/vn.tscn`. Scenes are plain text in `vn/scenes/`. (`sandbox/vn/` is an older copy.)
+- The **visual novel** player is `game/vn.tscn`. Scenes are plain text in `game/scenes/`. (`sandbox/vn/` is an older copy.)
 - `sandbox/test.tscn` is a driving sandbox and `sandbox/test_static.tscn` is an asset-viewer rig; neither is the game.
 
 ## Git

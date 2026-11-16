@@ -1,11 +1,11 @@
 # Audio sources and licences
 
-What is in `vn/sfx/` and `vn/music/`, where it came from, and what its licence
+What is in `game/sfx/` and `game/music/`, where it came from, and what its licence
 actually permits.
 `asset_commission.md` says what the scripts **want**; this file says what we **have**
 and what we are allowed to do with it.
 
-**Rule: a file does not go in `vn/sfx/` or `vn/music/` until its licence is
+**Rule: a file does not go in `game/sfx/` or `game/music/` until its licence is
 recorded here.** A
 licence you cannot point at is a licence you do not have, and this is the one category
 of asset that is expensive to replace late.
@@ -132,7 +132,7 @@ elif s is AudioStreamWAV:      s.loop_mode = AudioStreamWAV.LOOP_FORWARD
 ```
 
 - **Export `.ogg` (Vorbis).** No encoder delay, so the loop point lands where you put
-  it. Filename is lowercase: `vn/music/keno.ogg`.
+  it. Filename is lowercase: `game/music/keno.ogg`.
 - **Do NOT use `.mp3` for music.** Encoder delay and padding shift the loop point, so
   the seam never lines up. It is fine for a one-shot `@ sfx`, wrong for a loop.
 - **`.wav` works,** and loops `LOOP_FORWARD` over the whole buffer — which means the

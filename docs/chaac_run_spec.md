@@ -1,6 +1,6 @@
 # The Chaac run — spec
 
-Status: **draft, not approved.** Replaces the cold-open shooter (`vn/opener/`) on Day 1 with a
+Status: **draft, not approved.** Replaces the cold-open shooter (`game/opener/`) on Day 1 with a
 playable Battle of Chaac Patera in the runner, ending in `00_prologue`. Sources: the bible,
 canon §4, §6, §12, §15, `outline.md` Beat 01, `maingame_spec.md` §5, the `sandbox/slice/` prototype.
 
@@ -139,7 +139,7 @@ and the next click is *"A leg."* Battle ambience plays under it, far away, then 
 - `minigame` segment `d01_chaac_run`, scene `res://runner/runner.tscn`,
   args `{weapon = "gun", timeline = "chaac"}`, returns `{}`. It never fails: every path ends at
   beat 8.
-- Day 1 becomes `[d01_chaac_run, opening VN]`. The opener (`vn/opener/`) is retired.
+- Day 1 becomes `[d01_chaac_run, opening VN]`. The opener (`game/opener/`) is retired.
 - The segment contract of `maingame_spec.md` §5 applies: `begin(args)`, `finished(result)`, no
   scene changes.
 
@@ -151,7 +151,7 @@ and the next click is *"A leg."* Battle ambience plays under it, far away, then 
    as-is.
 2. **Spec the runner port** from what step 1 proved: the runner, the timeline format, the two
    weapons.
-3. **Port** into `vn/runner/` behind the segment contract; `Game.lane_x()` moves out of `Game`.
+3. **Port** into `game/runner/` behind the segment contract; `Game.lane_x()` moves out of `Game`.
 4. **`@ wake`** in `vn.gd`; add it to `00_prologue.txt`.
 5. **Calendar:** Day 1 swaps the opener for `d01_chaac_run`; update the campaign test.
 6. **Docs:** `outline.md` Beat 01 (tank, the order), `maingame_spec.md` §1 and §2 Day 1,
@@ -183,5 +183,5 @@ default. Then the briefing (§5 beat 0).
 quick iteration go straight to the calendar.
 
 **Build.** Independent of the runner: it can land before the Chaac run, with the briefing as a
-placeholder screen that hands off to today's opener. Touches `vn/main/`, a new `vn/title/`
+placeholder screen that hands off to today's opener. Touches `game/main/`, a new `game/title/`
 scene, `vn.gd`'s `@ input_name` (removed from `03_car.txt`), and the campaign test.

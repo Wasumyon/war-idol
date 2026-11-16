@@ -1,5 +1,5 @@
 extends Node
-## Run with --headless --path vn res://tests/dossier_test.tscn.  Spec: docs/dossier_spec.md §7, §11.
+## Run with --headless --path game res://tests/dossier_test.tscn.  Spec: docs/dossier_spec.md §7, §11.
 ## Touches Game.flags in memory only; nothing here saves.
 
 const DATA := preload("res://dossier/dossier_data.gd")

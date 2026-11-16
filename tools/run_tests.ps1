@@ -4,17 +4,17 @@
 #   powershell -File tools/run_tests.ps1
 #   powershell -File tools/run_tests.ps1 -Godot "C:\path\Godot_console.exe" -TimeoutSec 180
 #
-# The game project is found automatically: the first of game/, vn/ that has a project.godot.
+# The game project is game/ (the folder with project.godot).
 param(
 	[string]$Godot = $(if ($env:GODOT) { $env:GODOT } else { "C:\Users\9meac\AppData\Local\Programs\Godot\4.7.2\Godot_v4.7.2-stable_win64_console.exe" }),
 	[int]$TimeoutSec = 120
 )
 
 $root = Split-Path -Parent $PSScriptRoot
-$project = foreach ($name in "game", "vn") {
+$project = foreach ($name in "game") {
 	if (Test-Path (Join-Path $root "$name\project.godot")) { Join-Path $root $name; break }
 }
-if (-not $project) { Write-Error "No game project found (game/ or vn/)."; exit 2 }
+if (-not $project) { Write-Error "No game project found (game/)."; exit 2 }
 if (-not (Test-Path $Godot)) { Write-Error "Godot console exe not found: $Godot (set -Godot or `$env:GODOT)"; exit 2 }
 
 $failed = 0

@@ -10,21 +10,21 @@ film dangerous events with the cursor (Pokémon Snap-like). The twist: the AR vi
 human colonists as monsters.
 
 ## Engine
-Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` project**
-(`vn/project.godot`). `sandbox/` is the old sandbox project and `tunnel/` is a separate one.
+Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/` project**
+(`game/project.godot`). `sandbox/` is the old sandbox project and `tunnel/` is a separate one.
 
-- Main scene: `vn/main/main_game.tscn` (**MainGame**), the one persistent scene. Layers: World /
+- Main scene: `game/main/main_game.tscn` (**MainGame**), the one persistent scene. Layers: World /
   Story / HUD / Pause / Dossier (the files, an overlay, not a segment) / Transition / Debug.
 - **Debug builds:** F3 opens the debug panel; F4 files every dossier entry; F5 toggles the visor
-  reveal. A new key is one `_hotkey()` line in `vn/main/debug.gd` plus a `debug_*` function on
+  reveal. A new key is one `_hotkey()` line in `game/main/debug.gd` plus a `debug_*` function on
   MainGame; the panel lists them all. F6–F11 are free.
-- One autoload: `Game` (`vn/autoload/game.gd`) — the save (`user://campaign.save`), stats, flags,
+- One autoload: `Game` (`game/autoload/game.gd`) — the save (`user://campaign.save`), stats, flags,
   chapter, player name, and the calendar position (day, slot, segment in play).
 - **The calendar drives the game.** A day has two slots (day, evening). A slot is scripted (fixed
-  segments) or free (the player picks an offer in the hub). Data: `vn/calendar/calendar_data.gd`.
+  segments) or free (the player picks an offer in the hub). Data: `game/calendar/calendar_data.gd`.
 - **A segment** is a VN scene or a minigame. Its root emits `finished(result)` and never changes
   scene or advances the day; MainGame swaps it through the Transition layer and saves.
-- Test: `powershell -File tools/run_tests.ps1` runs every headless test in `vn/tests/` (must say 0 failed).
+- Test: `powershell -File tools/run_tests.ps1` runs every headless test in `game/tests/` (must say 0 failed).
 
 ## Where things are
 | path | what |
@@ -43,14 +43,14 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 | `docs/` | every design doc: bible, canon, outline, specs, punchlists, `game_design.md`, `restructure_plan.md`, the design-doc `.docx`, `stories/`, `boundarypush/` |
 | `source_art/` | unshipped art and prompts (characters, backgrounds, enemy models, concept art, UI base, raw sources, review thumbnails, source music). Not part of any Godot project |
 | `tools/` | scripts: `run_tests.ps1`, `commission.ps1`, `make_plain.ps1`, `make_flatline.ps1`, `stale_dossiers.ps1` |
-| `vn/scenes/NN_*.txt` | the written scenes the game runs (plain text, played by `vn/vn.tscn`) |
-| `vn/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
-| `vn/main/`, `vn/hub/`, `vn/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
-| `vn/opener/`, `vn/first_shot/`, `vn/phone/` | Day 1's cold open and filming request; the phone |
-| `vn/dossier/` | the files screen; `entries/<id>.txt` are the entries (placeholders for now). A scene line's `@ file <id>` files one |
-| `vn/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
-| `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `vn/` |
-| `sandbox/slice/` | the runner prototype — **sandbox**; copied into `vn/runner/` (ported 2026-11-16), now frozen — edit `vn/runner/` |
+| `game/scenes/NN_*.txt` | the written scenes the game runs (plain text, played by `game/vn.tscn`) |
+| `game/scenes/placeholder/` | stand-in scenes for calendar days not yet written |
+| `game/main/`, `game/hub/`, `game/calendar/` | MainGame and its layers, the hub (placeholder layout), the calendar |
+| `game/opener/`, `game/first_shot/`, `game/phone/` | Day 1's cold open and filming request; the phone |
+| `game/dossier/` | the files screen; `entries/<id>.txt` are the entries (placeholders for now). A scene line's `@ file <id>` files one |
+| `game/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
+| `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `game/` |
+| `sandbox/slice/` | the runner prototype — **sandbox**; copied into `game/runner/` (ported 2026-11-16), now frozen — edit `game/runner/` |
 | `sandbox/wip/`, `sandbox/test*.tscn` | older car-physics tests — sandbox |
 | `tunnel/` | **game-jam piece** (Tunnel Escape): separate Godot project, short stealth/light-puzzle walk in 5 chambers. Design doc: Google Doc "War Idol Tunnel Escape". Ported from another universe; re-theme to War Idols |
 | `_archive/` | superseded docs — do not use as reference |
@@ -59,9 +59,9 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 - **Every fact lives in one file. The bible wins any conflict**; fix canon or the outline to match.
 - Canon changes as the story is written. Record decisions; don't infer them from old drafts.
 - `sandbox/` is the sandbox, a separate Godot project. Sandbox code may use the core; **core code
-  (`vn/`) never references the sandbox (`sandbox/`)**, so anything the game needs is copied into `vn/`.
+  (`game/`) never references the sandbox (`sandbox/`)**, so anything the game needs is copied into `game/`.
 - New playable content is a segment listed in `calendar_data.gd`. Never call
-  `change_scene_to_file` in `vn/`.
+  `change_scene_to_file` in `game/`.
 - Files starting `_` are drafts or generated reading copies (`_read_*.txt`). Don't edit them or
   use them as source.
 - Inside a Godot project, move files in the FileSystem dock, or on disk with Godot closed; elsewhere (`docs/`, `source_art/`, `tools/`) use `git mv`. Commit to git before each step.
@@ -81,7 +81,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `vn/` 
 - `outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
   B10–B14 wait on a yes before scenes are written against them.
 - Fill the calendar: days 2–40 are placeholders, placed by `maingame_spec.md` §2.
-- Runner: ported into `vn/runner/` behind the segment contract (2026-11-16), a straight copy, not playtested in a window. Next: playtest, then hook its followers/money into the outcome payouts (the calendar currently pays fixed per-outcome amounts).
+- Runner: ported into `game/runner/` behind the segment contract (2026-11-16), a straight copy, not playtested in a window. Next: playtest, then hook its followers/money into the outcome payouts (the calendar currently pays fixed per-outcome amounts).
 - The hub's real room (3D bunker, characters possibly 2D); News/Stats is a stub.
 - Dossiers: built from `dossier_spec.md` (merged 2026-11-16), four placeholder entries, no
   `@ file` in any scene yet. Next: settle its §9 story points, then write entries (Opus) and file them in scenes.

@@ -1,7 +1,7 @@
 # The stealth minigame — spec
 
-Status: **design agreed 2026-11-15, not built.** §10 lists what is still open. Project: root `vn/`,
-folder `vn/stealth/`. Sources: the bible (Act 3, the heist), `outline.md` beats 16, 18, 27–28, 35,
+Status: **design agreed 2026-11-15, not built.** §10 lists what is still open. Project: root `game/`,
+folder `game/stealth/`. Sources: the bible (Act 3, the heist), `outline.md` beats 16, 18, 27–28, 35,
 38, 39, canon 8 and 11, `game_design.md`, `maingame_spec.md` §3 and §5. Replaces the
 provisional note `boundarypush/heist-escape-minigame.md`.
 
@@ -207,7 +207,7 @@ It never changes scene, advances the day, or writes the save.
 The calendar's `outputs` choose a set by `outcome`, as the runner's do by `capture` / `miss`.
 Knockouts do not feed Bloodlust.
 
-Files: `vn/stealth/stealth.tscn` and `.gd` (the segment root), `guard.gd`, `player.gd`,
+Files: `game/stealth/stealth.tscn` and `.gd` (the segment root), `guard.gd`, `player.gd`,
 `subject.gd`, `noise.gd`, `aim_mode.gd`, `camera_rig.gd`, `maps/*.tscn`. Maps are data: guards
 with patrol paths, subjects, cover, concealment, checkpoints, exit, barrels, trap points.
 

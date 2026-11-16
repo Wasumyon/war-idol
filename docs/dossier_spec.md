@@ -6,12 +6,12 @@ picture) and the Event Archive in *13 Sentinels* (a details block, a found count
 this spec with Sonnet; entry text is story work (Opus) and obeys canon like any scene.
 
 **Status (2026-11-16):** built and merged; §8 steps 1–7 and §11 are done. The entries are
-placeholders and no scene files one yet; §9 is open. Test: `vn/tests/dossier_test.tscn`. In a
+placeholders and no scene files one yet; §9 is open. Test: `game/tests/dossier_test.tscn`. In a
 debug build, F4 files every entry and F5 toggles `visor_revealed`.
 
 ## 1. What it is in Godot
 
-A scene (`vn/dossier/dossier.tscn`), but **not a segment**: it is not in `calendar_data.gd`,
+A scene (`game/dossier/dossier.tscn`), but **not a segment**: it is not in `calendar_data.gd`,
 never emits `finished`, never spends a slot. It is an overlay like Pause, owned by MainGame.
 
 - New layer **`Dossier`** (CanvasLayer) in `main_game.tscn`, placed **after `Pause`** in the
@@ -27,7 +27,7 @@ never emits `finished`, never spends a slot. It is an overlay like Pause, owned 
 
 ## 2. Entries are text files
 
-One file per entry, `vn/dossier/entries/<id>.txt`, read at startup. `id` is the filename.
+One file per entry, `game/dossier/entries/<id>.txt`, read at startup. `id` is the filename.
 Files starting `_` are ignored, as elsewhere.
 
 ```
@@ -52,7 +52,7 @@ The Cohort is the colony's answer to the {{swarm|seen_hive}}. Its tourmarch repo
 
 - **Header lines** until the first blank line. `category` must be one of the tab ids (§4).
   `order` sorts the list and gives the number shown beside the title. `image` resolves like
-  `@ img` (`vn/img/`). `info:` lines are the details block, label `|` value, in file order.
+  `@ img` (`game/img/`). `info:` lines are the details block, label `|` value, in file order.
   `source:` lists the repo files the entry's facts come from (never shown in game; see §10).
   `terms:` lists the exact forms of the entry's name that are linked automatically wherever
   they appear (§11).
@@ -107,8 +107,8 @@ set is an outline decision; the dossier only reads it.
 
 ## 6. Glitched text
 
-A custom `RichTextEffect`, `vn/dossier/glitch_effect.gd`, `[glitch]…[/glitch]`, built like
-`vn/script_effect.gd`: each character is swapped for a random block glyph a few times a second,
+A custom `RichTextEffect`, `game/dossier/glitch_effect.gd`, `[glitch]…[/glitch]`, built like
+`game/script_effect.gd`: each character is swapped for a random block glyph a few times a second,
 with a small horizontal jitter and a colour split. The true letter shows through for a frame now
 and then, so a careful reader can half-read it. Span length is kept, so the noise matches the
 word's shape.
@@ -120,7 +120,7 @@ like `CALENDAR.validate()`:
 - unknown category, duplicate `order` in a category, missing image;
 - `[[id]]` pointing at no entry;
 - `== after` present without `== before` (or the reverse) when both are expected;
-- `@ file <id>` in any `vn/scenes/*.txt` naming no entry;
+- `@ file <id>` in any `game/scenes/*.txt` naming no entry;
 - a `source:` path that doesn't exist (checked in the test, which runs from the repo).
 
 `tests/dossier_test.tscn`: loads all entries with 0 problems; sets `file:a`, checks the New tab
@@ -158,7 +158,7 @@ retells it in-world and names those files on its `source:` line. Rules:
   `source:` files have a later git commit than the entry itself. Run it after a canon session;
   each hit is an entry to reread (often still fine), not an automatic rewrite.
 - A canon change that renames a thing (*Tourma*, a unit, a place) is also a grep across
-  `vn/dossier/entries/` and the `[[links]]`; validation catches broken link ids.
+  `game/dossier/entries/` and the `[[links]]`; validation catches broken link ids.
 
 ## 11. Terms in the story
 

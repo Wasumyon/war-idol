@@ -1,9 +1,9 @@
 # MainGame and the calendar — spec
 
-Status: **approved and built** (placeholder content from Day 2 on). One departure: `first_shot` still records its own result through `Game.record_first_shot`, which keeps its save-retry screen. Project: root `vn/`. Sources: the bible
+Status: **approved and built** (placeholder content from Day 2 on). One departure: `first_shot` still records its own result through `Game.record_first_shot`, which keeps its save-retry screen. Project: root `game/`. Sources: the bible
 (three acts, 40 days), canon 11, `outline.md`, `game_design.md`.
 
-## 1. What exists in `vn/` today
+## 1. What exists in `game/` today
 
 - Main scene `opener/opener.tscn` (cold-open shooter) → `vn.tscn` → `first_shot/first_shot.tscn`
   → `vn.tscn` (aftermath). Every handoff is `get_tree().change_scene_to_file()`:
@@ -12,7 +12,7 @@ Status: **approved and built** (placeholder content from Day 2 on). One departur
   (`scenes/00`–`04`), and the first-shot state (`first_shot_pending`, `_outcome`, `_receipt`).
   `Game.day` exists and is saved, but nothing ever changes it.
 - When chapter 04 ends the VN prints "— end —" and stops. There is no hub.
-- The runner was ported from `sandbox/slice/` into `vn/runner/` (2026-11-16); `sandbox/slice/` is now frozen.
+- The runner was ported from `sandbox/slice/` into `game/runner/` (2026-11-16); `sandbox/slice/` is now frozen.
 
 ## 2. Day count: 40
 
@@ -49,7 +49,7 @@ does not assume Model A or Model B.
 
 ## 3. Data model
 
-One data file, `vn/calendar/calendar_data.gd`, validated at startup in debug builds.
+One data file, `game/calendar/calendar_data.gd`, validated at startup in debug builds.
 
 **Segment** — one playable thing.
 
@@ -82,7 +82,7 @@ The dials and `lane_x()` are untouched.
 
 ## 4. MainGame layers
 
-`vn/main/main_game.tscn`, set as the main scene.
+`game/main/main_game.tscn`, set as the main scene.
 
 | node | role |
 |---|---|
@@ -93,7 +93,7 @@ The dials and `lane_x()` are untouched.
 | `Transition` (CanvasLayer) | fade out, swap the child, fade in; blocks input meanwhile |
 | `Debug` (CanvasLayer, debug builds only) | day, slot, flags; jump to day; set flag; skip segment |
 
-**The hub** is its own scene (`vn/hub/hub.tscn`) behind one signal, `segment_chosen(id)`. This
+**The hub** is its own scene (`game/hub/hub.tscn`) behind one signal, `segment_chosen(id)`. This
 build makes it a flat placeholder: Missions (today's offers for the current slot), Calendar (the
 40-day grid with today and the checkpoints), Menu (opens Pause), and Dossiers and News/Stats as
 stubs that open an empty panel. Whether the final room is 3D with 2D characters is decided inside
@@ -131,7 +131,7 @@ placeholder scene with two buttons (good run / bad run).
 3. `MainGame` with the six layers and the Transition swap; convert the three handoffs.
 4. Hub placeholder, Pause, Debug.
 5. Rewrite the campaign test; run with a clean debug output.
-6. Rewrite `CLAUDE.md` for the `vn/` structure.
+6. Rewrite `CLAUDE.md` for the `game/` structure.
 
 ## 7. Open points
 

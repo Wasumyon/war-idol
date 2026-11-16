@@ -1,5 +1,5 @@
 extends Node
-## Run with --headless --fixed-fps 60 --path vn res://tests/stealth_smoke.tscn.
+## Run with --headless --fixed-fps 60 --path game res://tests/stealth_smoke.tscn.
 ## Plays the stealth test map through its rules with synthetic input. Must print 0 failures.
 ## Set STEALTH_SHOTS to a folder and run without --headless to also save screenshots.
 

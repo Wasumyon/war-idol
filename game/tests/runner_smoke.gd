@@ -1,5 +1,5 @@
 extends Node
-## Headless smoke test: godot --headless --path vn res://tests/runner_smoke.tscn
+## Headless smoke test: godot --headless --path game res://tests/runner_smoke.tscn
 
 var _failures := 0
 var _results: Array[Dictionary] = []

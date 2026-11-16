@@ -5,7 +5,7 @@
 #   powershell -File tools/stale_dossiers.ps1
 
 $root = Split-Path -Parent $PSScriptRoot
-$dir = Join-Path $root 'vn/dossier/entries'
+$dir = Join-Path $root 'game/dossier/entries'
 
 function Get-LastCommit([string]$path) {
     $t = git -C $root log -1 --format=%ct -- $path 2>$null
@@ -16,7 +16,7 @@ $stale = 0
 $checked = 0
 foreach ($file in Get-ChildItem -Path $dir -Filter '*.txt' | Where-Object { $_.Name -notlike '_*' }) {
     $checked++
-    $rel = "vn/dossier/entries/$($file.Name)"
+    $rel = "game/dossier/entries/$($file.Name)"
     $entryTime = Get-LastCommit $rel
     if ($entryTime -eq 0) { continue }   # not committed yet: nothing to be stale against
     $sources = @()

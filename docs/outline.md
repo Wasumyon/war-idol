@@ -11,7 +11,7 @@ The story follows the narrator (an amputee veteran seeking legitimacy and absolu
 - **Act 2: The cracking facade (Beats 17–33, 25–75%)** — Albrecht's rescue, Ottenok's trap and death, the ice, the gala, Aysel's vendetta, the EMP, the visor falls, the capture.
 - **Act 3: The interrogation and the fork (Beats 34–40, 75–100%)** — Albrecht's one scene, the fork; Route A's breakout, heist and broadcast; Route B's epilogue.
 
-Beats 01–10 are Day 1 and are written (`vn/scenes/00_`–`04_`). The beat numbers changed in the
+Beats 01–10 are Day 1 and are written (`game/scenes/00_`–`04_`). The beat numbers changed in the
 three-act restructure; the old-to-new map is at the end.
 
 ---

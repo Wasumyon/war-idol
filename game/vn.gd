@@ -24,8 +24,8 @@ extends Control
 ##
 ##   EVENT (ONE-SHOT) - happens on the line it is attached to, then gone.
 ##     @ stage <text>            stage direction -> italic line above
-##     @ sfx <name>              play vn/sfx/<name> (one-shot)
-##     @ music <name>            play vn/music/<name>, looping; "@ music stop"
+##     @ sfx <name>              play game/sfx/<name> (one-shot)
+##     @ music <name>            play game/music/<name>, looping; "@ music stop"
 ##     @ shake                   brief shake of the text area
 ##     @ glitch [seconds]        brief full-screen glitch (feed failing)
 ##     @ auto [seconds]          play this node through by itself, then move on

@@ -1,5 +1,5 @@
 extends Node
-## Run with --headless --path vn res://tests/first_shot_campaign.tscn.
+## Run with --headless --path game res://tests/first_shot_campaign.tscn.
 ##
 ## Drives MainGame the way a player would: the Day 1 opening and its payout, then the
 ## calendar loop (free slot, scripted VN day, scripted minigame day, resume, end).
