@@ -1,46 +1,29 @@
-extends Node
+extends "res://tests/tunnel_test.gd"
 ## Headless check for Chamber 3: the searchlight sweeps, kills in the open,
 ## passes over a hidden player, and every pillar gap is crossable.
-var fails := 0
-var checks := 0
-var root_scene: Node
 var s
-var p
-
-func ok(c: bool, name: String) -> void:
-	checks += 1
-	if not c: fails += 1
-	print(("PASS " if c else "FAIL ") + name)
-
-func wait(sec: float) -> void:
-	for i in int(sec * 60.0):
-		await get_tree().physics_frame
 
 func setup() -> void:
-	if root_scene: root_scene.queue_free(); await get_tree().process_frame
-	root_scene = load("res://minigames/tunnel/scenes/chambers/chamber_3.tscn").instantiate()
-	add_child(root_scene)
-	await get_tree().process_frame
-	s = root_scene.find_child("Searchlight", true, false)
-	p = root_scene.find_child("Player", true, false)
+	await load_chamber("res://minigames/tunnel/scenes/chambers/chamber_3.tscn")
+	m._busy = true  # as before: a death must not trigger the manager's respawn
+	s = sc.find_child("Searchlight", true, false)
 	await get_tree().physics_frame
 
 func _ready() -> void:
 	run()
 
 func run() -> void:
-	await get_tree().process_frame
-	GameManager._busy = true
+	await start_segment()
 	# 1 sweeps left from the far end
 	await setup()
 	var x0: float = s.pool_x
-	var camera: Camera2D = root_scene.get_node("MainCamera")
-	var screen_right: float = camera.get_screen_center_position().x + get_viewport().get_visible_rect().size.x / (2.0 * camera.zoom.x)
+	var camera: Camera2D = sc.get_node("MainCamera")
+	var screen_right: float = camera.get_screen_center_position().x + sc.get_viewport().get_visible_rect().size.x / (2.0 * camera.zoom.x)
 	var glow_radius: float = s._glow_light.texture.get_width() * s.glow_scale * 0.5
 	ok(x0 - maxf(s.pool_half_width, glow_radius) > screen_right, "opening pool and glow start off screen to the right")
-	var middle_vent = root_scene.get_node("MiddleVent")
+	var middle_vent = sc.get_node("MiddleVent")
 	ok(is_equal_approx(middle_vent.position.x, 2300.0) and middle_vent.readable_grate, "readable middle vent at the central pillar")
-	ok(root_scene.get_node("ApproachVent").position.x > 1000.0, "opening stretch has no vent")
+	ok(sc.get_node("ApproachVent").position.x > 1000.0, "opening stretch has no vent")
 	await wait(0.5)
 	ok(s.pool_x < x0 - 80, "searchlight sweeps left")
 	# Detection must match the visible shadow cuts, without pressing Hide.
@@ -71,10 +54,10 @@ func run() -> void:
 	p.global_position.x = 2650
 	s.pool_x = 2650 + 200
 	s._dir = -1
-	GameManager.set_checkpoint(Vector2(1550, 0))
+	m.set_checkpoint(Vector2(1550, 0))
 	await wait(1.5)
 	ok(p.is_dead, "caught in the open")
-	ok(GameManager.has_checkpoint, "a spotlight catch can use the checkpoint while lives remain")
+	ok(m.has_checkpoint, "a spotlight catch can use the checkpoint while lives remain")
 	# 3 hidden at a pillar: survives the pass
 	await setup()
 	p.global_position.x = 2300
@@ -87,7 +70,7 @@ func run() -> void:
 	ok(s.pool_x < 2300 - 300, "light went past him")
 	# 4 the five pillars each have a hide zone
 	var hides := 0
-	for n in root_scene.find_children("HidePillar*", "", true, false): hides += 1
+	for n in sc.find_children("HidePillar*", "", true, false): hides += 1
 	ok(hides == 5, "five pillar hide spots")
 	# 5 gaps: walking a gap is faster than the light crossing it from the next pillar
 	var gap: float = 750.0
@@ -102,8 +85,8 @@ func run() -> void:
 	p.global_position.x = 1550
 	p.enter_hide_zone()
 	p.set_hidden(true)
-	var guard = root_scene.get_node("BridgeGuard")
-	var lever = root_scene.get_node("NoiseLever")
+	var guard = sc.get_node("BridgeGuard")
+	var lever = sc.get_node("NoiseLever")
 	guard.global_position.x = 1850
 	lever._bang()
 	ok(guard.state == guard.State.INVESTIGATE, "pipe starts guard investigation")
@@ -112,8 +95,8 @@ func run() -> void:
 	ok(guard.global_position.x < 1400, "guard passes the valve toward the clang")
 	ok(not p.is_dead, "pillar protects player from passing guard and searchlight")
 	ok(s.pool_x < 3000, "searchlight keeps sweeping during distraction")
-	var end_lever = root_scene.get_node("NoiseLeverEnd")
-	var end_guard = root_scene.get_node("BridgeGuard2")
+	var end_lever = sc.get_node("NoiseLeverEnd")
+	var end_guard = sc.get_node("BridgeGuard2")
 	p.global_position.x = 3800
 	p.set_hidden(false)
 	end_guard.set_physics_process(false)
@@ -126,12 +109,11 @@ func run() -> void:
 	p.global_position.x = 3500
 	await wait(0.2)
 	ok(is_zero_approx(end_lever._prompt.modulate.a), "pipe prompt stays hidden out of reach")
-	GameManager.set_god_level(1)
+	m.set_god_level(1)
 	await setup()
 	p.global_position.x = 2650
 	s.pool_x = 2650
 	await wait(1.0)
 	ok(not p.is_dead, "god mode survives the light")
-	GameManager.set_god_level(0)
-	print("RESULT %d/%d passed" % [checks - fails, checks])
-	get_tree().quit(1 if fails else 0)
+	m.set_god_level(0)
+	finish()

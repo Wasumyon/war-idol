@@ -1,28 +1,13 @@
-extends Node
+extends "res://tests/tunnel_test.gd"
 ## Headless check for Chamber 5: walk in, controls drop, he sits by the
 ## furnace, banging in the vent, he stands with the lamp on, the grille falls,
-## Chip drops out, then the CG with text lines (advanced), closing card, restart.
-var fails := 0
-var checks := 0
-
-func ok(c: bool, name: String) -> void:
-	checks += 1
-	if not c: fails += 1
-	print(("PASS " if c else "FAIL ") + name)
-
-func wait(sec: float) -> void:
-	for i in int(sec * 60.0):
-		await get_tree().physics_frame
-
+## Chip drops out, then the CG with text lines (advanced), closing card, Enter ends the segment.
 func _ready() -> void:
 	run()
 
 func run() -> void:
-	await get_tree().process_frame
-	var sc: Node = load("res://minigames/tunnel/scenes/chambers/chamber_5.tscn").instantiate()
-	add_child(sc)
-	await get_tree().process_frame
-	var p = sc.find_child("Player", true, false)
+	await start_segment({"ending": "sequence"})
+	await load_chamber("res://minigames/tunnel/scenes/chambers/chamber_5.tscn")
 	var e = sc.find_child("Ending", true, false)
 	var grille = sc.find_child("Grille", true, false)
 	ok(p.controls_enabled, "controls on at the start")
@@ -53,6 +38,12 @@ func run() -> void:
 	await wait(0.8)
 	ok(e._card.visible, "after the last line: closing card")
 	await wait(3.5)
-	ok(e._can_restart, "play again offered")
-	print("RESULT %d/%d passed" % [checks - fails, checks])
-	get_tree().quit(1 if fails else 0)
+	# The ending's "play again" became "continue": Enter now hands the segment its result.
+	ok(e._can_finish, "continue offered (was: play again)")
+	var enter := InputEventAction.new()
+	enter.action = "ui_accept"
+	enter.pressed = true
+	e._unhandled_input(enter)
+	await frames(2)
+	ok(results.size() == 1 and results[0].get("outcome") == "escaped", "Enter ends the segment with outcome escaped")
+	finish()

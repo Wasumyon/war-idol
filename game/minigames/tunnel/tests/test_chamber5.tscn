@@ -1,6 +1,0 @@
-[gd_scene format=3]
-
-[ext_resource type="Script" path="res://minigames/tunnel/tests/test_chamber5.gd" id="1"]
-
-[node name="TestChamber5" type="Node"]
-script = ExtResource("1")

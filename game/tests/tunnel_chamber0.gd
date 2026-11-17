@@ -1,31 +1,14 @@
-extends Node
+extends "res://tests/tunnel_test.gd"
 ## Headless check for Room 0 (the fall): he falls with controls off, the vent worms
 ## knock ahead of him and strike only after he's past, he lands safely, gets up,
 ## the lamp hint shows, the lamp turns on, and the exit leads on to Chamber 1.
 ## Set SHOTS=<dir> to also save screenshots.
-var fails := 0
-var checks := 0
-var shots := OS.get_environment("SHOTS")
-
-func ok(c: bool, name: String) -> void:
-	checks += 1
-	if not c: fails += 1
-	print(("PASS " if c else "FAIL ") + name)
-
-func shot(name: String) -> void:
-	if shots == "": return
-	await RenderingServer.frame_post_draw
-	get_viewport().get_texture().get_image().save_png(shots.path_join(name + ".png"))
-
 func _ready() -> void:
 	run()
 
 func run() -> void:
-	await get_tree().process_frame
-	var sc: Node = load("res://minigames/tunnel/scenes/chambers/chamber_0.tscn").instantiate()
-	add_child(sc)
-	await get_tree().process_frame
-	var p: Player = sc.find_child("Player", true, false)
+	await start_segment()
+	await load_chamber("res://minigames/tunnel/scenes/chambers/chamber_0.tscn")
 	var worms: Array = get_tree().get_nodes_in_group("vent_worms")
 	var lungers: Array = get_tree().get_nodes_in_group("vent_lungers")
 	var lunged_behind := true
@@ -120,7 +103,6 @@ func run() -> void:
 	var went := false
 	for i in 400:
 		await get_tree().physics_frame
-		if GameManager.is_transitioning(): went = true; break
+		if m.is_transitioning(): went = true; break
 	ok(went, "exit leads on (Chamber 1)")
-	print("RESULT %d/%d passed" % [checks - fails, checks])
-	get_tree().quit(1 if fails else 0)
+	finish()
