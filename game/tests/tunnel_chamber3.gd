@@ -4,6 +4,7 @@ extends "res://tests/tunnel_test.gd"
 var s
 
 func setup() -> void:
+	m._busy = false  # drop last scenario's hold: load_chamber waits out a busy manager
 	await load_chamber("res://minigames/tunnel/scenes/chambers/chamber_3.tscn")
 	m._busy = true  # as before: a death must not trigger the manager's respawn
 	s = sc.find_child("Searchlight", true, false)

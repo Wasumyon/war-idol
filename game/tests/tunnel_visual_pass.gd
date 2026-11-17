@@ -1,13 +1,13 @@
-extends Node
-var fails: int = 0
+extends "res://tests/tunnel_test.gd"
+## Headless check of the staged worm clusters in chamber 0 and the guard count in chamber 3.
+## Runs through tunnel_segment.tscn (see tunnel_test.gd).
 func check(value: bool, label: String) -> void:
-	print(('PASS ' if value else 'FAIL ') + label)
-	if not value: fails += 1
+	ok(value, label)
 func _ready() -> void:
-	GameManager._busy = true
-	var room = load('res://minigames/tunnel/scenes/chambers/chamber_0.tscn').instantiate()
-	add_child(room)
-	await get_tree().process_frame
+	await start_segment()
+	await load_chamber('res://minigames/tunnel/scenes/chambers/chamber_0.tscn')
+	var room = sc
+	m._busy = true
 	var worms = get_tree().get_nodes_in_group('vent_worms')
 	check(worms.size() == 6, 'six staged shaft clusters')
 	var count: int = 0
@@ -26,12 +26,9 @@ func _ready() -> void:
 	check(not visible_before_depth, 'initial descent stayed completely worm-free')
 	check(not player.is_dead and player.is_on_floor(), 'safe landing and control restoration')
 	for w in worms: check(w.visible and w.growth > 0.5, 'staged cluster struck: ' + w.name)
-	room.queue_free()
-	await get_tree().process_frame
-	room = load('res://minigames/tunnel/scenes/chambers/chamber_3.tscn').instantiate()
-	add_child(room)
-	await get_tree().process_frame
+	m._busy = false
+	await load_chamber('res://minigames/tunnel/scenes/chambers/chamber_3.tscn')
+	room = sc
 	check(get_tree().get_nodes_in_group('guard').size() == 2, 'checkout guard count preserved (two; third absent in source)')
 	check(room.get_node('ApproachVent').position.x > 1000, 'searchlight-only entrance before vent layer')
-	print('RESULT visual pass failures: ', fails)
-	get_tree().quit(1 if fails else 0)
+	finish()

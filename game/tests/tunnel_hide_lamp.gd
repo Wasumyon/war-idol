@@ -1,24 +1,9 @@
-extends Node
-var fails := 0
-var checks := 0
-
-func ok(c: bool, name: String) -> void:
-	checks += 1
-	if not c: fails += 1
-	print(("PASS " if c else "FAIL ") + name)
-
-func wait(sec: float) -> void:
-	for i in int(sec * 60.0):
-		await get_tree().physics_frame
+extends "res://tests/tunnel_test.gd"
+## Headless check for the lamp/hide interplay in chamber 2. Runs through tunnel_segment.tscn.
 
 func _ready() -> void:
-	await get_tree().process_frame
-	GameManager._busy = true
-	var root = load("res://minigames/tunnel/scenes/chambers/chamber_2.tscn").instantiate()
-	add_child(root)
-	await get_tree().process_frame
-	var p = root.find_child("Player", true, false)
-	GameManager._busy = false
+	await start_segment()
+	await load_chamber("res://minigames/tunnel/scenes/chambers/chamber_2.tscn")
 	p.has_torch = true
 	p.set_torch(false)
 	await wait(0.05)
@@ -33,7 +18,7 @@ func _ready() -> void:
 	p.exit_hide_zone()
 	await wait(0.05)
 	ok(not prompt.visible, "hide cue clears when leaving cover")
-	GameManager._busy = true
+	m._busy = true
 	# lamp on -> hide -> off; unhide -> back on after the delay
 	p.set_torch(true)
 	p.set_hidden(true)
@@ -60,7 +45,7 @@ func _ready() -> void:
 	p.set_hidden(false)
 	await wait(0.3)
 	ok(p.is_torch_on, "...and it comes back after the second step-out")
-	GameManager._busy = false
+	m._busy = false
 	Input.action_press("action_torch")
 	await wait(0.05)
 	Input.action_release("action_torch")
@@ -68,5 +53,4 @@ func _ready() -> void:
 	p.enter_hide_zone()
 	await wait(0.05)
 	ok(prompt.visible and prompt.text == "W", "hide cue appears with the lantern off")
-	print("RESULT %d/%d" % [checks - fails, checks])
-	get_tree().quit(1 if fails else 0)
+	finish()

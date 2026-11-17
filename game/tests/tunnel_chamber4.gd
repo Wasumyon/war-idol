@@ -1,35 +1,15 @@
-extends Node
+extends "res://tests/tunnel_test.gd"
 ## Headless check for Chamber 4: two catwalk guards whose floor pools hold the
 ## tubeworms back. Fringe safe, core and a lamp he can see catch you (chamber
 ## restart). The short middle bed and the ledge past B's bulkhead are never
 ## watched or lit. A scripted run can cross the whole chamber.
-var fails := 0
-var checks := 0
-var root_scene: Node
 var ga
 var gb
-var p
-
-func ok(c: bool, name: String) -> void:
-	checks += 1
-	if not c: fails += 1
-	print(("PASS " if c else "FAIL ") + name)
-
-func wait(sec: float) -> void:
-	for i in int(sec * 60.0):
-		await get_tree().physics_frame
 
 func setup() -> void:
-	if root_scene:
-		root_scene.queue_free()
-		await get_tree().process_frame
-	GameManager.clear_checkpoint()
-	root_scene = load("res://minigames/tunnel/scenes/chambers/chamber_4.tscn").instantiate()
-	add_child(root_scene)
-	await get_tree().process_frame
-	ga = root_scene.find_child("GuardA", true, false)
-	gb = root_scene.find_child("GuardB", true, false)
-	p = root_scene.find_child("Player", true, false)
+	await load_chamber("res://minigames/tunnel/scenes/chambers/chamber_4.tscn")
+	ga = sc.find_child("GuardA", true, false)
+	gb = sc.find_child("GuardB", true, false)
 	await get_tree().physics_frame
 
 func put_guard(g, x: float, dir: int) -> void:
@@ -37,7 +17,7 @@ func put_guard(g, x: float, dir: int) -> void:
 
 func worm_near(x: float):
 	var best = null
-	for w in root_scene.find_children("Worms*", "", true, false):
+	for w in sc.find_children("Worms*", "", true, false):
 		if best == null or absf(w.global_position.x - x) < absf(best.global_position.x - x):
 			best = w
 	return best
@@ -46,8 +26,7 @@ func _ready() -> void:
 	run()
 
 func run() -> void:
-	await get_tree().process_frame
-	GameManager._busy = true
+	await start_segment({}, 600.0)  # long: ~4 min of game time, runs far faster than real time
 
 	# 1 two guards
 	await setup()
@@ -103,8 +82,10 @@ func run() -> void:
 	put_guard(ga, 350, 1)
 	ga.walk_speed = 0.0
 	p.global_position = Vector2(1880, 0)
-	await wait(0.5)
-	ok(p.is_dead, "grown worms kill")
+	# Hearts came after this test: with hearts to spare a worm hit costs one and throws the
+	# player clear (chamber 1's test covers that); on the last heart it kills. So set one heart.
+	m._set_lives(1)
+	ok(await wait_dead(0.5), "grown worms kill (on the last heart)")
 
 	# 6 fringe safe, core catches, chamber restarts
 	await setup()
@@ -116,7 +97,9 @@ func run() -> void:
 	for i in 180:
 		p.global_position = Vector2(ga.pool_x - 140, 0)
 		await get_tree().physics_frame
-		if p.is_dead: alive = false
+		if p.is_dead:
+			alive = false
+			break
 	ok(alive, "the dim fringe is safe while he walks")
 	await setup()
 	put_guard(ga, 600, 1)
@@ -125,11 +108,10 @@ func run() -> void:
 	p.global_position = Vector2(ga.pool_x, 0)
 	await wait(0.9)
 	ok(not p.is_dead and not p.controls_enabled, "core: he has you, frozen for the shout")
-	ok(GameManager._death_line in ga.shot_lines, "core: he shouts a fire line")
+	ok(m._death_line in ga.shot_lines, "core: he shouts a fire line")
 	await wait(1.0)
 	ok(not p.is_dead, "a beat between the shout and the shot")
-	await wait(0.8)
-	ok(p.is_dead, "the bright core: shot")
+	ok(await wait_dead(0.8), "the bright core: shot")
 
 	# 7 lamp seen in front, safe behind his back
 	await setup()
@@ -151,8 +133,7 @@ func run() -> void:
 	await wait(0.5)
 	ok(gb.is_suspicious() and gb.pool_x > pool0 + 60, "lamp seen: '?' and his beam slides toward it")
 	ok(not p.is_dead, "the '?' stage doesn't kill")
-	await wait(2.4)
-	ok(p.is_dead, "lamp kept on: shot")
+	ok(await wait_dead(2.4), "lamp kept on: shot")
 	# near miss: lamp off during the '?' and he loses you
 	await setup()
 	put_guard(gb, 1990, 1)
@@ -237,9 +218,8 @@ func run() -> void:
 			break
 	ok(reached and not p.is_dead, "full scripted run reaches the exit (%.1f s, phase %d, x %d)" % [t, phase, int(p.global_position.x)])
 
-	var ex = root_scene.find_child("Exit", true, false)
+	var ex = sc.find_child("Exit", true, false)
 	ok(ex.next_scene == "res://minigames/tunnel/scenes/chambers/chamber_5.tscn", "exit leads to chamber 5")
-	ok(root_scene.find_children("Checkpoint*", "", true, false).is_empty(), "no checkpoints")
+	ok(sc.find_children("Checkpoint*", "", true, false).is_empty(), "no checkpoints")
 
-	print("%d/%d passed" % [checks - fails, checks])
-	get_tree().quit(1 if fails else 0)
+	finish()

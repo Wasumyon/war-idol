@@ -1,18 +1,16 @@
-extends Node
-
-var checks := 0
-var failures := 0
+extends "res://tests/tunnel_test.gd"
+## Headless check of the player's lamp poses and light anchors, on a Player of its own.
+## The segment runs so TunnelManager.i exists (see tunnel_test.gd); the player is not in a chamber.
+## `-- --torch-preview` also saves a pose sheet to res://build/ (that folder must exist).
 
 func check(value: bool, label: String) -> void:
-	checks += 1
-	if not value:
-		failures += 1
-		push_error(label)
+	ok(value, label)
 
 func _ready() -> void:
 	call_deferred("run")
 
 func run() -> void:
+	await start_segment()
 	var player: Player = load("res://minigames/tunnel/player.tscn").instantiate()
 	add_child(player)
 	player.set_physics_process(false)
@@ -49,11 +47,10 @@ func run() -> void:
 	player.anim_override = &"fall"
 	player._update_visual(0.0)
 	check(sprite.animation == &"fall" and not lantern.visible, "Cutscene animation wins")
-	print("TORCH SPRITES: %d/%d passed" % [checks - failures, checks])
 	player.queue_free()
 	if "--torch-preview" in OS.get_cmdline_user_args():
 		await preview()
-	get_tree().quit(1 if failures else 0)
+	finish()
 
 func preview() -> void:
 	var viewport := SubViewport.new()

@@ -1,27 +1,19 @@
-extends Node
-var fails := 0
-var checks := 0
-var root_scene: Node
+extends "res://tests/tunnel_test.gd"
+## Headless checks for chamber 2's guard, gate, shallow pool, hearts and hints.
+## Runs through tunnel_segment.tscn (see tunnel_test.gd).
+
 var g
-var p
 const CHAMBER := "res://minigames/tunnel/scenes/chambers/chamber_2.tscn"
 
-func ok(c: bool, name: String) -> void:
-	checks += 1
-	if not c: fails += 1
-	print(("PASS " if c else "FAIL ") + name)
-
-func wait(sec: float) -> void:
-	for i in int(sec * 60.0):
-		await get_tree().physics_frame
+## The jam test held `_busy = true` after the first-sight check so a death flagged is_dead
+## without reloading the chamber; load_chamber() clears it, so setup() puts it back.
+var hold := false
 
 func setup(guard_x: float, facing: int, player_x: float, torch := false) -> void:
-	if root_scene: root_scene.queue_free(); await get_tree().process_frame
-	root_scene = load(CHAMBER).instantiate()
-	add_child(root_scene)
-	await get_tree().process_frame
-	g = root_scene.find_child("Guard", true, false)
-	p = root_scene.find_child("Player", true, false)
+	m._busy = false  # drop the hold first: load_chamber waits out a busy manager
+	await load_chamber(CHAMBER)
+	m._busy = hold
+	g = sc.find_child("Guard", true, false)
 	g.global_position.x = guard_x
 	g.facing = -facing; g._set_facing(facing)
 	g.state = EnemyGuard.State.WAIT; g._wait_timer = 99.0
@@ -33,10 +25,10 @@ func _ready() -> void:
 	run()
 
 func run() -> void:
-	await get_tree().process_frame
-	var gm = GameManager
+	await start_segment({}, 600.0)
+	var gm := m
 	await check_first_sight_line()
-	gm._busy = true  # deaths flag is_dead but don't reload the scene mid-test
+	hold = true  # deaths flag is_dead but don't reload the scene mid-test
 	# 1 blue band, dark: pause, then charge past you; hidden survives the pass
 	await setup(2450, -1, 2450 - 12 - 230)
 	await wait(0.2)
@@ -75,7 +67,7 @@ func run() -> void:
 	# An open exit door must not leave him charging in place at the patrol end.
 	await setup(2500, 1, 2890, true)
 	p.facing = -1
-	var exit_door = root_scene.get_node("PuzzlesAndHazards/ExitDoor")
+	var exit_door = sc.get_node("PuzzlesAndHazards/ExitDoor")
 	await wait(0.8)
 	ok(g.sight == EnemyGuard.Sight.NONE and g.state == EnemyGuard.State.WAIT,
 			"closed exit door blocks sight of the lit player")
@@ -143,13 +135,12 @@ func run() -> void:
 	await check_shallow_pool()
 	await check_lives()
 	await check_guard_hints()
-	print("RESULT %d/%d passed" % [checks - fails, checks])
-	get_tree().quit(1 if fails else 0)
+	finish()
 
 
 func check_shallow_pool() -> void:
 	await setup(2410, -1, 2150)
-	var pool: AcidPool = root_scene.get_node("PuzzlesAndHazards/ShallowAcidPool")
+	var pool: AcidPool = sc.get_node("PuzzlesAndHazards/ShallowAcidPool")
 	var warnings: Array[float] = []
 	pool.warning_started.connect(func(): warnings.append(g.global_position.x))
 	p.is_hidden = true
@@ -165,7 +156,7 @@ func check_shallow_pool() -> void:
 			"the guard clears the stalks and continues his patrol")
 
 	await setup(2234, 1, 2196)
-	pool = root_scene.get_node("PuzzlesAndHazards/ShallowAcidPool")
+	pool = sc.get_node("PuzzlesAndHazards/ShallowAcidPool")
 	await wait(0.15)
 	ok(p.can_hide() and absf(p.global_position.y) < 1.0, "the edge of the alcove is a dry hiding spot")
 	p.set_hidden(true)
@@ -176,73 +167,70 @@ func check_shallow_pool() -> void:
 	ok(p.is_hidden and not p.is_dead and p.acid_pool == null, "hiding beside the stalk stays safe through the warning")
 
 	await setup(900, -1, 1640)
-	pool = root_scene.get_node("PuzzlesAndHazards/ShallowAcidPool")
-	GameManager._busy = false
+	pool = sc.get_node("PuzzlesAndHazards/ShallowAcidPool")
+	m._busy = false
 	Input.action_press("ui_right")
 	await wait(3.7)
 	Input.action_release("ui_right")
-	GameManager._busy = true
+	m._busy = true
 	ok(p.global_position.x > 2478.0 and p.acid_pool == null and not p.is_dead and pool.state == AcidPool.State.IDLE,
 			"the player can walk through with the lamp off")
 
 	await setup(2465, 1, 2228)
-	pool = root_scene.get_node("PuzzlesAndHazards/ShallowAcidPool")
-	GameManager._busy = false
-	GameManager._set_lives(GameManager.MAX_LIVES)
+	pool = sc.get_node("PuzzlesAndHazards/ShallowAcidPool")
+	m._busy = false
+	m._set_lives(TunnelManager.MAX_LIVES)
 	await wait(0.85)
 	ok(pool.state == AcidPool.State.WARN and pool._warning_mark.visible, "lingering over the stalks warns the player")
 	ok(is_equal_approx(g.global_position.x, 2465.0), "the guard stays put outside the strike's reach")
 	await wait(1.5)
-	ok(not p.is_dead and GameManager.lives == 2 and absf(p.global_position.x - 2150.0) < 2.0,
+	ok(not p.is_dead and m.lives == 2 and absf(p.global_position.x - 2150.0) < 2.0,
 			"the shallow stalks spend a heart and put the player on the alcove ledge")
 
 
 func check_lives() -> void:
-	root_scene.queue_free()
-	await get_tree().process_frame
-	GameManager._busy = false
-	# Keep this runner alive while the real chamber reloads.
-	get_tree().current_scene = null
-	await GameManager.go_to_chamber(CHAMBER)
-	var room: Node = get_tree().current_scene
+	hold = false
+	m._busy = false
+	await m.go_to_chamber(CHAMBER)
+	var room: Node = m.chamber
 	var player: Player = room.get_node("Player")
 	player.global_position.x = 835.0
 	await wait(0.12)
-	ok(GameManager.has_checkpoint, "walking past the entry vent saves the grille checkpoint")
+	ok(m.has_checkpoint, "walking past the entry vent saves the grille checkpoint")
 	var lives_seen: Array[int] = []
 	var track_lives := func(remaining: int) -> void: lives_seen.append(remaining)
-	GameManager.lives_changed.connect(track_lives)
+	m.lives_changed.connect(track_lives)
 	for remaining: int in [2, 1, 0]:
 		player.kill()
 		player.kill()
-		while GameManager.is_transitioning():
+		while m.is_transitioning():
 			await get_tree().process_frame
-		room = get_tree().current_scene
+		room = m.chamber
 		player = room.get_node("Player")
 		if remaining > 0:
 			var hearts: HBoxContainer = room.get_node("HUD/HUD/Lives")
-			ok(GameManager.lives == remaining and not hearts.get_child(remaining).filled
+			ok(m.lives == remaining and not hearts.get_child(remaining).filled
 					and hearts.get_child(remaining - 1).filled, "HUD shows %d filled hearts after respawn" % remaining)
 			ok(absf(player.global_position.x - 835.0) < 2.0, "retry starts at the saved checkpoint")
 			if remaining == 2:
-				await GameManager.respawn_player()
-				player = get_tree().current_scene.get_node("Player")
-				ok(GameManager.lives == 2, "manual restart does not spend or restore a life")
+				await m.respawn_player()
+				player = m.chamber.get_node("Player")
+				ok(m.lives == 2, "manual restart does not spend or restore a life")
 		else:
-			ok(GameManager.lives == 3 and not GameManager.has_checkpoint and absf(player.global_position.x) < 2.0,
+			ok(m.lives == 3 and not m.has_checkpoint and absf(player.global_position.x) < 2.0,
 					"third death restarts the chamber with three lives")
 	ok(lives_seen == [2, 1, 0, 3], "each death spends one life and the HUD can show the empty row")
-	GameManager.lives_changed.disconnect(track_lives)
+	m.lives_changed.disconnect(track_lives)
 	player.kill()
-	while GameManager.is_transitioning():
+	while m.is_transitioning():
 		await get_tree().process_frame
-	await GameManager.go_to_chamber(CHAMBER)
-	ok(GameManager.lives == 3, "entering a chamber replenishes lives")
+	await m.go_to_chamber(CHAMBER)
+	ok(m.lives == 3, "entering a chamber replenishes lives")
 
 
 func check_first_sight_line() -> void:
 	await setup(2350, 1, 900)
-	var camera: Camera2D = root_scene.get_node("MainCamera")
+	var camera: Camera2D = sc.get_node("MainCamera")
 	camera.global_position.x = 900.0
 	camera.reset_smoothing()
 	await wait(0.1)
@@ -258,8 +246,8 @@ func check_first_sight_line() -> void:
 
 func check_gate_trap() -> void:
 	await setup(1200, -1, 900)
-	var gate: LockedDoor = root_scene.get_node("PuzzlesAndHazards/Door")
-	var plate: FloorSwitch = root_scene.get_node("PuzzlesAndHazards/FloorSwitch")
+	var gate: LockedDoor = sc.get_node("PuzzlesAndHazards/Door")
+	var plate: FloorSwitch = sc.get_node("PuzzlesAndHazards/FloorSwitch")
 	g._player = p
 	ok(g._has_line_of_sight(g._lantern_global(), p.global_position + Vector2(0, -50)),
 			"the closed grille lets him see the player")
@@ -300,23 +288,23 @@ func check_gate_trap() -> void:
 
 
 func check_guard_hints() -> void:
-	GameManager.clear_checkpoint()
-	GameManager.set_death_line("")
+	m.clear_checkpoint()
+	m.set_death_line("")
 	var hints: Array[String] = []
-	GameManager.respawn_hint.connect(func(line: String) -> void: hints.append(line))
+	m.respawn_hint.connect(func(line: String) -> void: hints.append(line))
 	for lamp_on: bool in [false, true]:
-		GameManager.reset_death_hints()
+		m.reset_death_hints()
 		hints.clear()
 		for attempt: int in 3:
-			var scene: Node = get_tree().current_scene
+			var scene: Node = m.chamber
 			var player: Player = scene.get_node("Player")
 			var guard: EnemyGuard = scene.get_node("PuzzlesAndHazards/Guard")
 			player.global_position = Vector2(guard.global_position.x - 120.0, 0.0)
 			player.set_torch(lamp_on)
 			await wait(1.3)
-			while GameManager.is_transitioning():
+			while m.is_transitioning():
 				await get_tree().process_frame
 			if attempt < 2:
 				ok(hints.is_empty(), "guard death %d gives no early hint (lamp %s)" % [attempt + 1, lamp_on])
-		var expected: String = GameManager.GUARD_LAMP_HINT if lamp_on else GameManager.GUARD_HINT
+		var expected: String = TunnelManager.GUARD_LAMP_HINT if lamp_on else TunnelManager.GUARD_HINT
 		ok(hints == [expected], "guard gives the matching hint after three catches (lamp %s)" % lamp_on)

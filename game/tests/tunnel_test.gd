@@ -17,6 +17,15 @@ extends Node
 ##     `get_tree().current_scene` -> `m.chamber`. `change_scene_to_file(path)` /
 ##     `reload_current_scene()` -> `await load_chamber(path)` or `m.respawn_player()`.
 ##  6. End with `finish()` instead of printing RESULT and quitting yourself.
+##     The jam tests set `GameManager._busy = true` so a death would not reload the chamber.
+##     That still works (`m._busy = true` after load_chamber, `m._busy = false` before the next
+##     one: load_chamber waits out a busy manager), but while it is set worm hits do nothing
+##     and the player's input and the first-sight line are off. Where a test needs those, let
+##     the respawn run and read deaths with `await wait_dead(sec)` instead of `await wait(sec)`
+##     then `p.is_dead`: a death frees the player ~1.5 s later.
+##     Hearts: with more than one, a worm hit costs a heart and throws the player clear;
+##     on the last heart it kills. A check that wants a worm death sets `m._set_lives(1)`.
+##     Long tests: start_segment({}, 600.0) lifts the 110 s game-time limit (it runs fast).
 ##  7. Keep every check. One that no longer makes sense behind the segment root stays as a
 ##     commented line with the reason (`# NOT PORTED: ...`).
 ##  8. Run `powershell -File tools/run_tests.ps1`; it must say 0 failed. It runs every
@@ -66,9 +75,13 @@ func start_segment(args: Dictionary = {}, timeout_sec: float = 110.0) -> void:
 
 
 ## Replace the slot's chamber with a fresh `path` at once (no fade), clearing the
-## checkpoint and restoring lives. Fills `sc` and `p`.
+## checkpoint and restoring lives. Waits out any respawn in progress. Fills `sc` and `p`.
 func load_chamber(path: String) -> void:
 	release()
+	# A death in the last scenario leaves a respawn running; let it finish, or it would
+	# swap the new chamber out from under the test.
+	while m.is_transitioning():
+		await get_tree().process_frame
 	m.clear_checkpoint()
 	m._busy = false
 	m._set_lives(TunnelManager.MAX_LIVES)
@@ -89,6 +102,17 @@ func settle() -> void:
 func wait(sec: float) -> void:
 	for i in int(sec * 60.0):
 		await get_tree().physics_frame
+
+
+## Wait up to `sec`; true as soon as the player is dead. With the manager live, a death
+## starts a respawn that frees this player ~1.5 s later, so a check "he is dead after
+## the wait" must catch the death while it lasts (a freed player counts as dead).
+func wait_dead(sec: float) -> bool:
+	for i in int(sec * 60.0):
+		if not is_instance_valid(p) or p.is_dead:
+			return true
+		await get_tree().physics_frame
+	return not is_instance_valid(p) or p.is_dead
 
 
 func frames(n: int) -> void:
