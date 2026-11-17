@@ -10,7 +10,7 @@ The first thing the player touches is the core game: the same five lanes, the sa
 same reticle. At Chaac the mouse is a gun. On Day 1 it is a camera. The player learns the runner
 by killing, and the rest of the game recontextualises it.
 
-This reverses `HANDOVER.md`'s "playtest the cut before adding an introduction".
+This reverses `_archive/HANDOVER_2026-11-16.md`'s "playtest the cut before adding an introduction".
 
 ## 2. Decided (2026-11-15)
 
@@ -145,13 +145,11 @@ and the next click is *"A leg."* Battle ambience plays under it, far away, then 
 
 ## 10. Build order (commit before each)
 
-1. **Sandbox.** In `sandbox/slice/` (a new scene beside `slice.tscn`, so the filming slice stays):
-   gun mode, `drone.take_hit()`, hull, the wave timeline, the tide set piece, chatter subtitles,
-   the scripted missile. Placeholder art and text. Playtest the feel. Nothing here is merged
-   as-is.
-2. **Spec the runner port** from what step 1 proved: the runner, the timeline format, the two
-   weapons.
-3. **Port** into `game/minigames/runner/` behind the segment contract; `GameState.lane_x()` moves out of `GameState`.
+1. **Build the run** in `game/minigames/runner/` (a new scene beside `run.tscn`, so the filming
+   run stays): gun mode, `drone.take_hit()`, hull, the wave timeline, the tide set piece, chatter
+   subtitles, the scripted missile. Placeholder art and text. Playtest the feel.
+2. **Write down what step 1 proved:** the timeline format and the two weapons, in this spec.
+3. **Wrap it** behind the segment contract; `GameState.lane_x()` moves out of `GameState`.
 4. **`@ wake`** in `vn.gd`; add it to `00_prologue.txt`.
 5. **Calendar:** Day 1 swaps the opener for `d01_chaac_run`; update the campaign test.
 6. **Docs:** `outline.md` Beat 01 (tank, the order), `main_spec.md` §1 and §2 Day 1,
