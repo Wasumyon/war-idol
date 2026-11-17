@@ -11,13 +11,13 @@ human colonists as monsters.
 
 ## Engine
 Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/` project**
-(`game/project.godot`). `sandbox/` holds the old prototypes (frozen). `tunnel/` is what is left of the Tunnel Escape jam project, mid-port.
+(`game/project.godot`). `sandbox/` holds the old prototypes (frozen). `tunnel/` is what is left of the Tunnel Escape jam project (its port into `game/` is done except the play check).
 
 - Main scene: `game/main/main.tscn` (**Main**), the one persistent scene. Layers: World /
   Story / HUD / Pause / Dossier (the files, an overlay, not a segment) / Transition / Debug.
 - **Debug builds:** F3 opens the debug panel; F4 files every dossier entry; F5 toggles the visor
   reveal. A new key is one `_hotkey()` line in `game/ui/debug.gd` plus a `debug_*` function on
-  Main; the panel lists them all. F6–F11 are free.
+  Main; the panel lists them all. F6 plays the tunnel (hub only); F7–F11 are free.
 - One autoload: `GameState` (`game/autoload/game_state.gd`) — the save (`user://campaign.save`), stats, flags,
   chapter, player name, and the calendar position (day, slot, segment in play).
 - **The calendar drives the game.** A day has two slots (day, evening). A slot is scripted (fixed
@@ -54,7 +54,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `game/autoload/` | `GameState` (`game_state.gd`), the only autoload |
 | `game/minigames/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`run.tscn`/`run.gd` is the run itself, `player_craft.gd` the player's vehicle; R restarts, Enter ends with `{outcome, followers, money}`) |
 | `game/minigames/stealth/` | the stealth minigame (`stealth.tscn` is the segment root) |
-| `game/minigames/tunnel/` | Tunnel Escape, mid-port: files moved and paths repointed, **not yet a segment and not playable** (no segment root; its tests are parked in `tests/` there and do not run). Follow `docs/tunnel_port_plan.md` |
+| `game/minigames/tunnel/` | Tunnel Escape, a segment (`tunnel_segment.tscn` is the root; `begin({"start": "intro"|"chamber_0", "ending": "sequence"|"none"})`, emits `finished({outcome: "escaped", deaths})`). Launched from the F3 debug panel (F6, from the hub, chamber 0, no ending); **not in the calendar yet** (its place in the story is undecided) and not yet play-checked in a window. Its tests are `game/tests/tunnel_*`. See `docs/tunnel_port_plan.md` |
 | `game/assets/` | shared `img/` and `sfx/` (feature-specific art stays in its feature's folder) |
 | `game/tests/` | headless tests, run by `tools/run_tests.ps1` |
 | `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `game/story/` |

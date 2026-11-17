@@ -205,8 +205,24 @@ func _end_card() -> Control:
 # Called by the Debug layer
 # ---------------------------------------------------------------------------
 func debug_skip() -> void:
-	if current_id != "" and not transition.is_busy():
+	if current_id != "" and not current_id.begins_with("debug:") and not transition.is_busy():
 		_complete(current_id, {})
+
+
+## Plays Tunnel Escape from chamber 0, outside the calendar: nothing is saved, no slot is
+## used and no outputs are paid. Only from the hub. When it finishes, Main asks the calendar
+## again, which (the slot being untouched) shows the hub.
+func debug_tunnel() -> void:
+	if current_id != "" or transition.is_busy():
+		return
+	current_id = "debug:tunnel"
+	var node: Node = load("res://minigames/tunnel/tunnel_segment.tscn").instantiate()
+	node.begin({"start": "chamber_0", "ending": "none"})
+	node.finished.connect(func(result: Dictionary) -> void:
+		print("Debug: tunnel finished ", result)
+		current_id = ""
+		_next(), CONNECT_ONE_SHOT)
+	await _show(node, world)
 
 
 func debug_jump(day: int) -> void:

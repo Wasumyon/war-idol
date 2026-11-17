@@ -44,6 +44,7 @@ func _ready() -> void:
 	column.add_child(keys)
 	_hotkey(keys, KEY_F4, "File all entries", func() -> void: get_parent().debug_file_all())
 	_hotkey(keys, KEY_F5, "Toggle visor reveal", func() -> void: get_parent().debug_toggle_reveal())
+	_hotkey(keys, KEY_F6, "Play tunnel (hub only)", func() -> void: get_parent().debug_tunnel())
 
 
 func _hotkey(parent: Node, key: Key, text: String, action: Callable) -> void:
