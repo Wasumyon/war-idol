@@ -55,22 +55,25 @@ else carries over. Renderer goes from Compatibility to Forward Plus (checked in 
 **Global names.** No `class_name` collides with the game's today. `Player` is generic but free;
 leave it.
 
-### Open (your call, needed before step 4)
+**Chambers.** The `chamber_N.tscn` files were generated and never hand-edited. From now on the
+`.tscn` files are the source. The generators in `tools/tunnel/` stay archived and are not repointed
+(step 3 edited paths inside the scenes, so regenerating would undo that).
 
-1. **Chambers:** are `chamber_N.tscn` still produced by `tools/gen_chamber_N.py`, or hand-edited
-   now? If hand-edited, the generators are archived in `tools/tunnel/` and not repointed.
-2. **Pause:** the game's `pause.gd` and tunnel's `pause_menu.gd` both take Esc and pause the tree.
-   Proposed: in the game, Main's pause wins and tunnel's menu is switched off; tunnel's menu (volume,
-   invincibility assist, restart chamber, controls) is used only in the standalone demo.
-3. **Start:** in the game, does the segment open on tunnel's own intro sequence or on chamber 0
-   (a VN scene leading in)? Proposed: `begin({"start": "intro" | "chamber_0"})`, default chamber 0;
-   the demo uses the intro.
+**Pause.** Main owns the Esc key and pausing the tree. A segment may supply its own pause menu;
+tunnel keeps its `pause_menu.gd` menu (volume, invincibility assist, restart chamber, controls), and
+that is what shows while the tunnel segment runs. Main's `game/ui/pause.gd` stays the default for
+segments that supply none. Main's pause menu is not designed yet.
+
+**Start and ending.** Both are arguments:
+`begin({"start": "intro" | "chamber_0", "ending": "sequence" | "none"})`. In the game the defaults
+are `chamber_0` and `none` (a VN scene leads in and handles the ending; `finished` is emitted either
+way). The demo passes `intro` and `sequence`. The story may still change which is used.
 
 ## 2. Procedure
 
 | # | step | who | done when |
 |---|---|---|---|
-| 0 | Commit tunnel's pending work (done 2026-11-16, `cbe5a99` in tunnel's own repo, not pushed); answer the three open points; close Godot | you | `git status` clean |
+| 0 | Commit tunnel's pending work (done 2026-11-16, `cbe5a99` in tunnel's own repo, not pushed); the three open points are answered (see section 1); close Godot. Before step 9: the nested repo is pushed and tagged `jam-build` (see "Two repos"), and Wesley gives a keep-list for the git-ignored files in `tunnel/` (`mainguy.glb`, `mainguy_diffuse.png`, `mainguy_MR.png`, `_tools/`, `build/`) | you | `git status` clean |
 | 1 | **Inventory.** Classify every tracked file in `tunnel/` (shipped / source art / tool / doc / test / drop) by checking what scenes and scripts reference. Append the table to this file | Sonnet | every file has a row; unreferenced art listed for your OK |
 | 2 | **Move.** `git mv` per the layout table, each shipped file with its `.import` and `.uid` so UIDs survive; source art drops its `.import`; tools archived as they are. Godot stays closed and is not run until step 3 | Sonnet | `tunnel/` holds only what is not ported; commit |
 | 3 | **Repoint paths.** Replace `res://scripts/`, `res://scenes/`, `res://art/`, `res://player.tscn`, `res://tests/` in `.gd` / `.tscn` / `.tres`; run `godot --headless --path game --import` | Sonnet | import reports no missing dependencies; commit |
@@ -79,20 +82,20 @@ leave it.
 | 6a | **Test pattern.** Port `test_chamber1` (the largest) to run through the segment root under `run_tests.ps1` | Opus | that one test passes |
 | 6b | **Remaining tests.** Port the other eleven `test_*` the same way | Sonnet | `run_tests.ps1`: 0 failed |
 | 7 | **Hook up.** Debug-panel entry that launches the segment; update `CLAUDE.md` (table row, In progress) | Sonnet | launches from F3; returns to the hub on finish |
+| 7b | **Tunnel demo.** Build it by `docs/demo_spec.md` and compare against the live itch.io page | Opus | demo matches the live page |
 | 8 | **Play check.** All five chambers in a window under Forward Plus; compare lighting against the old build; fix what differs | you, then Opus | you sign off on the look |
 | 9 | **Retire.** Delete `tunnel/` (its `build/` included) and this plan's inventory table | Sonnet, on your yes | folder gone; tests still 0 failed |
 
 **Two repos.** `tunnel/` is tracked twice: as plain files in this repo (where the port happens,
 with `git mv`), and by its own nested repo `tunnel/.git` (GitHub `Wasumyon/Tunnel`, branch `main`).
-Step 9 deletes the nested repo with the folder, so push it first if the standalone history is to
-be kept.
+Step 9 deletes the nested repo with the folder, so before step 9 push it and tag the last jam
+commit (`git -C tunnel tag jam-build cbe5a99`, then push `main` and `jam-build`).
 
 Steps 4 and 6a are the only ones that need judgment; everything else follows a table or a pattern.
 Steps 4 and 5 can run in one chat if the Opus session has room, since 5 needs 4's names.
 
-**Not part of the port:** where the tunnel sits in the calendar (a story decision), and the
-standalone itch.io build (a demo shell and export preset, added later for all three minigames; note
-the root `.gitignore` ignores `export_presets.cfg`, which needs lifting for `game/`).
+**Not part of the port:** where the tunnel sits in the calendar (a story decision). The itch.io
+browser builds are specified in `docs/demo_spec.md`.
 
 ## 3. Inventory (step 1)
 
@@ -215,7 +218,7 @@ Each list is a literal array in the same function, so they resolve to exact name
 - `art/sprites/mc/model/torch_hand_positions.gd` is a script inside `art/`, preloaded by `player.gd:108`; it moves with its `.uid` to `game/minigames/tunnel/art/...`.
 - `art/sprites/mc/model/mc_*_n.png` (6 sheets: walk, sprint, crouch, fall, limp, limp_back) are unreferenced; `mc_frames.tres` uses `mc_<clip>.png` and `mc_torch_*.png`.
 - Tools write into and read `res://art/...` paths (`render_torch_sprites.gd`, `render_guard_sprites.gd`, `prepare_lantern.gd`, `build_torch_frames.py`), including `art/player/Model/*`, `art/enemies/Model/*`, `sprites/mc/lantern.png`, `torch_hands.json` (source art after the move). They will not run unchanged from `tools/tunnel/`; archive, do not repoint.
-- `tools/gen_chamber_*.py` and `tools/apply_visual_pass.py` target the chamber scenes (open point 1).
+- `tools/gen_chamber_*.py` and `tools/apply_visual_pass.py` target the chamber scenes (settled: the `.tscn` files are the source; generators stay archived).
 - Filenames with spaces (10 files, plus `.import`): `art/Underground Cavern Encounter.png`, `art/War Idol Escape_ Flooded Industrial Cavern3.png`, `art/War Idol_ Escape Underground2.png`, `art/cg/chip saved reveal.png` (shipped, preloaded at `ending_sequence.gd:15`), `art/cg/fall_bg/Chip fall-no bg.png`, `art/cg/fall_bg/chip fall.png`, `art/enemies/miner monster concepts.png`, `art/enemies/miner monster turn around.png`, 2 files in `art/layout concepts/`.
 - `art/reference/.gdignore` hides that folder from Godot; it is source art and moves with `chip.png` (neither has an `.import`).
 - No duplicate `class_name` among tracked `.gd`; no absolute paths (`C:\`, `/Users/`) in tracked scripts, scenes, tools or tests.

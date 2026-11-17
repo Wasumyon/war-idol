@@ -40,6 +40,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `docs/dossier_spec.md` | the in-game files: entry format, unlocks, pre/post-reveal versions, glitched text |
 | `docs/stealth_spec.md` | the stealth minigame (story beats and the on-foot job): rules, party, segment contract, build steps |
 | `docs/chaac_run_spec.md` | Day 1's opening run (replaces the opener): beats, mechanics, build order, title menu and name entry |
+| `docs/demo_spec.md` | itch.io browser demos of the minigames: shell, export presets, tooling (draft) |
 | `docs/tickets/` | jobs Claude hands to the builders, one file each (`TEMPLATE.md`) |
 | `docs/story_inbox.md` | story ideas noted mid-build, waiting to be sorted |
 | `docs/` | every design doc: bible, canon, outline, specs, punchlists, `game_design.md`, the design-doc `.docx`, `stories/`, `boundarypush/` |
