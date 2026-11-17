@@ -122,10 +122,10 @@ func _ready() -> void:
 	var footsteps = preload("res://minigames/tunnel/scripts/footsteps.gd").new()
 	add_child(footsteps)
 	add_to_group("player")
-	GameManager.respawn_hint.connect(_show_respawn_hint)
+	TunnelManager.i.respawn_hint.connect(_show_respawn_hint)
 	_base_z = z_index
-	if GameManager.has_checkpoint:
-		global_position = GameManager.checkpoint
+	if TunnelManager.i.has_checkpoint:
+		global_position = TunnelManager.i.checkpoint
 	_noise.seed = randi()
 	_noise.frequency = 0.9
 	_base_energy = _torch_light.energy
@@ -174,7 +174,7 @@ func _physics_process(delta: float) -> void:
 		input_dir = 0.0
 
 	_update_stamina(delta, input_dir != 0.0)
-	var speed_mult: float = GameManager.god_speed_mult
+	var speed_mult: float = TunnelManager.i.god_speed_mult
 	if is_sprinting:
 		speed_mult *= sprint_mult
 	if input_dir != 0.0:
@@ -309,26 +309,26 @@ func _relight_after_hide() -> void:
 	set_torch(true)
 
 
-## Lose a life and let GameManager choose the respawn point.
+## Lose a life and let TunnelManager choose the respawn point.
 func kill(hazard: Node = null, hint: String = "", force: bool = false) -> void:
-	if is_dead or (GameManager.god_mode and not force):
+	if is_dead or (TunnelManager.i.god_mode and not force):
 		return
 	is_dead = true
 	velocity = Vector2.ZERO
 	set_torch(false)
-	GameManager.respawn_player(hazard, hint, true)
+	TunnelManager.i.respawn_player(hazard, hint, true)
 
 
 func can_take_worm_hit() -> bool:
-	return not is_dead and not is_hidden and not GameManager.god_mode \
-			and not GameManager.is_transitioning() and _worm_recovery <= 0.0
+	return not is_dead and not is_hidden and not TunnelManager.i.god_mode \
+			and not TunnelManager.i.is_transitioning() and _worm_recovery <= 0.0
 
 
 ## Recover locally while a heart remains. The landing x is chosen by the hazard.
 func take_worm_hit(hazard: Node, hint: String, landing_x: float) -> void:
 	if not can_take_worm_hit():
 		return
-	if GameManager.lives <= 1:
+	if TunnelManager.i.lives <= 1:
 		kill(hazard, hint)
 		return
 	var origin: Vector2 = global_position
@@ -339,7 +339,7 @@ func take_worm_hit(hazard: Node, hint: String, landing_x: float) -> void:
 		kill(hazard, hint)
 		return
 	var landing: Vector2 = floor_hit["position"]
-	var next_hint: String = GameManager.spend_life(hazard, hint)
+	var next_hint: String = TunnelManager.i.spend_life(hazard, hint)
 	_worm_recovery = 1.0
 	global_position = landing + Vector2.UP
 	velocity = Vector2.ZERO
@@ -402,7 +402,7 @@ func can_hide() -> bool:
 
 
 func _can_act() -> bool:
-	return controls_enabled and not is_dead and _worm_recovery <= 0.75 and not GameManager.is_transitioning()
+	return controls_enabled and not is_dead and _worm_recovery <= 0.75 and not TunnelManager.i.is_transitioning()
 
 
 func _apply_torch(on: bool) -> void:

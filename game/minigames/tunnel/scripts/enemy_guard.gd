@@ -321,15 +321,15 @@ func _settle_walk(delta: float) -> void:
 
 
 func _check_player_sees_guard() -> void:
-	if first_sight_line.is_empty() or GameManager.flags.has(FIRST_SIGHT_FLAG) \
-			or _player == null or _player.is_dead or GameManager.is_transitioning():
+	if first_sight_line.is_empty() or TunnelManager.i.flags.has(FIRST_SIGHT_FLAG) \
+			or _player == null or _player.is_dead or TunnelManager.i.is_transitioning():
 		return
 	var chest := Vector2(0.0, -65.0)
 	var guard_center: Vector2 = global_position + chest
 	var screen_position: Vector2 = get_canvas_transform() * guard_center
 	if get_viewport_rect().grow(-30.0).has_point(screen_position) \
 			and _has_line_of_sight(_player.global_position + chest, guard_center):
-		GameManager.flags[FIRST_SIGHT_FLAG] = true
+		TunnelManager.i.flags[FIRST_SIGHT_FLAG] = true
 		_player.speak(first_sight_line, 3.5)
 
 
@@ -382,7 +382,7 @@ func _door_between_player() -> bool:
 
 func _touch_kill() -> void:
 	caught_player.emit()
-	if GameManager.god_mode:
+	if TunnelManager.i.god_mode:
 		return
 	state = State.CAUGHT
 	_set_facing(1 if _player.global_position.x >= global_position.x else -1)
@@ -406,7 +406,7 @@ func _has_line_of_sight(from: Vector2, to: Vector2) -> bool:
 func _catch_player() -> void:
 	caught_player.emit()
 	# God mode: the meter flashes full but he keeps going.
-	if GameManager.god_mode:
+	if TunnelManager.i.god_mode:
 		_catch = 0.0
 		return
 	state = State.CAUGHT
@@ -417,7 +417,7 @@ func _catch_player() -> void:
 
 
 func _kill_player() -> void:
-	var hint: String = GameManager.GUARD_LAMP_HINT if _noticed_player_lamp else GameManager.GUARD_HINT
+	var hint: String = TunnelManager.GUARD_LAMP_HINT if _noticed_player_lamp else TunnelManager.GUARD_HINT
 	_player.kill(self, hint)
 
 
@@ -425,7 +425,7 @@ func _say(line: String) -> void:
 	if line == "":
 		return
 	_speech.say(line, 2.0)
-	GameManager.set_death_line(line)
+	TunnelManager.i.set_death_line(line)
 
 
 func _lantern_global() -> Vector2:

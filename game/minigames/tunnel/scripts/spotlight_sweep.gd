@@ -106,7 +106,7 @@ func player_in_light() -> bool:
 
 func _spot() -> void:
 	spotted_player.emit()
-	if GameManager.god_mode:
+	if TunnelManager.i.god_mode:
 		_catch = 0.0
 		return
 	_done = true
@@ -123,7 +123,7 @@ func _process_shot(delta: float) -> void:
 		return
 	if not _fired and _shoot_t >= shot_delay:
 		_fired = true
-		GunshotFX.fire(get_tree().current_scene, source + Vector2(0, 14), _player.global_position + Vector2(0, -60))
+		GunshotFX.fire(TunnelManager.i.chamber, source + Vector2(0, 14), _player.global_position + Vector2(0, -60))
 		_player.hit_flash()
 	if _fired and _shoot_t >= shot_delay + after_shot:
 		_player.kill(self, "The pillars block the beam.\nI can wait in their shadow and\nmove when it sweeps past.")

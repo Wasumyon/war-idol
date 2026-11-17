@@ -16,7 +16,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if not (body is Player):
 		return
 	if next_scene != "":
-		GameManager.go_to_chamber(next_scene)
+		TunnelManager.i.go_to_chamber(next_scene)
 		return
 	(body as Player).controls_enabled = false
 	var hud: Node = get_tree().get_first_node_in_group("hud")

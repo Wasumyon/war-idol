@@ -14,4 +14,4 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		var pos: Vector2 = Vector2(global_position.x, body.global_position.y) + respawn_offset
-		GameManager.set_checkpoint(pos)
+		TunnelManager.i.set_checkpoint(pos)

@@ -2,7 +2,7 @@ class_name GunshotFX
 extends Node2D
 ## One shot: a muzzle flash (light + star) at the gun, a tracer to the target,
 ## and a quick white kick on screen. Frees itself. No audio yet.
-##   GunshotFX.fire(get_tree().current_scene, muzzle_pos, target_pos)
+##   GunshotFX.fire(TunnelManager.i.chamber, muzzle_pos, target_pos)
 
 const LIGHT_TEX: Texture2D = preload("res://minigames/tunnel/art/light_radial.tres")
 

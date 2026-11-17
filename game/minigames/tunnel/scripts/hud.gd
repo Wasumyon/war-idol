@@ -27,13 +27,13 @@ func _ready() -> void:
 	_hint.text = ""
 	_hint.hide()
 	_message.modulate.a = 0.0
-	for i: int in GameManager.MAX_LIVES:
+	for i: int in TunnelManager.MAX_LIVES:
 		var heart := HeartIcon.new()
 		heart.custom_minimum_size = Vector2(28, 28)
 		heart.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		_lives.add_child(heart)
-	GameManager.lives_changed.connect(_show_lives)
-	_show_lives(GameManager.lives)
+	TunnelManager.i.lives_changed.connect(_show_lives)
+	_show_lives(TunnelManager.i.lives)
 
 
 func _show_lives(remaining: int) -> void:

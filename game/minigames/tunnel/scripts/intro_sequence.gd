@@ -222,4 +222,4 @@ func _finish() -> void:
 		return
 	finished = true
 	beat = "done"
-	GameManager.go_to_chamber(next_scene)
+	TunnelManager.i.go_to_chamber(next_scene)

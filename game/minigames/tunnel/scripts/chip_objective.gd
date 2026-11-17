@@ -6,10 +6,10 @@ const FADE_DURATION: float = 0.4
 
 func _ready() -> void:
 	hide()
-	if GameManager.has_checkpoint:
+	if TunnelManager.i.has_checkpoint:
 		queue_free()
 		return
-	while GameManager.is_transitioning():
+	while TunnelManager.i.is_transitioning():
 		await get_tree().process_frame
 	show()
 	_style_bubble(self, "I’ve gotta find Chip!\nShe’s gotta be down one of these tunnels…", OBJECTIVE_DURATION)

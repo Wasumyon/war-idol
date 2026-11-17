@@ -278,7 +278,7 @@ func _physics_process(delta: float) -> void:
 
 func _start_shoot(lamp_seen: bool = false) -> void:
 	caught_player.emit()
-	if GameManager.god_mode:
+	if TunnelManager.i.god_mode:
 		_catch = 0.0
 		_susp = 0.0
 		return
@@ -291,7 +291,7 @@ func _start_shoot(lamp_seen: bool = false) -> void:
 		_player.freeze()
 	if line != "":
 		_speech.say(line, 2.5)
-		GameManager.set_death_line(line)
+		TunnelManager.i.set_death_line(line)
 
 
 func _process_shoot(delta: float) -> void:
@@ -304,12 +304,12 @@ func _process_shoot(delta: float) -> void:
 	if not _fired and _shoot_t >= shout_time:
 		_fired = true
 		if _player and not _player.is_dead:
-			GunshotFX.fire(get_tree().current_scene, global_position + _lantern_local() + Vector2(10 * facing, -6),
+			GunshotFX.fire(TunnelManager.i.chamber, global_position + _lantern_local() + Vector2(10 * facing, -6),
 					_player.global_position + Vector2(0, -60))
 			_player.hit_flash()
 	if _fired and _shoot_t >= shout_time + after_shot:
 		if _player and not _player.is_dead:
-			var hint: String = GameManager.GUARD_LAMP_HINT if _caught_with_lamp else GameManager.GUARD_HINT
+			var hint: String = TunnelManager.GUARD_LAMP_HINT if _caught_with_lamp else TunnelManager.GUARD_HINT
 			_player.kill(self, hint)
 
 
