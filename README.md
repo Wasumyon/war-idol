@@ -7,9 +7,9 @@ Design and prototype repository. A war-journalism story set on Io, and a
 
 | Folder / file | Contents |
 |---|---|
-| `game/` | **The game**: the Godot 4.7 project (Main, calendar, story, hub, runner, stealth, dossier). |
+| `game/` | **The game**: the Godot 4.7 project (Main, calendar, story, hub, runner, stealth, tunnel, dossier). |
 | `sandbox/` | Old Godot sandbox project: the runner prototype (`slice/`), car-physics tests. Frozen. |
-| `tunnel/` | Game-jam piece (Tunnel Escape): a separate Godot project. |
+| `tunnel/` | Leftovers of the Tunnel Escape jam project. Its files now live in `game/minigames/tunnel/`, `docs/tunnel/`, `tools/tunnel/` and `source_art/tunnel/`; the port is in progress (`docs/tunnel_port_plan.md`) and this folder is deleted at its last step. It no longer runs on its own. |
 | `docs/` | Design docs: story bible, canon, outline, specs, punchlists, the design-doc `.docx`, prose in `stories/`. |
 | `source_art/` | Unshipped art: `characters/`, `backgrounds/`, `enemy_models/`, `environment_concept_art/`, `ui_base/`, `raw/` (`.clip`, source images), prompts. |
 | `tools/` | Scripts (`run_tests.ps1`, asset and reading-copy generators). |

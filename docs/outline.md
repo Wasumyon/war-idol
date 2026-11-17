@@ -73,7 +73,7 @@ money, pamphlets and soundbites (bible, Act 1).
 ### Beat 09: Resolution of the Strike *(written: `02_stream` / `03_car`)*
 - **Setting:** Return to Beat 07 cliffhanger.
 - **Action:** Narrator dumps power into the salvaged blast engine/super-armor. The missile detonates off the reinforced deflector; the van barrels through smoke. The stream viewers erupt; superchats flood the HUD.
-- **The name:** After boosting through the final obstacle, the narrator claims naming rights: "I saved your life on the ___, and that's that!" The player fills the blank and names the rig. Chip concedes. (Placement is still open: `HANDOVER.md`.)
+- **The name:** After boosting through the final obstacle, the narrator claims naming rights: "I saved your life on the ___, and that's that!" The player fills the blank and names the rig. Chip concedes. (Placement is still open.)
 
 ### Beat 10: Aftermath at Keno's *(written: `04_mission_clear`)*
 - **Setting:** Captain Keno's Bar.

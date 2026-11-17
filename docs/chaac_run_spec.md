@@ -2,7 +2,7 @@
 
 Status: **draft, not approved.** Replaces the cold-open shooter (`game/story/opener/`) on Day 1 with a
 playable Battle of Chaac Patera in the runner, ending in `00_prologue`. Sources: the bible,
-canon §4, §6, §12, §15, `outline.md` Beat 01, `main_spec.md` §5, the `sandbox/slice/` prototype.
+canon §4, §6, §12, §15, `outline.md` Beat 01, `main_spec.md` §5, the runner (`game/minigames/runner/`).
 
 ## 1. Why
 
@@ -10,7 +10,7 @@ The first thing the player touches is the core game: the same five lanes, the sa
 same reticle. At Chaac the mouse is a gun. On Day 1 it is a camera. The player learns the runner
 by killing, and the rest of the game recontextualises it.
 
-This reverses `_archive/HANDOVER_2026-11-16.md`'s "playtest the cut before adding an introduction".
+This reverses the earlier plan (2026-11-16) to playtest the cut before adding an introduction.
 
 ## 2. Decided (2026-11-15)
 
@@ -105,7 +105,7 @@ Subtitled radio, not VN text boxes. The runner keeps running underneath.
 
 Comms (Bartok?) relays the net throughout as background orders.
 
-## 7. Mechanics: changes from `sandbox/slice/`
+## 7. Mechanics: changes from the runner (`game/minigames/runner/`)
 
 | car (filming) | Chaac run (gunner) |
 |---|---|

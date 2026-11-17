@@ -9,7 +9,7 @@ io_sky.webp          Sky layer. The original, with the band just under the
 io_terrain.png       Terrain layer. The original with alpha 0 above the
                      silhouette, RGBA.
 
-Wiring (slice.tscn -> Backdrop):
+Wiring (run.tscn -> Backdrop):
   Sky     albedo_texture = io_sky.webp       forward_factor 0.002
   Far     albedo_texture = io_terrain.png    forward_factor 0.014   (transparency = alpha)
 

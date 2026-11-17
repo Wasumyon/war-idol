@@ -19,7 +19,7 @@ Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 20
 - The open story items in the decisions log ("Still open").
 
 ## Threads
-- **Restructure** (done 2026-11-16, `docs/restructure_plan.md`): `car/` → `sandbox/`, `vn/` → `game/`, `MainGame` → `Main`, autoload `Game` → `GameState`, `scenes/` etc. regrouped under `story/`, `minigames/`, `assets/`, `ui/`; docs in `docs/`, art in `source_art/`. **Old names are retired** (`car/`, `vn/` as the project folder, `MainGame`, `Game.`, `maingame_spec.md`, `vn_game_design.md`); if you see them, they are stale. Runner internals renamed too: `slice.*` → `run.*`, `runner.gd` → `player_craft.gd`, node/group `Runner`/`runner` → `Player`/`player`, `runner_placeholder.*` deleted.
+- **Restructure** (done 2026-11-16; the plan is archived). **Old names are retired**: `car/`, `vn/` as the project folder, `MainGame`, the `Game.` autoload, `maingame_spec.md`, `vn_game_design.md`, `campaign_phone.gd`, `HANDOVER.md`, and in the runner `slice.*`, `runner.gd`, `runner_placeholder.*`. `tools/stale_names.ps1` (run by the tests) fails if one comes back in `game/` or the live docs.
 - **Tunnel Escape:** finished as a jam piece. Being ported into `game/minigames/tunnel/` by `docs/tunnel_port_plan.md` (steps 1–3 committed).
 - `docs/outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
   B10–B14 wait on a yes before scenes are written against them.
