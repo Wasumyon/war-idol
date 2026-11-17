@@ -55,7 +55,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `game/story/` |
 | `sandbox/slice/` | the runner prototype — **sandbox**; copied into `game/minigames/runner/` (ported 2026-11-16), now frozen — edit `game/minigames/runner/` |
 | `sandbox/wip/`, `sandbox/test*.tscn` | older car-physics tests — sandbox |
-| `tunnel/` | **game-jam piece** (Tunnel Escape): separate Godot project, short stealth/light-puzzle walk in 5 chambers. Design doc: Google Doc "War Idol Tunnel Escape". Ported from another universe; re-theme to War Idols. Later it is ported into `game/minigames/tunnel/` as a segment (copy, repoint paths, wrapper), like the runner |
+| `tunnel/` | **Tunnel Escape**, a minigame of this game (an escape sequence, like the one in Danganronpa 3), built quickly for a game jam: for now a separate Godot project, short stealth/light-puzzle walk in 5 chambers. Design doc: Google Doc "War Idol Tunnel Escape". Later it is ported into `game/minigames/tunnel/` as a segment (copy, repoint paths, wrapper), like the runner |
 | `_archive/` | superseded docs — do not use as reference |
 
 ## Rules
