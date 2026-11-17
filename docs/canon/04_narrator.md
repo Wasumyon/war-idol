@@ -5,6 +5,8 @@ The story bible owns the big picture and **wins any conflict**.
 
 ---
 
+- **His default name is Phoroneus.** The player names him at New Game (`chaac_run_spec.md` §11);
+  an empty entry falls back to Phoroneus.
 - **The triad: practicality / morality / legitimacy.** Three *claimants*, not two poles
   and a tiebreak. He cannot reconcile the first two himself, so he subcontracts the job
   to legitimacy — **which makes it absolution.**
@@ -27,7 +29,7 @@ The story bible owns the big picture and **wins any conflict**.
   the Ministry did not issue.
   - **He never explains it.** He blames the cold, the weather, the socket, the VA leg. The reader
     learns the pattern from *where* it lands, never from him.
-  - **It escalates with proximity.** A twinge at a rumour; a spike when the moon-touched soldier
+  - **It escalates with proximity.** A twinge at a rumour; a spike when the Gazestruck soldier
     says it out loud (*"They're not bugs!"*) and he shoves money at him to make him stop; agony as
     the visor fails.
   - **Ration it.** A tell that fires every scene stops being a tell. If it lands where nothing is

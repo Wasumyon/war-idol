@@ -10,6 +10,7 @@ Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 20
 - Runner: playtest it in a window inside `game/`, then hook followers and money into the payouts.
 - Stealth: next build step in `docs/stealth_spec.md` (steps 1–3 are in).
 - Tunnel port: next step in `docs/tunnel_port_plan.md`.
+- Ticket 001 (open): the default player name in code becomes Phoroneus.
 - Day 1 opening run: build order in `docs/chaac_run_spec.md` §10.
 
 ## Waiting on Wesley

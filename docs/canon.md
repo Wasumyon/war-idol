@@ -28,7 +28,7 @@ References like "canon §4" or "canon 11" in other notes mean the numbered file 
 | 5 | `canon/05_chip.md` | how she sells, her subs as a licence, family |
 | 6 | `canon/06_the_three.md` | the count, the chant, the rules for the number |
 | 7 | `canon/07_money.md` | the 80% cut, the sub ladder, the tax, dust and cake |
-| 8 | `canon/08_cast.md` | Langley, Sola, Medjed, Padre Rey, the moon-touched soldier, Aysel, Kathay detail, stubs |
+| 8 | `canon/08_cast.md` | Langley, Sola, Medjed, Padre Rey, the Gazestruck soldier, Aysel, Kathay detail, stubs |
 | 9 | `canon/09_places.md` | Io, Juno, Argos, Chaac, Keno's, springs, settlements, ice pillars |
 | 10 | `canon/10_props.md` | the badge, the bench, the prosthesis, the van, the engineer (Tank), the prologue plate |
 | 11 | `canon/11_campaign.md` | 40 days, the loop, the shop, Kathay's order of arrival |

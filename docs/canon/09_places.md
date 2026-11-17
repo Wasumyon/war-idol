@@ -9,6 +9,10 @@ The story bible owns the big picture and **wins any conflict**.
   yellow-green, eruptions red. A **patera** is a broad shallow depression, and
   settlements sit on the **rims**. Terraforming "Pipers"/"Smoketops" thickened the air:
   warm enough to live, and it blinds and poisons the surface.
+- **Jupiter's Eye** — the Great Red Spot. Jupiter never sets in Io's near-side sky, and the
+  Eye rotates in and out of view several times a day. **Madness on Io is laid at the Eye, not
+  the moon.** The mad are **Gazestruck**, the common street word; **Stormstruck** is rarer
+  slang for the same thing. "Moon-touched" is retired.
 - **Juno** — the new capital, and the home of **Keno's**.
 - **Argos** — the old capital, and the first place "infected". **Held back.** It is a
   *place*, not a fact, and it pays off when somebody goes there.

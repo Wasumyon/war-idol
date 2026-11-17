@@ -106,7 +106,7 @@ Four streamers, one per side of how a culture consumes a war:
   guests, sells supplements and Faraday helmets. After Ottenok dies she takes over his position as
   the info dealer — badly.
 
-Supporting cast — Tank, Keno, the moon-touched soldier, the recruiter and others: `canon/08_cast.md`.
+Supporting cast — Tank, Keno, the Gazestruck soldier, the recruiter and others: `canon/08_cast.md`.
 
 ---
 
@@ -118,7 +118,7 @@ The campaign runs **40 in-game days**, with checkpoints every five. Loop and eco
 ### Act 1: The protective illusion (0–25%)
 * Establish the gritty reality of Io and the popular worship of Albrecht through money, pamphlets
   and soundbites.
-* **The inciting red flag:** a moon-touched homeless veteran raves that the monsters are just men.
+* **The inciting red flag:** a Gazestruck homeless veteran raves that the monsters are just men.
   The MC shoves money into his hand to silence him — and gets a violent spike of phantom pain.
 
 ### Act 2: The cracking facade (25–75%)

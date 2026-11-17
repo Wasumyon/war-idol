@@ -173,8 +173,8 @@ already speaks in the voice of the device that lies to him.
 | QUIT | |
 
 **Name entry** (the visor booting): `NAME: ____`. Not "callsign": Chip later asks *"what do I
-call you"*, and `{player}` is used as a name throughout. Empty falls back to the existing
-default. Then the briefing (§5 beat 0).
+call you"*, and `{player}` is used as a name throughout. Empty falls back to the
+default, **Phoroneus** (canon §4). Then the briefing (§5 beat 0).
 
 **Debug builds.** The title shows in debug builds too; F3's Debug layer is unchanged. Add a
 `--skip-title` command-line flag (and use it in `tests/first_shot_campaign.tscn`) so tests and

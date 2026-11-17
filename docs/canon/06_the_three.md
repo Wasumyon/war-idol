@@ -40,5 +40,5 @@ it is about.
   is *no census*, not *no temper*.**
 - **The myth, if it is ever named, is named once, as a proper noun, and never
   explained** — style guide §4.
-- **There is no spare survivor.** The two are load-bearing: one is the **moon-touched
+- **There is no spare survivor.** The two are load-bearing: one is the **Gazestruck
   soldier** (*"They're not bugs!"*), one is the **Complicit / Whistleblower** fork.

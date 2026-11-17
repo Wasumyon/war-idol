@@ -34,7 +34,7 @@ money, pamphlets and soundbites (bible, Act 1).
 ### Beat 03: The Foot of the Stairs — The Great Red Eye *(written: `01_intro`)*
 - **Setting:** The red pavement outside the recruiting office, then the Juno alleys.
 - **Action:** Nobody helps him up. Internal monologue: the Pioneer bubble, the Revelation starting at Argos, the street version of the Infestation — suits boring into bodies, the horns, the water rumour.
-- **Note:** The earlier plan to give this to a moon-touched beggar is dropped here. The bible's beggar is the inciting red flag, Beat 13.
+- **Note:** The earlier plan to give this to a Gazestruck beggar is dropped here. The bible's beggar is the inciting red flag, Beat 13.
 
 ### Beat 04: The Bar — Captain Keno's *(written: `01_intro`)*
 - **Setting:** Captain Keno's Bar, an ex-military dive catering to veterans, logistics runners, and low-tier mercs.
@@ -99,10 +99,10 @@ money, pamphlets and soundbites (bible, Act 1).
 - **The Scoop:** Chip conducts an audio interview with a ragged voice claiming to be the sole survivor of the fallen outpost *Watcher 6*. The emotional, raw broadcast breaks algorithmic records.
 - **Undercurrent:** Unknown to Chip, the voice belongs to Langley's missing father.
 
-### Beat 13: The Inciting Red Flag — The Moon-Touched Veteran
-- **Source:** bible, Act 1; the moon-touched soldier, canon §8.
+### Beat 13: The Inciting Red Flag — The Gazestruck Veteran
+- **Source:** bible, Act 1; the Gazestruck soldier, canon §8.
 - **Setting:** A Juno street or a front-line rest stop, on a run.
-- **Action:** A moon-touched homeless veteran raves that the monsters are just men — "They're not bugs!", the teeth. Chip is filming. The narrator shoves money into his hand to shut him up, and gets a violent spike of phantom pain (canon §4).
+- **Action:** A Gazestruck homeless veteran raves that the monsters are just men — "They're not bugs!", the teeth. Chip is filming. The narrator shoves money into his hand to shut him up, and gets a violent spike of phantom pain (canon §4).
 - **Payoff:** The first time the body answers for what the visor glosses. He tells himself it's the cold.
 
 ### Beat 13A: The Collector — Fine Print *(proposed; placement open, days 2–6)*

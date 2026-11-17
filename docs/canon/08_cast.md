@@ -22,7 +22,7 @@ detail and the supporting cast. The original design doc's cast table is the sour
 - **Padre Rey** — Jesuit chaplain, Mass at the front. Chip mistakes his prayers for a
   protection spell. Explains communion, and whether an alien could be baptised — which
   depends on whether it has a soul. (The moral bomb: they are people.)
-- **The moon-touched soldier** — rants about the enemy's teeth: **"They're not bugs!"**
+- **The Gazestruck soldier** — rants about the enemy's teeth: **"They're not bugs!"**
 - **Captain Keno** — runs the White Cow in Juno. His selected visual design is **The House Boss**:
   broad shoulders, a shaved head, a graying beard, a faded hibiscus aloha shirt, and a repaired
   prosthetic pince-nez with smoky amber lenses. [Concept sheet](../../source_art/characters/captain-keno-concept.png)
