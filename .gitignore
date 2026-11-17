@@ -11,8 +11,14 @@ desktop.ini
 # Godot generated files (never commit these)
 .godot/
 export_presets.cfg
+# ...except the game's: it holds the demo presets (docs/demo_spec.md)
+!/game/export_presets.cfg
 *.translation
 
 # Archives / backups (redundant with tracked folders)
 *.rar
 *.zip
+
+# Demo builds (tools/export_demo.ps1) and the stamp it writes during an export
+/build/
+/game/demo/build_stamp.txt

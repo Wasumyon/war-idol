@@ -40,13 +40,13 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `docs/dossier_spec.md` | the in-game files: entry format, unlocks, pre/post-reveal versions, glitched text |
 | `docs/stealth_spec.md` | the stealth minigame (story beats and the on-foot job): rules, party, segment contract, build steps |
 | `docs/chaac_run_spec.md` | Day 1's opening run (replaces the opener): beats, mechanics, build order, title menu and name entry |
-| `docs/demo_spec.md` | itch.io browser demos of the minigames: shell, export presets, tooling (draft) |
+| `docs/demo_spec.md` | itch.io browser demos of the minigames: shell, export presets, tooling (approved; tunnel demo built) |
 | `docs/tickets/` | jobs Claude hands to the builders, one file each (`TEMPLATE.md`) |
 | `docs/story_inbox.md` | story ideas noted mid-build, waiting to be sorted |
 | `docs/` | every design doc: bible, canon, outline, specs, punchlists, `game_design.md`, the design-doc `.docx`, `stories/`, `boundarypush/` |
 | `source_art/` | unshipped art and prompts (characters, backgrounds, enemy models, concept art, UI base, raw sources, review thumbnails, source music). Not part of any Godot project |
 | `docs/tunnel_port_plan.md`, `docs/tunnel/` | the tunnel port: plan, steps and inventory; the jam project's own design docs |
-| `tools/` | scripts: `run_tests.ps1`, `stale_names.ps1` (fails the tests if a retired name comes back), `commission.ps1`, `make_plain.ps1`, `make_flatline.ps1`, `stale_dossiers.ps1`; `tools/tunnel/` holds the jam project's generators, archived as they were (they do not run from there) |
+| `tools/` | scripts: `run_tests.ps1`, `stale_names.ps1` (fails the tests if a retired name comes back), `export_demo.ps1 <name>` (builds a browser demo zip into `build/demo/<name>/`), `commission.ps1`, `make_plain.ps1`, `make_flatline.ps1`, `stale_dossiers.ps1`; `tools/tunnel/` holds the jam project's generators, archived as they were (they do not run from there) |
 | `game/story/` | the VN: player `vn.tscn`/`vn.gd` (+ `inline_marks.gd`, `script_effect.gd`), `scenes/NN_*.txt` (the written scenes, plain text), `scenes/placeholder/` (stand-ins for unwritten calendar days), and Day 1's `opener/` and `first_shot/` |
 | `game/main/` | **Main** (`main.tscn`, the conductor: layers, segment swap, save) and `transition.gd` |
 | `game/ui/` | the overlay layers' scripts: `phone.gd`, `pause.gd`, `debug.gd` |
@@ -55,6 +55,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `game/minigames/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`run.tscn`/`run.gd` is the run itself, `player_craft.gd` the player's vehicle; R restarts, Enter ends with `{outcome, followers, money}`) |
 | `game/minigames/stealth/` | the stealth minigame (`stealth.tscn` is the segment root) |
 | `game/minigames/tunnel/` | Tunnel Escape, a segment (`tunnel_segment.tscn` is the root; `begin({"start": "intro"|"chamber_0", "ending": "sequence"|"none"})`, emits `finished({outcome: "escaped", deaths})`). Launched from the F3 debug panel (F6, from the hub, chamber 0, no ending); **not in the calendar yet** (its place in the story is undecided) and not yet play-checked in a window. Its tests are `game/tests/tunnel_*`. See `docs/tunnel_port_plan.md` |
+| `game/demo/` | the browser demo shell (`demo_shell.tscn`: title, controls, segment, result) and `demo_entries.gd`, one entry per demo (tunnel only so far). Exported demos start here, not on Main, through the `demo` feature override in `project.godot`; presets are in `game/export_presets.cfg`. See `docs/demo_spec.md` |
 | `game/assets/` | shared `img/` and `sfx/` (feature-specific art stays in its feature's folder) |
 | `game/tests/` | headless tests, run by `tools/run_tests.ps1` |
 | `sandbox/vn/` | the older copy of the VN and its drafts — superseded by `game/story/` |

@@ -12,6 +12,7 @@ config_version=5
 
 config/name="War Idol"
 run/main_scene="res://main/main.tscn"
+run/main_scene.demo="res://demo/demo_shell.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
