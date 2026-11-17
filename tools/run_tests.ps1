@@ -1,4 +1,5 @@
 # Runs every headless test scene in <game project>/tests/*.tscn and prints one summary line each.
+# tunnel_*.tscn run with --fixed-fps 60 (see below).
 # A test fails if it exits non-zero, times out, or prints "FAIL" or "N failure(s)" with N > 0.
 # Last, it runs tools/stale_names.ps1 (retired names must not come back) and counts it as a test.
 #
@@ -23,7 +24,11 @@ $tests = Get-ChildItem (Join-Path $project "tests") -Filter *.tscn | Sort-Object
 foreach ($t in $tests) {
 	$out = Join-Path $env:TEMP ("test_" + $t.BaseName + ".log")
 	$err = $out + ".err"
-	$p = Start-Process -FilePath $Godot -ArgumentList @("--headless", "--path", $project, "res://tests/$($t.Name)") `
+	# Tunnel tests ran under --fixed-fps 60 in the jam project: its tweens run on frame time
+	# and its players on physics ticks, so their timing checks need a fixed frame rate.
+	$godotArgs = @("--headless", "--path", $project, "res://tests/$($t.Name)")
+	if ($t.BaseName -like "tunnel_*") { $godotArgs = @("--fixed-fps", "60") + $godotArgs }
+	$p = Start-Process -FilePath $Godot -ArgumentList $godotArgs `
 		-RedirectStandardOutput $out -RedirectStandardError $err -PassThru -NoNewWindow
 	$null = $p.Handle
 	$finished = $p.WaitForExit($TimeoutSec * 1000)

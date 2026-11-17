@@ -1,11 +1,6 @@
-extends Node
-## Headless checks for the shallow pool, worm wall, and deep crossing.
-## Set SHOTS=<dir> for screenshots.
-var fails := 0
-var checks := 0
-var shots := OS.get_environment("SHOTS")
-var sc: Node
-var p: Player
+extends "res://tests/tunnel_test.gd"
+## Headless checks for chamber 1: the shallow pool, worm wall, and deep crossing.
+## Runs through tunnel_segment.tscn (see tunnel_test.gd). Set SHOTS=<dir> for screenshots.
 var wall
 var pool
 
@@ -20,37 +15,8 @@ const ENTRY_STALK_X := 2032.0
 const CHECKPOINT_X := 1800.0
 const CHAMBER := "res://minigames/tunnel/scenes/chambers/chamber_1.tscn"
 
-func ok(c: bool, name: String) -> void:
-	checks += 1
-	if not c: fails += 1
-	print(("PASS " if c else "FAIL ") + name)
-
-func shot(name: String) -> void:
-	if shots == "": return
-	await RenderingServer.frame_post_draw
-	get_viewport().get_texture().get_image().save_png(shots.path_join(name + ".png"))
-
-func wait(sec: float) -> void:
-	for i in int(sec * 60.0):
-		await get_tree().physics_frame
-
-func release() -> void:
-	Input.action_release("ui_right")
-	Input.action_release("ui_left")
-	Input.action_release("sprint")
-
 func setup(x: float) -> void:
-	release()
-	if sc:
-		sc.queue_free()
-		await get_tree().process_frame
-	GameManager.clear_checkpoint()
-	GameManager._busy = false
-	GameManager._set_lives(GameManager.MAX_LIVES)
-	sc = load(CHAMBER).instantiate()
-	add_child(sc)
-	await get_tree().process_frame
-	p = sc.find_child("Player", true, false)
+	await load_chamber(CHAMBER)
 	wall = [sc.find_child("TubewormWall", true, false), sc.find_child("TubewormWall2", true, false), sc.find_child("TubewormWall3", true, false)]
 	pool = sc.find_child("AcidPool", true, false)
 	p.global_position = Vector2(x, 0)
@@ -63,8 +29,7 @@ func _ready() -> void:
 	run()
 
 func run() -> void:
-	await get_tree().process_frame
-	GameManager._fade_rect.modulate.a = 0.0
+	await start_segment()
 
 	await setup(300.0)
 	var shallow: AcidPool = sc.find_child("ShallowAcidPool", true, false)
@@ -138,7 +103,7 @@ func run() -> void:
 	Input.action_press("ui_right")
 	await wait(0.6)
 	release()
-	ok(GameManager.has_checkpoint and absf(GameManager.checkpoint.x - CHECKPOINT_X) < 2.0, "checkpoint right before the pool (%d)" % int(GameManager.checkpoint.x))
+	ok(m.has_checkpoint and absf(m.checkpoint.x - CHECKPOINT_X) < 2.0, "checkpoint right before the pool (%d)" % int(m.checkpoint.x))
 	var hint: Label = sc.get_node("HUD/HUD/HintLabel")
 	ok(not hint.visible, "pool checkpoint does not reveal the crossing solution")
 	await shot("ch1_3_pool_idle")
@@ -158,7 +123,7 @@ func run() -> void:
 	var shot_strike := false
 	var warned_in_safe := false
 	var shot_safe := false
-	while clock[0] < 8.0 and GameManager.lives == 3:
+	while clock[0] < 8.0 and m.lives == 3:
 		await get_tree().physics_frame
 		clock[0] += 1.0 / 60.0
 		if pool.state == pool.State.WARN and p.global_position.x < DANGER_X: warned_in_safe = true
@@ -179,7 +144,7 @@ func run() -> void:
 	ok(warned[0] > 0 and struck[0] > 0, "dark, worm bed: bubbling warning, then they burst up")
 	var warn_s: float = float(sf[0] - wf[0]) / Engine.physics_ticks_per_second
 	ok(absf(warn_s - pool.warn_time) < 0.04, "deep warning lasts %.2f s" % warn_s)
-	ok(not p.is_dead and GameManager.lives == 2 and p.global_position.x < POOL_LEFT,
+	ok(not p.is_dead and m.lives == 2 and p.global_position.x < POOL_LEFT,
 			"dense worms cost a heart and throw the player back to the near bank")
 
 	await setup(ENTRY_STALK_X)
@@ -193,7 +158,7 @@ func run() -> void:
 
 	await setup(ENTRY_STALK_X)
 	await wait(1.8)
-	ok(not p.is_dead and GameManager.lives == 2 and p.global_position.x < POOL_LEFT,
+	ok(not p.is_dead and m.lives == 2 and p.global_position.x < POOL_LEFT,
 			"ignoring the entry warning lets the first stalk throw the player back")
 
 	await setup(ENTRY_STALK_X)
@@ -265,7 +230,7 @@ func run() -> void:
 			shot_lit = true
 			await shot("ch1_4_lit_wading")
 	release()
-	ok(GameManager.lives < 3, "lamp on but walking costs a heart near the far bank")
+	ok(m.lives < 3, "lamp on but walking costs a heart near the far bank")
 
 	# 9 lamp on, sprinting: makes it across
 	await setup(POOL_LEFT - 60)
@@ -319,58 +284,52 @@ func run() -> void:
 
 	await check_respawn_hints()
 
-	print("RESULT %d/%d" % [checks - fails, checks])
-	get_tree().quit(1 if fails > 0 else 0)
+	finish()
 
 
 func check_respawn_hints() -> void:
-	sc.queue_free()
-	await get_tree().process_frame
-	GameManager.reset_death_hints()
-	GameManager.set_checkpoint(Vector2(CHECKPOINT_X, 0.0))
-	# Keep this runner alive while the real current scene reloads.
-	get_tree().current_scene = null
-	get_tree().change_scene_to_file(CHAMBER)
-	await get_tree().scene_changed
+	await load_chamber(CHAMBER)
+	m.reset_death_hints()
+	m.set_checkpoint(Vector2(CHECKPOINT_X, 0.0))
 	var hints: Array[String] = []
-	GameManager.respawn_hint.connect(func(line: String) -> void:
+	m.respawn_hint.connect(func(line: String) -> void:
 		hints.append(line)
-		ok(not GameManager.is_transitioning() and GameManager._fade_rect.modulate.a == 0.0,
+		ok(not m.is_transitioning() and m._fade_rect.modulate.a == 0.0,
 				"hint is emitted after the respawn fade")
 	)
 
-	await GameManager.respawn_player()
-	GameManager._set_lives(GameManager.MAX_LIVES)
-	var player: Player = get_tree().current_scene.get_node("Player")
+	await m.respawn_player()
+	m._set_lives(TunnelManager.MAX_LIVES)
+	var player: Player = m.chamber.get_node("Player")
 	player.global_position = Vector2(SHALLOW_STALK_X, 31.0)
 	await wait(2.4)
-	while GameManager.is_transitioning():
+	while m.is_transitioning():
 		await get_tree().process_frame
-	ok(is_instance_valid(player) and GameManager.lives == 2 and hints.is_empty(),
+	ok(is_instance_valid(player) and m.lives == 2 and hints.is_empty(),
 			"a shallow-pool hit keeps the same player without advancing the deep-pool hint")
-	player = get_tree().current_scene.get_node("Player")
+	player = m.chamber.get_node("Player")
 	player.kill()
-	while GameManager.is_transitioning():
+	while m.is_transitioning():
 		await get_tree().process_frame
 	ok(hints.is_empty(), "manual restart and unrelated death show no pool hint")
-	GameManager._set_lives(GameManager.MAX_LIVES)
+	m._set_lives(TunnelManager.MAX_LIVES)
 
 	for attempt: int in 4:
-		player = get_tree().current_scene.get_node("Player")
+		player = m.chamber.get_node("Player")
 		# Walk through the checkpoint again if the previous death started a fresh set of lives.
-		if not GameManager.has_checkpoint:
+		if not m.has_checkpoint:
 			player.global_position = Vector2(CHECKPOINT_X, 0.0)
 			await wait(0.12)
 		player.global_position = Vector2(ENTRY_STALK_X, 60.0)
 		await wait(2.45)
-		while GameManager.is_transitioning():
+		while m.is_transitioning():
 			await get_tree().process_frame
 		ok(hints.size() == (0 if attempt < 2 else 1),
 				"pool death %d gives the hint only on the third death" % (attempt + 1))
 		if attempt == 2:
 			ok(hints == [AcidPool.DEATH_HINT], "the checkpoint hint explains the deep crossing")
-			var respawned: Player = get_tree().current_scene.get_node("Player")
-			ok(absf(respawned.global_position.x) < 2.0 and GameManager.lives == 3,
+			var respawned: Player = m.chamber.get_node("Player")
+			ok(absf(respawned.global_position.x) < 2.0 and m.lives == 3,
 					"the last heart restarts the chamber and restores all hearts")
 			var bubble: PanelContainer = respawned.get_node_or_null("RespawnHint")
 			ok(bubble != null and bubble.is_visible_in_tree(), "the respawned player displays the speech bubble")
