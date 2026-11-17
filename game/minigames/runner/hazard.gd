@@ -16,7 +16,7 @@ class_name Hazard
 
 var velocity := Vector3(0, 0, 50.0)
 var life := 8.0
-var _runner: Node3D
+var _player: Node3D
 
 
 func _ready() -> void:
@@ -27,7 +27,7 @@ func _ready() -> void:
 	else:
 		add_to_group("hazard")
 	_build()
-	_runner = get_tree().get_first_node_in_group("runner")
+	_player = get_tree().get_first_node_in_group("player")
 
 
 func _build() -> void:
@@ -88,5 +88,5 @@ func _physics_process(delta: float) -> void:
 					b.global_position = at
 				return
 
-	if _runner != null and global_position.z > _runner.global_position.z + 25.0:
+	if _player != null and global_position.z > _player.global_position.z + 25.0:
 		queue_free()

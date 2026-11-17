@@ -50,7 +50,7 @@ var _lines: Node3D
 
 
 func _ready() -> void:
-	add_to_group("runner")
+	add_to_group("player")
 	_ensure_jump_action()
 	_build_dash_fx()
 	lane = GameState.lane_count / 2

@@ -48,7 +48,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `game/ui/` | the overlay layers' scripts: `phone.gd`, `pause.gd`, `debug.gd` |
 | `game/hub/`, `game/calendar/`, `game/dossier/` | the hub (placeholder layout), the calendar, the files screen (`entries/<id>.txt`; a scene line's `@ file <id>` files one) |
 | `game/autoload/` | `GameState` (`game_state.gd`), the only autoload |
-| `game/minigames/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`slice.tscn`, R restarts, Enter ends with `{outcome, followers, money}`); `runner_placeholder.*` is the old stand-in, now unused |
+| `game/minigames/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`run.tscn`/`run.gd` is the run itself, `player_craft.gd` the player's vehicle; R restarts, Enter ends with `{outcome, followers, money}`) |
 | `game/minigames/stealth/` | the stealth minigame (`stealth.tscn` is the segment root) |
 | `game/assets/` | shared `img/` and `sfx/` (feature-specific art stays in its feature's folder) |
 | `game/tests/` | headless tests, run by `tools/run_tests.ps1` |
@@ -79,7 +79,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
   mechanical punchlist items.
 
 ## In progress
-- **Restructure** (done 2026-11-16, `docs/restructure_plan.md`): `car/` → `sandbox/`, `vn/` → `game/`, `MainGame` → `Main`, autoload `Game` → `GameState`, `scenes/` etc. regrouped under `story/`, `minigames/`, `assets/`, `ui/`; docs in `docs/`, art in `source_art/`. **Old names are retired** (`car/`, `vn/` as the project folder, `MainGame`, `Game.`, `maingame_spec.md`, `vn_game_design.md`); if you see them, they are stale. Next small cleanups: inside the runner, `slice.*` and `runner.gd` (the player vehicle) want clearer names; `runner_placeholder.*` can go.
+- **Restructure** (done 2026-11-16, `docs/restructure_plan.md`): `car/` → `sandbox/`, `vn/` → `game/`, `MainGame` → `Main`, autoload `Game` → `GameState`, `scenes/` etc. regrouped under `story/`, `minigames/`, `assets/`, `ui/`; docs in `docs/`, art in `source_art/`. **Old names are retired** (`car/`, `vn/` as the project folder, `MainGame`, `Game.`, `maingame_spec.md`, `vn_game_design.md`); if you see them, they are stale. Runner internals renamed too: `slice.*` → `run.*`, `runner.gd` → `player_craft.gd`, node/group `Runner`/`runner` → `Player`/`player`, `runner_placeholder.*` deleted.
 - **Game jam (about a week, from 2026-10-24):** build `tunnel/` (own project, never references `sandbox/`).
 - `docs/outline.md` is in the bible's three acts (2026-11-15). Its *proposed* beats and punchlist
   B10–B14 wait on a yes before scenes are written against them.

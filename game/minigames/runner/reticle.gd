@@ -11,7 +11,7 @@ var _mult := 1.0
 var _half := Vector2(60.0, 60.0 / (16.0 / 9.0))
 
 
-## Called every frame by slice.gd.
+## Called every frame by run.gd.
 func set_state(pos: Vector2, tier: int, mult: float, width: float) -> void:
 	_pos = pos
 	_tier = tier

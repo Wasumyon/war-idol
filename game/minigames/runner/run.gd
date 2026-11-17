@@ -54,8 +54,8 @@ var _zoom := false
 var _snap_cd := 0.0
 var _lmb_prev := false
 
-@onready var runner = $Runner
-@onready var cam: Camera3D = $Runner/Camera3D
+@onready var player = $Player
+@onready var cam: Camera3D = $Player/Camera3D
 @onready var run_timer: Timer = $RunTimer
 @onready var reticle = $HUD/Reticle
 @onready var vignette: ColorRect = $HUD/Vignette
@@ -95,7 +95,7 @@ func _physics_process(delta: float) -> void:
 
 	# --- passive filming ---
 	var target = _film_target()
-	if runner.ducking:
+	if player.ducking:
 		target = null   # ducking suspends filming
 	var tier := 0
 	var mult := 1.0
@@ -126,7 +126,7 @@ func _physics_process(delta: float) -> void:
 		snap_toast.modulate.a = 1.0
 	_lmb_prev = lmb
 	snap_toast.modulate.a = lerp(snap_toast.modulate.a, (1.0 if good_snap else 0.0), clamp(6.0 * delta, 0.0, 1.0))
-	cooldowns.set_cooldowns(_snap_cd, SNAP_COOLDOWN, runner._dash_cd, runner.dash_cooldown)
+	cooldowns.set_cooldowns(_snap_cd, SNAP_COOLDOWN, player._dash_cd, player.dash_cooldown)
 
 	_update_hud(mult)
 
@@ -168,7 +168,7 @@ func on_player_hit() -> void:
 		return
 	_iframe = IFRAMES
 	shields -= 1
-	runner.start_invuln(IFRAMES)
+	player.start_invuln(IFRAMES)
 	_flash_shields()
 	if shields <= 0:
 		_end_run()
@@ -184,7 +184,7 @@ func _update_hud(mult: float) -> void:
 	points_label.text = "Followers: %d" % int(followers)
 	money_label.text = "$%d" % int(money)
 	shields_label.text = "Shields: %d" % shields
-	speed_label.text = "%d m/s   x%.1f" % [int(runner.speed), mult]
+	speed_label.text = "%d m/s   x%.1f" % [int(player.speed), mult]
 	var t := int(ceil(run_timer.time_left))
 	time_label.text = "%02d:%02d" % [int(t / 60.0), t % 60]
 
@@ -192,7 +192,7 @@ func _update_hud(mult: float) -> void:
 func _end_run() -> void:
 	run_active = false
 	run_timer.stop()
-	runner.alive = false
+	player.alive = false
 	reticle.set_state(Vector2(-1000, -1000), 0, 1.0, RETICLE_W)
 	vignette.material.set_shader_parameter("intensity", VIG_BASE)
 	points_label.text = "Followers: %d" % int(followers)

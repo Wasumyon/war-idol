@@ -22,8 +22,8 @@ whole repo (not `_archive/`, not `.claude/worktrees/`) for the old name or path:
 | root docs | `docs/`; unshipped art -> `source_art/` (snake_case); `.ps1` at root -> `tools/` (**done**) |
 
 Kept: `hub/`, `dossier/`, `calendar/`, `autoload/`, "segment", "calendar".
-Not now: inside the runner, `slice.*` -> `run.*` and `runner.gd` (the player vehicle) -> a clearer
-name; the code uses group names such as "runner". Delete `runner_placeholder.*` then.
+Done (2026-11-16): inside the runner, `slice.*` -> `run.*` and `runner.gd` (the player vehicle) -> a clearer
+name (`player_craft.gd`); the group "runner" became "player". `runner_placeholder.*` deleted.
 
 ## Steps
 1. **Done:** `car/` -> `sandbox/`, references updated. `tools/run_tests.ps1` added.
@@ -45,8 +45,7 @@ name; the code uses group names such as "runner". Delete `runner_placeholder.*` 
 7. **Done:** `Game` -> `GameState` (`autoload/game_state.gd`).
 8. **Done:** CLAUDE.md rewritten for the new layout, old names retired in a line there.
 9. Later: tunnel ported into `game/minigames/tunnel/` as a real segment (copy, repoint paths,
-   wrapper, re-theme), after the jam build is settled. Runner internals (`slice.*`, `runner.gd`)
-   and `runner_placeholder.*`: see CLAUDE.md.
+   wrapper, re-theme), after the jam build is settled. Runner internals: done (see above).
 
 Note: right after a batch of moves the first headless `--import` can print a transient
 "can't load autoload / f.is_null()" error from the old `.godot/` cache; a second import is clean.

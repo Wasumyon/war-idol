@@ -42,7 +42,7 @@ class_name LaneSpawner
 # outermost lanes densest, centre sparsest (mirrored). Never hand-edited.
 var lane_weights: Array[float] = []
 
-var _runner: Node3D
+var _player: Node3D
 var _next_z := 0.0
 var _started := false
 var _cleanup := 0.0
@@ -54,7 +54,7 @@ var _last_lane := -1
 
 
 func _ready() -> void:
-	_runner = get_tree().get_first_node_in_group("runner")
+	_player = get_tree().get_first_node_in_group("player")
 	_build_lane_weights()
 
 
@@ -76,15 +76,15 @@ func lane_x(index: int) -> float:
 
 
 func _process(delta: float) -> void:
-	if _runner == null:
-		_runner = get_tree().get_first_node_in_group("runner")
+	if _player == null:
+		_player = get_tree().get_first_node_in_group("player")
 		return
 	if not _started:
-		_next_z = _runner.global_position.z - spawn_ahead
+		_next_z = _player.global_position.z - spawn_ahead
 		_started = true
 
 	# --- ground rows ---
-	var horizon := _runner.global_position.z - spawn_ahead
+	var horizon := _player.global_position.z - spawn_ahead
 	while _next_z > horizon:
 		_spawn_row(_next_z)
 		_next_z -= row_spacing
@@ -118,7 +118,7 @@ func _process(delta: float) -> void:
 	if _cleanup <= 0.0:
 		_cleanup = 1.0
 		for child in get_children():
-			if child is Node3D and child.global_position.z > _runner.global_position.z + 40.0:
+			if child is Node3D and child.global_position.z > _player.global_position.z + 40.0:
 				child.queue_free()
 
 
@@ -147,7 +147,7 @@ func _spawn_row(z: float) -> void:
 
 
 func _spawn_air() -> void:
-	var z := _runner.global_position.z - air_spawn_ahead
+	var z := _player.global_position.z - air_spawn_ahead
 	# Each drone is typed: it only ever fires this one munition.
 	var shot: int = [Drone.Shot.ORANGE, Drone.Shot.YELLOW, Drone.Shot.CYAN, Drone.Shot.BEAM][randi() % 4]
 	var hovering := randf() < hover_chance
@@ -176,7 +176,7 @@ func _spawn_air() -> void:
 
 ## A road-wide beam at streamer height; duck to drop below it.
 func _spawn_laser() -> void:
-	var z := _runner.global_position.z - randf_range(95.0, 130.0)
+	var z := _player.global_position.z - randf_range(95.0, 130.0)
 	var l := Laser.new()
 	add_child(l)
 	l.global_position = Vector3(0.0, 1.62, z)
@@ -186,7 +186,7 @@ func _spawn_laser() -> void:
 func _spawn_battle() -> void:
 	var side := 1.0 if randf() < 0.5 else -1.0
 	var count := randi_range(cluster_min, cluster_max)
-	var base_z := _runner.global_position.z - randf_range(cluster_z_min, cluster_z_max)
+	var base_z := _player.global_position.z - randf_range(cluster_z_min, cluster_z_max)
 	for i in count:
 		var p := BattlePocket.new()
 		add_child(p)

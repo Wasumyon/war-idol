@@ -1,11 +1,11 @@
 extends Node
-## The runner as a calendar segment. Wraps slice.tscn behind the segment contract:
+## The runner as a calendar segment. Wraps run.tscn behind the segment contract:
 ## begin({route, zone}) before entering the tree, then finished({outcome, followers, money}).
 ## Never changes scene, advances the day or writes the save; Main applies results.
 
 signal finished(result: Dictionary)
 
-const SLICE := preload("res://minigames/runner/slice.tscn")
+const RUN := preload("res://minigames/runner/run.tscn")
 const KEYS := {
 	&"turnLeft": [KEY_A, KEY_LEFT],
 	&"turnRight": [KEY_D, KEY_RIGHT],
@@ -15,7 +15,7 @@ const KEYS := {
 }
 
 var _args := {}
-var _slice: Node
+var _run: Node
 var _done := false
 
 
@@ -35,33 +35,33 @@ func begin(args: Dictionary) -> void:
 
 
 func _ready() -> void:
-	_start_slice()
+	_start_run()
 
 
 ## Frees the current run and starts a fresh one. Nothing outside this node reloads.
 func restart() -> void:
 	if _done:
 		return
-	if _slice != null:
-		_slice.queue_free()
-		remove_child(_slice)
-	_start_slice()
+	if _run != null:
+		_run.queue_free()
+		remove_child(_run)
+	_start_run()
 
 
-func _start_slice() -> void:
-	_slice = SLICE.instantiate()
-	add_child(_slice)
+func _start_run() -> void:
+	_run = RUN.instantiate()
+	add_child(_run)
 
 
 ## Ends the segment with the current run's result. Only valid once the run is over.
 func continue_run() -> void:
-	if _done or _slice == null or _slice.run_active:
+	if _done or _run == null or _run.run_active:
 		return
 	_done = true
 	finished.emit({
-		"outcome": "bad" if _slice.shields <= 0 else "good",
-		"followers": int(_slice.followers),
-		"money": int(_slice.money),
+		"outcome": "bad" if _run.shields <= 0 else "good",
+		"followers": int(_run.followers),
+		"money": int(_run.money),
 	})
 
 

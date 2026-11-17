@@ -37,7 +37,7 @@ const MODEL_SCALE := 0.6
 @export var beam_width: float = 8.0
 @export var tell_time: float = 0.6  # red-cross tell before a pellet burst
 
-var _runner: Node3D
+var _player: Node3D
 var _cool := 0.0
 var _burst_left := 0
 var _burst_timer := 0.0
@@ -50,7 +50,7 @@ var _base_x := 0.0
 var _base_y := 0.0
 var _have_prev := false
 var _prev_pos := Vector3.ZERO
-var _runner_vel := Vector3.ZERO
+var _player_vel := Vector3.ZERO
 var _charging := false
 var _charge_t := 0.0
 var _telling := false
@@ -69,7 +69,7 @@ func _ready() -> void:
 	else:
 		add_to_group("cross_drone")
 	_build()
-	_runner = get_tree().get_first_node_in_group("runner")
+	_player = get_tree().get_first_node_in_group("player")
 	_cool = randf_range(0.5, fire_interval)
 	_phase = randf() * TAU
 
@@ -123,7 +123,7 @@ func _build() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if _runner == null:
+	if _player == null:
 		return
 	if not _inited:
 		_base_x = global_position.x
@@ -131,10 +131,10 @@ func _physics_process(delta: float) -> void:
 		_inited = true
 
 	# Track the runner's velocity so we can lead our shots.
-	var rp := _runner.global_position
+	var rp := _player.global_position
 	if _have_prev:
 		var dt: float = max(delta, 0.0001)
-		_runner_vel = (rp - _prev_pos) / dt
+		_player_vel = (rp - _prev_pos) / dt
 	_prev_pos = rp
 	_have_prev = true
 
@@ -151,17 +151,17 @@ func _cross(delta: float) -> void:
 	position.x += lateral_speed * delta
 	position.z += approach_speed * delta
 	position.y = _base_y + sin(_t * 2.0) * 1.5
-	if abs(position.x) > 42.0 or global_position.z > _runner.global_position.z + 15.0:
+	if abs(position.x) > 42.0 or global_position.z > _player.global_position.z + 15.0:
 		queue_free()
 
 
 func _hover(delta: float) -> void:
 	if _leaving:
 		position.z += exit_speed * delta
-		if global_position.z > _runner.global_position.z + 15.0:
+		if global_position.z > _player.global_position.z + 15.0:
 			queue_free()
 		return
-	var target_z: float = _runner.global_position.z - hover_distance
+	var target_z: float = _player.global_position.z - hover_distance
 	position.z = lerp(position.z, target_z, clamp(4.0 * delta, 0.0, 1.0))
 	position.x = _base_x + sin(_t * 1.3 + _phase) * 7.0
 	position.y = _base_y + sin(_t * 2.0) * 1.5
@@ -274,7 +274,7 @@ func _shot_color() -> Color:
 
 
 func _fire_beam() -> void:
-	if _runner != null and global_position.distance_to(_runner.global_position) < min_range:
+	if _player != null and global_position.distance_to(_player.global_position) < min_range:
 		return   # deadzone: too close to fire
 	var l := Laser.new()
 	l.width = beam_width
@@ -286,12 +286,12 @@ func _fire_beam() -> void:
 func _fire() -> void:
 	if get_tree().get_nodes_in_group("hazard").size() >= max_active_pellets:
 		return
-	if _runner == null:
+	if _player == null:
 		return
-	if global_position.distance_to(_runner.global_position) < min_range:
+	if global_position.distance_to(_player.global_position) < min_range:
 		return   # deadzone: too close to fire
 
-	var rp: Vector3 = _runner.global_position
+	var rp: Vector3 = _player.global_position
 	var h := Hazard.new()
 	var aim: Vector3 = rp
 
@@ -303,13 +303,13 @@ func _fire() -> void:
 		Shot.YELLOW:
 			# Led shot that hits the car.
 			h.body_color = Color(1.0, 0.95, 0.25)
-			aim = rp + _runner_vel * lead_time + Vector3(0, 0.7, 0)
+			aim = rp + _player_vel * lead_time + Vector3(0, 0.7, 0)
 		Shot.CYAN:
 			# Led bolt at the filmer; car immune; duck to avoid.
 			h.body_color = Color(0.2, 1.0, 1.0)
 			h.filmer = true
 			h.bolt = true
-			aim = rp + _runner_vel * lead_time + Vector3(0, 1.45, 0)
+			aim = rp + _player_vel * lead_time + Vector3(0, 1.45, 0)
 		_:
 			return
 

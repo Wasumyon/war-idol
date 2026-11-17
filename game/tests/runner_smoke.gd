@@ -18,7 +18,7 @@ func _ready() -> void:
 	add_child(seg)
 	await get_tree().process_frame
 	await get_tree().physics_frame
-	var first: Node = seg._slice
+	var first: Node = seg._run
 	_check(first != null and first.is_inside_tree(), "begin + enter tree starts a run")
 
 	seg.continue_run()
@@ -42,7 +42,7 @@ func _ready() -> void:
 	seg2.finished.connect(func(x: Dictionary) -> void: results2.append(x))
 	add_child(seg2)
 	await get_tree().process_frame
-	var old: Node = seg2._slice
+	var old: Node = seg2._run
 	old.followers = 42.0
 	old.shields = 0
 	old._end_run()
@@ -51,7 +51,7 @@ func _ready() -> void:
 	key.pressed = true
 	seg2._unhandled_input(key)
 	await get_tree().process_frame
-	var fresh: Node = seg2._slice
+	var fresh: Node = seg2._run
 	_check(fresh != old and fresh.run_active and fresh.shields == 3 and fresh.followers == 0.0,
 		"R gives a fresh run")
 	_check(not is_instance_valid(old) or old.is_queued_for_deletion() or not old.is_inside_tree(),

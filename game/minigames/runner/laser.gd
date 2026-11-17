@@ -7,14 +7,14 @@ class_name Laser
 @export var speed := 42.0
 @export var width := 28.0
 
-var _runner: Node3D
+var _player: Node3D
 
 
 func _ready() -> void:
 	add_to_group("damaging")
 	add_to_group("filmer")
 	_build()
-	_runner = get_tree().get_first_node_in_group("runner")
+	_player = get_tree().get_first_node_in_group("player")
 
 
 func _build() -> void:
@@ -38,5 +38,5 @@ func _build() -> void:
 
 func _physics_process(delta: float) -> void:
 	position.z += speed * delta
-	if _runner != null and global_position.z > _runner.global_position.z + 25.0:
+	if _player != null and global_position.z > _player.global_position.z + 25.0:
 		queue_free()

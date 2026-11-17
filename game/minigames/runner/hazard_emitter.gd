@@ -11,14 +11,14 @@ class_name HazardEmitter
 @export var max_active_pellets: int = 14   # global cap; firing stops while at cap
 
 var _cooldown := 0.0
-var _runner: Node3D
+var _player: Node3D
 
 
 func _ready() -> void:
 	add_to_group("interest")
 	add_to_group("damaging")
 	_build()
-	_runner = get_tree().get_first_node_in_group("runner")
+	_player = get_tree().get_first_node_in_group("player")
 	_cooldown = randf_range(0.3, fire_interval)
 
 
@@ -42,9 +42,9 @@ func _build() -> void:
 
 
 func _process(delta: float) -> void:
-	if _runner == null:
+	if _player == null:
 		return
-	if global_position.z > _runner.global_position.z + 8.0:
+	if global_position.z > _player.global_position.z + 8.0:
 		return   # already behind the player: stop firing
 	_cooldown -= delta
 	if _cooldown <= 0.0:

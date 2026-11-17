@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c2gyvqy7rpg6k"]
 
-[ext_resource type="Script" uid="uid://dhcujkhfhdqtd" path="res://minigames/runner/slice.gd" id="1_slice"]
-[ext_resource type="Script" uid="uid://bclthao11g0l8" path="res://minigames/runner/runner.gd" id="2_runner"]
+[ext_resource type="Script" uid="uid://dhcujkhfhdqtd" path="res://minigames/runner/run.gd" id="1_run"]
+[ext_resource type="Script" uid="uid://bclthao11g0l8" path="res://minigames/runner/player_craft.gd" id="2_player"]
 [ext_resource type="Script" uid="uid://ca1nwr46f2xss" path="res://minigames/runner/reticle.gd" id="3_reticle"]
 [ext_resource type="Script" uid="uid://byxla2m4wkuct" path="res://minigames/runner/lane_spawner.gd" id="4_spawner"]
 [ext_resource type="Script" path="res://minigames/runner/backdrop.gd" id="5_backdrop"]
@@ -108,8 +108,8 @@ void fragment() {
 shader = SubResource("VigShader_1")
 shader_parameter/intensity = 0.3
 
-[node name="Slice" type="Node3D"]
-script = ExtResource("1_slice")
+[node name="Run" type="Node3D"]
+script = ExtResource("1_run")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Env_1")
@@ -163,31 +163,31 @@ mesh = SubResource("BackQuad_1")
 script = ExtResource("6_layer")
 forward_factor = 0.06
 
-[node name="Runner" type="Node3D" parent="."]
-script = ExtResource("2_runner")
+[node name="Player" type="Node3D" parent="."]
+script = ExtResource("2_player")
 
-[node name="Body" type="Node3D" parent="Runner"]
+[node name="Body" type="Node3D" parent="Player"]
 script = ExtResource("9_vehicle")
 
-[node name="Streamer" type="MeshInstance3D" parent="Runner"]
+[node name="Streamer" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
 material_override = SubResource("StreamerMat_1")
 mesh = SubResource("StreamerMesh_1")
 
-[node name="Camera3D" type="Camera3D" parent="Runner"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.9982, -0.059964, 0, 0.059964, 0.9982, 0, 3.5, 7)
 fov = 78.0
 
-[node name="Hitbox" type="Area3D" parent="Runner"]
+[node name="Hitbox" type="Area3D" parent="Player"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Runner/Hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 shape = SubResource("HitboxShape_1")
 
-[node name="StreamHit" type="Area3D" parent="Runner"]
+[node name="StreamHit" type="Area3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Runner/StreamHit"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/StreamHit"]
 shape = SubResource("StreamHitShape_1")
 
 [node name="Spawner" type="Node3D" parent="."]
