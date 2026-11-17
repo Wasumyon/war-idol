@@ -1,5 +1,7 @@
 extends CanvasLayer
-## Persistent pause UI. Its controls continue responding while the room is frozen.
+## Tunnel's pause UI, a child of TunnelSegment (once the "PauseMenu" autoload). Its controls
+## keep responding while the room is frozen. It handles Esc inside the tunnel's viewport,
+## which marks the event handled for Main too, so Main's own pause stays shut.
 
 const GOLD := Color(0.89, 0.73, 0.48)
 const INK := Color(0.93, 0.89, 0.81)
@@ -63,7 +65,7 @@ func _ready() -> void:
 	_assist = CheckButton.new()
 	_assist.text = "Assist: invincibility"
 	_assist.custom_minimum_size.y = 38
-	_assist.toggled.connect(GameManager.set_invincibility)
+	_assist.toggled.connect(TunnelManager.i.set_invincibility)
 	menu.add_child(_assist)
 	_restart = _button(menu, "Restart room", _on_restart)
 	_title = _button(menu, "Return to title", _on_title)
@@ -162,7 +164,7 @@ func _button(parent: Control, caption: String, callback: Callable) -> Button:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and not event.is_echo():
 		get_viewport().set_input_as_handled()
-		if _at_title or GameManager.is_transitioning():
+		if _at_title or TunnelManager.i.is_transitioning():
 			return
 		if _overlay.visible:
 			close()
@@ -174,7 +176,7 @@ func open() -> void:
 	var percent := 0.0 if AudioServer.is_bus_mute(0) else db_to_linear(AudioServer.get_bus_volume_db(0)) * 100.0
 	_volume.set_value_no_signal(percent)
 	_volume_percent.text = "%d%%" % int(_volume.value)
-	_assist.set_pressed_no_signal(GameManager.god_mode)
+	_assist.set_pressed_no_signal(TunnelManager.i.god_mode)
 	_overlay.show()
 	get_tree().paused = true
 	_resume.grab_focus()
@@ -199,21 +201,17 @@ func _on_resume() -> void:
 		_resume.text = "Resume"
 		_restart.show()
 		_title.show()
-		GameManager.flags.clear()
-		GameManager.death_count = 0
-		GameManager.reset_death_hints()
-		GameManager.set_invincibility(false)
 		close()
-		GameManager.go_to_chamber("res://minigames/tunnel/scenes/intro.tscn")
+		TunnelManager.i.restart_run("res://minigames/tunnel/scenes/intro.tscn")
 	else:
 		close()
 
 
 func _on_restart() -> void:
-	GameManager.clear_checkpoint()
-	GameManager.set_death_line("")
+	TunnelManager.i.clear_checkpoint()
+	TunnelManager.i.set_death_line("")
 	close()
-	GameManager.respawn_player()
+	TunnelManager.i.respawn_player()
 
 
 func _on_title() -> void:

@@ -1,11 +1,18 @@
+class_name TunnelManager
 extends Node
-## Autoload "GameManager": checkpoints, death/respawn and chamber transitions.
-## Lives above every chamber scene, so its fade overlay and checkpoint survive scene reloads.
+## Checkpoints, death/respawn and chamber transitions for Tunnel Escape.
+## A child of TunnelSegment (once the "GameManager" autoload). Lives beside the chamber
+## slot, so its fade overlay and checkpoint survive chamber swaps. Reach it as TunnelManager.i.
 
 signal player_died
 signal chamber_changed(scene_path: String)
 signal respawn_hint(line: String)
 signal lives_changed(remaining: int)
+## The last room is cleared (ending "none") or its ending has played ("sequence").
+signal escaped
+
+## The one live manager, set while it is in the tree.
+static var i: TunnelManager
 
 const FADE_TIME: float = 0.45
 const MAX_LIVES: int = 3
@@ -31,7 +38,15 @@ var god_speed_mult: float = 1.0
 ## God mode only: number keys 0-5 jump to the start of that chamber (if it exists).
 const CHAMBER_PATH: String = "res://minigames/tunnel/scenes/chambers/chamber_%d.tscn"
 
+## The node chambers are swapped into (TunnelSegment's ChamberSlot), and what it holds.
+var slot: Node
+var chamber: Node
+var chamber_path: String = ""
+## "sequence" plays the ending in the last room; "none" finishes as the player walks in.
+var ending: String = "none"
+
 var _busy: bool = false
+var _escaped: bool = false
 var _fade_rect: ColorRect
 var _god_label: Label
 ## What the guard said when he got you: shown, glitched, over the black fade.
@@ -39,6 +54,15 @@ var _death_line: String = ""
 var _death_caption: GlitchText
 ## Seconds the death line holds on black before the reload.
 const DEATH_LINE_HOLD: float = 1.1
+
+
+func _enter_tree() -> void:
+	i = self
+
+
+func _exit_tree() -> void:
+	if i == self:
+		i = null
 
 
 func _ready() -> void:
@@ -147,7 +171,7 @@ func _set_lives(remaining: int) -> void:
 func spend_life(hazard: Node, hint: String) -> String:
 	var next_hint: String = ""
 	if hazard != null and not hint.is_empty():
-		var scene: Node = get_tree().current_scene
+		var scene: Node = chamber
 		if scene != null and scene.is_ancestor_of(hazard):
 			var key: String = scene.scene_file_path + ":" + str(scene.get_path_to(hazard))
 			_hazard_deaths[key] = _hazard_deaths.get(key, 0) + 1
@@ -159,7 +183,7 @@ func spend_life(hazard: Node, hint: String) -> String:
 	return next_hint
 
 
-## Fade to black, reload the chamber (which resets every puzzle), and fade back in.
+## Fade to black, rebuild the chamber (which resets every puzzle), and fade back in.
 ## The player reads `checkpoint` in its _ready() and places itself there.
 func respawn_player(hazard: Node = null, hint: String = "", lost_life: bool = false) -> void:
 	if _busy:
@@ -177,8 +201,8 @@ func respawn_player(hazard: Node = null, hint: String = "", lost_life: bool = fa
 	if out_of_lives:
 		clear_checkpoint()
 		_set_lives(MAX_LIVES)
-	get_tree().reload_current_scene()
-	# Wait for the new scene to finish entering the tree before revealing it.
+	_swap(chamber_path)
+	# Wait for the new chamber to finish entering the tree before revealing it.
 	await get_tree().process_frame
 	await get_tree().process_frame
 	await _fade(0.0)
@@ -196,12 +220,55 @@ func go_to_chamber(scene_path: String) -> void:
 	await _fade(1.0)
 	clear_checkpoint()
 	_set_lives(MAX_LIVES)
-	get_tree().change_scene_to_file(scene_path)
+	_swap(scene_path)
 	await get_tree().process_frame
 	await get_tree().process_frame
 	chamber_changed.emit(scene_path)
 	await _fade(0.0)
 	_busy = false
+
+
+## The first chamber (or the intro) when the segment opens. The overlay is already black
+## and fading in from _ready().
+func start(scene_path: String) -> void:
+	clear_checkpoint()
+	_set_lives(MAX_LIVES)
+	_swap(scene_path)
+	chamber_changed.emit(scene_path)
+
+
+## Back to the start with a clean slate: flags, deaths, hints, assist. Used by the pause
+## menu's "Start game" and by a standalone run after it finishes.
+func restart_run(scene_path: String) -> void:
+	flags.clear()
+	death_count = 0
+	reset_death_hints()
+	set_invincibility(false)
+	_escaped = false
+	go_to_chamber(scene_path)
+
+
+## The tunnel is over: TunnelSegment turns this into finished(result). Once per run.
+func finish() -> void:
+	if _escaped:
+		return
+	_escaped = true
+	escaped.emit()
+
+
+## Replace the slot's chamber with a fresh instance of `scene_path`.
+func _swap(scene_path: String) -> void:
+	if chamber != null:
+		slot.remove_child(chamber)
+		chamber.queue_free()
+		chamber = null
+	chamber_path = scene_path
+	var packed: PackedScene = load(scene_path) as PackedScene
+	if packed == null:
+		push_error("TunnelManager: cannot load " + scene_path)
+		return
+	chamber = packed.instantiate()
+	slot.add_child(chamber)
 
 
 func is_transitioning() -> bool:

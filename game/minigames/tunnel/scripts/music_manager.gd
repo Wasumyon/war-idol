@@ -1,5 +1,7 @@
 extends Node
 ## Music survives chamber changes and respawns; the final room has its own loop.
+## A child of TunnelSegment (once the "MusicManager" autoload). TunnelManager.start()
+## announces the first chamber, so music begins with it.
 
 const APEX: String = "res://minigames/tunnel/art/music/Apex_Prey_Loop.ogg"
 const LEAP: String = "res://minigames/tunnel/art/music/Leap_of_Faith_Loop.ogg"
@@ -27,11 +29,7 @@ func _ready() -> void:
 		add_child(player)
 		player.bus = MUSIC_BUS
 		_players.append(player)
-	GameManager.chamber_changed.connect(_select_music)
-	# Autoloads enter before the main scene, including when running a room directly.
-	await get_tree().process_frame
-	if get_tree().current_scene:
-		_select_music(get_tree().current_scene.scene_file_path)
+	TunnelManager.i.chamber_changed.connect(_select_music)
 
 
 func _select_music(scene_path: String) -> void:

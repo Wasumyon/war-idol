@@ -4,7 +4,8 @@ extends Area2D
 ## furnace and stands by it. Home free... then banging in the vent. He turns and
 ## shines his lamp at it, the grille bursts off, and instead of a monster
 ## Chip drops out. Fade to the ending CG with text beside it (Enter / Space /
-## E advances), then a closing card. Enter restarts from Chamber 1.
+## E advances), then a closing card. Enter ends the tunnel (TunnelManager.finish).
+## With the segment's ending "none", walking in ends the tunnel at once, no sequence.
 ## Node origin = on the floor line where the trigger sits.
 
 @export var sit_x: float = 1250.0
@@ -51,13 +52,12 @@ extends Area2D
 	"Chip: OH! About that, I found something interesting! Come with me...",
 ])
 @export_multiline var closing_text: String = "WAR IDOLS - ESCAPED\n\nTO BE CONTINUED..."
-@export_file("*.tscn") var restart_scene: String = "res://minigames/tunnel/scenes/chambers/chamber_1.tscn"
 
 signal _advance
 
 var _started: bool = false
 var _waiting_input: bool = false
-var _can_restart: bool = false
+var _can_finish: bool = false
 var _player: Player
 var _vent: Node2D
 var _camera: Camera2D
@@ -107,6 +107,10 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	_started = true
 	_player = body as Player
+	if TunnelManager.i.ending == "none":
+		_player.controls_enabled = false
+		TunnelManager.i.finish()
+		return
 	_run()
 
 
@@ -165,7 +169,7 @@ func _run() -> void:
 	await _wait(1.0)
 	_prompt.visible = true
 	await _fade(_prompt, 1.0, 0.8)
-	_can_restart = true
+	_can_finish = true
 
 
 func _bang(i: int) -> void:
@@ -371,9 +375,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _waiting_input:
 		_waiting_input = false
 		_advance.emit()
-	elif _can_restart:
-		_can_restart = false
-		GameManager.go_to_chamber(restart_scene)
+	elif _can_finish:
+		_can_finish = false
+		TunnelManager.i.finish()
 
 
 ## Tests and skip: advance the current text line.
@@ -439,7 +443,7 @@ func _build_overlay() -> void:
 	_hint.visible = false
 	root.add_child(_hint)
 	_card = _make_label(root, closing_text, 34, Color(0.93, 0.78, 0.5))
-	_prompt = _make_label(root, "\n\n\n\n\n\n\nENTER   play again", 18, Color(0.93, 0.78, 0.5, 0.7))
+	_prompt = _make_label(root, "\n\n\n\n\n\n\nENTER   continue", 18, Color(0.93, 0.78, 0.5, 0.7))
 
 
 ## Adds one dialogue line under the earlier ones (which dim) and returns it,
