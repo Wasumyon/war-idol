@@ -1,9 +1,9 @@
 extends Node
 ## Music survives chamber changes and respawns; the final room has its own loop.
 
-const APEX: String = "res://art/music/Apex_Prey_Loop.ogg"
-const LEAP: String = "res://art/music/Leap_of_Faith_Loop.ogg"
-const FINAL_ROOM: String = "res://scenes/chambers/chamber_5.tscn"
+const APEX: String = "res://minigames/tunnel/art/music/Apex_Prey_Loop.ogg"
+const LEAP: String = "res://minigames/tunnel/art/music/Leap_of_Faith_Loop.ogg"
+const FINAL_ROOM: String = "res://minigames/tunnel/scenes/chambers/chamber_5.tscn"
 const VOLUME_DB: float = -14.0
 const CROSSFADE_TIME: float = 2.0
 const MUSIC_BUS: StringName = &"Soundtrack"
@@ -35,7 +35,7 @@ func _ready() -> void:
 
 
 func _select_music(scene_path: String) -> void:
-	if not scene_path.begins_with("res://scenes/chambers/chamber_"):
+	if not scene_path.begins_with("res://minigames/tunnel/scenes/chambers/chamber_"):
 		return
 	var path: String = LEAP if scene_path == FINAL_ROOM else APEX
 	if path == _track:

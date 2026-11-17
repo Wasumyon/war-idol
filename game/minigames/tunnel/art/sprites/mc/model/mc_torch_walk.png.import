@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bybe8f0wcngqp"
-path="res://.godot/imported/mc_torch_walk.png-466ec7ceb14d455b59a29f77a86c107d.ctex"
+path="res://.godot/imported/mc_torch_walk.png-e330c87b39d46069c80a1824790a2b37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/mc/model/mc_torch_walk.png"
-dest_files=["res://.godot/imported/mc_torch_walk.png-466ec7ceb14d455b59a29f77a86c107d.ctex"]
+source_file="res://minigames/tunnel/art/sprites/mc/model/mc_torch_walk.png"
+dest_files=["res://.godot/imported/mc_torch_walk.png-e330c87b39d46069c80a1824790a2b37.ctex"]
 
 [params]
 

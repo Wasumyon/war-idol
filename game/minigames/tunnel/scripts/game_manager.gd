@@ -29,7 +29,7 @@ var god_mode: bool = false
 ## Speed multiplier the player uses (1.0 when god mode is off).
 var god_speed_mult: float = 1.0
 ## God mode only: number keys 0-5 jump to the start of that chamber (if it exists).
-const CHAMBER_PATH: String = "res://scenes/chambers/chamber_%d.tscn"
+const CHAMBER_PATH: String = "res://minigames/tunnel/scenes/chambers/chamber_%d.tscn"
 
 var _busy: bool = false
 var _fade_rect: ColorRect

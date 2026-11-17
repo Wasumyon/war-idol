@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dp721v7uuquhq"
-path="res://.godot/imported/step_player_metal_2.wav-eeef736a8e1ee8e2625dfded419833a9.sample"
+path="res://.godot/imported/step_player_metal_2.wav-fc1ac1dc07f2dfb0b2afd52638dd2c26.sample"
 
 [deps]
 
-source_file="res://art/sfx/step_player_metal_2.wav"
-dest_files=["res://.godot/imported/step_player_metal_2.wav-eeef736a8e1ee8e2625dfded419833a9.sample"]
+source_file="res://minigames/tunnel/art/sfx/step_player_metal_2.wav"
+dest_files=["res://.godot/imported/step_player_metal_2.wav-fc1ac1dc07f2dfb0b2afd52638dd2c26.sample"]
 
 [params]
 

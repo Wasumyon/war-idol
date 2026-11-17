@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func run() -> void:
 	await get_tree().process_frame
-	var sc: Node = load("res://scenes/chambers/chamber_5.tscn").instantiate()
+	var sc: Node = load("res://minigames/tunnel/scenes/chambers/chamber_5.tscn").instantiate()
 	add_child(sc)
 	await get_tree().process_frame
 	var p = sc.find_child("Player", true, false)

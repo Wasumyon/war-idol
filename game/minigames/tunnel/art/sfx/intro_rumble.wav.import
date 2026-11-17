@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c3bdvk1h0q5bp"
-path="res://.godot/imported/intro_rumble.wav-bb4464d47f68f4a96b53b830c07b7524.sample"
+path="res://.godot/imported/intro_rumble.wav-cf6a713b0ffca8b353687e299ad1ec8e.sample"
 
 [deps]
 
-source_file="res://art/sfx/intro_rumble.wav"
-dest_files=["res://.godot/imported/intro_rumble.wav-bb4464d47f68f4a96b53b830c07b7524.sample"]
+source_file="res://minigames/tunnel/art/sfx/intro_rumble.wav"
+dest_files=["res://.godot/imported/intro_rumble.wav-cf6a713b0ffca8b353687e299ad1ec8e.sample"]
 
 [params]
 

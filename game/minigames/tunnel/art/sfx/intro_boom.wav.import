@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bmxiui2icct2o"
-path="res://.godot/imported/intro_boom.wav-0613888310741e45a3b0608ea6ada165.sample"
+path="res://.godot/imported/intro_boom.wav-84542075d020bc42fd6fca51e6fa97af.sample"
 
 [deps]
 
-source_file="res://art/sfx/intro_boom.wav"
-dest_files=["res://.godot/imported/intro_boom.wav-0613888310741e45a3b0608ea6ada165.sample"]
+source_file="res://minigames/tunnel/art/sfx/intro_boom.wav"
+dest_files=["res://.godot/imported/intro_boom.wav-84542075d020bc42fd6fca51e6fa97af.sample"]
 
 [params]
 

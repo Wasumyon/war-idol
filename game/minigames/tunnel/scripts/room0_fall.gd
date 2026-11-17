@@ -64,7 +64,7 @@ func _ready() -> void:
 	_lunger_state.fill(0)
 	for s: String in ["vent_knock", "worm_strike", "worm_lunge", "land_thud", "lamp_click"]:
 		var p: AudioStreamPlayer = AudioStreamPlayer.new()
-		p.stream = load("res://art/sfx/%s.wav" % s)
+		p.stream = load("res://minigames/tunnel/art/sfx/%s.wav" % s)
 		add_child(p)
 		_sfx[s] = p
 	_player.torch_toggled.connect(_on_torch_toggled)

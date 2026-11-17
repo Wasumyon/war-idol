@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5ivrls52oqp3"
-path="res://.godot/imported/mc_torch_idle.png-d10e62944e7f5ed65bb3cf4ccd909508.ctex"
+path="res://.godot/imported/mc_torch_idle.png-a6d97de924986841ab7836985e799467.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/mc/model/mc_torch_idle.png"
-dest_files=["res://.godot/imported/mc_torch_idle.png-d10e62944e7f5ed65bb3cf4ccd909508.ctex"]
+source_file="res://minigames/tunnel/art/sprites/mc/model/mc_torch_idle.png"
+dest_files=["res://.godot/imported/mc_torch_idle.png-a6d97de924986841ab7836985e799467.ctex"]
 
 [params]
 

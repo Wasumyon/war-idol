@@ -10,21 +10,21 @@ extends Control
 	"WAIT, CHIP! NOT THAT WAY!",
 ])
 @export var speaker: String = "Phoroneus"
-@export var cg_texture: Texture2D = preload("res://art/cg/fall_bg/chip_fall_yellow_red_1.png")
+@export var cg_texture: Texture2D = preload("res://minigames/tunnel/art/cg/fall_bg/chip_fall_yellow_red_1.png")
 ## Optional text over the jump ("You crouch." / "Then jump."); off = sound only.
 @export var show_jump_text: bool = false
-@export_file("*.tscn") var next_scene: String = "res://scenes/chambers/chamber_0.tscn"
+@export_file("*.tscn") var next_scene: String = "res://minigames/tunnel/scenes/chambers/chamber_0.tscn"
 
-const SFX_BOOM: AudioStream = preload("res://art/sfx/intro_boom.wav")
-const SFX_RUMBLE: AudioStream = preload("res://art/sfx/intro_rumble.wav")
-const SFX_CRACK: AudioStream = preload("res://art/sfx/intro_crack.wav")
-const SFX_DEBRIS: AudioStream = preload("res://art/sfx/intro_debris.wav")
-const SFX_SCUFF: AudioStream = preload("res://art/sfx/intro_scuff.wav")
-const SFX_JUMP: AudioStream = preload("res://art/sfx/intro_jump.wav")
+const SFX_BOOM: AudioStream = preload("res://minigames/tunnel/art/sfx/intro_boom.wav")
+const SFX_RUMBLE: AudioStream = preload("res://minigames/tunnel/art/sfx/intro_rumble.wav")
+const SFX_CRACK: AudioStream = preload("res://minigames/tunnel/art/sfx/intro_crack.wav")
+const SFX_DEBRIS: AudioStream = preload("res://minigames/tunnel/art/sfx/intro_debris.wav")
+const SFX_SCUFF: AudioStream = preload("res://minigames/tunnel/art/sfx/intro_scuff.wav")
+const SFX_JUMP: AudioStream = preload("res://minigames/tunnel/art/sfx/intro_jump.wav")
 const SFX_STEPS: Array[AudioStream] = [
-	preload("res://art/sfx/step_player_concrete_0.wav"),
-	preload("res://art/sfx/step_player_concrete_1.wav"),
-	preload("res://art/sfx/step_player_concrete_2.wav"),
+	preload("res://minigames/tunnel/art/sfx/step_player_concrete_0.wav"),
+	preload("res://minigames/tunnel/art/sfx/step_player_concrete_1.wav"),
+	preload("res://minigames/tunnel/art/sfx/step_player_concrete_2.wav"),
 ]
 
 ## Set when the intro has ended (finished or skipped); stops the timeline.

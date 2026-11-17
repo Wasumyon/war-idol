@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ceusb44aq77hn"
-path="res://.godot/imported/intro_crack.wav-0dc2a6785bcbce56e0bc3eb61bcebcce.sample"
+path="res://.godot/imported/intro_crack.wav-1226f19aeb0042a403a3d4dc8830ff4e.sample"
 
 [deps]
 
-source_file="res://art/sfx/intro_crack.wav"
-dest_files=["res://.godot/imported/intro_crack.wav-0dc2a6785bcbce56e0bc3eb61bcebcce.sample"]
+source_file="res://minigames/tunnel/art/sfx/intro_crack.wav"
+dest_files=["res://.godot/imported/intro_crack.wav-1226f19aeb0042a403a3d4dc8830ff4e.sample"]
 
 [params]
 

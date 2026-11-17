@@ -36,8 +36,8 @@ func _run() -> void:
 	var stand_in := Node.new()
 	get_tree().root.add_child(stand_in)
 	get_tree().current_scene = stand_in
-	check(ProjectSettings.get_setting("application/run/main_scene") == "res://scenes/intro.tscn", "game starts on the intro")
-	get_tree().change_scene_to_file("res://scenes/intro.tscn")
+	check(ProjectSettings.get_setting("application/run/main_scene") == "res://minigames/tunnel/scenes/intro.tscn", "game starts on the intro")
+	get_tree().change_scene_to_file("res://minigames/tunnel/scenes/intro.tscn")
 	await get_tree().process_frame
 	await get_tree().process_frame
 	var intro: Node = get_tree().current_scene
@@ -61,7 +61,7 @@ func _run() -> void:
 	check(player != null, "Chamber 0 has the player falling")
 
 	# Skip: Enter during the intro goes straight to Chamber 0.
-	get_tree().change_scene_to_file("res://scenes/intro.tscn")
+	get_tree().change_scene_to_file("res://minigames/tunnel/scenes/intro.tscn")
 	await get_tree().create_timer(1.5).timeout
 	var ev := InputEventAction.new()
 	ev.action = "ui_accept"

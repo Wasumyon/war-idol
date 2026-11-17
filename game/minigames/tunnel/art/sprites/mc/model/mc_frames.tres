@@ -2,23 +2,23 @@
 
 
 
-[ext_resource type="Texture2D" path="res://art/sprites/mc/model/mc_limp.png" id="1"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/sprites/mc/model/mc_limp.png" id="1"]
 
-[ext_resource type="Texture2D" path="res://art/sprites/mc/model/mc_walk.png" id="2"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/sprites/mc/model/mc_walk.png" id="2"]
 
-[ext_resource type="Texture2D" path="res://art/sprites/mc/model/mc_limp_back.png" id="3"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/sprites/mc/model/mc_limp_back.png" id="3"]
 
-[ext_resource type="Texture2D" path="res://art/sprites/mc/model/mc_sprint.png" id="4"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/sprites/mc/model/mc_sprint.png" id="4"]
 
-[ext_resource type="Texture2D" path="res://art/sprites/mc/model/mc_crouch.png" id="5"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/sprites/mc/model/mc_crouch.png" id="5"]
 
-[ext_resource type="Texture2D" path="res://art/sprites/mc/model/mc_fall.png" id="6"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/sprites/mc/model/mc_fall.png" id="6"]
 
-[ext_resource type="Texture2D" path="res://art/sprites/mc/model/mc_torch_idle.png" id="torch_idle"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/sprites/mc/model/mc_torch_idle.png" id="torch_idle"]
 
-[ext_resource type="Texture2D" path="res://art/sprites/mc/model/mc_torch_sprint.png" id="torch_sprint"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/sprites/mc/model/mc_torch_sprint.png" id="torch_sprint"]
 
-[ext_resource type="Texture2D" path="res://art/sprites/mc/model/mc_torch_walk.png" id="torch_walk"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/sprites/mc/model/mc_torch_walk.png" id="torch_walk"]
 
 [sub_resource type="AtlasTexture" id="A1"]
 atlas = ExtResource("1")

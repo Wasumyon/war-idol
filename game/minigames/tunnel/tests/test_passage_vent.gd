@@ -10,7 +10,7 @@ func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
 
 func _ready() -> void:
-	var room: Node = load("res://scenes/chambers/chamber_2.tscn").instantiate()
+	var room: Node = load("res://minigames/tunnel/scenes/chambers/chamber_2.tscn").instantiate()
 	add_child(room)
 	GameManager.god_mode = true
 	var vent: Node = room.get_node("PuzzlesAndHazards/PassageVent")

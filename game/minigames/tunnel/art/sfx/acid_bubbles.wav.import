@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://brafp1g8i716n"
-path="res://.godot/imported/acid_bubbles.wav-6aa50c85cc7d5a03598a3b49e370245f.sample"
+path="res://.godot/imported/acid_bubbles.wav-13f046cb9c8be8ebf84e735f7d37739c.sample"
 
 [deps]
 
-source_file="res://art/sfx/acid_bubbles.wav"
-dest_files=["res://.godot/imported/acid_bubbles.wav-6aa50c85cc7d5a03598a3b49e370245f.sample"]
+source_file="res://minigames/tunnel/art/sfx/acid_bubbles.wav"
+dest_files=["res://.godot/imported/acid_bubbles.wav-13f046cb9c8be8ebf84e735f7d37739c.sample"]
 
 [params]
 

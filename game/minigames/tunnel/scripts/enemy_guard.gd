@@ -22,8 +22,8 @@ extends CharacterBody2D
 signal spotted_player
 signal caught_player
 
-const GUARD_ANIMATION = preload("res://scripts/guard_animation.gd")
-const LIGHT_TEX: Texture2D = preload("res://art/light_radial.tres")
+const GUARD_ANIMATION = preload("res://minigames/tunnel/scripts/guard_animation.gd")
+const LIGHT_TEX: Texture2D = preload("res://minigames/tunnel/art/light_radial.tres")
 const BODY_HALF_WIDTH: float = 23.0
 const FLOOR_MASK: int = 1
 const DOOR_MASK: int = 1 << 3
@@ -150,7 +150,7 @@ func _ready() -> void:
 	body.shape = body_shape
 	body.position.y = -55.0
 	add_child(body)
-	var footsteps = preload("res://scripts/footsteps.gd").new()
+	var footsteps = preload("res://minigames/tunnel/scripts/footsteps.gd").new()
 	footsteps.heavy = true
 	add_child(footsteps)
 	add_to_group("guard")

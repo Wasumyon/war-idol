@@ -18,7 +18,7 @@ func wait(sec: float) -> void:
 
 func setup() -> void:
 	if root_scene: root_scene.queue_free(); await get_tree().process_frame
-	root_scene = load("res://scenes/chambers/chamber_3.tscn").instantiate()
+	root_scene = load("res://minigames/tunnel/scenes/chambers/chamber_3.tscn").instantiate()
 	add_child(root_scene)
 	await get_tree().process_frame
 	s = root_scene.find_child("Searchlight", true, false)

@@ -24,7 +24,7 @@ func setup() -> void:
 		root_scene.queue_free()
 		await get_tree().process_frame
 	GameManager.clear_checkpoint()
-	root_scene = load("res://scenes/chambers/chamber_4.tscn").instantiate()
+	root_scene = load("res://minigames/tunnel/scenes/chambers/chamber_4.tscn").instantiate()
 	add_child(root_scene)
 	await get_tree().process_frame
 	ga = root_scene.find_child("GuardA", true, false)
@@ -238,7 +238,7 @@ func run() -> void:
 	ok(reached and not p.is_dead, "full scripted run reaches the exit (%.1f s, phase %d, x %d)" % [t, phase, int(p.global_position.x)])
 
 	var ex = root_scene.find_child("Exit", true, false)
-	ok(ex.next_scene == "res://scenes/chambers/chamber_5.tscn", "exit leads to chamber 5")
+	ok(ex.next_scene == "res://minigames/tunnel/scenes/chambers/chamber_5.tscn", "exit leads to chamber 5")
 	ok(root_scene.find_children("Checkpoint*", "", true, false).is_empty(), "no checkpoints")
 
 	print("%d/%d passed" % [checks - fails, checks])

@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://rwugchk58v5a"
-path="res://.godot/imported/Leap_of_Faith_Loop.ogg-2fb3576225b58329899be97e79852d2e.oggvorbisstr"
+path="res://.godot/imported/Leap_of_Faith_Loop.ogg-25a11d4f73db3dccd8fe6a80e5c877ef.oggvorbisstr"
 
 [deps]
 
-source_file="res://art/music/Leap_of_Faith_Loop.ogg"
-dest_files=["res://.godot/imported/Leap_of_Faith_Loop.ogg-2fb3576225b58329899be97e79852d2e.oggvorbisstr"]
+source_file="res://minigames/tunnel/art/music/Leap_of_Faith_Loop.ogg"
+dest_files=["res://.godot/imported/Leap_of_Faith_Loop.ogg-25a11d4f73db3dccd8fe6a80e5c877ef.oggvorbisstr"]
 
 [params]
 

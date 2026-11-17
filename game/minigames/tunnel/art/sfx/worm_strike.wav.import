@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://23t5jhlvmlx0"
-path="res://.godot/imported/worm_strike.wav-b23e674e270f33cbb727c25d14a10cbd.sample"
+path="res://.godot/imported/worm_strike.wav-c81a11f7bfd1b8a7efa047c30f987ec6.sample"
 
 [deps]
 
-source_file="res://art/sfx/worm_strike.wav"
-dest_files=["res://.godot/imported/worm_strike.wav-b23e674e270f33cbb727c25d14a10cbd.sample"]
+source_file="res://minigames/tunnel/art/sfx/worm_strike.wav"
+dest_files=["res://.godot/imported/worm_strike.wav-c81a11f7bfd1b8a7efa047c30f987ec6.sample"]
 
 [params]
 

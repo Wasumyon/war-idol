@@ -204,7 +204,7 @@ func _on_resume() -> void:
 		GameManager.reset_death_hints()
 		GameManager.set_invincibility(false)
 		close()
-		GameManager.go_to_chamber("res://scenes/intro.tscn")
+		GameManager.go_to_chamber("res://minigames/tunnel/scenes/intro.tscn")
 	else:
 		close()
 

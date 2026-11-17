@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://d0o4im0ec200v"
-path="res://.godot/imported/acid_burst.wav-2d21bf16cf03664286c6b5da6c6c7555.sample"
+path="res://.godot/imported/acid_burst.wav-a918c0475448474c55e218387daf6b91.sample"
 
 [deps]
 
-source_file="res://art/sfx/acid_burst.wav"
-dest_files=["res://.godot/imported/acid_burst.wav-2d21bf16cf03664286c6b5da6c6c7555.sample"]
+source_file="res://minigames/tunnel/art/sfx/acid_burst.wav"
+dest_files=["res://.godot/imported/acid_burst.wav-a918c0475448474c55e218387daf6b91.sample"]
 
 [params]
 

@@ -1,21 +1,21 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/follow_camera.gd" id="s_cam"]
-[ext_resource type="Script" path="res://scripts/hint_zone.gd" id="s_hint"]
-[ext_resource type="Script" path="res://scripts/exit_zone.gd" id="s_exit"]
-[ext_resource type="Script" path="res://scripts/hide_zone.gd" id="s_hide"]
-[ext_resource type="Script" path="res://scripts/lit_zone.gd" id="s_lit"]
-[ext_resource type="Script" path="res://scripts/enemy_guard.gd" id="s_guard"]
-[ext_resource type="Script" path="res://scripts/floor_switch.gd" id="s_switch"]
-[ext_resource type="Script" path="res://scripts/tubeworm_cluster.gd" id="s_worm"]
-[ext_resource type="Script" path="res://scripts/locked_door.gd" id="s_door"]
-[ext_resource type="Script" path="res://scripts/noise_lever.gd" id="s_lever"]
-[ext_resource type="Script" path="res://scripts/passage_vent.gd" id="s_vent"]
-[ext_resource type="Script" path="res://scripts/acid_pool.gd" id="s_acid"]
-[ext_resource type="Script" path="res://scripts/checkpoint_zone.gd" id="s_check"]
-[ext_resource type="PackedScene" path="res://player.tscn" id="p_player"]
-[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="p_hud"]
-[ext_resource type="Texture2D" path="res://art/light_radial.tres" id="t_light"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/follow_camera.gd" id="s_cam"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/hint_zone.gd" id="s_hint"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/exit_zone.gd" id="s_exit"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/hide_zone.gd" id="s_hide"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/lit_zone.gd" id="s_lit"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/enemy_guard.gd" id="s_guard"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/floor_switch.gd" id="s_switch"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/tubeworm_cluster.gd" id="s_worm"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/locked_door.gd" id="s_door"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/noise_lever.gd" id="s_lever"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/passage_vent.gd" id="s_vent"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/acid_pool.gd" id="s_acid"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/checkpoint_zone.gd" id="s_check"]
+[ext_resource type="PackedScene" path="res://minigames/tunnel/player.tscn" id="p_player"]
+[ext_resource type="PackedScene" path="res://minigames/tunnel/scenes/hud.tscn" id="p_hud"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/light_radial.tres" id="t_light"]
 
 [sub_resource type="RectangleShape2D" id="R_wall"]
 size = Vector2(80, 1400)
@@ -426,7 +426,7 @@ shape = SubResource("R_lit")
 [node name="Exit" type="Area2D" parent="Zones"]
 position = Vector2(3020, -150)
 script = ExtResource("s_exit")
-next_scene = "res://scenes/chambers/chamber_3.tscn"
+next_scene = "res://minigames/tunnel/scenes/chambers/chamber_3.tscn"
 
 [node name="Shape" type="CollisionShape2D" parent="Zones/Exit"]
 shape = SubResource("R_exit")

@@ -1,6 +1,6 @@
 extends Sprite2D
 ## Orthographic sprites baked from guard1.glb, shared by both guard types.
-const SHEET: Texture2D = preload("res://art/sprites/guard/guard_model_animations.png")
+const SHEET: Texture2D = preload("res://minigames/tunnel/art/sprites/guard/guard_model_animations.png")
 const COUNTS: Array[int] = [32, 16, 16]
 const DURATIONS: Array[float] = [5.8666668, 1.0666667, 0.7333333]
 const START_ROWS: Array[int] = [0, 2, 3]

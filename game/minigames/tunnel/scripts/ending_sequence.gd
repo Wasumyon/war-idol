@@ -12,14 +12,14 @@ extends Area2D
 ## The vent: a Node2D at the vent opening with a child "Grille" (Polygon2D).
 @export var vent_path: NodePath
 @export var camera_path: NodePath
-@export var cg_texture: Texture2D = preload("res://art/cg/chip saved reveal.png")
+@export var cg_texture: Texture2D = preload("res://minigames/tunnel/art/cg/chip saved reveal.png")
 ## Chip's poses: two frames each, alternated to fake movement. All face right
 ## (toward where he sits). Bottom centre of each texture = on the floor.
 @export_group("Chip")
-@export var chip_tumble: Array[Texture2D] = [preload("res://art/sprites/chip/chip_tumble_1.png"), preload("res://art/sprites/chip/chip_tumble_2.png")]
-@export var chip_dazed: Array[Texture2D] = [preload("res://art/sprites/chip/chip_sit_dazed_1.png"), preload("res://art/sprites/chip/chip_sit_dazed_2.png")]
-@export var chip_rub: Array[Texture2D] = [preload("res://art/sprites/chip/chip_sit_rub_1.png"), preload("res://art/sprites/chip/chip_sit_rub_2.png")]
-@export var chip_knees: Array[Texture2D] = [preload("res://art/sprites/chip/chip_knees_1.png"), preload("res://art/sprites/chip/chip_knees_2.png")]
+@export var chip_tumble: Array[Texture2D] = [preload("res://minigames/tunnel/art/sprites/chip/chip_tumble_1.png"), preload("res://minigames/tunnel/art/sprites/chip/chip_tumble_2.png")]
+@export var chip_dazed: Array[Texture2D] = [preload("res://minigames/tunnel/art/sprites/chip/chip_sit_dazed_1.png"), preload("res://minigames/tunnel/art/sprites/chip/chip_sit_dazed_2.png")]
+@export var chip_rub: Array[Texture2D] = [preload("res://minigames/tunnel/art/sprites/chip/chip_sit_rub_1.png"), preload("res://minigames/tunnel/art/sprites/chip/chip_sit_rub_2.png")]
+@export var chip_knees: Array[Texture2D] = [preload("res://minigames/tunnel/art/sprites/chip/chip_knees_1.png"), preload("res://minigames/tunnel/art/sprites/chip/chip_knees_2.png")]
 @export var chip_scale: float = 0.5
 ## How far (world px) her poses sink into the floor so they touch it rather than
 ## rest on its top edge.
@@ -51,7 +51,7 @@ extends Area2D
 	"Chip: OH! About that, I found something interesting! Come with me...",
 ])
 @export_multiline var closing_text: String = "WAR IDOLS - ESCAPED\n\nTO BE CONTINUED..."
-@export_file("*.tscn") var restart_scene: String = "res://scenes/chambers/chamber_1.tscn"
+@export_file("*.tscn") var restart_scene: String = "res://minigames/tunnel/scenes/chambers/chamber_1.tscn"
 
 signal _advance
 

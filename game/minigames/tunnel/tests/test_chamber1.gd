@@ -18,7 +18,7 @@ const DANGER_X := 2230.0    # worm bed starts here
 const POOL_LEFT := 1889.0
 const ENTRY_STALK_X := 2032.0
 const CHECKPOINT_X := 1800.0
-const CHAMBER := "res://scenes/chambers/chamber_1.tscn"
+const CHAMBER := "res://minigames/tunnel/scenes/chambers/chamber_1.tscn"
 
 func ok(c: bool, name: String) -> void:
 	checks += 1

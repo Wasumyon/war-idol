@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://x5te5lvhnup"
-path="res://.godot/imported/chip_knees_2.png-7ed409cb4b61deeb26944d1639d062d1.ctex"
+path="res://.godot/imported/chip_knees_2.png-66948c4a070e2fcd2c421ff4bc75682b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/chip/chip_knees_2.png"
-dest_files=["res://.godot/imported/chip_knees_2.png-7ed409cb4b61deeb26944d1639d062d1.ctex"]
+source_file="res://minigames/tunnel/art/sprites/chip/chip_knees_2.png"
+dest_files=["res://.godot/imported/chip_knees_2.png-66948c4a070e2fcd2c421ff4bc75682b.ctex"]
 
 [params]
 

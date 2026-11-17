@@ -4,7 +4,7 @@ var checks := 0
 var root_scene: Node
 var g
 var p
-const CHAMBER := "res://scenes/chambers/chamber_2.tscn"
+const CHAMBER := "res://minigames/tunnel/scenes/chambers/chamber_2.tscn"
 
 func ok(c: bool, name: String) -> void:
 	checks += 1

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmvbhs8gqgy0e"
-path="res://.godot/imported/chip_fall_yellow_red_1.png-a6bd32642532f45c1ed8a05164825323.ctex"
+path="res://.godot/imported/chip_fall_yellow_red_1.png-9f7a97fd8986f322fcfdb46f89208421.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/cg/fall_bg/chip_fall_yellow_red_1.png"
-dest_files=["res://.godot/imported/chip_fall_yellow_red_1.png-a6bd32642532f45c1ed8a05164825323.ctex"]
+source_file="res://minigames/tunnel/art/cg/fall_bg/chip_fall_yellow_red_1.png"
+dest_files=["res://.godot/imported/chip_fall_yellow_red_1.png-9f7a97fd8986f322fcfdb46f89208421.ctex"]
 
 [params]
 

@@ -17,8 +17,8 @@ extends Node2D
 signal spotted_player
 signal caught_player
 
-const GUARD_ANIMATION = preload("res://scripts/guard_animation.gd")
-const LIGHT_TEX: Texture2D = preload("res://art/light_radial.tres")
+const GUARD_ANIMATION = preload("res://minigames/tunnel/scripts/guard_animation.gd")
+const LIGHT_TEX: Texture2D = preload("res://minigames/tunnel/art/light_radial.tres")
 
 @export_group("Patrol")
 @export var patrol_left: float = 350.0
@@ -126,7 +126,7 @@ var _caught_with_lamp: bool = false
 
 
 func _ready() -> void:
-	var footsteps = preload("res://scripts/footsteps.gd").new()
+	var footsteps = preload("res://minigames/tunnel/scripts/footsteps.gd").new()
 	footsteps.heavy = true
 	footsteps.surface_override = "metal"
 	add_child(footsteps)

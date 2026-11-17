@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ojnhevhosifk"
-path="res://.godot/imported/land_thud.wav-ebf2fa06aa5609e1da4578d8410aac17.sample"
+path="res://.godot/imported/land_thud.wav-8a4a3a6891d1bfe64778b18127fd3c6e.sample"
 
 [deps]
 
-source_file="res://art/sfx/land_thud.wav"
-dest_files=["res://.godot/imported/land_thud.wav-ebf2fa06aa5609e1da4578d8410aac17.sample"]
+source_file="res://minigames/tunnel/art/sfx/land_thud.wav"
+dest_files=["res://.godot/imported/land_thud.wav-8a4a3a6891d1bfe64778b18127fd3c6e.sample"]
 
 [params]
 

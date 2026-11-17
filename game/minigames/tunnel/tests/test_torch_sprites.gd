@@ -13,7 +13,7 @@ func _ready() -> void:
 	call_deferred("run")
 
 func run() -> void:
-	var player: Player = load("res://player.tscn").instantiate()
+	var player: Player = load("res://minigames/tunnel/player.tscn").instantiate()
 	add_child(player)
 	player.set_physics_process(false)
 	var sprite: AnimatedSprite2D = player.get_node("Visual/Body/Sprite")
@@ -67,7 +67,7 @@ func preview() -> void:
 	viewport.add_child(background)
 	for side in 2:
 		for pose in 3:
-			var p: Player = load("res://player.tscn").instantiate()
+			var p: Player = load("res://minigames/tunnel/player.tscn").instantiate()
 			viewport.add_child(p)
 			p.set_physics_process(false)
 			p.set_process(false)

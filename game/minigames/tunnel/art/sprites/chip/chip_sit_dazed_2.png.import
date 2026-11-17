@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://gi4n5x5exr1h"
-path="res://.godot/imported/chip_sit_dazed_2.png-3fedb418cc3dc62671b8c976c62b0fc8.ctex"
+path="res://.godot/imported/chip_sit_dazed_2.png-7e8199a6a6da36d42bd2fa5c5265a5a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/chip/chip_sit_dazed_2.png"
-dest_files=["res://.godot/imported/chip_sit_dazed_2.png-3fedb418cc3dc62671b8c976c62b0fc8.ctex"]
+source_file="res://minigames/tunnel/art/sprites/chip/chip_sit_dazed_2.png"
+dest_files=["res://.godot/imported/chip_sit_dazed_2.png-7e8199a6a6da36d42bd2fa5c5265a5a9.ctex"]
 
 [params]
 

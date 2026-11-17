@@ -42,7 +42,7 @@ func _ready() -> void:
 	add_child(shape)
 
 	_glow = PointLight2D.new()
-	_glow.texture = preload("res://art/light_radial.tres")
+	_glow.texture = preload("res://minigames/tunnel/art/light_radial.tres")
 	_glow.position = Vector2(0, -10)
 	_glow.texture_scale = 0.5
 	_glow.energy = 0.5

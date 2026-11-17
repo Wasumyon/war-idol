@@ -8,7 +8,7 @@ func frames(count: int) -> void:
 func _initialize() -> void:
 	call_deferred('run')
 func run() -> void:
-	var room = load('res://scenes/chambers/chamber_2.tscn').instantiate()
+	var room = load('res://minigames/tunnel/scenes/chambers/chamber_2.tscn').instantiate()
 	root.add_child(room)
 	await process_frame
 	root.get_node('GameManager')._busy = true

@@ -43,7 +43,7 @@ func _ready() -> void:
 	body.add_child(_shape)
 
 	_lamp = PointLight2D.new()
-	_lamp.texture = preload("res://art/light_radial.tres")
+	_lamp.texture = preload("res://minigames/tunnel/art/light_radial.tres")
 	_lamp.position = Vector2(-width * 0.5 - 18, -190)
 	_lamp.texture_scale = 0.35
 	_lamp.energy = 0.9

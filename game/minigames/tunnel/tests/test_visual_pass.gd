@@ -5,7 +5,7 @@ func check(value: bool, label: String) -> void:
 	if not value: fails += 1
 func _ready() -> void:
 	GameManager._busy = true
-	var room = load('res://scenes/chambers/chamber_0.tscn').instantiate()
+	var room = load('res://minigames/tunnel/scenes/chambers/chamber_0.tscn').instantiate()
 	add_child(room)
 	await get_tree().process_frame
 	var worms = get_tree().get_nodes_in_group('vent_worms')
@@ -28,7 +28,7 @@ func _ready() -> void:
 	for w in worms: check(w.visible and w.growth > 0.5, 'staged cluster struck: ' + w.name)
 	room.queue_free()
 	await get_tree().process_frame
-	room = load('res://scenes/chambers/chamber_3.tscn').instantiate()
+	room = load('res://minigames/tunnel/scenes/chambers/chamber_3.tscn').instantiate()
 	add_child(room)
 	await get_tree().process_frame
 	check(get_tree().get_nodes_in_group('guard').size() == 2, 'checkout guard count preserved (two; third absent in source)')

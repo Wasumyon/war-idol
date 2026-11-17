@@ -39,7 +39,7 @@ signal spotted_player
 
 const BEAM_COL: Color = Color(0.85, 0.92, 1.0, 0.16)
 const CORE_COL: Color = Color(0.95, 0.97, 1.0, 0.12)
-const LIGHT_TEX: Texture2D = preload("res://art/light_radial.tres")
+const LIGHT_TEX: Texture2D = preload("res://minigames/tunnel/art/light_radial.tres")
 
 var pool_x: float = 0.0
 var _dir: int = -1

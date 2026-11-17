@@ -23,7 +23,7 @@ func _ready() -> void:
 	for surface: String in ["concrete", "metal"]:
 		var clips: Array[AudioStream] = []
 		for i: int in range(3):
-			clips.append(load("res://art/sfx/step_%s_%s_%d.wav" % ["guard" if heavy else "player", surface, i]) as AudioStream)
+			clips.append(load("res://minigames/tunnel/art/sfx/step_%s_%s_%d.wav" % ["guard" if heavy else "player", surface, i]) as AudioStream)
 		_clips[surface] = clips
 
 

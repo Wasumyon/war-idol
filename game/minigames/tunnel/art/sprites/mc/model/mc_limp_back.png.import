@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bavjghlejg0ek"
-path="res://.godot/imported/mc_limp_back.png-9d34ff725c1fd8575b2462597e6c1824.ctex"
+path="res://.godot/imported/mc_limp_back.png-c8d5d72256d2f932ffa535f8d5f3163c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/mc/model/mc_limp_back.png"
-dest_files=["res://.godot/imported/mc_limp_back.png-9d34ff725c1fd8575b2462597e6c1824.ctex"]
+source_file="res://minigames/tunnel/art/sprites/mc/model/mc_limp_back.png"
+dest_files=["res://.godot/imported/mc_limp_back.png-c8d5d72256d2f932ffa535f8d5f3163c.ctex"]
 
 [params]
 

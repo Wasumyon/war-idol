@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dpa523y20el5v"
-path="res://.godot/imported/vent_knock.wav-b4dafc42d393ec9c31ed17c9eb84e1e2.sample"
+path="res://.godot/imported/vent_knock.wav-1969d59c2ab55ec47100b403fedcf783.sample"
 
 [deps]
 
-source_file="res://art/sfx/vent_knock.wav"
-dest_files=["res://.godot/imported/vent_knock.wav-b4dafc42d393ec9c31ed17c9eb84e1e2.sample"]
+source_file="res://minigames/tunnel/art/sfx/vent_knock.wav"
+dest_files=["res://.godot/imported/vent_knock.wav-1969d59c2ab55ec47100b403fedcf783.sample"]
 
 [params]
 

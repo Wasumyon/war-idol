@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgfcsiy0taf4c"
-path="res://.godot/imported/chip_tumble_1.png-7c4f691703e797eee600d3b7cb1c136b.ctex"
+path="res://.godot/imported/chip_tumble_1.png-73e44c0e43469005ea198f250a58ea5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/chip/chip_tumble_1.png"
-dest_files=["res://.godot/imported/chip_tumble_1.png-7c4f691703e797eee600d3b7cb1c136b.ctex"]
+source_file="res://minigames/tunnel/art/sprites/chip/chip_tumble_1.png"
+dest_files=["res://.godot/imported/chip_tumble_1.png-73e44c0e43469005ea198f250a58ea5a.ctex"]
 
 [params]
 

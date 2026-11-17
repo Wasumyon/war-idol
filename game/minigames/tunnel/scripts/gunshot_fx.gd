@@ -4,7 +4,7 @@ extends Node2D
 ## and a quick white kick on screen. Frees itself. No audio yet.
 ##   GunshotFX.fire(get_tree().current_scene, muzzle_pos, target_pos)
 
-const LIGHT_TEX: Texture2D = preload("res://art/light_radial.tres")
+const LIGHT_TEX: Texture2D = preload("res://minigames/tunnel/art/light_radial.tres")
 
 var _t: float = 0.0
 var _flash: PointLight2D

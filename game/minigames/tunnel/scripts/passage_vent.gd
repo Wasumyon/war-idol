@@ -1,4 +1,4 @@
-extends "res://scripts/vent_lunger.gd"
+extends "res://minigames/tunnel/scripts/vent_lunger.gd"
 ## Footsteps wake this vent. Light shortens its exposed phase, never cancels the strike.
 @export var hearing_range: float = 175.0
 @export var warning_time: float = 0.65
@@ -15,8 +15,8 @@ var _exposed_time: float = 0.0
 var _positions: Dictionary = {}
 var _sound: AudioStreamPlayer2D
 var _light_probe: Area2D
-const KNOCK: AudioStream = preload("res://art/sfx/vent_knock.wav")
-const SNAP: AudioStream = preload("res://art/sfx/worm_lunge.wav")
+const KNOCK: AudioStream = preload("res://minigames/tunnel/art/sfx/vent_knock.wav")
+const SNAP: AudioStream = preload("res://minigames/tunnel/art/sfx/worm_lunge.wav")
 
 
 func _ready() -> void:

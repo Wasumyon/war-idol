@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byqc3270f4cwk"
-path="res://.godot/imported/light_cone.png-1c796e003b8880bb7a1e8911a9eb8c24.ctex"
+path="res://.godot/imported/light_cone.png-cbca6560d8d19479247a4a43bb6d8160.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/light_cone.png"
-dest_files=["res://.godot/imported/light_cone.png-1c796e003b8880bb7a1e8911a9eb8c24.ctex"]
+source_file="res://minigames/tunnel/art/light_cone.png"
+dest_files=["res://.godot/imported/light_cone.png-cbca6560d8d19479247a4a43bb6d8160.ctex"]
 
 [params]
 

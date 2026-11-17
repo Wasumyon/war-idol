@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://78g5014et3bj"
-path="res://.godot/imported/intro_scuff.wav-c9d8276e64603866b82155437bcea938.sample"
+path="res://.godot/imported/intro_scuff.wav-c1c7287da75e5315c56595671789144e.sample"
 
 [deps]
 
-source_file="res://art/sfx/intro_scuff.wav"
-dest_files=["res://.godot/imported/intro_scuff.wav-c9d8276e64603866b82155437bcea938.sample"]
+source_file="res://minigames/tunnel/art/sfx/intro_scuff.wav"
+dest_files=["res://.godot/imported/intro_scuff.wav-c1c7287da75e5315c56595671789144e.sample"]
 
 [params]
 

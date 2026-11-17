@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dcitlpxnvoht"
-path="res://.godot/imported/acid_squelch.wav-0b26138ce4ed07be2e9031ccf8f56eef.sample"
+path="res://.godot/imported/acid_squelch.wav-de8e530a5cb4eb18204ed858123e7d42.sample"
 
 [deps]
 
-source_file="res://art/sfx/acid_squelch.wav"
-dest_files=["res://.godot/imported/acid_squelch.wav-0b26138ce4ed07be2e9031ccf8f56eef.sample"]
+source_file="res://minigames/tunnel/art/sfx/acid_squelch.wav"
+dest_files=["res://.godot/imported/acid_squelch.wav-de8e530a5cb4eb18204ed858123e7d42.sample"]
 
 [params]
 

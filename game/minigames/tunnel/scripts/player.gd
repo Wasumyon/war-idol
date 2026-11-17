@@ -92,7 +92,7 @@ var _base_energy: float = 1.0
 var _base_scale: float = 1.0
 var _base_color: Color = Color.WHITE
 var _radial_tex: Texture2D
-var _cone_tex: Texture2D = preload("res://art/light_cone.png")
+var _cone_tex: Texture2D = preload("res://minigames/tunnel/art/light_cone.png")
 var _round_shape: Shape2D
 var _beam_shape: ConvexPolygonShape2D
 var _spill_shape: CollisionShape2D
@@ -105,8 +105,8 @@ var _lamp_before_hide: bool = false
 var _relight_pending: bool = false
 ## Delay before the lamp relights after leaving a hide spot (reads as deliberate).
 const RELIGHT_DELAY: float = 0.15
-const TORCH_HANDS = preload("res://art/sprites/mc/model/torch_hand_positions.gd").HANDS
-const SPEECH_BUBBLE = preload("res://scripts/chip_objective.gd")
+const TORCH_HANDS = preload("res://minigames/tunnel/art/sprites/mc/model/torch_hand_positions.gd").HANDS
+const SPEECH_BUBBLE = preload("res://minigames/tunnel/scripts/chip_objective.gd")
 
 @onready var _visual: Node2D = $Visual
 @onready var _body: Node2D = $Visual/Body
@@ -119,7 +119,7 @@ const SPEECH_BUBBLE = preload("res://scripts/chip_objective.gd")
 
 
 func _ready() -> void:
-	var footsteps = preload("res://scripts/footsteps.gd").new()
+	var footsteps = preload("res://minigames/tunnel/scripts/footsteps.gd").new()
 	add_child(footsteps)
 	add_to_group("player")
 	GameManager.respawn_hint.connect(_show_respawn_hint)

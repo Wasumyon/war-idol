@@ -102,7 +102,7 @@ func _ready() -> void:
 	add_child(shape)
 
 	_sizzle = AudioStreamPlayer2D.new()
-	_sizzle.stream = load("res://art/sfx/acid_sizzle.wav")
+	_sizzle.stream = load("res://minigames/tunnel/art/sfx/acid_sizzle.wav")
 	_sizzle.volume_db = -16.0
 	_sizzle.max_distance = 900.0
 	_sizzle.autoplay = true
@@ -110,7 +110,7 @@ func _ready() -> void:
 	add_child(_sizzle)
 	for s: String in ["acid_squelch", "acid_bubbles", "acid_burst", "worm_strike"]:
 		var p: AudioStreamPlayer = AudioStreamPlayer.new()
-		p.stream = load("res://art/sfx/%s.wav" % s)
+		p.stream = load("res://minigames/tunnel/art/sfx/%s.wav" % s)
 		add_child(p)
 		_sfx[s] = p
 	_warning_mark = Label.new()

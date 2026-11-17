@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b02e4ke38e63o"
-path="res://.godot/imported/intro_debris.wav-ce115d404f666d4055d9c2c028559fb0.sample"
+path="res://.godot/imported/intro_debris.wav-316b5e7a74c7aa3eef2c9fcfbbab8207.sample"
 
 [deps]
 
-source_file="res://art/sfx/intro_debris.wav"
-dest_files=["res://.godot/imported/intro_debris.wav-ce115d404f666d4055d9c2c028559fb0.sample"]
+source_file="res://minigames/tunnel/art/sfx/intro_debris.wav"
+dest_files=["res://.godot/imported/intro_debris.wav-316b5e7a74c7aa3eef2c9fcfbbab8207.sample"]
 
 [params]
 

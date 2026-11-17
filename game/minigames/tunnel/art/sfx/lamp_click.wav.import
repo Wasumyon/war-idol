@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cgij88g700wwo"
-path="res://.godot/imported/lamp_click.wav-bc3eb0abafdfacff9114dfc1f5d7ab90.sample"
+path="res://.godot/imported/lamp_click.wav-ee72be7a1b49040b0b3e3ecb830200de.sample"
 
 [deps]
 
-source_file="res://art/sfx/lamp_click.wav"
-dest_files=["res://.godot/imported/lamp_click.wav-bc3eb0abafdfacff9114dfc1f5d7ab90.sample"]
+source_file="res://minigames/tunnel/art/sfx/lamp_click.wav"
+dest_files=["res://.godot/imported/lamp_click.wav-ee72be7a1b49040b0b3e3ecb830200de.sample"]
 
 [params]
 

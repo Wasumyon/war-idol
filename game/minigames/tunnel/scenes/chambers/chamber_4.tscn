@@ -1,15 +1,15 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/follow_camera.gd" id="s_cam"]
-[ext_resource type="Script" path="res://scripts/hint_zone.gd" id="s_hint"]
-[ext_resource type="Script" path="res://scripts/checkpoint_zone.gd" id="s_check"]
-[ext_resource type="Script" path="res://scripts/exit_zone.gd" id="s_exit"]
-[ext_resource type="Script" path="res://scripts/hide_zone.gd" id="s_hide"]
-[ext_resource type="Script" path="res://scripts/catwalk_guard.gd" id="s_guard"]
-[ext_resource type="Script" path="res://scripts/tubeworm_cluster.gd" id="s_worm"]
-[ext_resource type="PackedScene" path="res://player.tscn" id="p_player"]
-[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="p_hud"]
-[ext_resource type="Texture2D" path="res://art/light_radial.tres" id="t_light"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/follow_camera.gd" id="s_cam"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/hint_zone.gd" id="s_hint"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/checkpoint_zone.gd" id="s_check"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/exit_zone.gd" id="s_exit"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/hide_zone.gd" id="s_hide"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/catwalk_guard.gd" id="s_guard"]
+[ext_resource type="Script" path="res://minigames/tunnel/scripts/tubeworm_cluster.gd" id="s_worm"]
+[ext_resource type="PackedScene" path="res://minigames/tunnel/player.tscn" id="p_player"]
+[ext_resource type="PackedScene" path="res://minigames/tunnel/scenes/hud.tscn" id="p_hud"]
+[ext_resource type="Texture2D" path="res://minigames/tunnel/art/light_radial.tres" id="t_light"]
 
 [sub_resource type="RectangleShape2D" id="R_wall"]
 size = Vector2(80, 1800)
@@ -725,7 +725,7 @@ shape = SubResource("R_hide_support")
 [node name="Exit" type="Area2D" parent="Zones"]
 position = Vector2(3050, -150)
 script = ExtResource("s_exit")
-next_scene = "res://scenes/chambers/chamber_5.tscn"
+next_scene = "res://minigames/tunnel/scenes/chambers/chamber_5.tscn"
 
 [node name="Shape" type="CollisionShape2D" parent="Zones/Exit"]
 shape = SubResource("R_exit")

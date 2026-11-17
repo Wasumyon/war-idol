@@ -14,7 +14,7 @@ func wait(sec: float) -> void:
 func _ready() -> void:
 	await get_tree().process_frame
 	GameManager._busy = true
-	var root = load("res://scenes/chambers/chamber_2.tscn").instantiate()
+	var root = load("res://minigames/tunnel/scenes/chambers/chamber_2.tscn").instantiate()
 	add_child(root)
 	await get_tree().process_frame
 	var p = root.find_child("Player", true, false)
