@@ -6,7 +6,7 @@
 #   powershell -File tools/export_demo.ps1 tunnel -Godot "C:\path\Godot_console.exe"
 #
 # Uses the export preset demo_<name> in game/export_presets.cfg. Before exporting it writes the
-# build stamp ("<date> <short commit>", "+changes" if game/ has uncommitted edits) to
+# build stamp ("<date> <short commit>", "+changes" if tracked files in game/ have uncommitted edits) to
 # game/demo/build_stamp.txt, which the title screen shows; the file is removed afterwards.
 # After exporting it lists what went into the pack and fails if story text, dossier entries,
 # Main, the debug panel or the tests got in.
@@ -39,7 +39,7 @@ if (-not (Test-Path $template)) {
 Push-Location $root
 try {
 	$commit = (git rev-parse --short HEAD).Trim()
-	$dirty = (git status --porcelain -- game) -ne $null
+	$dirty = (git status --porcelain --untracked-files=no -- game) -ne $null
 } finally { Pop-Location }
 $date = Get-Date -Format "yyyy-MM-dd"
 $stamp = "$date $commit" + $(if ($dirty) { " +changes" } else { "" })
