@@ -152,7 +152,17 @@ channel.
     loanshark doesn't like to dirty his hands unless he must, or out of respect or intrigue, so
     the collector handles routine business and the loanshark only appears in person when it
     matters (the buyout, the minimum-clear sneer).
-    [OPEN] Whether the holodisc scene plays at wall 1 (the audition offer) or wall 2.
+    The servitor is called **Debtobot 4000** (author, 2026-11-18).
+  - **Updated flow (author, 2026-11-18).** Wall 1: the buyout, nothing asked yet. Days 6-10:
+    the audition appears in the mission menu as an optional event; the **holodisc** (coordinates
+    and base plans) is handed over there, as the briefing. Refuse it and at wall 2 it is forced,
+    with the interest fine print. Take it and wall 2 reads as a passed test: the interest still
+    hits, Debtobot congratulates you (scaled to performance), and the player can press for
+    information. After wall 2 the jobs come as special missions to pay down the debt or defer
+    the principal; each next offer stays open, Debtobot snickers to try the legitimate way
+    (impossible), and the job is forced before the following wall. Spacing is for playtesting.
+  - **Facility names** (author, 2026-11-18): dark, mythological. The audition's target is
+    **ARGUS**. Later ones: **PLUTO**, **NEPTUNE**.
 - *(mine)* After that the buyer is most naturally the info dealer — Ottenok, then Kathay — or the
   loanshark's master again. Not decided.
 
@@ -268,8 +278,8 @@ Decided 2026-11-17. The answer for story-only players: stealth gets no auto, eas
 - **A few successful snaps clear a map.** Everything beyond that is extra: more pay, more flags.
 - **Bail-out:** once the player has the minimum snaps banked, they can bail out at any respawn
   point (checkpoint), probably including the spawn. The map then ends as cleared.
-- **The audition** (the loanshark's first map, slot 11, day 6 morning; `game_design.md` THE DAY >
-  THE OPENING CYCLES): on a minimum clear the loanshark passive-aggressively insults you. The
+- **The audition** (the loanshark's first map, ARGUS; optional in days 6-10, forced at wall 2 if
+  refused; `game_design.md` THE DAY > THE OPENING CYCLES): on a minimum clear the loanshark passive-aggressively insults you. The
   author's draft line, verbatim:
 
   > "Oh..! I see you have the abilities of a... voyuer. No matter, it does fulfill the fine print
@@ -277,7 +287,8 @@ Decided 2026-11-17. The answer for story-only players: stealth gets no auto, eas
 
   The feeling: besting the legalistic man at his own game with minimal effort. It matches the
   game's emotional key, beating a rigged system by stubbornness and creativity.
-- **Wall 2** (day 10, the interest fakeout): if the audition was a minimum clear, he mentions it.
+- **Wall 2** (day 10, the interest fakeout): Debtobot's congratulations scale with how the audition
+  went; on a minimum clear, it gets mentioned.
 - **The jam build:** the stealth game is built standalone first, for the next game jam, as a
   test. *(mine)* That build is a good test of whether the minimum clear feels cheeky rather than
   cheap.

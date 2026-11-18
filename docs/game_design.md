@@ -121,17 +121,29 @@ THE DAY
          Chip owes the client, through the loanshark.
       -  At wall 1 the loanshark appears. He has watched the stream, and as a favour to a
          rising up-and-comer he offers to buy out the debt -- the bigger walls ahead look
-         impossible. The buyout is scripted and does not need a missed wall.
-      -  Cycle 2 (days 6-10): his first favour is the audition, the first stealth map,
-         in slot 11 (day 6, morning), right after he pays the debt -- so the player owes
-         him before being asked. After it, the stealth job joins the hub as a repeatable
-         offer. That leaves the first 10 slots for runs and interviews.
-         (Alternative kept: a bonus slot on day 5 that doesn't count toward the 10.)
-      -  Wall 2 on day 10 is the fakeout: the interest. The rigged system shows itself;
-         the player was set up, not careless. If the audition was a minimum clear, he
-         mentions it (STEALTH). It is a scripted story beat, not a real miss: every player
-         gets it, however much they earned, so it doesn't break THE ONLY WAY TO LOSE IS TO
-         KEEP RESTING.
+         impossible. The buyout is scripted and does not need a missed wall. He asks for
+         nothing yet (author, 2026-11-18): Chip takes it as a gift from heaven, the MC is
+         skeptical, and the wait builds the tension.
+      -  Cycle 2 (days 6-10): partway through, the audition shows up in the mission menu as
+         an optional event, the first stealth map (author, 2026-11-18). The MC calls it
+         fishy. The holodisc with the base plans is handed over at this event, as its
+         briefing. The target is a secret facility, ARGUS.
+           Take it: after the mission the MC realises what they just broke into and wants
+         out; Chip had fun and likes the pay; the MC asks her to trust his gut. At wall 2
+         the player can press him for information.
+           Refuse it: at wall 2 the job is forced on the player, with the interest trap.
+      -  Wall 2 on day 10 is the fakeout: the interest fine print. The rigged system shows
+         itself; the player was set up, not careless. The interest hits either way; taking
+         the audition early is read as passing a test. The servitor congratulates the
+         player, the praise scaled to how well the audition went (a minimum clear gets the
+         sneer, STEALTH), and the MC tells him where his client can shove it. It is a
+         scripted story beat, not a real miss: every player gets it, however much they
+         earned, so it doesn't break THE ONLY WAY TO LOSE IS TO KEEP RESTING.
+      -  After wall 2 the stealth jobs come as special missions to pay down the big debt
+         or defer the principal. The next offer stays open; the servitor snickers that the
+         player should try to earn it the legitimate way, which can't be done, and the job
+         is forced before the next wall. (provisional) How these are spaced over the
+         remaining walls (8 in all) is for playtesting.
     Emotional key: the economy is rigged, and the player beats it through persistence,
     courage, creativity and stubbornness. A miss should feel like the system's fault,
     never the player's (MONEY, MISSING A WALL).
@@ -306,9 +318,9 @@ STEALTH AND OTHER MINIGAMES
   STEALTH
     A real-time sneak on foot, 5-10 minutes a map: steer the narrator through a guarded
     space and take pictures of what is there. Story maps at outline beats 16, 18, 27-28,
-    35, 38, 39, plus the audition, the loanshark's first map (slot 11, day 6 morning:
-    THE DAY, THE OPENING CYCLES). The audition opens the job, a repeatable free-slot
-    offer to photograph fortified positions and sell the dirt. The job pays a lot of
+    35, 38, 39, plus the audition, the loanshark's first map (an optional event in
+    days 6-10, forced at wall 2 if refused: THE DAY, THE OPENING CYCLES). The audition
+    opens the job, a repeatable free-slot offer to photograph fortified positions and sell the dirt. The job pays a lot of
     cash and little or no Hype; story maps pay in flags; snaps beyond the minimum pay
     extra. Minimum clear: a few successful snaps clear a map, and with them the player
     can bail out at any respawn point. This is the answer for story-only players. A
@@ -555,8 +567,9 @@ THE DIALS
 EVENT FLAGS
 -----------
 
-  LOANSHARK           Buys out the debt at wall 1, scripted, and is paid back first in
-                      the audition, then in interest at wall 2 (THE DAY, THE OPENING
+  LOANSHARK           Buys out the debt at wall 1, scripted, asking nothing yet. Paid
+                      back in the audition (optional, forced at wall 2 if refused), then
+                      in interest at wall 2 (THE DAY, THE OPENING
                       CYCLES). Later pressure (the old idea: he hacks your computer,
                       damages your car) follows MISSING A WALL and never softlocks.
 
@@ -775,9 +788,10 @@ OPEN QUESTIONS
 
       Answered: the starting debt is a bank loan; the loanshark acts for a mysterious
       client who pays off the rest of it. At wall 1 he buys out the debt "as a favour to
-      a rising up-and-comer"; the favour is repaid in service with the audition, the
-      first stealth map, in slot 11 (day 6 morning). Wall 2 (day 10) is the scripted
-      interest fakeout. Misses after that follow MISSING A WALL. (THE DAY, THE OPENING
+      a rising up-and-comer" and asks nothing yet; the favour is repaid in service
+      with the audition, the first stealth map, optional in days 6-10 and forced at
+      wall 2 if refused. Wall 2 (day 10) is the scripted interest fakeout.
+      After it, stealth jobs pay down or defer the debt. Misses after that follow MISSING A WALL. (THE DAY, THE OPENING
       CYCLES.)
 
   4.  THE SEX-APPEAL MODEL is now the game's physics and nothing in the fiction remarks
