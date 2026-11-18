@@ -140,10 +140,6 @@ channel.
     `outputs` clear the debt and set the flag the job offers require.
   - This answers `game_design.md` open question 3 (the loanshark softlock): the debt is paid
     in service.
-  - *(Updated 2026-11-17: `game_design.md`, THE DAY > THE OPENING CYCLES now has the loanshark
-    buy out the debt at wall 1 "as a favour to a rising up-and-comer", with this first map as
-    the audition in slot 11, day 6 morning, and the interest fakeout at wall 2, day 10. The
-    collector scene above predates that and needs reconciling with it.)*
   - *(Reconciled 2026-11-17, author: two creditors. The "shady lenders" are the bank that lent
     the startup money; the loanshark acts for a mysterious client who pays off the rest. So the
     job is not debt forgiveness: it is the favour owed for the buyout, the audition. The

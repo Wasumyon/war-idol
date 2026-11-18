@@ -473,7 +473,7 @@ THE METER
     Hype is staying fresh in the headlines. Doing dangerous things is not enough on its own:
     unless they are new, you get no activity.
 
-    SEEING HYPE (decided 2026-11-17, reverses canon 11's "nobody sees Hype")
+    SEEING HYPE (decided 2026-11-17, reverses the earlier rule that nobody sees Hype)
       The player should feel Hype having real effects, so it shows -- but never as an exact
       number.
       -  Analytics: the phone's analytics tab tries to give a Hype %, and the number
@@ -616,7 +616,7 @@ MECHANICS RULES STILL IN FORCE (from canon 11)
 
   Hidden gate, diegetic invitation. The player sees a rough Hype (THE METER, SEEING
   HYPE) but never the gate's threshold; the invitation comes as a phone call.
-  (Changed 2026-11-17: canon 11 said nobody sees Hype.)
+  (Changed 2026-11-17: earlier, nobody saw Hype.)
 
   A locked bonus gate offers a shared fallback, written once, always worth strictly
   less than the full version.
