@@ -67,6 +67,9 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 ## Rules
 - **Every fact lives in one file. The bible wins any conflict**; fix canon or the outline to match.
 - Canon changes as the story is written. Record decisions; don't infer them from old drafts.
+- **The narrative events and the calendar are in flux.** Treat every event, day, wall timing and
+  scene placement as provisional until it is marked locked in `claude/decisions.md` (Project doc).
+  They get locked one at a time; don't build on an unlocked one as if it were final.
 - **All work is built directly in `game/`**, whoever or whatever writes it. `sandbox/` is the old
   prototype project, frozen. It is a separate Godot project, so `game/` cannot load its files:
   copy anything the game needs into `game/`.
