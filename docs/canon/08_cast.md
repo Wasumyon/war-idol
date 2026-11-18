@@ -10,10 +10,17 @@ detail and the supporting cast. The original design doc's cast table is the sour
 
 - **The player character** is nicknamed **Meathead** or **Blockhead** and handles admin
   and security; the streamers handle media. (The player enters his name at New Game, before the Chaac briefing.)
-- **Langley** — says she's poor; **1,807 kills** on blurring fingers. Her father left
-  for Io with the Pioneer Project, calls faded from daily to yearly, and she enlisted
-  for revenge. E-4 pay is too low, so she mercs off-rotation. **Believes her father is
-  alive.**
+- **Langley** — says she's poor; **1,807 kills** on blurring fingers. **From Europa**
+  (2026-11-17): a daughter of early pioneers, always on the fringes, fighting bandits and
+  raiders in the wastes with her family. When the invasion cut off her father (and maybe
+  killed him), she enlisted for revenge. E-4 pay is too low, so she mercs off-rotation.
+  **Believes her father is alive.**
+  - **Her father is the voice from Watcher 6** (added 2026-11-17): the ragged sole
+    survivor of the fallen outpost, Watcher Station 6, whom Chip interviews over the
+    long-range radio (outline Beat 12; prose in `docs/stories/Finding a Connection.txt`).
+    Chip doesn't know who he is. The colony news writes him off as dead; **he lives**.
+    He took the station job only recently, to get away from the grief after his wife,
+    **Langley's mother, died** not long ago. Langley hears of the invasion and fears for him.
 - **Sola O'Freyarovich** — 3rd Separate Light Assault Brigade. Luna-born, Mars-raised
   military brat. Swore with drinking buddies to avenge Io; only one who showed up. Likes
   the routine. On his first kill he felt **"the recoil."**
