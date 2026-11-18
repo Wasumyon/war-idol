@@ -34,7 +34,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `docs/outline.md` | the beats in order |
 | `claude/decisions.md` (Claude Project, not the repo) | settled decisions not yet applied to their home files; "Still open" is the to-do list |
 | `docs/style_guide.md` | how to write: tense, voice, register, engine syntax |
-| `docs/game_design.md` | tracked state: Hype, the dials, flags, ending models |
+| `docs/game_design.md` | the game design doc: overview, target experience, the day, the runner (filming, snaps, slow motion, failure), other minigames in brief, money and debt walls, Hype and the dials, flags, ending models, what the player sees, teaching, saving, scope |
 | `docs/punchlist.md`, `docs/01_intro_punchlist.md` | open errors and considerations |
 | `docs/main_spec.md` | Main, the calendar data model, the draft 40-day placement |
 | `docs/dossier_spec.md` | the in-game files: entry format, unlocks, pre/post-reveal versions, glitched text |
@@ -54,7 +54,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `game/autoload/` | `GameState` (`game_state.gd`), the only autoload |
 | `game/minigames/runner/` | the runner: `runner_segment.tscn` wraps the ported prototype (`run.tscn`/`run.gd` is the run itself, `player_craft.gd` the player's vehicle; R restarts, Enter ends with `{outcome, followers, money}`) |
 | `game/minigames/stealth/` | the stealth minigame (`stealth.tscn` is the segment root) |
-| `game/minigames/tunnel/` | Tunnel Escape, a segment (`tunnel_segment.tscn` is the root; `begin({"start": "intro"|"chamber_0", "ending": "sequence"|"none"})`, emits `finished({outcome: "escaped", deaths})`). Launched from the F3 debug panel (F6, from the hub, chamber 0, no ending); **not in the calendar yet** (its place in the story is undecided) and not yet play-checked in a window. Its tests are `game/tests/tunnel_*`. See `docs/tunnel_port_plan.md` |
+| `game/minigames/tunnel/` | Tunnel Escape, a segment (`tunnel_segment.tscn` is the root; `begin({"start": "intro"|"chamber_0", "ending": "sequence"|"none"})`, emits `finished({outcome: "escaped", deaths})`). Launched from the F3 debug panel (F6, from the hub, chamber 0, no ending); **not in the calendar yet** (its place in the story: after the crew saves Kathay, outline Beat 14, and again at Aysel's later ambush) and not yet play-checked in a window. Its tests are `game/tests/tunnel_*`. See `docs/tunnel_port_plan.md` |
 | `game/demo/` | the browser demo shell (`demo_shell.tscn`: title, controls, segment, result) and `demo_entries.gd`, one entry per demo (tunnel only so far). Exported demos start here, not on Main, through the `demo` feature override in `project.godot`; presets are in `game/export_presets.cfg`. See `docs/demo_spec.md` |
 | `game/assets/` | shared `img/` and `sfx/` (feature-specific art stays in its feature's folder) |
 | `game/tests/` | headless tests, run by `tools/run_tests.ps1` |
@@ -79,3 +79,4 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 ## Working here
 How agents work, who does what, tickets, git and hand-off: **`AGENTS.md`**.
 What is being worked on now: **`STATUS.md`** (this file no longer carries status).
+Which design doc to load: core systems → `docs/game_design.md`; stealth → `docs/stealth_spec.md`; tunnel → `docs/tunnel/design.md` and `docs/tunnel_port_plan.md`; Chaac run → `docs/chaac_run_spec.md`. Load only the file the task needs.

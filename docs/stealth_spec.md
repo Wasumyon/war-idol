@@ -36,10 +36,15 @@ map size.
 | Bought items | Run improvements and consumables come from the shop |
 | Kathay | Remote hacks by default; a body you escort at beats 16 and 18; sets and disarms traps |
 | View | 3D, isometric by default, with a top-down camera on a debug toggle to compare |
+| Minimum clear | A few successful snaps clear a map; with them the player can bail out at any respawn point (§12) |
 
 ## 3. Moving and being seen
 
 - **Move:** WASD. Hold a key to crouch-walk: slower, smaller footstep noise.
+- **Sprint and stamina** (author, 2026-11-17: you can't run all the time). Hold Shift to run:
+  faster, louder footsteps, and it drains a stamina bar. When the bar is empty he drops to a walk
+  until it refills. *(proposed)* It refills while walking, faster while crouched or still. A rest
+  buff can give extra stamina for one map (`game_design.md`, REST).
 - **Sight:** every guard has a vision cone drawn on the floor. Standing in it fills that guard's
   detection meter; it fills faster the closer you are and drains when you leave. Walls block it.
   Low cover blocks it only while crouched.
@@ -135,6 +140,19 @@ channel.
     `outputs` clear the debt and set the flag the job offers require.
   - This answers `game_design.md` open question 3 (the loanshark softlock): the debt is paid
     in service.
+  - *(Updated 2026-11-17: `game_design.md`, THE DAY > THE OPENING CYCLES now has the loanshark
+    buy out the debt at wall 1 "as a favour to a rising up-and-comer", with this first map as
+    the audition in slot 11, day 6 morning, and the interest fakeout at wall 2, day 10. The
+    collector scene above predates that and needs reconciling with it.)*
+  - *(Reconciled 2026-11-17, author: two creditors. The "shady lenders" are the bank that lent
+    the startup money; the loanshark acts for a mysterious client who pays off the rest. So the
+    job is not debt forgiveness: it is the favour owed for the buyout, the audition. The
+    compound-interest clause belongs to wall 2's interest fakeout.)*
+  - The calm automaton collector is the loanshark's **servitor** (author, 2026-11-17). The
+    loanshark doesn't like to dirty his hands unless he must, or out of respect or intrigue, so
+    the collector handles routine business and the loanshark only appears in person when it
+    matters (the buyout, the minimum-clear sneer).
+    [OPEN] Whether the holodisc scene plays at wall 1 (the audition offer) or wall 2.
 - *(mine)* After that the buyer is most naturally the info dealer — Ottenok, then Kathay — or the
   loanshark's master again. Not decided.
 
@@ -222,9 +240,11 @@ with patrol paths, subjects, cover, concealment, checkpoints, exit, barrels, tra
 - **Aysel's ability** and whether she is a body on the heist map.
 - **The recruiter's standoff** (Beat 38) is a VN scene inside the map or after it.
 - **The cost of getting out** (Beat 39): whether the escape reuses the heist map alarmed.
-- **Numbers:** cone sizes, meter speeds, shots per subject, the distance multiplier, crisis
+- **Numbers:** cone sizes, meter speeds, stamina (size, drain, refill), shots per subject, the distance multiplier, crisis
   steps, uses per ability. Tuned on the first map, then written here.
 - **Controller and touch** are out of scope.
+- **Minimum clear** (§12): how many snaps is "a few"; whether the spawn counts as a bail-out
+  point.
 
 ## 11. Build steps (commit before each)
 
@@ -239,3 +259,29 @@ with patrol paths, subjects, cover, concealment, checkpoints, exit, barrels, tra
 8. Play both camera presets and settle §8; play the three overlay settings and settle §3. Tune
    and record the numbers.
 9. Story maps, one per beat, each after its beat is approved in the outline.
+
+## 12. Minimum clear
+
+Decided 2026-11-17. The answer for story-only players: stealth gets no auto, easy mode or skip
+(the runner's auto run, `game_design.md` MONEY > AUTO RUN); it gets a minimum clear instead.
+
+- **A few successful snaps clear a map.** Everything beyond that is extra: more pay, more flags.
+- **Bail-out:** once the player has the minimum snaps banked, they can bail out at any respawn
+  point (checkpoint), probably including the spawn. The map then ends as cleared.
+- **The audition** (the loanshark's first map, slot 11, day 6 morning; `game_design.md` THE DAY >
+  THE OPENING CYCLES): on a minimum clear the loanshark passive-aggressively insults you. The
+  author's draft line, verbatim:
+
+  > "Oh..! I see you have the abilities of a... voyuer. No matter, it does fulfill the fine print
+  > of my client... by a close reading."
+
+  The feeling: besting the legalistic man at his own game with minimal effort. It matches the
+  game's emotional key, beating a rigged system by stubbornness and creativity.
+- **Wall 2** (day 10, the interest fakeout): if the audition was a minimum clear, he mentions it.
+- **The jam build:** the stealth game is built standalone first, for the next game jam, as a
+  test. *(mine)* That build is a good test of whether the minimum clear feels cheeky rather than
+  cheap.
+- *(proposed)* `result` (§9) carries a `minimum_clear` flag, so the wall 2 scene can check it.
+- *(mine)* In the job the quota already plays this role; whether bailing with the minimum but
+  under quota is simply a `short` outcome is not decided.
+- **Open:** how many snaps is "a few"; whether the spawn counts as a bail-out point (§10).

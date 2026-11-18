@@ -8,7 +8,8 @@ The design was written for another universe and is being re-themed to War Idols.
 
 ## 0. War Idols re-theme (settled 2026-10-26)
 
-- **Story slot:** right after Ottenok's ambush where the crew saves Kathay (outline Beat 14). The
+- **Story slots** (two uses, author 2026-11-17): Aysel's later ambush, and earlier, right after
+  Ottenok's ambush where the crew saves Kathay (outline Beat 14). The first use is described here: the
   damaged vehicle is stashed in an abandoned deep-bore tunnel and they go on foot. The jam build
   stands alone; judges need no lore.
 - **Player:** the MC, the one-legged veteran. The missing leg is why there's no jumping.
