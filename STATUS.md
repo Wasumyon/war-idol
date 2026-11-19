@@ -15,7 +15,7 @@ Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 20
 - Day 1 opening run: build order in `docs/chaac_run_spec.md` §10.
 
 ## Waiting on Wesley
-- Review Aysel's proposed parade costume and jacket-back embroidery in source_art/aysel-parade-character-sheet.png. The sheet includes a turnaround and three expressions.
+- Review the cel-shaded parade costume turnaround for Aysel in `source_art/aysel-parade-model-sheet.png`.
 - Try the tunnel demo in a browser and compare it with the live itch.io page: run `powershell -File tools/export_demo.ps1 tunnel`, then `python -m http.server 8000 --directory build/demo/tunnel/web` (a web build will not run by double-clicking `index.html`), open http://localhost:8000, play to the end. Upload it yourself when happy (steps in the session report; itch.io: new page, HTML5, upload the zip from `build/demo/tunnel/`).
 - The feedback link for the demos' result screen: put the URL in `FEEDBACK_URL` in `game/demo/demo_shell.gd` (or give it to Claude).
 - Play the tunnel from F3 (or F6) in a window and sign off on the look (tunnel port step 8).
