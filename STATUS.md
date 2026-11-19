@@ -15,6 +15,7 @@ Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 20
 - Day 1 opening run: build order in `docs/chaac_run_spec.md` §10.
 
 ## Waiting on Wesley
+- Review the three-view buggy concept sheet in `source_art/buggy-concept-sheet.png`.
 - Review the porcelain prop finish and two alternate colors in source_art/porcelain-prop-study.svg.
 - Review the cel-shaded parade costume turnaround for Aysel in `source_art/aysel-parade-model-sheet.png`.
 - Try the tunnel demo in a browser and compare it with the live itch.io page: run `powershell -File tools/export_demo.ps1 tunnel`, then `python -m http.server 8000 --directory build/demo/tunnel/web` (a web build will not run by double-clicking `index.html`), open http://localhost:8000, play to the end. Upload it yourself when happy (steps in the session report; itch.io: new page, HTML5, upload the zip from `build/demo/tunnel/`).
