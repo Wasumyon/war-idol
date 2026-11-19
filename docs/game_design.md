@@ -40,15 +40,22 @@ OVERVIEW
   veteran, debt and predatory lending, propaganda, sexualised streaming culture, stalkers,
   a fan who enlists after watching Chip's videos.
   [OPEN] Audience and the age rating aimed at.
-  [OPEN] Playthrough length in hours, and the rough split between VN, runner and stealth.
+  Aim for a punchy story the player can live through. Reading takes most of the play
+  time. As a pacing check, can someone comfortably clear at least two debt walls in an
+  evening of play? [OPEN] Total hours and the split between runner and stealth.
   [OPEN] Release platform; controller and touch (out of scope for stealth, open elsewhere).
   [OPEN] The content-warning list and where the player sees it.
 
 
-TARGET EXPERIENCE                                     (proposed -- not yet settled)
+TARGET EXPERIENCE
 -----------------
 
-  Agreed in spirit only (decisions log 2026-11-17, an [idea]). The eight kinds of fun from
+  The intro invites the player into a magnificent, harsh caper. Pay that off by giving
+  them people on Io they want to know, trouble they want to see coming, and a hand in
+  how the crew gets through it. An interview can do this quietly. In Finding a
+  Connection, the payoff is the connection two people make over the intercom.
+
+  (proposed) A way to assess individual mechanics. The eight kinds of fun from
   MDA (Hunicke, LeBlanc, Zubek, 2004): Sensation, Fantasy, Narrative, Challenge, Fellowship,
   Discovery, Expression, Submission. Pick the feelings first, then judge every mechanic by
   which one it serves.
@@ -67,15 +74,17 @@ TARGET EXPERIENCE                                     (proposed -- not yet settl
   only through grazing. Snap shots and the dossier -> Discovery. Chat -> Fellowship.
 
   Rules of thumb:
-    -  Chat reacts to the footage the player actually got, not generic lines.
-    -  Signal hidden content: gallery silhouettes, Chip's "chat would've lost it" hints, a
-       rare-shot tally after a run.
+    -  Let people who saw the feed react to what the player actually did. The celebration
+       after the first run and the big interview about the fall of Watcher 6 give them
+       something specific to remember.
+    -  A character can hint at something the crew missed. The line should leave the
+       player curious about Io and happy to keep going. See WHAT THE PLAYER SEES.
     -  Effects loud, lanes and hitboxes readable. Juice must not sneak difficulty back in.
     -  Seed the dossier's glitches early, so the "AR lies" lane pick after the EMP is earned.
 
   Playtest questions: which moment felt tense, which felt like you, when did you want to
   know what happens next. A beat whose answers miss its target needs work.
-  [OPEN] Settle this section; then tag the outline beats with their targets.
+  [OPEN] Whether to tag outline beats with the proposed targets.
   [OPEN] Chip's concert scene and the fan kid who enlists: not in canon or the outline yet.
 
 
@@ -100,8 +109,24 @@ THE DAY
 
   Checkpoints are a story gate on days 5, 10, ... and a debt wall (MONEY); main_spec also
   assumes a save to return to. Only the gate is built.
-  [OPEN] Where interviews sit: free-slot offers, part of runs, or both (Watcher 6, outline
-         Beat 12, is a story beat).
+  INTERVIEWS
+    The usual rhythm to aim for is one game and one interview. The player chooses whom
+    to interview. Most interviews are modular, so they can be read in different orders.
+    The interviews that teach the concept are scripted. Watcher 6 already has a place
+    in the story (outline Beat 12).
+
+    Some interviews happen face to face. Early candidates are Tank, Langley and Keno,
+    whom the player has already met. Later subjects include Kathay, Aysel, the recruiter
+    and Ty Ge. Voices can reach the crew from outside the room, too. Finding a Connection
+    introduces the intercom interview, and Ottonok can be interviewed by radio.
+
+    Aim to give the player a taste of Albrecht in the first quarter, before they get
+    to know him in the story. [OPEN] His interview could be a player choice or a fixed
+    encounter triggered by the story.
+
+    (proposed) If playtests leave players wanting more time for games, try a third
+    slot for a second game alongside the interview.
+
   (proposed) Interviews are VN scenes in design and code: dialogue and choices that set
   flags and move Hype or followers, built with the VN engine, not as a minigame. The hub
   lists them as offers like any other.
@@ -111,10 +136,9 @@ THE DAY
     One new system per 5-day cycle, so the player is at home in the runner before
     anything else arrives.
       -  Cycle 1 (days 1-5): the runner, about 6 runs counting Day 1's Chaac run. Rest,
-         repair and the hub's offer list come in here. The first interview (finding a
-         connection) lands on day 2, afternoon, after three runs, as the first non-runner
-         choice (author, 2026-11-17). It is a forced encounter, not a hub offer: it carries
-         story canon and introduces the interview mechanic. Wall 1 on day 5 is easy to clear.
+         repair and the hub's offer list come in here. Finding a Connection lands on
+         day 2, afternoon, after three runs (author, 2026-11-17). This scripted encounter
+         introduces the interview mechanic. Wall 1 on day 5 is easy to clear.
       -  Two creditors (author, 2026-11-17). The starting debt is the bank loan that set up
          the operation; the walls are its payments. The loanshark acts for a mysterious
          client, and it is the client who pays off the rest of the bank debt. From then on
@@ -523,6 +547,12 @@ THE DIALS
   1. DRAMA <> SYMPATHY                          [signed axis -- THE DECIDER]
      Provoking, angering, creating problems for an interviewee or any other NPC.
 
+     Sympathy comes through in what the player does for someone. The narrator gives
+     Ty Ge coins to get him to go away either way. The choice is whether to discipline
+     the drunk soldiers. When Ty Ge helps later, both players should be surprised by
+     what he can do and glimpse how formidable he once was. If the narrator stepped in,
+     Ty Ge's gratitude shows. If he stood by, accepting help from this man can sting.
+
        High Drama    :  [OPEN -- access not yet named]
        High Sympathy :  [OPEN -- access not yet named]
 
@@ -720,7 +750,8 @@ WHAT THE PLAYER SEES
   [OPEN] Which run numbers stay on screen mid-run (the build shows followers, money and
          shields as plain labels), and how much chat the player reads while dodging.
   [OPEN] Whether there is a gallery, where it lives and what it holds.
-  [OPEN] How missed story content is hinted, given that nothing gated is load-bearing.
+  [OPEN] Which missed moments deserve a hint. In playtests, check whether a remark
+         sparks curiosity or makes the player feel obliged to reload.
 
 
 FIRST HOUR AND TEACHING

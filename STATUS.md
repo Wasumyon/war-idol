@@ -1,6 +1,6 @@
 # War Idol — status
 
-Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 2026-11-17.
+Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 2026-11-18.
 
 ## Focus
 - **The runner and the stealth minigame.** Both will be playtested through upcoming game jams.
@@ -23,6 +23,7 @@ Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 20
 - The open story items in the decisions log ("Still open").
 
 ## Threads
+- **Main design review (2026-11-18).** Wesley's direction on pacing and interviews is in `docs/game_design.md`. Revisit whether Albrecht's interview is optional or fixed once his early appearance is written. Try the two-slot rhythm in playtests before considering a third.
 - **Restructure** (done 2026-11-16; the plan is archived). **Old names are retired**: `car/`, `vn/` as the project folder, `MainGame`, the `Game.` autoload, `maingame_spec.md`, `vn_game_design.md`, `campaign_phone.gd`, `HANDOVER.md`, and in the runner `slice.*`, `runner.gd`, `runner_placeholder.*`. `tools/stale_names.ps1` (run by the tests) fails if one comes back in `game/` or the live docs.
 - **itch.io demos** of tunnel, runner and stealth, exported from `game/`: `docs/demo_spec.md` (approved 2026-11-17). Shell + tunnel demo built and checked in a browser up to chamber 0; nothing uploaded. Runner and stealth demos: one entry in `game/demo/demo_entries.gd` and one preset each.
 - **Tunnel Escape:** finished as a jam piece. Being ported into `game/minigames/tunnel/` by `docs/tunnel_port_plan.md` (steps 1–6 committed 2026-11-16/17: it runs as a segment, `tunnel_segment.tscn`, and all twelve tunnel tests run through it; step 7 added a debug-panel launch; not yet played in a window). The three open points are answered and settled in the plan.
