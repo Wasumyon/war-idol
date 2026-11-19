@@ -633,7 +633,10 @@ MECHANICS RULES STILL IN FORCE (from canon 11)
   the phone, the wallet. Hype's payouts are visible; the meter only roughly, through
   in-world readouts that never give an exact number (SEEING HYPE). The deciding axis
   has no instrument BY DESIGN: sympathy is unmeasurable because it is real. The debt clock
-  obeys this: it lives on the phone and in the hub (MONEY).
+  obeys this: it lives on the phone and in the hub (MONEY). The AR visor is an instrument
+  for what it senses -- the wearer's HP and vitals, targets, location -- so those may show
+  on its layer (THE AR VISOR LAYER, under WHAT THE PLAYER SEES). Money and followers
+  still never do. (Added 2026-11-18.)
 
   Signed axes move +-1 per choice, uniformly. Uniform weights are what keep the marker
   honest, and a consistent marker on every axis choice is how the player infers a tally.
@@ -741,6 +744,37 @@ WHAT THE PLAYER SEES
   scripted "money moments" per run.
   In stealth: the cones, circles and meters are the AR visor's overlay, which is what
   allows them (docs/stealth_spec.md, section 3).
+
+  THE AR VISOR LAYER (2026-11-18; look and layout proposed)
+  Almost everyone on Io wears an AR visor nearly all the time. Some keep it on in their
+  sleep, everyone wears it outside, even inside the dome: just in case, and because it
+  does everything a phone does (apps, swipes, games). So the player looks through the
+  visor in almost every scene, VN segments included. Name entry is the visor booting.
+    -  Shows: HP and vitals on missions; target tags and threat markers; location. Only
+       what the visor senses. Money, followers and the debt clock stay on the phone.
+    -  Look: dark military sci-fi, close to Alien, not neon cyberpunk. A helmet-cam
+       frame: corner brackets, LIVE/REC, timecode, callsign. One main colour (phosphor
+       green or amber) on near-black, plus one alert colour (red or orange) kept for
+       damage and warnings. Blocky terminal type for labels, a more readable face for
+       dialogue.
+    -  Layout: small readouts in the corners, a few icon buttons, the middle of the
+       screen kept clear. Dialogue sits in a box beside the speaker's portrait; each
+       speaker can have their own text colour. In VN scenes the readouts stay small
+       and out of the way.
+    -  Damage reads as analog signal breakup: horizontal tearing, rolling, static,
+       ghosting, dropped frames. It gets worse with damage, stress or interference, so
+       the layer tells the player something instead of decorating. Portraits can break
+       up on a weak signal.
+    -  The twist rides on it: the visor that is always on is the thing that lies. After
+       Aysel's EMP the same breakup is how the player learns the AR text can't be
+       trusted (the lane-pick return, decisions 2026-10-29).
+    -  Never cover the runner's lanes or the spots the player aims at.
+    -  (idea) An Alien-style motion tracker ping as the runner's danger readout,
+       louder as hazards come down the rails.
+    -  Reference: Neo Junk City (source_art/ui_base/neo_junk_city_hud.png), for the
+       layout and the glitch tied to game state only, not its colours.
+  [OPEN] Is the phone a separate device, or an app on the visor?
+
   The dossier: the in-game files, with tabs, numbered entries, a picture and a found counter
   per tab; pre- and post-reveal versions and glitched text. Opened from the hub and the
   pause menu; never spends a slot. Detail: docs/dossier_spec.md.
