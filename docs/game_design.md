@@ -769,6 +769,10 @@ WHAT THE PLAYER SEES
        Aysel's EMP the same breakup is how the player learns the AR text can't be
        trusted (the lane-pick return, decisions 2026-10-29).
     -  Never cover the runner's lanes or the spots the player aims at.
+    -  (idea) Choices hang off the dialogue box like branches, joined to it by thin
+       wire lines, each option in its own small box; the hovered one gets a target-lock
+       bracket, as if the visor were locking onto it. Our boxes may sit differently, so
+       borrow the idea, not the layout. Reference: neo_junk_city_choices.png.
     -  (idea) An Alien-style motion tracker ping as the runner's danger readout,
        louder as hazards come down the rails.
     -  Reference: Neo Junk City (source_art/ui_base/neo_junk_city_hud.png), for the
