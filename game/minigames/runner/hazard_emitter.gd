@@ -10,6 +10,7 @@ class_name HazardEmitter
 @export var projectile_speed: float = 52.0
 @export var max_active_pellets: int = 14   # global cap; firing stops while at cap
 
+var rng: RandomNumberGenerator
 var _cooldown := 0.0
 var _player: Node3D
 
@@ -19,7 +20,7 @@ func _ready() -> void:
 	add_to_group("damaging")
 	_build()
 	_player = get_tree().get_first_node_in_group("player")
-	_cooldown = randf_range(0.3, fire_interval)
+	_cooldown = rng.randf_range(0.3, fire_interval) if rng != null else randf_range(0.3, fire_interval)
 
 
 func _build() -> void:

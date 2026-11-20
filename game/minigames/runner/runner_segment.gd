@@ -1,6 +1,6 @@
 extends Node
 ## The runner as a calendar segment. Wraps run.tscn behind the segment contract:
-## begin({route, zone}) before entering the tree, then finished({outcome, followers, money}).
+## begin({route, zone, seed?}) before entering the tree, then finished({outcome, followers, money}).
 ## Never changes scene, advances the day or writes the save; Main applies results.
 
 signal finished(result: Dictionary)
@@ -50,6 +50,13 @@ func restart() -> void:
 
 func _start_run() -> void:
 	_run = RUN.instantiate()
+	_run.route_def = RouteDef.load_zone(str(_args.get("zone", "")))
+	var generator := RandomNumberGenerator.new()
+	if _args.has("seed"):
+		generator.seed = int(_args.seed)
+	else:
+		generator.randomize()
+	_run.rng = generator
 	add_child(_run)
 
 

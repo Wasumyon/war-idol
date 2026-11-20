@@ -18,10 +18,6 @@ extends Node3D
 ##   then trickle in at a rate that scales with your follower count.
 ##   Reticle colour = subject tier; the tag above = proximity multiplier.
 
-const DURATION := 90.0
-const START_SHIELDS := 3
-const FOLLOW_PER_SEC := 10.0
-const DONATION_RATE := 0.004   # money/sec per follower
 const IFRAMES := 0.8
 
 const NEAR_DIST := 12.0
@@ -42,9 +38,12 @@ const VIG_BASE := 0.22
 const VIG_LOCK := 0.60
 const VIG_RATE := 3.5
 
+var route_def: RouteDef
+var rng: RandomNumberGenerator
+
 var followers := 0.0
 var money := 0.0
-var shields := START_SHIELDS
+var shields := 0
 var footage_by_type := {}
 var run_active := true
 var _iframe := 0.0
@@ -69,11 +68,34 @@ var _lmb_prev := false
 
 
 func _ready() -> void:
+	if route_def == null:
+		route_def = RouteDef.load_zone("supply_road")
+	if rng == null:
+		rng = RandomNumberGenerator.new()
+		rng.randomize()
+	shields = route_def.start_shields
+	_apply_look()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	run_timer.wait_time = DURATION
+	run_timer.wait_time = route_def.duration
 	run_timer.timeout.connect(_end_run)
 	run_timer.start()
 	_update_hud(1.0)
+
+
+func _apply_look() -> void:
+	# Scene materials are shared resources; each run owns its changes.
+	var sky: MeshInstance3D = $Backdrop/Sky
+	sky.material_override = sky.material_override.duplicate()
+	(sky.material_override as StandardMaterial3D).albedo_texture = route_def.sky_texture
+	var far: MeshInstance3D = $Backdrop/Far
+	far.material_override = far.material_override.duplicate()
+	(far.material_override as StandardMaterial3D).albedo_texture = route_def.far_texture
+	var ground: MeshInstance3D = $Ground
+	ground.material_override = ground.material_override.duplicate()
+	var material := ground.material_override as ShaderMaterial
+	material.set_shader_parameter("flat_dark", route_def.flat_dark)
+	material.set_shader_parameter("flat_light", route_def.flat_light)
+	material.set_shader_parameter("track_color", route_def.track_color)
 
 
 func _physics_process(delta: float) -> void:
@@ -102,10 +124,10 @@ func _physics_process(delta: float) -> void:
 	if target != null:
 		tier = int(target.tier)
 		mult = _proximity_mult(target)
-		followers += FOLLOW_PER_SEC * float(target.value) * mult * delta
+		followers += route_def.follow_per_sec * float(target.value) * mult * delta
 		footage_by_type[target.type_name] = float(footage_by_type.get(target.type_name, 0.0)) + 1.0
 		# Donations are stochastic but driven by follower count.
-		money += followers * DONATION_RATE * delta * randf_range(0.5, 1.5)
+		money += followers * route_def.donation_rate * delta * rng.randf_range(0.5, 1.5)
 		footage_by_type["_donations"] = float(footage_by_type.get("_donations", 0.0)) + 1.0
 
 	var width: float = RETICLE_W_ZOOM if _zoom else RETICLE_W

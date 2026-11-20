@@ -8,24 +8,30 @@ class_name BattlePocket
 @export var fighter_hp := 5
 @export var approach_chance := 0.5
 
+var rng: RandomNumberGenerator
+
 
 func _ready() -> void:
 	add_to_group("pocket")
-	var spread := randf_range(min_spread, max_spread)
+	var spread := rng.randf_range(min_spread, max_spread) if rng != null else randf_range(min_spread, max_spread)
 
 	var a := Fighter.new()
+	a.rng = rng
 	a.team = 0
 	a.team_color = Color(0.3, 0.85, 1.0)
 	a.hp = fighter_hp
-	a.behavior = Fighter.Behavior.APPROACH if randf() < approach_chance else Fighter.Behavior.HOLD
+	var a_roll := rng.randf() if rng != null else randf()
+	a.behavior = Fighter.Behavior.APPROACH if a_roll < approach_chance else Fighter.Behavior.HOLD
 	add_child(a)
 	a.position = Vector3(-spread * 0.5, 2.0, 0)
 
 	var b := Fighter.new()
+	b.rng = rng
 	b.team = 1
 	b.team_color = Color(1.0, 0.5, 0.2)
 	b.hp = fighter_hp
-	b.behavior = Fighter.Behavior.APPROACH if randf() < approach_chance else Fighter.Behavior.HOLD
+	var b_roll := rng.randf() if rng != null else randf()
+	b.behavior = Fighter.Behavior.APPROACH if b_roll < approach_chance else Fighter.Behavior.HOLD
 	add_child(b)
 	b.position = Vector3(spread * 0.5, 2.0, 0)
 

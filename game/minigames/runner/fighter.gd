@@ -20,6 +20,7 @@ enum Behavior { HOLD, APPROACH }
 @export var approach_speed := 4.0
 @export var stop_distance := 7.0
 
+var rng: RandomNumberGenerator
 var target: Fighter
 var tier := 2
 var _cool := 0.0
@@ -28,7 +29,7 @@ var _cool := 0.0
 func _ready() -> void:
 	add_to_group("interest")
 	_build()
-	_cool = randf_range(0.1, fire_interval)
+	_cool = rng.randf_range(0.1, fire_interval) if rng != null else randf_range(0.1, fire_interval)
 
 
 func _build() -> void:

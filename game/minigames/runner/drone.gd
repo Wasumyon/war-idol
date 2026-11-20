@@ -37,6 +37,7 @@ const MODEL_SCALE := 0.6
 @export var beam_width: float = 8.0
 @export var tell_time: float = 0.6  # red-cross tell before a pellet burst
 
+var rng: RandomNumberGenerator
 var _player: Node3D
 var _cool := 0.0
 var _burst_left := 0
@@ -70,8 +71,8 @@ func _ready() -> void:
 		add_to_group("cross_drone")
 	_build()
 	_player = get_tree().get_first_node_in_group("player")
-	_cool = randf_range(0.5, fire_interval)
-	_phase = randf() * TAU
+	_cool = rng.randf_range(0.5, fire_interval) if rng != null else randf_range(0.5, fire_interval)
+	_phase = (rng.randf() if rng != null else randf()) * TAU
 
 
 func _build() -> void:

@@ -27,7 +27,7 @@ foreach ($t in $tests) {
 	# Tunnel tests ran under --fixed-fps 60 in the jam project: its tweens run on frame time
 	# and its players on physics ticks, so their timing checks need a fixed frame rate.
 	$godotArgs = @("--headless", "--path", $project, "res://tests/$($t.Name)")
-	if ($t.BaseName -like "tunnel_*") { $godotArgs = @("--fixed-fps", "60") + $godotArgs }
+	if ($t.BaseName -like "tunnel_*" -or $t.BaseName -like "runner_*") { $godotArgs = @("--fixed-fps", "60") + $godotArgs }
 	$p = Start-Process -FilePath $Godot -ArgumentList $godotArgs `
 		-RedirectStandardOutput $out -RedirectStandardError $err -PassThru -NoNewWindow
 	$null = $p.Handle

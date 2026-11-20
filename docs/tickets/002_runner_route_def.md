@@ -1,6 +1,6 @@
 # Ticket 002 — runner zone files and seeded randomness
 
-**For:** GPT (Sol)   **Written by:** Claude, 2026-11-19   **Status:** open
+**For:** GPT (Sol)   **Written by:** Claude, 2026-11-19   **Status:** built; 20 tests, 0 failed; awaiting Claude review and Wesley playtest
 
 ## Goal
 The runner reads its tuning and backdrop from one data file per zone, chosen by the calendar's
