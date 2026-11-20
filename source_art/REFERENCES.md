@@ -11,6 +11,9 @@ When a sheet changes, update its entry here; never copy images to make a referen
 House style for character sheets: clean anime production sheet, cel shading, flat light-grey
 background, labelled views (front / 3/4 / side / back), expression row, detail callouts, palette swatches.
 
+Sizes (the game screen is 960×540): character sheets **3:2 landscape** (1536×1024);
+backgrounds, CGs and mission maps **16:9 landscape**; emblems **square 1:1**.
+
 ---
 
 ## Characters

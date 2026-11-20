@@ -24,8 +24,10 @@ Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 20
 - A yes or no on the outline's proposed beats and punchlist B10–B14.
 - Dossier spec §9 story points; stealth spec §10 points.
 - The open story items in the decisions log ("Still open").
+- Log in the decisions log: the new Tank sheet (`source_art/characters/tank-character-sheet.webp`) replaces canon §10's look (two mechanical gauntlets, flat round pauldrons, no visible prosthetic leg); then canon §10 gets updated. Open: do her goggles still follow the "clean eyes, never AR" rule?
 
 ## Threads
+- **Image generation (2026-11-19).** `source_art/REFERENCES.md` lists the sheets that count; the CLAUDE.md rule and the `war-idol-image-gen` skill (`.claude/skills/`) use it. Tested once (`source_art/characters/nemean-insignia-patch-test.png`).
 - **Main design review (2026-11-18).** Wesley's direction on pacing and interviews is in `docs/game_design.md`. Revisit whether Albrecht's interview is optional or fixed once his early appearance is written. Try the two-slot rhythm in playtests before considering a third.
 - **Restructure** (done 2026-11-16; the plan is archived). **Old names are retired**: `car/`, `vn/` as the project folder, `MainGame`, the `Game.` autoload, `maingame_spec.md`, `vn_game_design.md`, `campaign_phone.gd`, `HANDOVER.md`, and in the runner `slice.*`, `runner.gd`, `runner_placeholder.*`. `tools/stale_names.ps1` (run by the tests) fails if one comes back in `game/` or the live docs.
 - **itch.io demos** of tunnel, runner and stealth, exported from `game/`: `docs/demo_spec.md` (approved 2026-11-17). Shell + tunnel demo built and checked in a browser up to chamber 0; nothing uploaded. Runner and stealth demos: one entry in `game/demo/demo_entries.gd` and one preset each.

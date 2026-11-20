@@ -44,7 +44,7 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `docs/tickets/` | jobs Claude hands to the builders, one file each (`TEMPLATE.md`) |
 | `docs/story_inbox.md` | story ideas noted mid-build, waiting to be sorted |
 | `docs/` | every design doc: bible, canon, outline, specs, punchlists, `game_design.md`, the design-doc `.docx`, `stories/`, `boundarypush/` |
-| `source_art/` | unshipped art and prompts (characters, backgrounds, enemy models, concept art, UI base, raw sources, review thumbnails, source music). Not part of any Godot project |
+| `source_art/` | unshipped art and prompts (characters, backgrounds, enemy models, concept art, UI base, raw sources, review thumbnails, source music). Not part of any Godot project. `source_art/REFERENCES.md` says which sheets count for image generation |
 | `docs/tunnel_port_plan.md`, `docs/tunnel/` | the tunnel port: plan, steps and inventory; the jam project's own design docs |
 | `tools/` | scripts: `run_tests.ps1`, `stale_names.ps1` (fails the tests if a retired name comes back), `export_demo.ps1 <name>` (builds a browser demo zip into `build/demo/<name>/`), `commission.ps1`, `make_plain.ps1`, `make_flatline.ps1`, `stale_dossiers.ps1`; `tools/tunnel/` holds the jam project's generators, archived as they were (they do not run from there) |
 | `game/story/` | the VN: player `vn.tscn`/`vn.gd` (+ `inline_marks.gd`, `script_effect.gd`), `scenes/NN_*.txt` (the written scenes, plain text), `scenes/placeholder/` (stand-ins for unwritten calendar days), and Day 1's `opener/` and `first_shot/` |
@@ -65,6 +65,8 @@ Godot **4.7.x**, GDScript, Forward Plus, 960×540. **The game is the root `game/
 | `_archive/` | superseded docs — do not use as reference |
 
 ## Rules
+- **Before generating any image**, look the subject up in `source_art/REFERENCES.md`: attach its
+  listed sheets as reference images and paste its Prompt and Never lines into the prompt.
 - **Every fact lives in one file. The bible wins any conflict**; fix canon or the outline to match.
 - Canon changes as the story is written. Record decisions; don't infer them from old drafts.
 - **The narrative events and the calendar are in flux.** Treat every event, day, wall timing and
