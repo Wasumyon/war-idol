@@ -42,3 +42,4 @@ Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 20
 
 ## Character art awaiting Wesley's review
 - Phoroneus's character sheet is ready in source_art/phoroneus-character-sheet.png. Wesley can review the cape and service coat for use in the game.
+- Three cloak insignia treatments are ready in source_art/phoroneus-cloak-insignia-study.png. Waiting for Wesley to choose a treatment before the turnaround and pose sheets.
