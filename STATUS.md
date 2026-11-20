@@ -39,3 +39,6 @@ Updated at the end of every session (see `AGENTS.md`, Hand-off). Last update: 20
   `@ file` in any scene yet. Next: settle its §9 story points, then write entries and file them in scenes.
 - Stealth minigame: specced in `docs/stealth_spec.md` (2026-11-15); build steps 1–3 are in (map, guards and detection, noise and concealment); its §10 points are open.
 - Update `GameState` stats to match `docs/game_design.md` (the dials), and move `lane_x()` out of it.
+
+## Character art awaiting Wesley's review
+- Phoroneus's character sheet is ready in source_art/phoroneus-character-sheet.png. Wesley can review the cape and service coat for use in the game.
