@@ -36,7 +36,7 @@ backgrounds, CGs and mission maps **16:9 landscape**; emblems **square 1:1**.
 - **Never:** the old green beret, black techwear and red hair (`aysel-techwear-*`, the older lineup); combat boots; clear plastic wedges; anything that reads underage.
 - **Save to:** `characters/`
 
-### Kathay — conspiracy broadcaster
+### Kathay — conspiracy broadcaster (working design, not final)
 - **Attach:** `characters/kathay_slate_blue_character_sheet.png`
 - **Prompt:** A small, bombastic young woman with messy slate-blue hair and an ahoge, amber eyes and a fanged grin; an oversized mustard-yellow jacket with spikes down the back over a black crop top; baggy plum harem trousers; chunky cream lace-up boots.
 - **Never:** the old green hair from the four-streamer lineup; mauve hair (a rejected study).
@@ -74,7 +74,7 @@ backgrounds, CGs and mission maps **16:9 landscape**; emblems **square 1:1**.
 ## Vehicles and machines
 
 ### Cheirosiphon ("Cheiro") — the army's armoured vehicle
-- **Attach:** `mission_map/tank_concept_ref.png`, `enemy_models/Tank.webp`
+- **Attach:** `enemy_models/Tank.webp` (a design in `mission_map/` is still being finalized; not a reference yet)
 - **Prompt:** An angular, low wedge-shaped armoured hull with two long forward prongs and short fins on top; flat faceted plates; crew of four.
 - **Never:** a modern Earth tank — no treads, no round turret with a long barrel. On the page it is never called a tank.
 - **Save to:** `enemy_models/`
@@ -94,7 +94,7 @@ backgrounds, CGs and mission maps **16:9 landscape**; emblems **square 1:1**.
 ## Places
 
 ### Io landscape
-- **Attach:** `backgrounds/io_front.png`, `mission_map/neptune_facility_v2.png`
+- **Attach:** `backgrounds/io_front.png` (the `mission_map/` designs are still being finalized; not references yet)
 - **Prompt:** Io, Jupiter's volcanic moon: sulfur-yellow, ochre and rust ground, steaming vents and lava, industrial colony structures; Jupiter huge in a dark sky.
 - **Never:** a blue sky, plants or water; Earth's moon.
 - **Save to:** `backgrounds/` (story backdrops), `mission_map/` (mission maps)
