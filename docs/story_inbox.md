@@ -17,3 +17,4 @@ Format: `- YYYY-MM-DD (while working on …): the idea, in Wesley's words.`
   MC: Heh. I tell you what, I'll never get fatigued by you admitting you're wrong though.
   C: Hey! That's because it so rarely happens!
   MC: hahah, yeah yeah.
+- 2026-11-19 (while setting up the image reference index): Langley's outfit changes as she warms up. "perhaps she wears the gorget/top instead of the full T after she becomes more friends with Chip, and chip helps her get out of her shell more." (Sheets: `source_art/characters/langley-character-sheets.webp`, top left = the full leotard, top right = the chest plate and crop top.)

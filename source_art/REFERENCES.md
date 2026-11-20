@@ -40,9 +40,12 @@ background, labelled views (front / 3/4 / side / back), expression row, detail c
 - **Save to:** `characters/`
 
 ### Langley — mercenary streamer
-- **Attach:** `characters/PureRef-copy-2026.11.01-04.32.08.png`
-- **Prompt:** A quiet young woman soldier with a navy-blue bob and a short low ponytail, amber eyes; a translucent grey-green shredded camo long coat with black harness straps and a red patch on the left shoulder; a black leotard top with red and orange diagonal stripes; navy jeans with a thigh holster; black gloves; tall brown lace-up heeled boots; an assault rifle.
-- **Never:** a uniform with rank insignia (she is a merc off-rotation); bright colours beyond the red and orange accents.
+- **Attach:** `characters/langley-character-sheets.webp` (four panels: top left = default, top right = later field outfit, bottom = casual)
+- **Prompt:** A quiet young woman soldier with brown skin, a navy-blue bob with a short low ponytail, and amber eyes; a translucent grey-green shredded camo long coat with black harness straps and a red patch on the left shoulder; navy jeans with a thigh holster; black gloves; tall brown lace-up heeled boots; an assault rifle.
+  - **Default (field):** a black long-sleeved leotard with red and orange diagonal stripes.
+  - **Later (field):** a pale metal gorget/chest plate and a black crop top, bare midriff, a leotard cut showing at the hips; a custom sci-fi rifle with white and red panels.
+  - **Casual:** the coat swapped for an iridescent clear one worn off the shoulders, a white halter bandeau, black denim cut-off shorts, a thigh holster, barefoot.
+- **Never:** a uniform with rank insignia (she is a merc off-rotation); bright colours beyond the red and orange accents. When she switches from the default to the later outfit is not decided (`docs/story_inbox.md`).
 - **Save to:** `characters/`
 
 ### Tank — the engineer
